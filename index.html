@@ -448,13 +448,13 @@
                         <a href="https://www.linkedin.com/in/christopher-sanzeri-8a4a2b93/" target="_blank" rel="noopener noreferrer">Christopher Sanzeri</a>
                     </div>
                 </div>
-                <form class="contact-form" onsubmit="event.preventDefault();alert('Thanks! I\'ll be in touch soon.');this.reset();">
+                <form class="contact-form" action="https://formspree.io/f/mgolpoed" method="POST">
                     <div class="form-row">
-                        <input type="text" placeholder="Name" required>
-                        <input type="email" placeholder="Email" required>
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="email" name="email" placeholder="Email" required>
                     </div>
-                    <input type="text" placeholder="Organization">
-                    <textarea placeholder="Tell me a bit about what you're looking for..." required></textarea>
+                    <input type="text" name="organization" placeholder="Organization">
+                    <textarea name="message" placeholder="Tell me a bit about what you're looking for..." required></textarea>
                     <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send Message</button>
                 </form>
             </div>

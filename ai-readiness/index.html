@@ -1118,63 +1118,25 @@
                 doc.save(`AI-Readiness-Report-${contact.org.replace(/[^a-zA-Z0-9]/g, '-')}.pdf`);
             }
 
+            useEffect(() => {
+                downloadReport();
+            }, []);
+
             return (
                 <div className="anim-fade">
-                    <div className="score-hero anim-scale" style={{ background: `linear-gradient(135deg, #2E2B6F, ${level.color})` }}>
-                        <div className="score-ring-wrap">
-                            <ScoreRing score={totalScore} max={64} color={level.color} />
-                        </div>
-                        <div className="score-level">{level.name}</div>
-                        <p className="score-desc">{level.description}</p>
+                    <div className="score-hero anim-scale" style={{ background: `linear-gradient(135deg, #2E2B6F, ${level.color})`, textAlign: 'center' }}>
+                        <div style={{ fontSize: '48px', fontWeight: 700, color: '#fff', lineHeight: 1.1 }}>{totalScore}<span style={{ fontSize: '20px', fontWeight: 400, opacity: 0.8 }}> / 64</span></div>
+                        <div className="score-level" style={{ marginTop: '8px' }}>{level.name}</div>
                     </div>
 
-                    <p className="greeting anim-slide anim-delay-1">
-                        {firstName}, here is your personalized AI readiness breakdown for {contact.org}.
-                    </p>
-
-                    {DIMENSIONS.map((d, i) => {
-                        const s = dimScores[i];
-                        const l = getLevel(s, true);
-                        const pct = Math.round((s / 16) * 100);
-                        return (
-                            <div className={`dim-result-card anim-slide anim-delay-${i + 1}`} key={i}>
-                                <div className="dim-result-header">
-                                    <span className="dim-result-title">{d.title}</span>
-                                    <span className="level-pill" style={{ background: l.color, color: '#fff' }}>{l.name}</span>
-                                </div>
-                                <div className="progress-track">
-                                    <div className="progress-fill" style={{ width: pct + '%', background: l.color }} />
-                                </div>
-                                <div className="dim-score-text">{s} / 16</div>
-                            </div>
-                        );
-                    })}
-
-                    {gaps.length > 0 && (
-                        <div className="gaps-section">
-                            <h3 className="gaps-title">Key Gaps Identified</h3>
-                            {gaps.map((g, i) => (
-                                <div className={`gap-item anim-slide anim-delay-${Math.min(i + 1, 6)}`} key={i}>
-                                    <div className="gap-dim">{g.dim}</div>
-                                    <div className="gap-question">{g.question}</div>
-                                    <div className="gap-current">Current: {g.current}</div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-
-                    <div className="next-steps">
-                        <h3 className="next-steps-title">Recommended Next Steps</h3>
-                        {level.steps.map((s, i) => (
-                            <div className={`step-item anim-slide anim-delay-${i + 1}`} key={i}>
-                                <div className="step-num">{i + 1}</div>
-                                <div className="step-item-text">{s}</div>
-                            </div>
-                        ))}
+                    <div className="anim-slide anim-delay-1" style={{ textAlign: 'center', padding: '32px 0 24px' }}>
+                        <div style={{ fontSize: '48px', marginBottom: '12px' }}>&#10003;</div>
+                        <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#2E2B6F', marginBottom: '8px' }}>Your AI Readiness Report has been downloaded.</h3>
+                        <p style={{ fontSize: '14px', color: '#5C5F66' }}>Check your downloads folder to view the full report.</p>
                     </div>
 
-                    <button className="btn-download" onClick={downloadReport}>Download Report</button>
-                    <button className="btn-download-pdf" onClick={downloadPDF}>Download PDF Report</button>
+                    <button className="btn-download anim-slide anim-delay-2" onClick={downloadReport}>Download Report Again</button>
+                    <button className="btn-download-pdf anim-slide anim-delay-2" onClick={downloadPDF}>Download PDF Report</button>
 
                     <div className="cta-block">
                         <h3>Ready to move from assessment to action?</h3>

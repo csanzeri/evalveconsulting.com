@@ -923,9 +923,13 @@
 
                 // Logo header
                 if (logoDataRef.current) {
-                    const logoH = cw * (420 / 1630);
-                    doc.addImage(logoDataRef.current, 'PNG', m, y, cw, logoH);
-                    y += logoH + 8;
+                    const logoW = 100;
+                    const logoH = logoW * (420 / 1630);
+                    const logoX = (pw - logoW) / 2;
+                    doc.setFillColor(46, 43, 111);
+                    doc.roundedRect(m, y, cw, logoH + 12, 4, 4, 'F');
+                    doc.addImage(logoDataRef.current, 'PNG', logoX, y + 6, logoW, logoH);
+                    y += logoH + 20;
                 } else {
                     doc.setFillColor(46, 43, 111);
                     doc.roundedRect(m, y, cw, 28, 4, 4, 'F');
@@ -1023,8 +1027,8 @@
 
             return (
                 <div className="anim-fade">
-                    <div className="anim-scale" style={{ background: 'linear-gradient(135deg, #2E2B6F, #3d3a7f)', borderRadius: '16px', padding: '40px 32px', textAlign: 'center', marginBottom: '24px' }}>
-                        <img src="../images/evalve-horizontal-white.svg" alt="Evalve Consulting" style={{ width: '100%', height: 'auto' }} />
+                    <div className="anim-scale" style={{ background: 'linear-gradient(135deg, #2E2B6F, #3d3a7f)', borderRadius: '16px', padding: '20px 24px', textAlign: 'center', marginBottom: '24px' }}>
+                        <img src="../images/evalve-horizontal-white.svg" alt="Evalve Consulting" style={{ width: '100%', maxWidth: '320px', height: 'auto' }} />
                     </div>
 
                     <div className="score-hero anim-scale" style={{ background: `linear-gradient(135deg, #2E2B6F, ${level.color})` }}>

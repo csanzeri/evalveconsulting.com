@@ -488,6 +488,22 @@
             transition: background 0.2s;
         }
         .btn-download:hover { background: #242155; }
+        .btn-download-pdf {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: #5C5F66;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            margin-bottom: 16px;
+            transition: background 0.2s;
+        }
+        .btn-download-pdf:hover { background: #4a4d54; }
         .cta-block {
             background: linear-gradient(135deg, #2E2B6F, #3d3a7f);
             border-radius: 16px;
@@ -558,6 +574,28 @@
             .main-wrap { padding: 24px 16px 48px; }
             .header { padding: 14px 16px; }
             .logo-text { font-size: 12px; letter-spacing: 1.5px; }
+            .cta-block { padding: 28px 16px; }
+            .form-heading { font-size: 22px; }
+            .step-title { font-size: 21px; }
+            .next-steps-title { font-size: 19px; }
+            .gaps-title { font-size: 19px; }
+            .option-card { padding: 12px 12px; }
+            .step-item { gap: 10px; }
+            .step-num { width: 28px; height: 28px; min-width: 28px; font-size: 12px; }
+            .score-ring-wrap { max-width: 140px; margin: 0 auto 16px; }
+        }
+        @media (max-width: 400px) {
+            h1.intro-title { font-size: 24px; }
+            .form-heading { font-size: 20px; }
+            .score-level { font-size: 22px; }
+            .score-hero { padding: 20px 14px; }
+            .main-wrap { padding: 20px 12px 40px; }
+            .cta-block { padding: 24px 12px; }
+            .cta-block h3 { font-size: 20px; }
+            .dim-card { padding: 14px; }
+            .btn-primary { padding: 14px 24px; font-size: 15px; }
+            .option-card { padding: 10px 10px; gap: 10px; }
+            .score-ring-wrap { max-width: 120px; }
         }
     </style>
 </head>
@@ -570,6 +608,11 @@
         const { useState, useEffect, useRef } = React;
 
         const WEBHOOK_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL";
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzOeLDsRgCtWiYZFG1HGYxdpG2I0AFnBT4A5nYSECOdcfAzLwRb4HRBgoBtHOT0XMBc/exec";
 
         const DIMENSIONS = [
             { title: "Leadership & Vision", icon: "\u2666", subtitle: "Strategic direction and commitment" },
@@ -727,6 +770,7 @@
             const offset = c * (1 - pct);
             return (
                 <svg width="170" height="170" viewBox="0 0 170 170">
+                <svg viewBox="0 0 170 170" style={{ width: '100%', maxWidth: '170px', height: 'auto', display: 'block', margin: '0 auto' }}>
                     <circle cx="85" cy="85" r={r} fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="12" />
                     <circle cx="85" cy="85" r={r} fill="none" stroke="#fff" strokeWidth="12"
                         strokeDasharray={c} strokeDashoffset={offset} strokeLinecap="round"
@@ -743,6 +787,7 @@
                     <a href="https://evalveconsulting.com" className="header-logo">
                         <div className="logo-icon">e</div>
                         <span className="logo-text">Evalve Consulting</span>
+                        <img src="../images/evalve-horizontal-white.svg" alt="Evalve Consulting" style={{height:'50px',width:'auto'}} />
                     </a>
                     {phase === 'assessment' && (
                         <span className="header-step">Step {step + 1} of 4</span>
@@ -952,10 +997,142 @@
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
+            const logoDataRef = useRef(null);
+
+            useEffect(() => {
+                const img = new Image();
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = 1630;
+                    canvas.height = 420;
+                    const ctx = canvas.getContext('2d');
+                    ctx.fillStyle = '#2E2B6F';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    logoDataRef.current = canvas.toDataURL('image/png');
+                };
+                img.src = '../images/evalve-horizontal-white.svg';
+            }, []);
+
+            function downloadPDF() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('p', 'mm', 'a4');
+                const pw = doc.internal.pageSize.getWidth();
+                const ph = doc.internal.pageSize.getHeight();
+                const m = 20, cw = pw - 2 * m;
+                let y = m;
+                function cp(n) { if (y + n > ph - m) { doc.addPage(); y = m; } }
+
+                // Logo header
+                if (logoDataRef.current) {
+                    const logoW = 100;
+                    const logoH = logoW * (420 / 1630);
+                    const logoX = (pw - logoW) / 2;
+                    doc.setFillColor(46, 43, 111);
+                    doc.roundedRect(m, y, cw, logoH + 12, 4, 4, 'F');
+                    doc.addImage(logoDataRef.current, 'PNG', logoX, y + 6, logoW, logoH);
+                    y += logoH + 20;
+                } else {
+                    doc.setFillColor(46, 43, 111);
+                    doc.roundedRect(m, y, cw, 28, 4, 4, 'F');
+                    doc.setFont('helvetica', 'bold'); doc.setFontSize(16); doc.setTextColor(255, 255, 255);
+                    doc.text('Evalve Consulting', pw / 2, y + 18, { align: 'center' });
+                    y += 36;
+                }
+
+                // Title
+                doc.setFont('helvetica', 'bold'); doc.setFontSize(18); doc.setTextColor(46, 43, 111);
+                doc.text('AI Readiness Assessment Report', pw / 2, y, { align: 'center' });
+                y += 8;
+
+                // Org + date
+                doc.setFontSize(11); doc.setTextColor(92, 95, 102); doc.setFont('helvetica', 'normal');
+                doc.text(`${contact.org}  \u2022  ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, pw / 2, y, { align: 'center' });
+                y += 12;
+
+                // Overall score bar
+                doc.setFillColor(63, 167, 163);
+                doc.roundedRect(m, y, cw, 16, 3, 3, 'F');
+                doc.setFontSize(12); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
+                doc.text(`Overall Score: ${totalScore}/64 \u2014 ${level.name}`, pw / 2, y + 10, { align: 'center' });
+                y += 22;
+
+                // Level description
+                doc.setFontSize(10); doc.setTextColor(46, 43, 111); doc.setFont('helvetica', 'normal');
+                const descLines = doc.splitTextToSize(level.description, cw);
+                cp(descLines.length * 5 + 8);
+                doc.text(descLines, m, y); y += descLines.length * 5 + 8;
+
+                doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
+
+                // Dimensions with questions
+                DIMENSIONS.forEach((dim, di) => {
+                    const ds = dimScores[di];
+                    cp(18);
+                    doc.setFillColor(46, 43, 111);
+                    doc.roundedRect(m, y, cw, 12, 3, 3, 'F');
+                    doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
+                    doc.text(dim.title, m + 5, y + 8);
+                    doc.text(`${ds}/16`, pw - m - 5, y + 8, { align: 'right' });
+                    y += 18;
+
+                    QUESTIONS[di].forEach((q, qi) => {
+                        const av = answers[di][qi];
+                        const sel = q.options[av - 1];
+                        const ql = doc.splitTextToSize(`${qi + 1}. ${q.text}`, cw - 8);
+                        const al = doc.splitTextToSize(`Response: ${sel}`, cw - 14);
+                        const bh = ql.length * 5 + al.length * 5 + 12;
+                        cp(bh);
+
+                        doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
+                        doc.text(ql, m + 4, y + 4); y += ql.length * 5 + 3;
+
+                        doc.setFillColor(239, 250, 249);
+                        doc.roundedRect(m + 4, y - 1, cw - 8, al.length * 5 + 4, 2, 2, 'F');
+                        doc.setFillColor(63, 167, 163);
+                        doc.rect(m + 4, y - 1, 2, al.length * 5 + 4, 'F');
+
+                        doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102); doc.setFontSize(9);
+                        doc.text(al, m + 10, y + 3); y += al.length * 5 + 8;
+                    });
+                    y += 4;
+                });
+
+                // Recommended Next Steps
+                cp(20);
+                doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
+                doc.setFillColor(46, 43, 111);
+                doc.roundedRect(m, y, cw, 12, 3, 3, 'F');
+                doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
+                doc.text('Recommended Next Steps', m + 5, y + 8);
+                y += 18;
+
+                level.steps.forEach((step, i) => {
+                    const sl = doc.splitTextToSize(`${i + 1}. ${step}`, cw - 12);
+                    cp(sl.length * 5 + 6);
+                    doc.setFontSize(10); doc.setFont('helvetica', 'normal'); doc.setTextColor(46, 43, 111);
+                    doc.text(sl, m + 6, y + 3); y += sl.length * 5 + 5;
+                });
+                y += 4;
+
+                // Footer
+                cp(18);
+                doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
+                doc.setFontSize(8); doc.setTextColor(154, 154, 175);
+                doc.text('Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.', pw / 2, y, { align: 'center' }); y += 4;
+                doc.text(`\u00A9 ${new Date().getFullYear()} Evalve Consulting. All rights reserved.`, pw / 2, y, { align: 'center' }); y += 4;
+                doc.setTextColor(63, 167, 163);
+                doc.text('evalveconsulting.com', pw / 2, y, { align: 'center' });
+
+                doc.save(`AI-Readiness-Report-${contact.org.replace(/[^a-zA-Z0-9]/g, '-')}.pdf`);
             }
 
             return (
                 <div className="anim-fade">
+                    <div className="anim-scale" style={{ background: 'linear-gradient(135deg, #2E2B6F, #3d3a7f)', borderRadius: '16px', padding: '20px 24px', textAlign: 'center', marginBottom: '24px' }}>
+                        <img src="../images/evalve-horizontal-white.svg" alt="Evalve Consulting" style={{ width: '100%', maxWidth: '320px', height: 'auto' }} />
+                    </div>
+
                     <div className="score-hero anim-scale" style={{ background: `linear-gradient(135deg, #2E2B6F, ${level.color})` }}>
                         <div className="score-ring-wrap">
                             <ScoreRing score={totalScore} max={64} color={level.color} />
@@ -1017,6 +1194,8 @@
                         <a href="https://calendar.app.google/HjzF8PMaQbrM2GGF8">Book a Strategy Call</a>
                     </div>
 
+                    <button className="btn-download-pdf" onClick={downloadPDF}>Download PDF Report</button>
+
                     <div className="footer-attr">
                         Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.<br />
                         &copy; {new Date().getFullYear()} Evalve Consulting. All rights reserved.
@@ -1068,6 +1247,12 @@
                         body: JSON.stringify(payload)
                     }).catch(err => console.error("Webhook error:", err));
                 }
+                fetch(WEBHOOK_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                }).catch(err => console.error("Webhook error:", err));
                 setPhase('results');
             }
 

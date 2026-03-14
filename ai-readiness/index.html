@@ -37,6 +37,26 @@
             gap: 12px;
             text-decoration: none;
         }
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #3FA7A3, #00D9C8);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'DM Serif Display', serif;
+            color: #fff;
+            font-size: 20px;
+            font-weight: 400;
+        }
+        .logo-text {
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
         .header-step {
             color: rgba(255,255,255,0.7);
             font-size: 14px;
@@ -584,6 +604,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        const WEBHOOK_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL";
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
@@ -745,6 +769,7 @@
             const pct = score / max;
             const offset = c * (1 - pct);
             return (
+                <svg width="170" height="170" viewBox="0 0 170 170">
                 <svg viewBox="0 0 170 170" style={{ width: '100%', maxWidth: '170px', height: 'auto', display: 'block', margin: '0 auto' }}>
                     <circle cx="85" cy="85" r={r} fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="12" />
                     <circle cx="85" cy="85" r={r} fill="none" stroke="#fff" strokeWidth="12"
@@ -760,6 +785,8 @@
             return (
                 <div className="header">
                     <a href="https://evalveconsulting.com" className="header-logo">
+                        <div className="logo-icon">e</div>
+                        <span className="logo-text">Evalve Consulting</span>
                         <img src="../images/evalve-horizontal-white.svg" alt="Evalve Consulting" style={{height:'50px',width:'auto'}} />
                     </a>
                     {phase === 'assessment' && (
@@ -895,6 +922,81 @@
                 });
             });
 
+            function generateReport() {
+                const dimHTML = DIMENSIONS.map((d, i) => {
+                    const s = dimScores[i];
+                    const l = getLevel(s, true);
+                    const pct = Math.round((s / 16) * 100);
+                    return `<div style="background:#fff;border:1px solid #e8e8ec;border-radius:12px;padding:20px;margin-bottom:12px;">
+                        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                            <strong style="color:#2E2B6F;">${d.title}</strong>
+                            <span style="font-size:12px;font-weight:600;padding:4px 12px;border-radius:12px;color:#fff;background:${l.color};">${l.name}</span>
+                        </div>
+                        <div style="height:8px;background:#eee;border-radius:4px;overflow:hidden;margin-bottom:6px;">
+                            <div style="height:100%;width:${pct}%;background:${l.color};border-radius:4px;"></div>
+                        </div>
+                        <div style="font-size:13px;color:#9a9aaf;text-align:right;">${s} / 16</div>
+                    </div>`;
+                }).join('');
+
+                const gapsHTML = gaps.length > 0 ? `<h3 style="font-family:'DM Serif Display',serif;color:#2E2B6F;font-size:20px;margin:28px 0 14px;">Key Gaps Identified</h3>` +
+                    gaps.map(g => `<div style="border-left:4px solid #E8A94A;background:#fff;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:10px;">
+                        <div style="font-size:11px;font-weight:700;color:#E8A94A;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">${g.dim}</div>
+                        <div style="font-size:14px;color:#2E2B6F;font-weight:500;margin-bottom:4px;">${g.question}</div>
+                        <div style="font-size:13px;color:#9a9aaf;">Current: ${g.current}</div>
+                    </div>`).join('') : '';
+
+                const stepsHTML = level.steps.map((s, i) => `<div style="display:flex;gap:14px;margin-bottom:14px;">
+                    <div style="width:28px;height:28px;min-width:28px;background:#2E2B6F;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;">${i + 1}</div>
+                    <div style="font-size:14px;color:#5C5F66;line-height:1.6;">${s}</div>
+                </div>`).join('');
+
+                return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>AI Readiness Report - ${contact.org}</title>
+                    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+                    <style>body{font-family:'DM Sans',sans-serif;max-width:680px;margin:0 auto;padding:40px 24px;color:#5C5F66;line-height:1.6;background:#f5f5f8;}</style>
+                </head><body>
+                    <div style="text-align:center;margin-bottom:32px;">
+                        <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:20px;">
+                            <div style="width:32px;height:32px;background:linear-gradient(135deg,#3FA7A3,#00D9C8);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;color:#fff;font-size:18px;">e</div>
+                            <span style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2E2B6F;">Evalve Consulting</span>
+                        </div>
+                        <h1 style="font-family:'DM Serif Display',serif;color:#2E2B6F;font-size:28px;font-weight:400;margin:0 0 8px;">AI Readiness Report</h1>
+                        <p style="color:#9a9aaf;font-size:14px;">${contact.org} &bull; ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    </div>
+                    <div style="background:linear-gradient(135deg,#2E2B6F,${level.color});border-radius:16px;padding:32px;text-align:center;color:#fff;margin-bottom:28px;">
+                        <div style="font-size:48px;font-weight:700;margin-bottom:4px;">${totalScore}<span style="font-size:20px;opacity:0.7;">/64</span></div>
+                        <div style="font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:12px;">${level.name}</div>
+                        <p style="font-size:14px;opacity:0.9;max-width:480px;margin:0 auto;">${level.description}</p>
+                    </div>
+                    <h3 style="font-family:'DM Serif Display',serif;color:#2E2B6F;font-size:20px;margin:0 0 14px;">Dimension Scores</h3>
+                    ${dimHTML}
+                    ${gapsHTML}
+                    <h3 style="font-family:'DM Serif Display',serif;color:#2E2B6F;font-size:20px;margin:28px 0 14px;">Recommended Next Steps</h3>
+                    ${stepsHTML}
+                    <div style="background:linear-gradient(135deg,#2E2B6F,#3d3a7f);border-radius:16px;padding:32px;text-align:center;margin-top:32px;">
+                        <h3 style="font-family:'DM Serif Display',serif;color:#fff;font-size:22px;font-weight:400;margin:0 0 10px;">Ready to move from assessment to action?</h3>
+                        <p style="color:rgba(255,255,255,0.85);font-size:14px;margin:0 0 18px;">Schedule a free strategy call with Evalve Consulting.</p>
+                        <a href="https://calendar.app.google/HjzF8PMaQbrM2GGF8" style="display:inline-block;padding:12px 28px;background:#3FA7A3;color:#fff;border-radius:10px;font-weight:600;text-decoration:none;font-size:14px;">Book a Strategy Call</a>
+                    </div>
+                    <div style="text-align:center;margin-top:28px;font-size:12px;color:#9a9aaf;border-top:1px solid #e8e8ec;padding-top:20px;">
+                        Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.<br/>
+                        &copy; ${new Date().getFullYear()} Evalve Consulting. All rights reserved.<br/>
+                        <a href="https://evalveconsulting.com" style="color:#3FA7A3;">evalveconsulting.com</a> &bull; <a href="mailto:christophersanzeri@evalveconsulting.com" style="color:#3FA7A3;">christophersanzeri@evalveconsulting.com</a>
+                    </div>
+                </body></html>`;
+            }
+
+            function downloadReport() {
+                const html = generateReport();
+                const blob = new Blob([html], { type: 'text/html' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `AI-Readiness-Report-${contact.org.replace(/[^a-zA-Z0-9]/g, '-')}.html`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
             const logoDataRef = useRef(null);
 
             useEffect(() => {
@@ -1039,6 +1141,10 @@
                         <p className="score-desc">{level.description}</p>
                     </div>
 
+                    <p className="greeting anim-slide anim-delay-1">
+                        {firstName}, here is your personalized AI readiness breakdown for {contact.org}.
+                    </p>
+
                     {DIMENSIONS.map((d, i) => {
                         const s = dimScores[i];
                         const l = getLevel(s, true);
@@ -1057,6 +1163,19 @@
                         );
                     })}
 
+                    {gaps.length > 0 && (
+                        <div className="gaps-section">
+                            <h3 className="gaps-title">Key Gaps Identified</h3>
+                            {gaps.map((g, i) => (
+                                <div className={`gap-item anim-slide anim-delay-${Math.min(i + 1, 6)}`} key={i}>
+                                    <div className="gap-dim">{g.dim}</div>
+                                    <div className="gap-question">{g.question}</div>
+                                    <div className="gap-current">Current: {g.current}</div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
                     <div className="next-steps">
                         <h3 className="next-steps-title">Recommended Next Steps</h3>
                         {level.steps.map((s, i) => (
@@ -1066,6 +1185,8 @@
                             </div>
                         ))}
                     </div>
+
+                    <button className="btn-download" onClick={downloadReport}>Download Report</button>
 
                     <div className="cta-block">
                         <h3>Ready to move from assessment to action?</h3>
@@ -1116,6 +1237,16 @@
                     level: level.name
                 };
 
+                if (WEBHOOK_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL") {
+                    console.log("Assessment data (webhook not configured):", payload);
+                } else {
+                    fetch(WEBHOOK_URL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    }).catch(err => console.error("Webhook error:", err));
+                }
                 fetch(WEBHOOK_URL, {
                     method: "POST",
                     mode: "no-cors",

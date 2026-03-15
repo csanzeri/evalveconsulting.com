@@ -992,6 +992,8 @@
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
+            }
+
             const logoDataRef = useRef(null);
 
             useEffect(() => {
@@ -1232,16 +1234,6 @@
                     level: level.name
                 };
 
-                if (WEBHOOK_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEBHOOK_URL") {
-                    console.log("Assessment data (webhook not configured):", payload);
-                } else {
-                    fetch(WEBHOOK_URL, {
-                        method: "POST",
-                        mode: "no-cors",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(payload)
-                    }).catch(err => console.error("Webhook error:", err));
-                }
                 fetch(WEBHOOK_URL, {
                     method: "POST",
                     mode: "no-cors",

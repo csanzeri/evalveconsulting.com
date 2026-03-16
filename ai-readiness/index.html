@@ -292,6 +292,24 @@
             transition: transform 0.2s;
         }
         .option-card.selected .radio-dot { transform: scale(1); }
+        .option-card.unsure .option-label {
+            color: #999;
+            font-style: italic;
+        }
+        .option-card.unsure.selected {
+            border-color: #ccc;
+            background: #f5f5f5;
+        }
+        .option-card.unsure.selected .option-label {
+            color: #999;
+            font-weight: 600;
+        }
+        .option-card.unsure.selected .radio-circle {
+            border-color: #ccc;
+        }
+        .option-card.unsure.selected .radio-dot {
+            background: #ccc;
+        }
         .option-label {
             font-size: 14px;
             color: #5C5F66;
@@ -536,6 +554,32 @@
             transition: background 0.2s;
         }
         .cta-block a:hover { background: #369e9a; }
+        .results-btn-row {
+            display: flex;
+            gap: 12px;
+            margin: 24px 0;
+        }
+        .results-btn-row button, .results-btn-row a {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'DM Sans', sans-serif;
+            text-align: center;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            transition: background 0.2s;
+        }
+        .btn-report { background: #2E2B6F; }
+        .btn-report:hover { background: #242155; }
+        .btn-strategy { background: #3FA7A3; }
+        .btn-strategy:hover { background: #369e9a; }
         .footer-attr {
             text-align: center;
             font-size: 13px;
@@ -583,6 +627,7 @@
             .step-item { gap: 10px; }
             .step-num { width: 28px; height: 28px; min-width: 28px; font-size: 12px; }
             .score-ring-wrap { max-width: 140px; margin: 0 auto 16px; }
+            .results-btn-row { flex-direction: column; }
         }
         @media (max-width: 400px) {
             h1.intro-title { font-size: 24px; }
@@ -621,73 +666,73 @@
             [
                 {
                     text: "Does your organization have a clearly articulated vision for how AI supports your educational mission?",
-                    options: ["No vision exists", "Informal discussions have occurred", "A draft vision is in progress", "A formal vision is documented and communicated"]
+                    options: ["No vision exists", "Informal discussions have occurred", "A draft vision is in progress", "A formal vision is documented and communicated", "Unsure / Do not know"]
                 },
                 {
                     text: "Is there a designated leader or cross-functional team responsible for AI strategy?",
-                    options: ["No one is assigned", "One person is informally exploring AI", "A small team is formed but not formalized", "A cross-functional AI leadership team with clear roles exists"]
+                    options: ["No one is assigned", "One person is informally exploring AI", "A small team is formed but not formalized", "A cross-functional AI leadership team with clear roles exists", "Unsure / Do not know"]
                 },
                 {
                     text: "How engaged is your board and senior leadership in understanding AI\u2019s role in education?",
-                    options: ["Not engaged at all", "Aware AI exists but not actively learning", "Received one or more briefings on AI", "Actively participating in AI strategy and policy decisions"]
+                    options: ["Not engaged at all", "Aware AI exists but not actively learning", "Received one or more briefings on AI", "Actively participating in AI strategy and policy decisions", "Unsure / Do not know"]
                 },
                 {
                     text: "Does your organization have metrics or goals to evaluate the impact of AI initiatives?",
-                    options: ["No metrics exist", "We plan to develop metrics eventually", "Some informal tracking is happening", "Formal KPIs are defined and regularly reviewed"]
+                    options: ["No metrics exist", "We plan to develop metrics eventually", "Some informal tracking is happening", "Formal KPIs are defined and regularly reviewed", "Unsure / Do not know"]
                 }
             ],
             [
                 {
                     text: "Does your organization have a formal Acceptable/Responsible Use Policy that addresses AI tools?",
-                    options: ["No AI-specific policy exists", "General tech policy exists but does not address AI", "AI has been added to existing policies informally", "A comprehensive AI use policy is published and enforced"]
+                    options: ["No AI-specific policy exists", "General tech policy exists but does not address AI", "AI has been added to existing policies informally", "A comprehensive AI use policy is published and enforced", "Unsure / Do not know"]
                 },
                 {
                     text: "How does your organization address data privacy and FERPA compliance when evaluating AI tools?",
-                    options: ["No formal process for vetting AI tools", "We rely on vendor assurances without independent review", "A basic vetting process exists for some tools", "A formal procurement and privacy review process covers all AI tools"]
+                    options: ["No formal process for vetting AI tools", "We rely on vendor assurances without independent review", "A basic vetting process exists for some tools", "A formal procurement and privacy review process covers all AI tools", "Unsure / Do not know"]
                 },
                 {
                     text: "Does your organization have guidelines addressing AI-generated content, attribution, and academic integrity?",
-                    options: ["No guidelines exist", "Teachers handle this individually", "Some building-level guidelines exist", "District-wide guidelines are documented and communicated to all stakeholders"]
+                    options: ["No guidelines exist", "Teachers handle this individually", "Some building-level guidelines exist", "District-wide guidelines are documented and communicated to all stakeholders", "Unsure / Do not know"]
                 },
                 {
                     text: "Has your organization addressed equity and bias considerations in AI tool selection and use?",
-                    options: ["Not considered", "Awareness exists but no formal process", "Equity is part of informal evaluation discussions", "Formal equity criteria are built into AI procurement and evaluation"]
+                    options: ["Not considered", "Awareness exists but no formal process", "Equity is part of informal evaluation discussions", "Formal equity criteria are built into AI procurement and evaluation", "Unsure / Do not know"]
                 }
             ],
             [
                 {
                     text: "What level of AI-related professional development has your organization provided to educators?",
-                    options: ["None", "A single awareness session or optional webinar", "Multiple sessions offered but not required", "Ongoing, role-specific AI PD is embedded in the organizational plan"]
+                    options: ["None", "A single awareness session or optional webinar", "Multiple sessions offered but not required", "Ongoing, role-specific AI PD is embedded in the organizational plan", "Unsure / Do not know"]
                 },
                 {
                     text: "How would you describe the general attitude of your staff toward AI adoption?",
-                    options: ["Mostly resistant or fearful", "Cautiously skeptical", "Curious but unsure how to start", "Actively experimenting and eager to learn more"]
+                    options: ["Mostly resistant or fearful", "Cautiously skeptical", "Curious but unsure how to start", "Actively experimenting and eager to learn more", "Unsure / Do not know"]
                 },
                 {
                     text: "Do educators have access to approved AI tools and resources for instructional use?",
-                    options: ["No approved AI tools are available", "Teachers are using personal accounts on their own", "A few approved tools exist but access is inconsistent", "A vetted set of AI tools is available with training and support"]
+                    options: ["No approved AI tools are available", "Teachers are using personal accounts on their own", "A few approved tools exist but access is inconsistent", "A vetted set of AI tools is available with training and support", "Unsure / Do not know"]
                 },
                 {
                     text: "Are there peer networks, coaches, or communities of practice for AI integration in your organization?",
-                    options: ["None", "Informal conversations happen occasionally", "A pilot group or early adopters share informally", "Formal communities of practice with dedicated coaching support exist"]
+                    options: ["None", "Informal conversations happen occasionally", "A pilot group or early adopters share informally", "Formal communities of practice with dedicated coaching support exist", "Unsure / Do not know"]
                 }
             ],
             [
                 {
                     text: "Does your organization have the technical infrastructure (devices, bandwidth, SSO) to support AI tool deployment?",
-                    options: ["Significant gaps in devices and/or connectivity", "Basic infrastructure exists but not optimized for AI", "Infrastructure supports some AI tools with minor limitations", "Robust infrastructure with SSO, adequate bandwidth, and sufficient devices"]
+                    options: ["Significant gaps in devices and/or connectivity", "Basic infrastructure exists but not optimized for AI", "Infrastructure supports some AI tools with minor limitations", "Robust infrastructure with SSO, adequate bandwidth, and sufficient devices", "Unsure / Do not know"]
                 },
                 {
                     text: "Does your organization have a cybersecurity framework that includes AI-specific considerations?",
-                    options: ["No cybersecurity framework exists", "General cybersecurity exists but does not address AI", "AI considerations are being added to existing frameworks", "Cybersecurity framework explicitly addresses AI tools, data flows, and risks"]
+                    options: ["No cybersecurity framework exists", "General cybersecurity exists but does not address AI", "AI considerations are being added to existing frameworks", "Cybersecurity framework explicitly addresses AI tools, data flows, and risks", "Unsure / Do not know"]
                 },
                 {
                     text: "How would you describe your organization\u2019s data governance and data quality practices?",
-                    options: ["No formal data governance", "Basic policies exist but are inconsistently followed", "Data governance is in place with assigned stewards", "Comprehensive data governance with classification, quality audits, and clear ownership"]
+                    options: ["No formal data governance", "Basic policies exist but are inconsistently followed", "Data governance is in place with assigned stewards", "Comprehensive data governance with classification, quality audits, and clear ownership", "Unsure / Do not know"]
                 },
                 {
                     text: "Does your organization track and monitor which AI tools are being used across the organization?",
-                    options: ["No tracking or visibility", "We know some tools are used but have no formal tracking", "A partial inventory exists", "A comprehensive AI tool inventory is maintained and regularly updated"]
+                    options: ["No tracking or visibility", "We know some tools are used but have no formal tracking", "A partial inventory exists", "A comprehensive AI tool inventory is maintained and regularly updated", "Unsure / Do not know"]
                 }
             ]
         ];
@@ -696,8 +741,8 @@
             exploring: {
                 name: "Exploring",
                 color: "#E8634A",
-                range: [16, 24],
-                dimRange: [4, 6],
+                range: [0, 24],
+                dimRange: [0, 6],
                 description: "Your organization is in the early stages of understanding AI\u2019s potential. This is a common starting point, and it means there is significant opportunity to build a strong foundation from the ground up.",
                 steps: [
                     "Convene a small AI exploration committee with representatives from leadership, instruction, and IT.",
@@ -819,33 +864,45 @@
         }
 
         function ContactForm({ contact, setContact, onBegin }) {
-            const valid = contact.name.trim() && contact.email.trim() && contact.org.trim();
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const emailValid = emailPattern.test(contact.email);
+            const valid = contact.name.trim() && emailValid && contact.org.trim();
+            const formRef = useRef(null);
+            function handleSubmit(e) {
+                e.preventDefault();
+                if (valid) onBegin();
+            }
             return (
-                <div className="anim-fade">
+                <form className="anim-fade" ref={formRef} onSubmit={handleSubmit} noValidate={false}>
                     <h2 className="form-heading">Before we begin</h2>
                     <p className="form-sub">This helps us personalize your report. We will never share your information.</p>
                     <div className="form-group anim-slide anim-delay-1">
                         <label>Your Name</label>
                         <input type="text" placeholder="Dr. Jane Smith" value={contact.name}
+                            maxLength="100" required
                             onChange={e => setContact({ ...contact, name: e.target.value })} />
                     </div>
                     <div className="form-group anim-slide anim-delay-2">
                         <label>Email Address</label>
                         <input type="email" placeholder="jane@springfield.k12.us" value={contact.email}
+                            maxLength="254" required
+                            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
                             onChange={e => setContact({ ...contact, email: e.target.value })} />
                     </div>
                     <div className="form-group anim-slide anim-delay-3">
                         <label>District / Organization</label>
                         <input type="text" placeholder="Springfield School District" value={contact.org}
+                            maxLength="150" required
                             onChange={e => setContact({ ...contact, org: e.target.value })} />
                     </div>
                     <div className="form-group anim-slide anim-delay-4">
                         <label>Your Role</label>
                         <input type="text" placeholder="Superintendent, Director of Technology, etc." value={contact.role}
+                            maxLength="100"
                             onChange={e => setContact({ ...contact, role: e.target.value })} />
                     </div>
-                    <button className="btn-primary anim-slide anim-delay-5" disabled={!valid} onClick={onBegin}>Begin Assessment</button>
-                </div>
+                    <button type="submit" className="btn-primary anim-slide anim-delay-5" disabled={!valid}>Begin Assessment</button>
+                </form>
             );
         }
 
@@ -855,7 +912,8 @@
             const allAnswered = questions.every((_, qi) => answers[step][qi] !== null);
 
             function selectOption(qi, oi) {
-                const next = answers.map((s, si) => si === step ? s.map((a, ai) => ai === qi ? oi + 1 : a) : s);
+                const score = oi < 4 ? oi + 1 : 0;
+                const next = answers.map((s, si) => si === step ? s.map((a, ai) => ai === qi ? score : a) : s);
                 setAnswers(next);
             }
 
@@ -877,14 +935,17 @@
                     {questions.map((q, qi) => (
                         <div className={`question-block anim-slide anim-delay-${qi + 1}`} key={qi}>
                             <div className="question-text">{qi + 1}. {q.text}</div>
-                            {q.options.map((opt, oi) => (
+                            {q.options.map((opt, oi) => {
+                                const isSelected = oi < 4 ? answers[step][qi] === oi + 1 : answers[step][qi] === 0;
+                                return (
                                 <div key={oi}
-                                    className={`option-card ${answers[step][qi] === oi + 1 ? 'selected' : ''}`}
+                                    className={`option-card ${isSelected ? 'selected' : ''} ${oi === 4 ? 'unsure' : ''}`}
                                     onClick={() => selectOption(qi, oi)}>
                                     <div className="radio-circle"><div className="radio-dot" /></div>
                                     <span className="option-label">{opt}</span>
                                 </div>
-                            ))}
+                                );
+                            })}
                         </div>
                     ))}
                     <div className="nav-row">
@@ -902,7 +963,6 @@
             const dimScores = answers.map(s => s.reduce((a, b) => a + b, 0));
             const totalScore = dimScores.reduce((a, b) => a + b, 0);
             const level = getLevel(totalScore, false);
-            const firstName = contact.name.trim().split(' ')[0];
 
             const gaps = [];
             answers.forEach((stepAnswers, si) => {
@@ -910,14 +970,30 @@
                     if (val <= 2) {
                         gaps.push({
                             dim: DIMENSIONS[si].title,
+                            dimIndex: si,
                             question: QUESTIONS[si][qi].text,
-                            current: QUESTIONS[si][qi].options[val - 1]
+                            current: val === 0 ? "Unsure / Do not know" : QUESTIONS[si][qi].options[val - 1]
                         });
                     }
                 });
             });
 
+            // Group gaps by dimension for results page display
+            const dimGapSummary = [];
+            DIMENSIONS.forEach((d, i) => {
+                const count = gaps.filter(g => g.dimIndex === i).length;
+                if (count > 0) {
+                    dimGapSummary.push({
+                        title: d.title,
+                        count,
+                        level: getLevel(dimScores[i], true)
+                    });
+                }
+            });
+
             function generateReport() {
+                const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
                 const dimHTML = DIMENSIONS.map((d, i) => {
                     const s = dimScores[i];
                     const l = getLevel(s, true);
@@ -934,19 +1010,36 @@
                     </div>`;
                 }).join('');
 
+                // Group gaps by dimension with full question detail
                 const gapsHTML = gaps.length > 0 ? `<h3 style="font-family:'DM Serif Display',serif;color:#2E2B6F;font-size:20px;margin:28px 0 14px;">Key Gaps Identified</h3>` +
-                    gaps.map(g => `<div style="border-left:4px solid #E8A94A;background:#fff;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:10px;">
-                        <div style="font-size:11px;font-weight:700;color:#E8A94A;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">${g.dim}</div>
-                        <div style="font-size:14px;color:#2E2B6F;font-weight:500;margin-bottom:4px;">${g.question}</div>
-                        <div style="font-size:13px;color:#9a9aaf;">Current: ${g.current}</div>
-                    </div>`).join('') : '';
+                    DIMENSIONS.map((d, di) => {
+                        const dimGaps = gaps.filter(g => g.dimIndex === di);
+                        if (dimGaps.length === 0) return '';
+                        return `<div style="margin-bottom:18px;">
+                            <div style="font-size:13px;font-weight:700;color:#E8A94A;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">${d.title}</div>
+                            ${dimGaps.map(g => `<div style="border-left:4px solid #E8A94A;background:#fff;border-radius:0 10px 10px 0;padding:14px 18px;margin-bottom:10px;">
+                                <div style="font-size:14px;color:#2E2B6F;font-weight:500;margin-bottom:4px;">${g.question}</div>
+                                <div style="font-size:13px;color:#9a9aaf;">Current: ${g.current}</div>
+                            </div>`).join('')}
+                        </div>`;
+                    }).join('') : '';
 
                 const stepsHTML = level.steps.map((s, i) => `<div style="display:flex;gap:14px;margin-bottom:14px;">
                     <div style="width:28px;height:28px;min-width:28px;background:#2E2B6F;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;">${i + 1}</div>
                     <div style="font-size:14px;color:#5C5F66;line-height:1.6;">${s}</div>
                 </div>`).join('');
 
-                return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>AI Readiness Report - ${contact.org}</title>
+                const contactInfoHTML = `<div style="background:#fff;border:1px solid #e8e8ec;border-radius:12px;padding:20px;margin-bottom:28px;">
+                    <table style="width:100%;font-size:14px;color:#5C5F66;">
+                        <tr><td style="padding:4px 12px 4px 0;font-weight:600;color:#2E2B6F;">Name</td><td style="padding:4px 0;">${contact.name}</td></tr>
+                        <tr><td style="padding:4px 12px 4px 0;font-weight:600;color:#2E2B6F;">Organization</td><td style="padding:4px 0;">${contact.org}</td></tr>
+                        ${contact.role ? `<tr><td style="padding:4px 12px 4px 0;font-weight:600;color:#2E2B6F;">Role</td><td style="padding:4px 0;">${contact.role}</td></tr>` : ''}
+                        <tr><td style="padding:4px 12px 4px 0;font-weight:600;color:#2E2B6F;">Email</td><td style="padding:4px 0;">${contact.email}</td></tr>
+                        <tr><td style="padding:4px 12px 4px 0;font-weight:600;color:#2E2B6F;">Date</td><td style="padding:4px 0;">${dateStr}</td></tr>
+                    </table>
+                </div>`;
+
+                return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>AI Readiness Assessment Report - ${contact.org}</title>
                     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
                     <style>body{font-family:'DM Sans',sans-serif;max-width:680px;margin:0 auto;padding:40px 24px;color:#5C5F66;line-height:1.6;background:#f5f5f8;}</style>
                 </head><body>
@@ -955,9 +1048,9 @@
                             <div style="width:32px;height:32px;background:linear-gradient(135deg,#3FA7A3,#00D9C8);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;color:#fff;font-size:18px;">e</div>
                             <span style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2E2B6F;">Evalve Consulting</span>
                         </div>
-                        <h1 style="font-family:'DM Serif Display',serif;color:#2E2B6F;font-size:28px;font-weight:400;margin:0 0 8px;">AI Readiness Report</h1>
-                        <p style="color:#9a9aaf;font-size:14px;">${contact.org} &bull; ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                        <h1 style="font-family:'DM Serif Display',serif;color:#2E2B6F;font-size:28px;font-weight:400;margin:0 0 8px;">AI Readiness Assessment Report</h1>
                     </div>
+                    ${contactInfoHTML}
                     <div style="background:linear-gradient(135deg,#2E2B6F,${level.color});border-radius:16px;padding:32px;text-align:center;color:#fff;margin-bottom:28px;">
                         <div style="font-size:48px;font-weight:700;margin-bottom:4px;">${totalScore}<span style="font-size:20px;opacity:0.7;">/64</span></div>
                         <div style="font-family:'DM Serif Display',serif;font-size:28px;margin-bottom:12px;">${level.name}</div>
@@ -968,15 +1061,15 @@
                     ${gapsHTML}
                     <h3 style="font-family:'DM Serif Display',serif;color:#2E2B6F;font-size:20px;margin:28px 0 14px;">Recommended Next Steps</h3>
                     ${stepsHTML}
-                    <div style="background:linear-gradient(135deg,#2E2B6F,#3d3a7f);border-radius:16px;padding:32px;text-align:center;margin-top:32px;">
-                        <h3 style="font-family:'DM Serif Display',serif;color:#fff;font-size:22px;font-weight:400;margin:0 0 10px;">Ready to move from assessment to action?</h3>
-                        <p style="color:rgba(255,255,255,0.85);font-size:14px;margin:0 0 18px;">Schedule a free strategy call with Evalve Consulting.</p>
-                        <a href="https://calendar.app.google/HjzF8PMaQbrM2GGF8" style="display:inline-block;padding:12px 28px;background:#3FA7A3;color:#fff;border-radius:10px;font-weight:600;text-decoration:none;font-size:14px;">Book a Strategy Call</a>
+                    <div style="text-align:center;margin-top:32px;border-top:1px solid #e8e8ec;padding-top:24px;">
+                        <p style="font-family:'DM Serif Display',serif;color:#2E2B6F;font-size:18px;margin:0 0 8px;">Ready to move from assessment to action?</p>
+                        <p style="font-size:14px;color:#5C5F66;margin:0 0 8px;">Book a strategy call with Dr. Chris Sanzeri</p>
+                        <a href="https://calendar.app.google/HjzF8PMaQbrM2GGF8" style="color:#3FA7A3;font-size:14px;">https://calendar.app.google/HjzF8PMaQbrM2GGF8</a>
+                        <p style="font-size:13px;color:#9a9aaf;margin:12px 0 0;"><a href="mailto:christophersanzeri@evalveconsulting.com" style="color:#3FA7A3;">christophersanzeri@evalveconsulting.com</a></p>
                     </div>
-                    <div style="text-align:center;margin-top:28px;font-size:12px;color:#9a9aaf;border-top:1px solid #e8e8ec;padding-top:20px;">
+                    <div style="text-align:center;margin-top:20px;font-size:12px;color:#9a9aaf;border-top:1px solid #e8e8ec;padding-top:20px;">
                         Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.<br/>
-                        &copy; ${new Date().getFullYear()} Evalve Consulting. All rights reserved.<br/>
-                        <a href="https://evalveconsulting.com" style="color:#3FA7A3;">evalveconsulting.com</a> &bull; <a href="mailto:christophersanzeri@evalveconsulting.com" style="color:#3FA7A3;">christophersanzeri@evalveconsulting.com</a>
+                        &copy; ${new Date().getFullYear()} Evalve Consulting. All rights reserved.
                     </div>
                 </body></html>`;
             }
@@ -1018,6 +1111,7 @@
                 const ph = doc.internal.pageSize.getHeight();
                 const m = 20, cw = pw - 2 * m;
                 let y = m;
+                const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
                 function cp(n) { if (y + n > ph - m) { doc.addPage(); y = m; } }
 
                 // Logo header
@@ -1040,12 +1134,23 @@
                 // Title
                 doc.setFont('helvetica', 'bold'); doc.setFontSize(18); doc.setTextColor(46, 43, 111);
                 doc.text('AI Readiness Assessment Report', pw / 2, y, { align: 'center' });
-                y += 8;
-
-                // Org + date
-                doc.setFontSize(11); doc.setTextColor(92, 95, 102); doc.setFont('helvetica', 'normal');
-                doc.text(`${contact.org}  \u2022  ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`, pw / 2, y, { align: 'center' });
                 y += 12;
+
+                // Contact info box
+                cp(40);
+                doc.setFillColor(245, 245, 248);
+                doc.roundedRect(m, y, cw, 32, 3, 3, 'F');
+                doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
+                doc.text('Name:', m + 5, y + 7); doc.text('Organization:', m + 5, y + 14); doc.text('Email:', m + 5, y + 21); doc.text('Date:', m + 5, y + 28);
+                doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
+                doc.text(contact.name, m + 30, y + 7); doc.text(contact.org, m + 38, y + 14); doc.text(contact.email, m + 24, y + 21); doc.text(dateStr, m + 22, y + 28);
+                if (contact.role) {
+                    doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
+                    doc.text('Role:', pw / 2 + 5, y + 7);
+                    doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
+                    doc.text(contact.role, pw / 2 + 22, y + 7);
+                }
+                y += 38;
 
                 // Overall score bar
                 doc.setFillColor(63, 167, 163);
@@ -1062,38 +1167,66 @@
 
                 doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
 
-                // Dimensions with questions
+                // Dimension scores with progress bars
                 DIMENSIONS.forEach((dim, di) => {
                     const ds = dimScores[di];
-                    cp(18);
+                    const dl = getLevel(ds, true);
+                    const pct = Math.round((ds / 16) * 100);
+                    cp(20);
                     doc.setFillColor(46, 43, 111);
                     doc.roundedRect(m, y, cw, 12, 3, 3, 'F');
                     doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
                     doc.text(dim.title, m + 5, y + 8);
-                    doc.text(`${ds}/16`, pw - m - 5, y + 8, { align: 'right' });
+                    doc.text(`${ds}/16 - ${dl.name}`, pw - m - 5, y + 8, { align: 'right' });
+                    y += 16;
+                    // Progress bar
+                    doc.setFillColor(238, 238, 238);
+                    doc.roundedRect(m, y, cw, 3, 1, 1, 'F');
+                    const hex = dl.color;
+                    const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+                    doc.setFillColor(r, g, b);
+                    doc.roundedRect(m, y, cw * pct / 100, 3, 1, 1, 'F');
+                    y += 8;
+                });
+
+                doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
+
+                // Key Gaps - full question detail grouped by dimension
+                if (gaps.length > 0) {
+                    cp(16);
+                    doc.setFillColor(232, 169, 74);
+                    doc.roundedRect(m, y, cw, 12, 3, 3, 'F');
+                    doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
+                    doc.text('Key Gaps Identified', m + 5, y + 8);
                     y += 18;
 
-                    QUESTIONS[di].forEach((q, qi) => {
-                        const av = answers[di][qi];
-                        const sel = q.options[av - 1];
-                        const ql = doc.splitTextToSize(`${qi + 1}. ${q.text}`, cw - 8);
-                        const al = doc.splitTextToSize(`Response: ${sel}`, cw - 14);
-                        const bh = ql.length * 5 + al.length * 5 + 12;
-                        cp(bh);
+                    DIMENSIONS.forEach((dim, di) => {
+                        const dimGaps = gaps.filter(g => g.dimIndex === di);
+                        if (dimGaps.length === 0) return;
+                        cp(12);
+                        doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(232, 169, 74);
+                        doc.text(dim.title, m + 4, y + 4); y += 8;
 
-                        doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
-                        doc.text(ql, m + 4, y + 4); y += ql.length * 5 + 3;
+                        dimGaps.forEach(g => {
+                            const ql = doc.splitTextToSize(g.question, cw - 8);
+                            const al = doc.splitTextToSize(`Response: ${g.current}`, cw - 14);
+                            const bh = ql.length * 5 + al.length * 5 + 12;
+                            cp(bh);
 
-                        doc.setFillColor(239, 250, 249);
-                        doc.roundedRect(m + 4, y - 1, cw - 8, al.length * 5 + 4, 2, 2, 'F');
-                        doc.setFillColor(63, 167, 163);
-                        doc.rect(m + 4, y - 1, 2, al.length * 5 + 4, 'F');
+                            doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
+                            doc.text(ql, m + 4, y + 4); y += ql.length * 5 + 3;
 
-                        doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102); doc.setFontSize(9);
-                        doc.text(al, m + 10, y + 3); y += al.length * 5 + 8;
+                            doc.setFillColor(255, 249, 239);
+                            doc.roundedRect(m + 4, y - 1, cw - 8, al.length * 5 + 4, 2, 2, 'F');
+                            doc.setFillColor(232, 169, 74);
+                            doc.rect(m + 4, y - 1, 2, al.length * 5 + 4, 'F');
+
+                            doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102); doc.setFontSize(9);
+                            doc.text(al, m + 10, y + 3); y += al.length * 5 + 8;
+                        });
+                        y += 4;
                     });
-                    y += 4;
-                });
+                }
 
                 // Recommended Next Steps
                 cp(20);
@@ -1113,13 +1246,18 @@
                 y += 4;
 
                 // Footer
-                cp(18);
+                cp(40);
                 doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
+                doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
+                doc.text('Ready to move from assessment to action?', pw / 2, y, { align: 'center' }); y += 6;
+                doc.setFontSize(9); doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
+                doc.text('Book a strategy call with Dr. Chris Sanzeri', pw / 2, y, { align: 'center' }); y += 5;
+                doc.setTextColor(63, 167, 163);
+                doc.text('https://calendar.app.google/HjzF8PMaQbrM2GGF8', pw / 2, y, { align: 'center' }); y += 5;
+                doc.text('christophersanzeri@evalveconsulting.com', pw / 2, y, { align: 'center' }); y += 8;
                 doc.setFontSize(8); doc.setTextColor(154, 154, 175);
                 doc.text('Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.', pw / 2, y, { align: 'center' }); y += 4;
-                doc.text(`\u00A9 ${new Date().getFullYear()} Evalve Consulting. All rights reserved.`, pw / 2, y, { align: 'center' }); y += 4;
-                doc.setTextColor(63, 167, 163);
-                doc.text('evalveconsulting.com', pw / 2, y, { align: 'center' });
+                doc.text(`\u00A9 ${new Date().getFullYear()} Evalve Consulting. All rights reserved.`, pw / 2, y, { align: 'center' });
 
                 doc.save(`AI-Readiness-Report-${contact.org.replace(/[^a-zA-Z0-9]/g, '-')}.pdf`);
             }
@@ -1137,10 +1275,6 @@
                         <div className="score-level">{level.name}</div>
                         <p className="score-desc">{level.description}</p>
                     </div>
-
-                    <p className="greeting anim-slide anim-delay-1">
-                        {firstName}, here is your personalized AI readiness breakdown for {contact.org}.
-                    </p>
 
                     {DIMENSIONS.map((d, i) => {
                         const s = dimScores[i];
@@ -1160,14 +1294,19 @@
                         );
                     })}
 
-                    {gaps.length > 0 && (
+                    {dimGapSummary.length > 0 && (
                         <div className="gaps-section">
                             <h3 className="gaps-title">Key Gaps Identified</h3>
-                            {gaps.map((g, i) => (
+                            <p style={{ color: '#5C5F66', fontSize: '14px', marginBottom: '16px' }}>{gaps.length} area{gaps.length !== 1 ? 's' : ''} across {dimGapSummary.length} dimension{dimGapSummary.length !== 1 ? 's' : ''} need attention.</p>
+                            {dimGapSummary.map((d, i) => (
                                 <div className={`gap-item anim-slide anim-delay-${Math.min(i + 1, 6)}`} key={i}>
-                                    <div className="gap-dim">{g.dim}</div>
-                                    <div className="gap-question">{g.question}</div>
-                                    <div className="gap-current">Current: {g.current}</div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <div>
+                                            <div className="gap-dim">{d.title}</div>
+                                            <div className="gap-current">{d.count} of 4 areas need attention</div>
+                                        </div>
+                                        <span className="level-pill" style={{ background: d.level.color, color: '#fff' }}>{d.level.name}</span>
+                                    </div>
                                 </div>
                             ))}
                         </div>
@@ -1183,15 +1322,10 @@
                         ))}
                     </div>
 
-                    <button className="btn-download" onClick={downloadReport}>Download Report</button>
-
-                    <div className="cta-block">
-                        <h3>Ready to move from assessment to action?</h3>
-                        <p>Schedule a free strategy call to discuss your results and build a roadmap tailored to your organization.</p>
-                        <a href="https://calendar.app.google/HjzF8PMaQbrM2GGF8">Book a Strategy Call</a>
+                    <div className="results-btn-row">
+                        <button className="btn-report" onClick={downloadPDF}>Download Full Report</button>
+                        <a className="btn-strategy" href="https://calendar.app.google/HjzF8PMaQbrM2GGF8" target="_blank" rel="noopener noreferrer">Book a Strategy Call</a>
                     </div>
-
-                    <button className="btn-download-pdf" onClick={downloadPDF}>Download PDF Report</button>
 
                     <div className="footer-attr">
                         Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.<br />

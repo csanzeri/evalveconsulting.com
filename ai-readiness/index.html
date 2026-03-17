@@ -37,26 +37,6 @@
             gap: 12px;
             text-decoration: none;
         }
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #3FA7A3, #00D9C8);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'DM Serif Display', serif;
-            color: #fff;
-            font-size: 20px;
-            font-weight: 400;
-        }
-        .logo-text {
-            color: #fff;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
         .header-step {
             color: rgba(255,255,255,0.7);
             font-size: 14px;
@@ -617,7 +597,6 @@
             .score-level { font-size: 26px; }
             .main-wrap { padding: 24px 16px 48px; }
             .header { padding: 14px 16px; }
-            .logo-text { font-size: 12px; letter-spacing: 1.5px; }
             .cta-block { padding: 28px 16px; }
             .form-heading { font-size: 22px; }
             .step-title { font-size: 21px; }
@@ -825,9 +804,7 @@
             return (
                 <div className="header">
                     <a href="https://evalveconsulting.com" className="header-logo">
-                        <div className="logo-icon">e</div>
-                        <span className="logo-text">Evalve Consulting</span>
-                        <img src="../images/evalve-horizontal-white.svg" alt="Evalve Consulting" style={{height:'50px',width:'auto'}} />
+                        <img src="../images/evalve-horizontal-white.svg" alt="Evalve Consulting" style={{height:'32px',width:'auto'}} />
                     </a>
                     {phase === 'assessment' && (
                         <span className="header-step">Step {step + 1} of 4</span>
@@ -839,6 +816,9 @@
         function IntroScreen({ onStart }) {
             return (
                 <div className="anim-fade">
+                    <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+                        <img src="../images/trace.png" alt="Evalve" style={{ height: '52px', width: 'auto' }} />
+                    </div>
                     <div className="badge">Free Assessment</div>
                     <h1 className="intro-title">Is Your Organization Ready for AI?</h1>
                     <p className="intro-sub">
@@ -1044,10 +1024,7 @@
                     <style>body{font-family:'DM Sans',sans-serif;max-width:680px;margin:0 auto;padding:40px 24px;color:#5C5F66;line-height:1.6;background:#f5f5f8;}</style>
                 </head><body>
                     <div style="text-align:center;margin-bottom:32px;">
-                        <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:20px;">
-                            <div style="width:32px;height:32px;background:linear-gradient(135deg,#3FA7A3,#00D9C8);border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;color:#fff;font-size:18px;">e</div>
-                            <span style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2E2B6F;">Evalve Consulting</span>
-                        </div>
+                        <img src="https://evalveconsulting.com/images/trace.png" alt="Evalve Consulting" style="width:180px;height:auto;margin-bottom:20px;" />
                         <h1 style="font-family:'DM Serif Display',serif;color:#2E2B6F;font-size:28px;font-weight:400;margin:0 0 8px;">AI Readiness Assessment Report</h1>
                     </div>
                     ${contactInfoHTML}
@@ -1062,6 +1039,7 @@
                     <h3 style="font-family:'DM Serif Display',serif;color:#2E2B6F;font-size:20px;margin:28px 0 14px;">Recommended Next Steps</h3>
                     ${stepsHTML}
                     <div style="text-align:center;margin-top:32px;border-top:1px solid #e8e8ec;padding-top:24px;">
+                        <img src="https://evalveconsulting.com/images/trace.png" alt="Evalve" style="width:36px;height:auto;margin-bottom:12px;" />
                         <p style="font-family:'DM Serif Display',serif;color:#2E2B6F;font-size:18px;margin:0 0 8px;">Ready to move from assessment to action?</p>
                         <p style="font-size:14px;color:#5C5F66;margin:0 0 8px;">Book a strategy call with Dr. Chris Sanzeri</p>
                         <a href="https://calendar.app.google/HjzF8PMaQbrM2GGF8" style="color:#3FA7A3;font-size:14px;">https://calendar.app.google/HjzF8PMaQbrM2GGF8</a>

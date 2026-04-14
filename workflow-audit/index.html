@@ -11,6 +11,7 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -286,13 +287,208 @@
 
       const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxQHQ44jiLKFtysSrUllqSI6M3yOl0vjl18Es6GG0suvYprab9o7FpAxmsgX4hOPHNE/exec';
 
+      const buildPDF = useCallback((results) => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF('p', 'mm', 'a4');
+        const pw = doc.internal.pageSize.getWidth();
+        const ph = doc.internal.pageSize.getHeight();
+        const m = 20, cw = pw - 2 * m;
+        let y = m;
+        const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        const sz = parseInt(teamSize) || 1;
+        function cp(n) { if (y + n > ph - m) { doc.addPage(); y = m; } }
+        function hexToRgb(hex) { const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16); return [r,g,b]; }
+
+        const totH = results.reduce((s, r) => s + r.totalHours, 0);
+        const totS = results.reduce((s, r) => s + r.totalSaveable, 0);
+        const totA = results.reduce((s, r) => s + r.totalAnnualSavings, 0);
+        const allTasks = results.flatMap((r) => r.tasks).sort((a, b) => b.priorityScore - a.priorityScore);
+        const top = allTasks.slice(0, 10);
+
+        // Header
+        doc.setFillColor(46, 43, 111);
+        doc.roundedRect(m, y, cw, 28, 4, 4, 'F');
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(16); doc.setTextColor(255, 255, 255);
+        doc.text('Evalve Consulting', pw / 2, y + 18, { align: 'center' });
+        y += 36;
+
+        // Title
+        doc.setFont('helvetica', 'bold'); doc.setFontSize(18); doc.setTextColor(46, 43, 111);
+        doc.text('Invisible Work Audit Report', pw / 2, y, { align: 'center' });
+        y += 12;
+
+        // Business info box
+        cp(28);
+        doc.setFillColor(245, 245, 248);
+        doc.roundedRect(m, y, cw, 24, 3, 3, 'F');
+        doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
+        doc.text('Organization:', m + 5, y + 7); doc.text('Industry:', m + 5, y + 14); doc.text('Team Size:', m + 5, y + 21);
+        doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
+        doc.text(orgName || 'Not provided', m + 35, y + 7); doc.text(industry || 'Not provided', m + 30, y + 14); doc.text(sz + ' member' + (sz !== 1 ? 's' : ''), m + 33, y + 21);
+        doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
+        doc.text('Type:', pw / 2 + 5, y + 7); doc.text('Date:', pw / 2 + 5, y + 14);
+        doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
+        doc.text(orgType || 'Not provided', pw / 2 + 20, y + 7); doc.text(dateStr, pw / 2 + 20, y + 14);
+        y += 30;
+
+        // Summary stats bar
+        cp(16);
+        doc.setFillColor(63, 167, 163);
+        doc.roundedRect(m, y, cw, 16, 3, 3, 'F');
+        doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
+        doc.text(totH.toFixed(0) + ' hrs/wk audited  |  ' + totS.toFixed(0) + ' hrs/wk recoverable  |  $' + Math.round(totA).toLocaleString() + '/yr potential savings', pw / 2, y + 10, { align: 'center' });
+        y += 22;
+
+        doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
+
+        // Top priorities
+        if (top.length > 0) {
+          cp(16);
+          doc.setFillColor(46, 43, 111);
+          doc.roundedRect(m, y, cw, 12, 3, 3, 'F');
+          doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
+          doc.text('Top Automation Priorities', m + 5, y + 8);
+          y += 18;
+
+          top.forEach((task, i) => {
+            const label = (i + 1) + '. ' + task.label;
+            const lines = doc.splitTextToSize(label, cw - 60);
+            const bh = lines.length * 5 + 8;
+            cp(bh);
+
+            const bgColor = i === 0 ? [232, 248, 247] : [245, 245, 248];
+            doc.setFillColor(...bgColor);
+            doc.roundedRect(m, y - 2, cw, bh, 2, 2, 'F');
+
+            // Priority badge
+            const pColor = hexToRgb(getPriorityColor(task.priorityScore));
+            doc.setFillColor(...pColor);
+            doc.circle(m + 6, y + 3, 3, 'F');
+            doc.setFontSize(7); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
+            doc.text(String(i + 1), m + 6, y + 4.5, { align: 'center' });
+
+            doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
+            doc.text(lines, m + 12, y + 3);
+
+            // Right side info
+            doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
+            doc.text(task.hoursReported + ' hrs/wk', pw - m - 40, y + 3);
+            doc.setFont('helvetica', 'bold');
+            doc.setTextColor(...pColor);
+            doc.text('~' + task.saveableHours.toFixed(1) + ' recoverable', pw - m - 5, y + 3, { align: 'right' });
+            doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
+            const typeLabel = task.category === 'ai' ? 'AI' : 'Automation';
+            doc.text(getPriorityLabel(task.priorityScore) + ' | ' + typeLabel, pw - m - 5, y + 8, { align: 'right' });
+
+            y += bh + 2;
+          });
+          y += 4;
+        }
+
+        doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
+
+        // Area breakdown
+        const activeAreas = results.filter((r) => r.tasks.length > 0).sort((a, b) => b.totalAnnualSavings - a.totalAnnualSavings);
+        if (activeAreas.length > 0) {
+          cp(16);
+          doc.setFillColor(46, 43, 111);
+          doc.roundedRect(m, y, cw, 12, 3, 3, 'F');
+          doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
+          doc.text('Breakdown by Area', m + 5, y + 8);
+          y += 18;
+
+          activeAreas.forEach((area) => {
+            cp(22);
+            doc.setFillColor(245, 245, 248);
+            doc.roundedRect(m, y - 2, cw, 18, 2, 2, 'F');
+
+            doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
+            doc.text(area.icon + ' ' + area.name, m + 5, y + 3);
+            doc.setTextColor(63, 167, 163);
+            doc.text('$' + Math.round(area.totalAnnualSavings).toLocaleString() + '/yr', pw - m - 5, y + 3, { align: 'right' });
+
+            // Progress bar
+            const barY = y + 7;
+            doc.setFillColor(230, 230, 230);
+            doc.roundedRect(m + 5, barY, cw - 10, 3, 1, 1, 'F');
+            const pct = area.totalHours > 0 ? area.totalSaveable / area.totalHours : 0;
+            doc.setFillColor(63, 167, 163);
+            doc.roundedRect(m + 5, barY, (cw - 10) * pct, 3, 1, 1, 'F');
+
+            doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
+            doc.text(area.totalHours.toFixed(1) + ' hrs/wk total', m + 5, y + 14);
+            doc.text(area.totalSaveable.toFixed(1) + ' hrs/wk recoverable (' + Math.round(pct * 100) + '%)', pw - m - 5, y + 14, { align: 'right' });
+
+            y += 20;
+          });
+          y += 4;
+        }
+
+        doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
+
+        // AI vs Automation explanation
+        cp(30);
+        doc.setFillColor(245, 245, 248);
+        doc.roundedRect(m, y - 2, cw / 2 - 2, 24, 2, 2, 'F');
+        doc.setFillColor(245, 245, 248);
+        doc.roundedRect(m + cw / 2 + 2, y - 2, cw / 2 - 2, 24, 2, 2, 'F');
+
+        doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
+        doc.text('Automation Candidates', m + 5, y + 4);
+        doc.setFontSize(7); doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
+        const autoLines = doc.splitTextToSize('Rule-based, repetitive tasks. Sending reminders, moving data, creating invoices, updating statuses.', cw / 2 - 12);
+        doc.text(autoLines, m + 5, y + 9);
+
+        doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
+        doc.text('AI Candidates', m + cw / 2 + 7, y + 4);
+        doc.setFontSize(7); doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
+        const aiLines = doc.splitTextToSize('Tasks needing judgment, language, or pattern recognition. Drafting emails, analyzing data, creating content.', cw / 2 - 12);
+        doc.text(aiLines, m + cw / 2 + 7, y + 9);
+        y += 30;
+
+        // Footer CTA
+        cp(40);
+        doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
+        doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
+        doc.text('Ready to act on these results?', pw / 2, y, { align: 'center' }); y += 6;
+        doc.setFontSize(9); doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
+        doc.text('Book a free discovery call with Dr. Chris Sanzeri', pw / 2, y, { align: 'center' }); y += 5;
+        doc.setTextColor(63, 167, 163);
+        doc.text('https://calendar.app.google/HjzF8PMaQbrM2GGF8', pw / 2, y, { align: 'center' }); y += 5;
+        doc.text('christophersanzeri@evalveconsulting.com', pw / 2, y, { align: 'center' }); y += 8;
+
+        // Methodology note
+        doc.setFontSize(7); doc.setTextColor(154, 154, 175);
+        const methLines = doc.splitTextToSize('Automation potential calibrated using McKinsey Global Institute task-level analysis. Time savings use $' + HOURLY_RATE + '/hr loaded cost x ' + WEEKS_PER_YEAR + ' working weeks. Priority scoring blends technical feasibility, time consumed, and pain level. Estimates are directional, not exact financial projections.', cw);
+        cp(methLines.length * 3.5 + 8);
+        doc.text(methLines, m, y); y += methLines.length * 3.5 + 4;
+        doc.setFontSize(8); doc.setTextColor(154, 154, 175);
+        doc.text('\u00A9 ' + new Date().getFullYear() + ' Evalve Consulting. All rights reserved.', pw / 2, y, { align: 'center' });
+
+        return doc;
+      }, [orgName, orgType, industry, teamSize]);
+
+      const downloadPDF = useCallback((results) => {
+        const doc = buildPDF(results);
+        doc.save('Invisible-Work-Audit-' + (orgName || 'Report').replace(/[^a-zA-Z0-9]/g, '-') + '.pdf');
+      }, [buildPDF, orgName]);
+
       const submitToSheet = useCallback((results) => {
         if (WEBHOOK_URL.includes('YOUR_APPS_SCRIPT')) return;
         const allTasks = results.flatMap(r => r.tasks)
           .sort((a, b) => b.priorityScore - a.priorityScore);
         const top3 = allTasks.slice(0, 3);
+
+        // Generate PDF as base64 for email
+        let pdfBase64 = '';
+        try {
+          const doc = buildPDF(results);
+          pdfBase64 = doc.output('datauristring').split(',')[1];
+        } catch (e) { console.log('PDF generation error:', e); }
+
         const payload = {
           timestamp: new Date().toISOString(),
+          source: 'invisible-work-audit',
           orgName: orgName || 'Not provided',
           industry,
           orgType,
@@ -309,7 +505,10 @@
           topPriority2Type: top3[1]?.category || '',
           topPriority3Type: top3[2]?.category || '',
           areaBreakdown: results.filter(r => r.tasks.length > 0)
-            .map(r => r.name + ': ' + r.totalSaveable.toFixed(1) + ' hrs/wk').join(' | ')
+            .map(r => r.name + ': ' + r.totalSaveable.toFixed(1) + ' hrs/wk').join(' | '),
+          pdfBase64,
+          pdfFilename: 'Invisible-Work-Audit-' + (orgName || 'Report').replace(/[^a-zA-Z0-9]/g, '-') + '.pdf',
+          emailTo: 'christophersanzeri@evalveconsulting.com'
         };
         try {
           fetch(WEBHOOK_URL, {
@@ -318,7 +517,7 @@
             body: JSON.stringify(payload)
           });
         } catch (e) { console.log('Submit error:', e); }
-      }, [orgName, industry, orgType, teamSize, selectedAreas]);
+      }, [orgName, industry, orgType, teamSize, selectedAreas, buildPDF]);
 
       useEffect(() => {
         if (step === 'results') {
@@ -597,7 +796,10 @@
                 <p style={{ color: COLORS.slateGray, fontSize: 12, lineHeight: 1.6, margin: 0 }}>Automation potential percentages are calibrated using McKinsey Global Institute's task-level analysis, which assessed 2,000+ work activities across 800+ occupations. Time savings use a ${HOURLY_RATE}/hr loaded cost as a conservative baseline. Priority scoring blends three factors: technical feasibility, time consumed, and pain level. Actual savings depend on your specific systems, processes, and implementation approach. This audit provides directional estimates to help you prioritize, not exact financial projections.</p>
               </div>
 
-              <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 24 }}><button onClick={() => { setStep("intro"); setTaskResponses({}); setSelectedAreas([]); setCurrentAreaIdx(0); setOrgName(""); setOrgType(""); setIndustry(""); setTeamSize(""); }} style={btnS}>Start Over</button></div>
+              <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 24 }}>
+                <button onClick={() => downloadPDF(results)} style={{ ...btnP, background: COLORS.deepIndigo }}>Download Full Report</button>
+                <button onClick={() => { setStep("intro"); setTaskResponses({}); setSelectedAreas([]); setCurrentAreaIdx(0); setOrgName(""); setOrgType(""); setIndustry(""); setTeamSize(""); }} style={btnS}>Start Over</button>
+              </div>
             </div>
           </div>
         );

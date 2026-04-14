@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invisible Work Audit | Evalve Consulting</title>
+  <link rel="icon" href="/images/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@700&family=Nunito+Sans:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet" />
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useCallback, useRef, useEffect } = React;
+
+    const COLORS = {
+      deepIndigo: "#2E2B6F",
+      softTeal: "#3FA7A3",
+      slateGray: "#5C5F66",
+      white: "#FFFFFF",
+      lightBg: "#F7F7FA",
+      cardBg: "#FFFFFF",
+      tealLight: "rgba(63,167,163,0.08)",
+      tealBorder: "rgba(63,167,163,0.2)",
+      indigoDark: "#1E1B4F",
+      indigoLight: "rgba(46,43,111,0.06)",
+      dangerRed: "#D94F4F",
+      warningAmber: "#D4A843",
+      successGreen: "#3FA77A",
+    };
+
+    const FONT_HEADING = "'Instrument Sans', 'Arial Black', sans-serif";
+    const FONT_BODY = "'Nunito Sans', 'Segoe UI', Arial, sans-serif";
+
+    const ORG_TYPES = [
+      "Solo / Freelancer",
+      "Small Business (1-10)",
+      "Growing Business (11-50)",
+      "Mid-Size Company (51-200)",
+      "Large Organization (200+)",
+      "Nonprofit",
+      "Education",
+      "Government / Public Sector",
+    ];
+
+    const INDUSTRIES = [
+      "Construction / Trades",
+      "Automotive / Repair",
+      "Healthcare / Wellness",
+      "Education (K-12 / Higher Ed)",
+      "Professional Services",
+      "Retail / E-Commerce",
+      "Real Estate / Property",
+      "Manufacturing",
+      "Food / Hospitality",
+      "Technology / Software",
+      "Legal / Accounting",
+      "Nonprofit / Social Services",
+      "Marketing / Creative",
+      "Other",
+    ];
+
+    const OPERATIONAL_AREAS = [
+      {
+        id: "customer_comms",
+        name: "Customer & Client Communication",
+        icon: "\u2709\uFE0F",
+        description: "Emails, phone follow-ups, appointment confirmations, quotes, thank-you messages",
+        tasks: [
+          { id: "email_responses", label: "Responding to inquiries, quote requests, or general questions", avgHoursWeek: 4, automationPotential: 0.65, category: "ai" },
+          { id: "appt_confirmations", label: "Sending appointment confirmations, reminders, or follow-ups", avgHoursWeek: 2.5, automationPotential: 0.9, category: "automation" },
+          { id: "quote_followup", label: "Following up on estimates, proposals, or pending decisions", avgHoursWeek: 2, automationPotential: 0.7, category: "automation" },
+          { id: "review_requests", label: "Asking customers for reviews, feedback, or referrals", avgHoursWeek: 1, automationPotential: 0.85, category: "automation" },
+          { id: "complaint_handling", label: "Responding to complaints or resolving service issues", avgHoursWeek: 1.5, automationPotential: 0.3, category: "ai" },
+          { id: "newsletter_updates", label: "Sending newsletters, promotions, or seasonal updates", avgHoursWeek: 1.5, automationPotential: 0.7, category: "ai" },
+        ],
+      },
+      {
+        id: "scheduling",
+        name: "Scheduling & Calendar Management",
+        icon: "\uD83D\uDCC5",
+        description: "Appointments, jobs, shifts, meetings, resource booking, dispatching",
+        tasks: [
+          { id: "appt_booking", label: "Booking appointments, jobs, or service calls", avgHoursWeek: 3, automationPotential: 0.8, category: "automation" },
+          { id: "shift_scheduling", label: "Creating and adjusting employee schedules or shift coverage", avgHoursWeek: 2.5, automationPotential: 0.65, category: "ai" },
+          { id: "calendar_coordination", label: "Coordinating calendars across team members", avgHoursWeek: 1.5, automationPotential: 0.8, category: "automation" },
+          { id: "reschedule_manage", label: "Handling cancellations, reschedules, and no-shows", avgHoursWeek: 1.5, automationPotential: 0.75, category: "automation" },
+          { id: "dispatch_routing", label: "Dispatching crews, techs, or drivers to jobs or locations", avgHoursWeek: 2, automationPotential: 0.6, category: "ai" },
+          { id: "meeting_reminders", label: "Sending reminders for meetings, deadlines, or renewals", avgHoursWeek: 1, automationPotential: 0.9, category: "automation" },
+        ],
+      },
+      {
+        id: "data_admin",
+        name: "Data Entry & Admin Work",
+        icon: "\uD83D\uDCCA",
+        description: "Entering records, updating systems, filing, transferring info between tools",
+        tasks: [
+          { id: "crm_updates", label: "Entering or updating customer/client records in your system", avgHoursWeek: 3, automationPotential: 0.75, category: "automation" },
+          { id: "transfer_systems", label: "Copying data between systems that don't connect to each other", avgHoursWeek: 2.5, automationPotential: 0.9, category: "automation" },
+          { id: "filing_organizing", label: "Filing, organizing, or retrieving documents (digital or physical)", avgHoursWeek: 2, automationPotential: 0.6, category: "automation" },
+          { id: "timesheet_entry", label: "Logging timesheets, hours, or job time tracking", avgHoursWeek: 2, automationPotential: 0.8, category: "automation" },
+          { id: "form_processing", label: "Processing intake forms, applications, or registrations", avgHoursWeek: 2, automationPotential: 0.75, category: "automation" },
+          { id: "status_updates", label: "Manually updating project statuses, boards, or trackers", avgHoursWeek: 1.5, automationPotential: 0.85, category: "automation" },
+        ],
+      },
+      {
+        id: "money",
+        name: "Invoicing, Billing & Payments",
+        icon: "\uD83D\uDCB0",
+        description: "Invoices, estimates, payment tracking, collections, expense logging",
+        tasks: [
+          { id: "invoice_creation", label: "Creating and sending invoices or bills", avgHoursWeek: 2.5, automationPotential: 0.8, category: "automation" },
+          { id: "estimate_creation", label: "Building estimates, quotes, or proposals with pricing", avgHoursWeek: 3, automationPotential: 0.55, category: "ai" },
+          { id: "payment_tracking", label: "Tracking who has paid and who hasn't", avgHoursWeek: 1.5, automationPotential: 0.85, category: "automation" },
+          { id: "payment_reminders", label: "Sending payment reminders or chasing overdue accounts", avgHoursWeek: 1.5, automationPotential: 0.9, category: "automation" },
+          { id: "expense_logging", label: "Logging receipts, expenses, or reimbursements", avgHoursWeek: 1.5, automationPotential: 0.75, category: "automation" },
+          { id: "reconciliation", label: "Reconciling bank statements, payments, or accounts", avgHoursWeek: 1.5, automationPotential: 0.7, category: "automation" },
+        ],
+      },
+      {
+        id: "hiring_team",
+        name: "Hiring, Onboarding & Team Management",
+        icon: "\uD83D\uDC65",
+        description: "Job postings, interviews, new hire setup, training, performance, offboarding",
+        tasks: [
+          { id: "job_postings", label: "Writing and posting job listings", avgHoursWeek: 1, automationPotential: 0.6, category: "ai" },
+          { id: "resume_screening", label: "Screening resumes or applications", avgHoursWeek: 1.5, automationPotential: 0.65, category: "ai" },
+          { id: "onboarding_setup", label: "Setting up new hires (accounts, access, paperwork, training)", avgHoursWeek: 2, automationPotential: 0.8, category: "automation" },
+          { id: "training_coordination", label: "Coordinating or tracking training and certifications", avgHoursWeek: 1.5, automationPotential: 0.75, category: "automation" },
+          { id: "pto_payroll", label: "Managing PTO requests, timesheets, or payroll prep", avgHoursWeek: 2, automationPotential: 0.8, category: "automation" },
+          { id: "internal_comms", label: "Sending internal updates, announcements, or policy changes", avgHoursWeek: 1, automationPotential: 0.6, category: "ai" },
+        ],
+      },
+      {
+        id: "marketing",
+        name: "Marketing & Online Presence",
+        icon: "\uD83D\uDCE3",
+        description: "Social media, website, ads, email campaigns, brand content, reputation",
+        tasks: [
+          { id: "social_posting", label: "Creating and posting social media content", avgHoursWeek: 3, automationPotential: 0.6, category: "ai" },
+          { id: "website_updates", label: "Updating website content, photos, or listings", avgHoursWeek: 1.5, automationPotential: 0.55, category: "ai" },
+          { id: "email_campaigns", label: "Writing and sending email marketing campaigns", avgHoursWeek: 2, automationPotential: 0.65, category: "ai" },
+          { id: "review_monitoring", label: "Monitoring and responding to online reviews", avgHoursWeek: 1, automationPotential: 0.6, category: "ai" },
+          { id: "content_creation", label: "Creating graphics, videos, flyers, or marketing materials", avgHoursWeek: 2.5, automationPotential: 0.45, category: "ai" },
+          { id: "ad_management", label: "Managing paid ads (Google, Facebook, etc.)", avgHoursWeek: 1.5, automationPotential: 0.5, category: "ai" },
+        ],
+      },
+      {
+        id: "reporting",
+        name: "Reporting & Compliance",
+        icon: "\uD83D\uDCCB",
+        description: "Financial reports, regulatory filings, permits, licenses, audits, tax prep",
+        tasks: [
+          { id: "financial_reports", label: "Pulling together financial reports or P&L statements", avgHoursWeek: 2, automationPotential: 0.7, category: "automation" },
+          { id: "regulatory_filings", label: "Preparing regulatory, tax, or compliance filings", avgHoursWeek: 1.5, automationPotential: 0.55, category: "automation" },
+          { id: "license_tracking", label: "Tracking permits, licenses, certifications, or renewals", avgHoursWeek: 1, automationPotential: 0.8, category: "automation" },
+          { id: "kpi_dashboards", label: "Manually updating dashboards, KPIs, or performance metrics", avgHoursWeek: 2, automationPotential: 0.85, category: "automation" },
+          { id: "audit_prep", label: "Gathering documentation for audits, reviews, or inspections", avgHoursWeek: 1.5, automationPotential: 0.65, category: "automation" },
+          { id: "grant_reporting", label: "Tracking grant spending or writing progress reports", avgHoursWeek: 1.5, automationPotential: 0.5, category: "ai" },
+        ],
+      },
+      {
+        id: "inventory",
+        name: "Inventory, Ordering & Vendors",
+        icon: "\uD83D\uDCE6",
+        description: "Stock tracking, reordering, purchase orders, vendor calls, supply chain",
+        tasks: [
+          { id: "stock_tracking", label: "Checking inventory levels or tracking what's on hand", avgHoursWeek: 2, automationPotential: 0.85, category: "automation" },
+          { id: "reordering", label: "Reordering supplies, parts, or materials", avgHoursWeek: 1.5, automationPotential: 0.8, category: "automation" },
+          { id: "vendor_comms", label: "Calling or emailing vendors about orders, pricing, or issues", avgHoursWeek: 2, automationPotential: 0.35, category: "ai" },
+          { id: "po_processing", label: "Creating or routing purchase orders for approval", avgHoursWeek: 1.5, automationPotential: 0.8, category: "automation" },
+          { id: "receiving_logging", label: "Receiving shipments and logging what arrived", avgHoursWeek: 1.5, automationPotential: 0.6, category: "automation" },
+          { id: "price_comparison", label: "Comparing prices or evaluating vendor options", avgHoursWeek: 1, automationPotential: 0.55, category: "ai" },
+        ],
+      },
+      {
+        id: "project_ops",
+        name: "Project & Job Management",
+        icon: "\uD83D\uDD27",
+        description: "Job tracking, project timelines, task assignments, change orders, closeout",
+        tasks: [
+          { id: "job_tracking", label: "Tracking job progress, milestones, or completion status", avgHoursWeek: 2.5, automationPotential: 0.7, category: "automation" },
+          { id: "task_assignment", label: "Assigning tasks or delegating work to team members", avgHoursWeek: 1.5, automationPotential: 0.6, category: "automation" },
+          { id: "change_orders", label: "Processing change orders, scope adjustments, or amendments", avgHoursWeek: 1.5, automationPotential: 0.5, category: "ai" },
+          { id: "job_costing", label: "Calculating job costs, margins, or profitability", avgHoursWeek: 2, automationPotential: 0.65, category: "automation" },
+          { id: "closeout_docs", label: "Completing closeout paperwork, warranties, or final reports", avgHoursWeek: 1.5, automationPotential: 0.6, category: "ai" },
+          { id: "photo_documentation", label: "Taking, organizing, and filing job site photos or documentation", avgHoursWeek: 1.5, automationPotential: 0.55, category: "automation" },
+        ],
+      },
+      {
+        id: "analysis",
+        name: "Research & Decision Making",
+        icon: "\uD83D\uDD0D",
+        description: "Market research, competitor analysis, data analysis, forecasting, planning",
+        tasks: [
+          { id: "market_research", label: "Researching competitors, market trends, or pricing", avgHoursWeek: 1.5, automationPotential: 0.6, category: "ai" },
+          { id: "data_analysis", label: "Analyzing sales data, trends, or customer patterns", avgHoursWeek: 2, automationPotential: 0.6, category: "ai" },
+          { id: "survey_feedback", label: "Collecting and analyzing customer or employee feedback", avgHoursWeek: 1, automationPotential: 0.7, category: "ai" },
+          { id: "forecasting", label: "Forecasting demand, revenue, or resource needs", avgHoursWeek: 1.5, automationPotential: 0.55, category: "ai" },
+          { id: "policy_research", label: "Researching regulations, policies, or best practices", avgHoursWeek: 1.5, automationPotential: 0.6, category: "ai" },
+          { id: "report_writing", label: "Writing summaries, briefs, or decision documents", avgHoursWeek: 2, automationPotential: 0.55, category: "ai" },
+        ],
+      },
+    ];
+
+    const HOURLY_RATE = 35;
+    const WEEKS_PER_YEAR = 48;
+
+    const getPriorityLabel = (s) => s >= 75 ? "Quick Win" : s >= 50 ? "High Priority" : s >= 30 ? "Medium Priority" : "Low Priority";
+    const getPriorityColor = (s) => s >= 75 ? COLORS.successGreen : s >= 50 ? COLORS.softTeal : s >= 30 ? COLORS.warningAmber : COLORS.slateGray;
+
+    function ProgressBar({ value, max, color, height = 8 }) {
+      return (
+        <div style={{ width: "100%", background: "rgba(46,43,111,0.08)", borderRadius: height / 2, height, overflow: "hidden" }}>
+          <div style={{ width: `${Math.min((value / max) * 100, 100)}%`, height: "100%", background: color || COLORS.softTeal, borderRadius: height / 2, transition: "width 0.6s ease" }} />
+        </div>
+      );
+    }
+
+    function MiniChart({ data, height = 130 }) {
+      const max = Math.max(...data.map((d) => d.value), 1);
+      const barW = Math.max(Math.min(44, (320 - data.length * 6) / data.length), 18);
+      return (
+        <div style={{ display: "flex", alignItems: "flex-end", gap: 6, height, justifyContent: "center", padding: "0 8px" }}>
+          {data.map((d, i) => (
+            <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+              <div style={{ fontSize: 10, fontWeight: 700, color: COLORS.softTeal, fontFamily: FONT_HEADING }}>{d.value.toFixed(1)}</div>
+              <div style={{ width: barW, height: Math.max((d.value / max) * (height - 44), 4), background: `linear-gradient(180deg, ${COLORS.softTeal}, ${COLORS.deepIndigo})`, borderRadius: "4px 4px 0 0", transition: "height 0.4s ease" }} title={`${d.label}: ${d.value.toFixed(1)} hrs/week`} />
+              <span style={{ fontSize: 9, color: COLORS.slateGray, maxWidth: barW + 10, textAlign: "center", lineHeight: 1.1, wordBreak: "break-word" }}>{d.short}</span>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    function SystemMap({ results }) {
+      const areas = results.filter((r) => r.tasks.length > 0);
+      if (areas.length === 0) return null;
+      const cX = 300, cY = 220, R = 160;
+      return (
+        <svg viewBox="0 0 600 440" style={{ width: "100%", maxWidth: 600, height: "auto" }}>
+          <circle cx={cX} cy={cY} r={44} fill={COLORS.deepIndigo} />
+          <text x={cX} y={cY - 6} textAnchor="middle" fill={COLORS.white} fontSize="9" fontWeight="700" fontFamily={FONT_HEADING}>Your</text>
+          <text x={cX} y={cY + 8} textAnchor="middle" fill={COLORS.white} fontSize="9" fontWeight="700" fontFamily={FONT_HEADING}>Business</text>
+          {areas.map((area, i) => {
+            const a = (2 * Math.PI * i) / areas.length - Math.PI / 2;
+            const x = cX + R * Math.cos(a), y = cY + R * Math.sin(a);
+            const automated = area.tasks.filter((t) => t.automationPotential >= 0.6).length;
+            const ratio = area.tasks.length > 0 ? automated / area.tasks.length : 0;
+            const clr = ratio >= 0.6 ? COLORS.successGreen : ratio >= 0.3 ? COLORS.warningAmber : COLORS.slateGray;
+            const nr = 28 + ratio * 14;
+            return (
+              <g key={area.id}>
+                <line x1={cX} y1={cY} x2={x} y2={y} stroke={clr} strokeWidth={1.5 + ratio * 2} strokeOpacity={0.4} strokeDasharray={ratio < 0.3 ? "4,4" : "none"} />
+                <circle cx={x} cy={y} r={nr} fill={clr} opacity={0.12} />
+                <circle cx={x} cy={y} r={nr - 4} fill={COLORS.white} stroke={clr} strokeWidth={2} />
+                <text x={x} y={y - 3} textAnchor="middle" fontSize="14">{OPERATIONAL_AREAS.find((o) => o.id === area.id)?.icon}</text>
+                <text x={x} y={y + 11} textAnchor="middle" fill={COLORS.deepIndigo} fontSize="7" fontWeight="600" fontFamily={FONT_HEADING}>{area.name.split(" ")[0].substring(0, 8)}</text>
+                <text x={x} y={y + nr + 13} textAnchor="middle" fill={clr} fontSize="8" fontWeight="700" fontFamily={FONT_BODY}>{Math.round(ratio * 100)}% automatable</text>
+              </g>
+            );
+          })}
+        </svg>
+      );
+    }
+
+    function WorkflowAudit() {
+      const [step, setStep] = useState("intro");
+      const [orgName, setOrgName] = useState("");
+      const [orgType, setOrgType] = useState("");
+      const [industry, setIndustry] = useState("");
+      const [teamSize, setTeamSize] = useState("");
+      const [selectedAreas, setSelectedAreas] = useState([]);
+      const [taskResponses, setTaskResponses] = useState({});
+      const [currentAreaIdx, setCurrentAreaIdx] = useState(0);
+      const [showAllAreas, setShowAllAreas] = useState(false);
+      const scrollRef = useRef(null);
+
+      const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxQHQ44jiLKFtysSrUllqSI6M3yOl0vjl18Es6GG0suvYprab9o7FpAxmsgX4hOPHNE/exec';
+
+      const submitToSheet = useCallback((results) => {
+        if (WEBHOOK_URL.includes('YOUR_APPS_SCRIPT')) return;
+        const allTasks = results.flatMap(r => r.tasks)
+          .sort((a, b) => b.priorityScore - a.priorityScore);
+        const top3 = allTasks.slice(0, 3);
+        const payload = {
+          timestamp: new Date().toISOString(),
+          orgName: orgName || 'Not provided',
+          industry,
+          orgType,
+          teamSize,
+          areasAudited: selectedAreas.length,
+          totalTasksChecked: allTasks.length,
+          totalHoursWeekly: results.reduce((s,r) => s + r.totalHours, 0).toFixed(1),
+          totalRecoverableHours: results.reduce((s,r) => s + r.totalSaveable, 0).toFixed(1),
+          estimatedAnnualSavings: '$' + Math.round(results.reduce((s,r) => s + r.totalAnnualSavings, 0)).toLocaleString(),
+          topPriority1: top3[0]?.label || '',
+          topPriority2: top3[1]?.label || '',
+          topPriority3: top3[2]?.label || '',
+          topPriority1Type: top3[0]?.category || '',
+          topPriority2Type: top3[1]?.category || '',
+          topPriority3Type: top3[2]?.category || '',
+          areaBreakdown: results.filter(r => r.tasks.length > 0)
+            .map(r => r.name + ': ' + r.totalSaveable.toFixed(1) + ' hrs/wk').join(' | ')
+        };
+        try {
+          fetch(WEBHOOK_URL, {
+            method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        } catch (e) { console.log('Submit error:', e); }
+      }, [orgName, industry, orgType, teamSize, selectedAreas]);
+
+      useEffect(() => {
+        if (step === 'results') {
+          submitToSheet(computeResults());
+        }
+      }, [step]);
+
+      useEffect(() => { if (scrollRef.current) scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" }); }, [step, currentAreaIdx]);
+
+      const toggleArea = (id) => setSelectedAreas((p) => p.includes(id) ? p.filter((a) => a !== id) : [...p, id]);
+      const setTaskTime = (tid, v) => setTaskResponses((p) => ({ ...p, [tid]: { ...p[tid], hours: parseFloat(v) || 0 } }));
+      const setTaskPain = (tid, v) => setTaskResponses((p) => ({ ...p, [tid]: { ...p[tid], pain: v } }));
+      const setTaskDoIt = (tid, v) => setTaskResponses((p) => ({ ...p, [tid]: { ...p[tid], doesThis: v } }));
+
+      const computeResults = useCallback(() => {
+        const sz = parseInt(teamSize) || 1;
+        return selectedAreas.map((areaId) => {
+          const area = OPERATIONAL_AREAS.find((a) => a.id === areaId);
+          const active = area.tasks.filter((t) => taskResponses[t.id]?.doesThis).map((t) => {
+            const r = taskResponses[t.id]; const hrs = r?.hours ?? t.avgHoursWeek;
+            const painMult = r?.pain === "high" ? 1.3 : r?.pain === "medium" ? 1.0 : 0.7;
+            const save = hrs * t.automationPotential; const annual = save * WEEKS_PER_YEAR * HOURLY_RATE * sz;
+            const score = Math.round(t.automationPotential * 50 + painMult * 25 + Math.min(hrs / 4, 1) * 25);
+            return { ...t, hoursReported: hrs, pain: r?.pain || "medium", saveableHours: save, annualSavings: annual, priorityScore: Math.min(score, 100) };
+          }).sort((a, b) => b.priorityScore - a.priorityScore);
+          return { id: areaId, name: area.name, icon: area.icon, tasks: active, totalHours: active.reduce((s, t) => s + t.hoursReported, 0), totalSaveable: active.reduce((s, t) => s + t.saveableHours, 0), totalAnnualSavings: active.reduce((s, t) => s + t.annualSavings, 0) };
+        });
+      }, [selectedAreas, taskResponses, teamSize]);
+
+      const currentAreas = selectedAreas.map((id) => OPERATIONAL_AREAS.find((a) => a.id === id));
+      const currentArea = currentAreas[currentAreaIdx];
+      const card = { background: COLORS.cardBg, borderRadius: 12, padding: "28px 32px", border: "1px solid rgba(46,43,111,0.08)", boxShadow: "0 1px 3px rgba(46,43,111,0.04)" };
+      const btnP = { background: COLORS.softTeal, color: COLORS.white, border: "none", borderRadius: 8, padding: "14px 32px", fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY, transition: "all 0.2s" };
+      const btnS = { background: "transparent", color: COLORS.softTeal, border: `2px solid ${COLORS.softTeal}`, borderRadius: 8, padding: "12px 28px", fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY };
+      const lbl = { display: "block", marginBottom: 6, fontSize: 13, color: COLORS.slateGray, fontWeight: 600, letterSpacing: 0.5, fontFamily: FONT_BODY };
+      const inp = { width: "100%", padding: "12px 16px", borderRadius: 8, border: "1px solid rgba(46,43,111,0.15)", fontSize: 15, fontFamily: FONT_BODY, color: COLORS.deepIndigo, outline: "none", boxSizing: "border-box" };
+
+      if (step === "intro") {
+        return (
+          <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY }}>
+            <div ref={scrollRef} />
+            <div style={{ background: `linear-gradient(145deg, ${COLORS.deepIndigo} 0%, ${COLORS.indigoDark} 100%)`, padding: "48px 24px 56px", textAlign: "center" }}>
+              <div style={{ maxWidth: 660, margin: "0 auto" }}>
+                <div style={{ fontSize: 13, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 16, fontFamily: FONT_HEADING }}>Evalve Consulting</div>
+                <h1 style={{ color: COLORS.white, fontSize: 32, fontWeight: 700, fontFamily: FONT_HEADING, margin: "0 0 16px", lineHeight: 1.2 }}>The Invisible Work Audit</h1>
+                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 17, lineHeight: 1.6, margin: "0 0 12px", maxWidth: 540, marginLeft: "auto", marginRight: "auto" }}>
+                  Your team spends hours every week on tasks they've done so long, it just feels like "the job." This tool helps you find that hidden work and figure out what AI or automation could take off your plate.
+                </p>
+                <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 14, margin: "0 0 28px" }}>Works for any industry. Any team size. Any business.</p>
+                <div style={{ display: "flex", gap: 20, justifyContent: "center", flexWrap: "wrap" }}>
+                  {[
+                    { num: "57%", label: "of work hours are technically automatable with today's technology", src: "McKinsey, 2025" },
+                    { num: "6+ hrs", label: "per week workers estimate they could save through automation", src: "Smartsheet Research" },
+                    { num: "$46K", label: "average annual savings for companies using workflow automation", src: "Formstack, 2023" },
+                  ].map((s, i) => (
+                    <div key={i} style={{ background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "18px 22px", maxWidth: 185, flex: "1 1 155px", border: "1px solid rgba(255,255,255,0.06)" }}>
+                      <div style={{ fontSize: 28, fontWeight: 700, color: COLORS.softTeal, fontFamily: FONT_HEADING }}>{s.num}</div>
+                      <div style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", lineHeight: 1.4, marginTop: 4 }}>{s.label}</div>
+                      <div style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", marginTop: 6, fontStyle: "italic" }}>{s.src}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div style={{ maxWidth: 640, margin: "-28px auto 0", padding: "0 24px" }}>
+              <div style={{ ...card, padding: "32px" }}>
+                <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 20, margin: "0 0 20px" }}>How It Works</h2>
+                {[
+                  { n: "1", t: "Tell us about your business", d: "Industry, team size, the basics." },
+                  { n: "2", t: "Pick the areas where time goes", d: "Select the parts of your operation you want to audit." },
+                  { n: "3", t: "Walk through the tasks", d: "Check off what you actually do, how long it takes, and how painful it is." },
+                  { n: "4", t: "Get your results", d: "A prioritized list of automation wins with estimated savings and a visual map." },
+                ].map((item, i) => (
+                  <div key={i} style={{ display: "flex", gap: 16, marginBottom: i < 3 ? 16 : 0, alignItems: "flex-start" }}>
+                    <div style={{ width: 32, height: 32, borderRadius: "50%", background: COLORS.tealLight, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, color: COLORS.softTeal, fontSize: 14, flexShrink: 0, fontFamily: FONT_HEADING }}>{item.n}</div>
+                    <div><div style={{ fontWeight: 700, color: COLORS.deepIndigo, fontSize: 15, fontFamily: FONT_HEADING }}>{item.t}</div><div style={{ color: COLORS.slateGray, fontSize: 14, lineHeight: 1.4 }}>{item.d}</div></div>
+                  </div>
+                ))}
+                <div style={{ marginTop: 28, textAlign: "center" }}>
+                  <button onClick={() => setStep("org_info")} style={btnP}>Start the Audit</button>
+                  <p style={{ fontSize: 12, color: COLORS.slateGray, marginTop: 12 }}>Takes about 10 minutes. Your data stays in your browser.</p>
+                </div>
+              </div>
+            </div>
+            <div style={{ textAlign: "center", padding: "40px 24px 32px", color: COLORS.slateGray, fontSize: 12 }}>
+              <div style={{ fontFamily: FONT_HEADING, fontWeight: 700, color: COLORS.deepIndigo, marginBottom: 4 }}>Evalve Consulting</div>AI Implementation That Actually Works
+            </div>
+          </div>
+        );
+      }
+
+      if (step === "org_info") {
+        const ok = orgType && teamSize && industry;
+        return (
+          <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY, padding: "32px 24px" }}>
+            <div ref={scrollRef} />
+            <div style={{ maxWidth: 560, margin: "0 auto" }}>
+              <div style={{ fontSize: 12, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8, fontFamily: FONT_HEADING }}>Step 1 of 4</div>
+              <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 24, margin: "0 0 8px" }}>About Your Business</h2>
+              <p style={{ color: COLORS.slateGray, margin: "0 0 28px", lineHeight: 1.5 }}>This helps calibrate the savings estimates to your situation.</p>
+              <div style={card}>
+                <div style={{ marginBottom: 20 }}><label style={lbl}>Business / Organization Name</label><input value={orgName} onChange={(e) => setOrgName(e.target.value)} placeholder="e.g. Summit Kitchen & Bath, Apex Auto" style={inp} /></div>
+                <div style={{ marginBottom: 20 }}><label style={lbl}>Industry</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{INDUSTRIES.map((t) => (<button key={t} onClick={() => setIndustry(t)} style={{ padding: "8px 14px", borderRadius: 20, border: `1.5px solid ${industry === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: industry === t ? COLORS.tealLight : "transparent", color: industry === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
+                <div style={{ marginBottom: 20 }}><label style={lbl}>Organization Size</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{ORG_TYPES.map((t) => (<button key={t} onClick={() => setOrgType(t)} style={{ padding: "8px 14px", borderRadius: 20, border: `1.5px solid ${orgType === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: orgType === t ? COLORS.tealLight : "transparent", color: orgType === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
+                <div style={{ marginBottom: 24 }}><label style={lbl}>How many people on the team you're auditing?</label><p style={{ fontSize: 12, color: COLORS.slateGray, margin: "0 0 8px" }}>The specific team or department, not the whole company.</p><input value={teamSize} onChange={(e) => setTeamSize(e.target.value.replace(/\D/g, ""))} placeholder="e.g. 5" type="text" inputMode="numeric" style={{ ...inp, maxWidth: 120 }} /></div>
+                <div style={{ display: "flex", gap: 12, justifyContent: "space-between" }}><button onClick={() => setStep("intro")} style={btnS}>Back</button><button onClick={() => { if (ok) setStep("select_areas"); }} style={{ ...btnP, opacity: ok ? 1 : 0.4 }} disabled={!ok}>Next: Select Areas</button></div>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      if (step === "select_areas") {
+        return (
+          <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY, padding: "32px 24px" }}>
+            <div ref={scrollRef} />
+            <div style={{ maxWidth: 660, margin: "0 auto" }}>
+              <div style={{ fontSize: 12, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8, fontFamily: FONT_HEADING }}>Step 2 of 4</div>
+              <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 24, margin: "0 0 8px" }}>Where Does Your Team Spend Time?</h2>
+              <p style={{ color: COLORS.slateGray, margin: "0 0 8px", lineHeight: 1.5 }}>Select every area where your team does hands-on work. You can audit all of them or focus on the biggest time sinks.</p>
+              <button onClick={() => { const all = OPERATIONAL_AREAS.map((a) => a.id); setSelectedAreas(showAllAreas ? [] : all); setShowAllAreas(!showAllAreas); }} style={{ ...btnS, padding: "6px 16px", fontSize: 12, marginBottom: 20, borderWidth: 1 }}>{showAllAreas ? "Deselect All" : "Select All"}</button>
+              <div style={{ display: "grid", gap: 12 }}>
+                {OPERATIONAL_AREAS.map((area) => { const sel = selectedAreas.includes(area.id); return (
+                  <button key={area.id} onClick={() => toggleArea(area.id)} style={{ ...card, padding: "16px 20px", display: "flex", alignItems: "center", gap: 14, cursor: "pointer", border: `2px solid ${sel ? COLORS.softTeal : "rgba(46,43,111,0.08)"}`, background: sel ? COLORS.tealLight : COLORS.white, textAlign: "left", transition: "all 0.2s" }}>
+                    <span style={{ fontSize: 28 }}>{area.icon}</span>
+                    <div style={{ flex: 1 }}><div style={{ fontWeight: 700, color: COLORS.deepIndigo, fontSize: 15, fontFamily: FONT_HEADING }}>{area.name}</div><div style={{ color: COLORS.slateGray, fontSize: 13, lineHeight: 1.3, marginTop: 2 }}>{area.description}</div></div>
+                    <div style={{ width: 28, height: 28, borderRadius: 6, border: `2px solid ${sel ? COLORS.softTeal : "rgba(46,43,111,0.15)"}`, display: "flex", alignItems: "center", justifyContent: "center", background: sel ? COLORS.softTeal : "transparent", flexShrink: 0 }}>{sel && <span style={{ color: COLORS.white, fontSize: 16, fontWeight: 700 }}>&#10003;</span>}</div>
+                  </button>
+                ); })}
+              </div>
+              <div style={{ display: "flex", gap: 12, justifyContent: "space-between", marginTop: 24 }}><button onClick={() => setStep("org_info")} style={btnS}>Back</button><button onClick={() => { if (selectedAreas.length) { setCurrentAreaIdx(0); setStep("task_audit"); } }} style={{ ...btnP, opacity: selectedAreas.length ? 1 : 0.4 }} disabled={!selectedAreas.length}>Next: Audit Tasks ({selectedAreas.length} area{selectedAreas.length !== 1 ? "s" : ""})</button></div>
+            </div>
+          </div>
+        );
+      }
+
+      if (step === "task_audit" && currentArea) {
+        return (
+          <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY, padding: "32px 24px" }}>
+            <div ref={scrollRef} />
+            <div style={{ maxWidth: 660, margin: "0 auto" }}>
+              <div style={{ fontSize: 12, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8, fontFamily: FONT_HEADING }}>Step 3 of 4 — Area {currentAreaIdx + 1} of {selectedAreas.length}</div>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}><span style={{ fontSize: 32 }}>{currentArea.icon}</span><h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 22, margin: 0 }}>{currentArea.name}</h2></div>
+              <p style={{ color: COLORS.slateGray, margin: "0 0 4px", lineHeight: 1.5, fontSize: 14 }}>For each task: does your team do this? If so, how many hours per week does it take across the team, and how much does it bother people?</p>
+              <p style={{ color: COLORS.slateGray, margin: "0 0 20px", fontSize: 12, fontStyle: "italic" }}>"Painful" means frustrating, error-prone, or something your team dreads. Not everything that takes time is painful.</p>
+              <ProgressBar value={currentAreaIdx + 1} max={selectedAreas.length} color={COLORS.softTeal} height={6} />
+              <div style={{ fontSize: 11, color: COLORS.slateGray, marginTop: 4, marginBottom: 20 }}>{currentAreaIdx + 1} / {selectedAreas.length} areas</div>
+              <div style={{ display: "grid", gap: 12 }}>
+                {currentArea.tasks.map((task) => { const r = taskResponses[task.id] || {}; const does = r.doesThis || false; return (
+                  <div key={task.id} style={{ ...card, padding: "16px 20px", opacity: does ? 1 : 0.65, transition: "opacity 0.2s" }}>
+                    <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
+                      <button onClick={() => setTaskDoIt(task.id, !does)} style={{ width: 24, height: 24, borderRadius: 6, flexShrink: 0, marginTop: 2, border: `2px solid ${does ? COLORS.softTeal : "rgba(46,43,111,0.15)"}`, background: does ? COLORS.softTeal : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>{does && <span style={{ color: COLORS.white, fontSize: 14, fontWeight: 700 }}>&#10003;</span>}</button>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontWeight: 600, color: COLORS.deepIndigo, fontSize: 14, lineHeight: 1.4 }}>{task.label}</div>
+                        {does && (
+                          <div style={{ display: "flex", gap: 16, marginTop: 12, flexWrap: "wrap", alignItems: "flex-end" }}>
+                            <div><label style={{ ...lbl, fontSize: 11 }}>Hours / week</label><input type="number" step="0.5" min="0" value={r.hours ?? task.avgHoursWeek} onChange={(e) => setTaskTime(task.id, e.target.value)} style={{ ...inp, width: 80, padding: "8px 10px", fontSize: 14 }} /></div>
+                            <div><label style={{ ...lbl, fontSize: 11 }}>Pain level</label><div style={{ display: "flex", gap: 4 }}>{["low", "medium", "high"].map((lv) => { const active = (r.pain || "medium") === lv; const c = lv === "high" ? COLORS.dangerRed : lv === "medium" ? COLORS.warningAmber : COLORS.successGreen; return (<button key={lv} onClick={() => setTaskPain(task.id, lv)} style={{ padding: "6px 12px", borderRadius: 6, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY, border: `1.5px solid ${active ? c : "rgba(46,43,111,0.12)"}`, background: active ? `${c}12` : "transparent", color: active ? c : COLORS.slateGray }}>{lv === "low" ? "Low" : lv === "medium" ? "Med" : "High"}</button>); })}</div></div>
+                            <div style={{ fontSize: 11, color: COLORS.slateGray, alignSelf: "center" }}>{task.category === "ai" ? "\uD83E\uDD16 AI candidate" : "\u2699\uFE0F Automation candidate"}</div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ); })}
+              </div>
+              <div style={{ display: "flex", gap: 12, justifyContent: "space-between", marginTop: 24 }}>
+                <button onClick={() => { if (currentAreaIdx > 0) setCurrentAreaIdx(currentAreaIdx - 1); else setStep("select_areas"); }} style={btnS}>Back</button>
+                <button onClick={() => { if (currentAreaIdx < selectedAreas.length - 1) setCurrentAreaIdx(currentAreaIdx + 1); else setStep("results"); }} style={btnP}>{currentAreaIdx < selectedAreas.length - 1 ? "Next Area \u2192" : "See Results"}</button>
+              </div>
+            </div>
+          </div>
+        );
+      }
+
+      if (step === "results") {
+        const results = computeResults();
+        const totH = results.reduce((s, r) => s + r.totalHours, 0);
+        const totS = results.reduce((s, r) => s + r.totalSaveable, 0);
+        const totA = results.reduce((s, r) => s + r.totalAnnualSavings, 0);
+        const allTasks = results.flatMap((r) => r.tasks).sort((a, b) => b.priorityScore - a.priorityScore);
+        const top = allTasks.slice(0, 10);
+        const sz = parseInt(teamSize) || 1;
+
+        return (
+          <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY }}>
+            <div ref={scrollRef} />
+            <div style={{ background: `linear-gradient(145deg, ${COLORS.deepIndigo} 0%, ${COLORS.indigoDark} 100%)`, padding: "40px 24px 48px", textAlign: "center" }}>
+              <div style={{ maxWidth: 720, margin: "0 auto" }}>
+                <div style={{ fontSize: 12, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 12, fontFamily: FONT_HEADING }}>Your Invisible Work Audit Results</div>
+                <h1 style={{ color: COLORS.white, fontSize: 28, fontWeight: 700, fontFamily: FONT_HEADING, margin: "0 0 8px" }}>{orgName || "Your Business"}'s Automation Opportunity</h1>
+                <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 14 }}>{industry} — {orgType} — {sz} team member{sz !== 1 ? "s" : ""}</p>
+                <div style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 28, flexWrap: "wrap" }}>
+                  {[
+                    { v: `${totH.toFixed(0)} hrs`, l: "Hours spent weekly on audited tasks", c: COLORS.white },
+                    { v: `${totS.toFixed(0)} hrs`, l: "Hours recoverable through AI and automation", c: COLORS.softTeal },
+                    { v: `$${Math.round(totA).toLocaleString()}`, l: "Estimated annual value of recovered time", c: "#7DDFCF" },
+                  ].map((s, i) => (
+                    <div key={i} style={{ background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "20px 24px", flex: "1 1 180px", maxWidth: 220, border: "1px solid rgba(255,255,255,0.06)" }}>
+                      <div style={{ fontSize: 30, fontWeight: 700, color: s.c, fontFamily: FONT_HEADING }}>{s.v}</div>
+                      <div style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", lineHeight: 1.4, marginTop: 4 }}>{s.l}</div>
+                    </div>
+                  ))}
+                </div>
+                <p style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginTop: 16 }}>Based on ${HOURLY_RATE}/hr loaded cost &times; {WEEKS_PER_YEAR} working weeks &times; {sz} team member{sz !== 1 ? "s" : ""}. Sources: McKinsey Global Institute, Smartsheet, Formstack.</p>
+              </div>
+            </div>
+
+            <div style={{ maxWidth: 720, margin: "-24px auto 0", padding: "0 24px 48px" }}>
+              <div style={{ ...card, marginBottom: 20 }}>
+                <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 20, margin: "0 0 4px" }}>Your Top Automation Priorities</h2>
+                <p style={{ color: COLORS.slateGray, fontSize: 13, margin: "0 0 20px" }}>Ranked by automation feasibility, time consumed, and how painful the task is for your team.</p>
+                {top.length === 0 ? <p style={{ color: COLORS.slateGray, fontStyle: "italic" }}>No tasks were checked off. Go back and mark the tasks your team actually does.</p> : (
+                  <div style={{ display: "grid", gap: 10 }}>
+                    {top.map((task, i) => (
+                      <div key={task.id} style={{ display: "flex", gap: 12, alignItems: "center", padding: "12px 16px", background: i === 0 ? COLORS.tealLight : COLORS.indigoLight, borderRadius: 10, border: i === 0 ? `1px solid ${COLORS.tealBorder}` : "1px solid transparent" }}>
+                        <div style={{ width: 28, height: 28, borderRadius: "50%", background: getPriorityColor(task.priorityScore), display: "flex", alignItems: "center", justifyContent: "center", color: COLORS.white, fontSize: 12, fontWeight: 700, flexShrink: 0, fontFamily: FONT_HEADING }}>{i + 1}</div>
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ fontWeight: 600, color: COLORS.deepIndigo, fontSize: 13, lineHeight: 1.3 }}>{task.label}</div>
+                          <div style={{ display: "flex", gap: 12, marginTop: 4, flexWrap: "wrap" }}>
+                            <span style={{ fontSize: 11, color: COLORS.slateGray }}>{task.hoursReported} hrs/wk</span>
+                            <span style={{ fontSize: 11, color: getPriorityColor(task.priorityScore), fontWeight: 600 }}>{getPriorityLabel(task.priorityScore)}</span>
+                            <span style={{ fontSize: 11, color: COLORS.slateGray }}>{task.category === "ai" ? "\uD83E\uDD16 AI" : "\u2699\uFE0F Automation"}</span>
+                          </div>
+                        </div>
+                        <div style={{ textAlign: "right", flexShrink: 0 }}><div style={{ fontSize: 14, fontWeight: 700, color: COLORS.deepIndigo, fontFamily: FONT_HEADING }}>~{task.saveableHours.toFixed(1)} hrs</div><div style={{ fontSize: 10, color: COLORS.slateGray }}>recoverable/wk</div></div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div style={{ ...card, marginBottom: 20 }}>
+                <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 20, margin: "0 0 4px" }}>Breakdown by Area</h2>
+                <p style={{ color: COLORS.slateGray, fontSize: 13, margin: "0 0 16px" }}>How each part of your operation stacks up.</p>
+                {(() => { const cd = results.filter((r) => r.tasks.length > 0); return cd.length > 0 ? (<><MiniChart data={cd.map((r) => ({ label: r.name, short: r.name.split("&")[0].trim().split(" ").slice(0, 2).join(" "), value: r.totalSaveable }))} /><p style={{ textAlign: "center", fontSize: 11, color: COLORS.slateGray, marginTop: 8 }}>Recoverable hours per week by area</p></>) : null; })()}
+                <div style={{ marginTop: 20, display: "grid", gap: 10 }}>
+                  {results.filter((r) => r.tasks.length > 0).sort((a, b) => b.totalAnnualSavings - a.totalAnnualSavings).map((area) => (
+                    <div key={area.id} style={{ padding: "14px 16px", background: COLORS.indigoLight, borderRadius: 10 }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}><div style={{ fontWeight: 700, color: COLORS.deepIndigo, fontSize: 14, fontFamily: FONT_HEADING }}>{area.icon} {area.name}</div><div style={{ fontSize: 14, fontWeight: 700, color: COLORS.softTeal, fontFamily: FONT_HEADING }}>${Math.round(area.totalAnnualSavings).toLocaleString()}/yr</div></div>
+                      <ProgressBar value={area.totalSaveable} max={area.totalHours || 1} color={COLORS.softTeal} height={6} />
+                      <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6, fontSize: 11, color: COLORS.slateGray }}><span>{area.totalHours.toFixed(1)} hrs/wk total</span><span>{area.totalSaveable.toFixed(1)} hrs/wk recoverable ({area.totalHours > 0 ? Math.round((area.totalSaveable / area.totalHours) * 100) : 0}%)</span></div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div style={{ ...card, marginBottom: 20 }}>
+                <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 20, margin: "0 0 4px" }}>Your Operations Map</h2>
+                <p style={{ color: COLORS.slateGray, fontSize: 13, margin: "0 0 16px" }}>Solid lines show high automation potential. Dashed lines show areas needing more human judgment.</p>
+                <div style={{ display: "flex", justifyContent: "center" }}><SystemMap results={results} /></div>
+                <div style={{ display: "flex", justifyContent: "center", gap: 20, marginTop: 12, flexWrap: "wrap" }}>
+                  {[{ color: COLORS.successGreen, label: "60%+ automatable" }, { color: COLORS.warningAmber, label: "30-60% automatable" }, { color: COLORS.slateGray, label: "Under 30%" }].map((l) => (
+                    <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11, color: COLORS.slateGray }}><div style={{ width: 10, height: 10, borderRadius: "50%", background: l.color }} />{l.label}</div>
+                  ))}
+                </div>
+              </div>
+
+              <div style={{ ...card, marginBottom: 20, display: "flex", gap: 20, flexWrap: "wrap" }}>
+                <div style={{ flex: "1 1 240px" }}><h3 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 16, margin: "0 0 8px" }}>{"\u2699\uFE0F"} Automation Candidates</h3><p style={{ color: COLORS.slateGray, fontSize: 13, lineHeight: 1.5, margin: 0 }}>Rule-based, repetitive tasks. "If this happens, do that." Sending reminders, moving data between systems, creating invoices, updating statuses. These can be automated with workflow tools today.</p></div>
+                <div style={{ flex: "1 1 240px" }}><h3 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 16, margin: "0 0 8px" }}>{"\uD83E\uDD16"} AI Candidates</h3><p style={{ color: COLORS.slateGray, fontSize: 13, lineHeight: 1.5, margin: 0 }}>Tasks needing judgment, language, or pattern recognition. Drafting emails, analyzing data, creating content, summarizing feedback. AI handles the heavy lifting while your team adds the final judgment.</p></div>
+              </div>
+
+              <div style={{ ...card, background: COLORS.deepIndigo, border: "none", textAlign: "center", padding: "36px 32px" }}>
+                <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.white, fontSize: 22, margin: "0 0 12px" }}>Ready to Act on These Results?</h2>
+                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 15, lineHeight: 1.6, margin: "0 0 24px" }}>I help organizations turn audits like this into working AI solutions and automations. Not strategy decks. Working tools that save your team real hours every week.</p>
+                <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+                  <a href="https://calendar.app.google/HjzF8PMaQbrM2GGF8" target="_blank" rel="noopener noreferrer" style={{ ...btnP, textDecoration: "none", display: "inline-block" }}>Book a Free Discovery Call</a>
+                  <a href="https://evalveconsulting.com/ai-readiness/" target="_blank" rel="noopener noreferrer" style={{ ...btnS, textDecoration: "none", display: "inline-block", color: "rgba(255,255,255,0.7)", borderColor: "rgba(255,255,255,0.25)" }}>Take the AI Readiness Assessment</a>
+                </div>
+                <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginTop: 16 }}>Dr. Chris Sanzeri, Evalve Consulting<br />christophersanzeri@evalveconsulting.com</p>
+              </div>
+
+              <div style={{ marginTop: 24, padding: "16px 20px", background: COLORS.tealLight, borderRadius: 10, border: `1px solid ${COLORS.tealBorder}` }}>
+                <h3 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 14, margin: "0 0 8px" }}>About This Audit's Methodology</h3>
+                <p style={{ color: COLORS.slateGray, fontSize: 12, lineHeight: 1.6, margin: 0 }}>Automation potential percentages are calibrated using McKinsey Global Institute's task-level analysis, which assessed 2,000+ work activities across 800+ occupations. Time savings use a ${HOURLY_RATE}/hr loaded cost as a conservative baseline. Priority scoring blends three factors: technical feasibility, time consumed, and pain level. Actual savings depend on your specific systems, processes, and implementation approach. This audit provides directional estimates to help you prioritize, not exact financial projections.</p>
+              </div>
+
+              <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 24 }}><button onClick={() => { setStep("intro"); setTaskResponses({}); setSelectedAreas([]); setCurrentAreaIdx(0); setOrgName(""); setOrgType(""); setIndustry(""); setTeamSize(""); }} style={btnS}>Start Over</button></div>
+            </div>
+          </div>
+        );
+      }
+      return null;
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<WorkflowAudit />);
+  </script>
+</body>
+</html>

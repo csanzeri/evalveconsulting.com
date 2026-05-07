@@ -283,9 +283,41 @@
       const [taskResponses, setTaskResponses] = useState({});
       const [currentAreaIdx, setCurrentAreaIdx] = useState(0);
       const [showAllAreas, setShowAllAreas] = useState(false);
+      const [followupName, setFollowupName] = useState("");
+      const [followupEmail, setFollowupEmail] = useState("");
+      const [followupStatus, setFollowupStatus] = useState("");
       const scrollRef = useRef(null);
 
       const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxQHQ44jiLKFtysSrUllqSI6M3yOl0vjl18Es6GG0suvYprab9o7FpAxmsgX4hOPHNE/exec';
+      const LEAD_CAPTURE_URL = 'https://christophers-mac-mini.taile0fc82.ts.net/webhook/evalve-lead';
+      const LEAD_CAPTURE_SECRET = 'a5ef939b9ac55af12844a53eec1f6f2301e2b7c665af384266a72dbc9e7f8d1a';
+
+      const submitFollowup = useCallback((results) => {
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(followupEmail.trim());
+        if (!emailOk) { setFollowupStatus("Please enter a valid email."); return; }
+        const totH = results.reduce((s, r) => s + r.totalHours, 0);
+        const totS = results.reduce((s, r) => s + r.totalSaveable, 0);
+        const totA = results.reduce((s, r) => s + r.totalAnnualSavings, 0);
+        const sz = parseInt(teamSize) || 1;
+        const need = 'Completed Invisible Work Audit. Org: ' + (orgName || 'Not provided') +
+          ' (' + (industry || '?') + ', ' + (orgType || '?') + ', ' + sz + ' team member' + (sz !== 1 ? 's' : '') + '). ' +
+          totH.toFixed(0) + ' hrs/wk audited, ' + totS.toFixed(0) + ' hrs/wk recoverable (~$' + Math.round(totA).toLocaleString() + '/yr).';
+        const body = new URLSearchParams();
+        body.append('secret', LEAD_CAPTURE_SECRET);
+        body.append('source', 'Invisible Work Audit');
+        body.append('name', followupName.trim());
+        body.append('email', followupEmail.trim());
+        body.append('organization', orgName || '');
+        body.append('org_size', sz + ' team member' + (sz !== 1 ? 's' : ''));
+        body.append('need', need);
+        setFollowupStatus("Sending...");
+        fetch(LEAD_CAPTURE_URL, {
+          method: 'POST', mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: body.toString()
+        }).then(function(){ setFollowupStatus("Got it. I will be in touch."); })
+          .catch(function(){ setFollowupStatus("Something went wrong. Email christophersanzeri@evalveconsulting.com directly."); });
+      }, [followupName, followupEmail, orgName, orgType, industry, teamSize]);
 
       const buildPDF = useCallback((results) => {
         const { jsPDF } = window.jspdf;
@@ -789,6 +821,21 @@
                   <a href="https://evalveconsulting.com/ai-readiness/" target="_blank" rel="noopener noreferrer" style={{ ...btnS, textDecoration: "none", display: "inline-block", color: "rgba(255,255,255,0.7)", borderColor: "rgba(255,255,255,0.25)" }}>Take the AI Readiness Assessment</a>
                 </div>
                 <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginTop: 16 }}>Dr. Chris Sanzeri, Evalve Consulting<br />christophersanzeri@evalveconsulting.com</p>
+              </div>
+
+              <div style={{ ...card, marginTop: 20, marginBottom: 20, border: `1px solid ${COLORS.tealBorder}` }}>
+                <h3 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 16, margin: "0 0 6px" }}>Want me to walk you through this?</h3>
+                <p style={{ color: COLORS.slateGray, fontSize: 13, lineHeight: 1.5, margin: "0 0 14px" }}>Drop your name and email and I'll send a short note about which of these tasks would be the easiest to recover hours from for a team your size. No sales pitch.</p>
+                <div style={{ display: "grid", gap: 10, gridTemplateColumns: "1fr 1fr" }}>
+                  <input type="text" value={followupName} onChange={(e) => setFollowupName(e.target.value)} placeholder="Your name" style={inp} />
+                  <input type="email" value={followupEmail} onChange={(e) => setFollowupEmail(e.target.value)} placeholder="you@yourcompany.com" style={inp} />
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 12, flexWrap: "wrap" }}>
+                  <button onClick={() => submitFollowup(results)} disabled={!followupName.trim() || !followupEmail.trim() || followupStatus === "Sending..." || followupStatus.startsWith("Got it")} style={{ ...btnP, opacity: (!followupName.trim() || !followupEmail.trim() || followupStatus === "Sending..." || followupStatus.startsWith("Got it")) ? 0.5 : 1 }}>
+                    {followupStatus.startsWith("Got it") ? "Sent" : "Send me the follow-up"}
+                  </button>
+                  {followupStatus && <span style={{ fontSize: 13, color: followupStatus.startsWith("Got it") ? COLORS.softTeal : COLORS.slateGray }}>{followupStatus}</span>}
+                </div>
               </div>
 
               <div style={{ marginTop: 24, padding: "16px 20px", background: COLORS.tealLight, borderRadius: 10, border: `1px solid ${COLORS.tealBorder}` }}>

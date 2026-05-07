@@ -451,14 +451,15 @@
                         <a href="https://www.linkedin.com/in/christopher-sanzeri-8a4a2b93/" target="_blank" rel="noopener noreferrer">Christopher Sanzeri</a>
                     </div>
                 </div>
-                <form class="contact-form" action="https://formspree.io/f/mgolpoed" method="POST">
+                <form class="contact-form" id="contactForm">
                     <div class="form-row">
                         <input type="text" name="name" placeholder="Name" required>
                         <input type="email" name="email" placeholder="Email" required>
                     </div>
                     <input type="text" name="organization" placeholder="Organization">
                     <textarea name="message" placeholder="Tell me a bit about what you're looking for..." required></textarea>
-                    <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send Message</button>
+                    <button type="submit" class="btn btn-primary" id="contactSubmit" style="align-self:flex-start;">Send Message</button>
+                    <div id="contactStatus" role="status" aria-live="polite" style="font-size:0.9rem;color:var(--soft-teal);min-height:1.2em;"></div>
                 </form>
             </div>
         </div>
@@ -484,6 +485,41 @@
         document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click',()=>{toggle.classList.remove('active');links.classList.remove('open')})});
         const reveals=document.querySelectorAll('.reveal'),observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:0.08});reveals.forEach(el=>observer.observe(el));
         const sections=document.querySelectorAll('section[id]');window.addEventListener('scroll',()=>{let c='';sections.forEach(s=>{if(scrollY>=s.offsetTop-120)c=s.id});document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)})});
+
+        // Contact form -> n8n lead capture (fire-and-forget, no-cors safe)
+        (function(){
+            var EVALVE_LEAD_URL = 'https://christophers-mac-mini.taile0fc82.ts.net/webhook/evalve-lead';
+            var EVALVE_LEAD_SECRET = 'a5ef939b9ac55af12844a53eec1f6f2301e2b7c665af384266a72dbc9e7f8d1a';
+            var form = document.getElementById('contactForm');
+            if (!form) return;
+            var status = document.getElementById('contactStatus');
+            var submit = document.getElementById('contactSubmit');
+            form.addEventListener('submit', function(e){
+                e.preventDefault();
+                var data = new FormData(form);
+                var body = new URLSearchParams();
+                body.append('secret', EVALVE_LEAD_SECRET);
+                body.append('source', 'Homepage Contact Form');
+                ['name','email','organization','message'].forEach(function(k){
+                    var v = data.get(k); if (v) body.append(k, v);
+                });
+                if (status) status.textContent = 'Sending...';
+                if (submit) submit.disabled = true;
+                fetch(EVALVE_LEAD_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                    body: body.toString()
+                }).then(function(){
+                    form.reset();
+                    if (status) status.textContent = 'Got it. I will reply soon.';
+                }).catch(function(){
+                    if (status) status.textContent = 'Something went wrong. Email me directly: christophersanzeri@evalveconsulting.com';
+                }).finally(function(){
+                    if (submit) submit.disabled = false;
+                });
+            });
+        })();
     </script>
 </body>
 </html>

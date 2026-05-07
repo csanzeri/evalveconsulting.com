@@ -1473,6 +1473,26 @@
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)
                 }).catch(err => console.error("Webhook error:", err));
+
+                // Side-channel: lead capture into central CRM (n8n)
+                try {
+                    const leadBody = new URLSearchParams();
+                    leadBody.append('secret', 'a5ef939b9ac55af12844a53eec1f6f2301e2b7c665af384266a72dbc9e7f8d1a');
+                    leadBody.append('source', 'AI Readiness Assessment');
+                    leadBody.append('name', contact.name || '');
+                    leadBody.append('email', contact.email || '');
+                    leadBody.append('organization', contact.org || '');
+                    leadBody.append('role', contact.role || '');
+                    leadBody.append('need', 'Completed AI Readiness Assessment. Score: ' + totalScore + ' (' + level.name + ').');
+                    leadBody.append('timeline', '');
+                    fetch('https://christophers-mac-mini.taile0fc82.ts.net/webhook/evalve-lead', {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: leadBody.toString()
+                    }).catch(function(){});
+                } catch (e) { /* swallow - lead capture is best-effort */ }
+
                 setPhase('results');
             }
 

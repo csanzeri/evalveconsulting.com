@@ -276,6 +276,7 @@
     function WorkflowAudit() {
       const [step, setStep] = useState("intro");
       const [orgName, setOrgName] = useState("");
+      const [email, setEmail] = useState("");
       const [orgType, setOrgType] = useState("");
       const [industry, setIndustry] = useState("");
       const [teamSize, setTeamSize] = useState("");
@@ -522,6 +523,7 @@
           timestamp: new Date().toISOString(),
           source: 'invisible-work-audit',
           orgName: orgName || 'Not provided',
+          email: email.trim(),
           industry,
           orgType,
           teamSize,
@@ -549,7 +551,7 @@
             body: JSON.stringify(payload)
           });
         } catch (e) { console.log('Submit error:', e); }
-      }, [orgName, industry, orgType, teamSize, selectedAreas, buildPDF]);
+      }, [orgName, email, industry, orgType, teamSize, selectedAreas, buildPDF]);
 
       useEffect(() => {
         if (step === 'results') {
@@ -642,7 +644,7 @@
       }
 
       if (step === "org_info") {
-        const ok = orgType && teamSize && industry;
+        const ok = orgType && teamSize && industry && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
         return (
           <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY, padding: "32px 24px" }}>
             <div ref={scrollRef} />
@@ -652,6 +654,7 @@
               <p style={{ color: COLORS.slateGray, margin: "0 0 28px", lineHeight: 1.5 }}>This helps calibrate the savings estimates to your situation.</p>
               <div style={card}>
                 <div style={{ marginBottom: 20 }}><label style={lbl}>Business / Organization Name</label><input value={orgName} onChange={(e) => setOrgName(e.target.value)} placeholder="e.g. Summit Kitchen & Bath, Apex Auto" style={inp} /></div>
+                <div style={{ marginBottom: 20 }}><label style={lbl}>Email address</label><input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@yourorganization.org" type="email" autoComplete="email" style={inp} /></div>
                 <div style={{ marginBottom: 20 }}><label style={lbl}>Industry</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{INDUSTRIES.map((t) => (<button key={t} onClick={() => setIndustry(t)} style={{ padding: "8px 14px", borderRadius: 20, border: `1.5px solid ${industry === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: industry === t ? COLORS.tealLight : "transparent", color: industry === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
                 <div style={{ marginBottom: 20 }}><label style={lbl}>Organization Size</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{ORG_TYPES.map((t) => (<button key={t} onClick={() => setOrgType(t)} style={{ padding: "8px 14px", borderRadius: 20, border: `1.5px solid ${orgType === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: orgType === t ? COLORS.tealLight : "transparent", color: orgType === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
                 <div style={{ marginBottom: 24 }}><label style={lbl}>How many people on the team you're auditing?</label><p style={{ fontSize: 12, color: COLORS.slateGray, margin: "0 0 8px" }}>The specific team or department, not the whole company.</p><input value={teamSize} onChange={(e) => setTeamSize(e.target.value.replace(/\D/g, ""))} placeholder="e.g. 5" type="text" inputMode="numeric" style={{ ...inp, maxWidth: 120 }} /></div>

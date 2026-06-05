@@ -203,7 +203,25 @@
             .signup-form { flex-direction: column; }
             .signup-form button { border-radius: 0 0 9px 9px; }
             .hero-watermark { display: none; }
+            .proof-grid { grid-template-columns: 1fr; }
+            .proof-stats { grid-template-columns: repeat(2, 1fr); }
         }
+        /* PROOF */
+        .proof-section { background: var(--indigo-dark); }
+        .proof-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 3rem; }
+        .proof-card { padding: 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; transition: all 0.3s; }
+        .proof-card:hover { border-color: rgba(63,167,163,0.3); transform: translateY(-3px); box-shadow: 0 16px 50px rgba(0,0,0,0.25); }
+        .proof-metric { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .proof-before { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; color: var(--slate-gray); text-decoration: line-through; text-decoration-color: rgba(154,154,175,0.5); }
+        .proof-arrow { color: var(--soft-teal); font-size: 1.2rem; }
+        .proof-after { font-family: var(--font-heading); font-size: clamp(1.8rem,3.5vw,2.4rem); font-weight: 700; color: var(--soft-teal); }
+        .proof-card h3 { font-family: var(--font-heading); font-size: 1.15rem; color: var(--white); margin-bottom: 0.5rem; font-weight: 600; }
+        .proof-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+        .proof-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
+        .proof-stat { padding: 1.5rem 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; text-align: center; transition: all 0.3s; }
+        .proof-stat:hover { border-color: rgba(63,167,163,0.3); transform: translateY(-3px); }
+        .proof-num { display: block; font-family: var(--font-heading); font-size: clamp(1.6rem,3vw,2.2rem); font-weight: 700; color: var(--white); margin-bottom: 0.35rem; line-height: 1; }
+        .proof-label { color: var(--muted); font-size: 0.82rem; line-height: 1.4; }
     </style>
 </head>
 <body>
@@ -328,6 +346,56 @@
                             <span><span class="cred-dot"></span>Runs local AI infrastructure and builds workflow automations</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="proof-section" id="proof">
+        <div class="section-inner reveal">
+            <p class="section-label">Proof</p>
+            <h2 class="section-title">What this actually saves</h2>
+            <p class="section-subtitle">I build these tools for my own work first. If they don't save real time, they don't ship. Here's what two of them save me.</p>
+
+            <div class="proof-grid">
+                <div class="proof-card">
+                    <div class="proof-metric">
+                        <span class="proof-before">1 hour</span>
+                        <span class="proof-arrow">&rarr;</span>
+                        <span class="proof-after">10 minutes</span>
+                    </div>
+                    <h3>Daily email triage</h3>
+                    <p>The system I built cut my daily email block from a full hour to ten minutes. That's about 50 minutes back every day, roughly four hours a week, on one workflow.</p>
+                </div>
+                <div class="proof-card">
+                    <div class="proof-metric">
+                        <span class="proof-before">15 min each</span>
+                        <span class="proof-arrow">&rarr;</span>
+                        <span class="proof-after">3 clicks</span>
+                    </div>
+                    <h3>Outreach dashboard</h3>
+                    <p>Sending an outreach email used to take about 15 minutes, and I send 5 to 10 a day. Now each one is three clicks, so up to two hours of daily writing turns into a few minutes.</p>
+                </div>
+            </div>
+
+            <div class="proof-stats">
+                <div class="proof-stat">
+                    <span class="proof-num">56</span>
+                    <span class="proof-label">Schools overseen</span>
+                </div>
+                <div class="proof-stat">
+                    <span class="proof-num">1,400+</span>
+                    <span class="proof-label">Staff supported</span>
+                </div>
+                <div class="proof-stat">
+                    <span class="proof-num">100+</span>
+                    <span class="proof-label">Training sessions delivered</span>
+                </div>
+                <div class="proof-stat">
+                    <span class="proof-num">Hundreds</span>
+                    <span class="proof-label">Educators using tools I built</span>
                 </div>
             </div>
         </div>

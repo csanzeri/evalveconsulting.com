@@ -1493,6 +1493,16 @@
                     }).catch(function(){});
                 } catch (e) { /* swallow - lead capture is best-effort */ }
 
+                // Dashboard lead intake (full payload, real CORS - no mode:"no-cors",
+                // which would strip the JSON content type)
+                fetch('https://evalve-dashboard.vercel.app/api/leads/readiness', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(Object.assign({}, payload, {
+                        secret: '3ad9ab21b97cae0562fb490877d814520a4d01f6e201f9edb1ab685c6a089f40'
+                    }))
+                }).catch(function(){});
+
                 setPhase('results');
             }
 

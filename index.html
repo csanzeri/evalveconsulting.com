@@ -565,10 +565,13 @@
         const reveals=document.querySelectorAll('.reveal'),observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:0.08});reveals.forEach(el=>observer.observe(el));
         const sections=document.querySelectorAll('section[id]');window.addEventListener('scroll',()=>{let c='';sections.forEach(s=>{if(scrollY>=s.offsetTop-120)c=s.id});document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)})});
 
-        // Contact form -> n8n lead capture (fire-and-forget, no-cors safe)
+        // Contact form -> Vercel dashboard lead intake. Uses real CORS (not no-cors)
+        // so the response is readable and success/failure is detected honestly. The
+        // dashboard validates and forwards to the CRM server-side, so the n8n webhook
+        // secret is never shipped to the browser.
         (function(){
-            var EVALVE_LEAD_URL = 'https://christophers-mac-mini.taile0fc82.ts.net/webhook/evalve-lead';
-            var EVALVE_LEAD_SECRET = 'a5ef939b9ac55af12844a53eec1f6f2301e2b7c665af384266a72dbc9e7f8d1a';
+            var EVALVE_LEAD_URL = 'https://evalve-dashboard.vercel.app/api/leads/contact';
+            var EVALVE_LEAD_SECRET = '3ad9ab21b97cae0562fb490877d814520a4d01f6e201f9edb1ab685c6a089f40';
             var form = document.getElementById('contactForm');
             if (!form) return;
             var status = document.getElementById('contactStatus');
@@ -576,20 +579,18 @@
             form.addEventListener('submit', function(e){
                 e.preventDefault();
                 var data = new FormData(form);
-                var body = new URLSearchParams();
-                body.append('secret', EVALVE_LEAD_SECRET);
-                body.append('source', 'Homepage Contact Form');
+                var payload = { secret: EVALVE_LEAD_SECRET, source: 'Homepage Contact Form' };
                 ['name','email','organization','message'].forEach(function(k){
-                    var v = data.get(k); if (v) body.append(k, v);
+                    var v = data.get(k); if (v) payload[k] = v;
                 });
                 if (status) status.textContent = 'Sending...';
                 if (submit) submit.disabled = true;
                 fetch(EVALVE_LEAD_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
-                    headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                    body: body.toString()
-                }).then(function(){
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                }).then(function(res){
+                    if (!res.ok) throw new Error('Bad response: ' + res.status);
                     form.reset();
                     if (status) status.textContent = 'Got it. I will reply soon.';
                 }).catch(function(){

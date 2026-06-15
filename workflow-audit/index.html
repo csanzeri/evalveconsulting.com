@@ -290,8 +290,6 @@
       const scrollRef = useRef(null);
 
       const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxQHQ44jiLKFtysSrUllqSI6M3yOl0vjl18Es6GG0suvYprab9o7FpAxmsgX4hOPHNE/exec';
-      const LEAD_CAPTURE_URL = 'https://christophers-mac-mini.taile0fc82.ts.net/webhook/evalve-lead';
-      const LEAD_CAPTURE_SECRET = 'a5ef939b9ac55af12844a53eec1f6f2301e2b7c665af384266a72dbc9e7f8d1a';
 
       const submitFollowup = useCallback((results) => {
         const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(followupEmail.trim());
@@ -303,21 +301,22 @@
         const need = 'Completed Invisible Work Audit. Org: ' + (orgName || 'Not provided') +
           ' (' + (industry || '?') + ', ' + (orgType || '?') + ', ' + sz + ' team member' + (sz !== 1 ? 's' : '') + '). ' +
           totH.toFixed(0) + ' hrs/wk audited, ' + totS.toFixed(0) + ' hrs/wk recoverable (~$' + Math.round(totA).toLocaleString() + '/yr).';
-        const body = new URLSearchParams();
-        body.append('secret', LEAD_CAPTURE_SECRET);
-        body.append('source', 'Invisible Work Audit');
-        body.append('name', followupName.trim());
-        body.append('email', followupEmail.trim());
-        body.append('organization', orgName || '');
-        body.append('org_size', sz + ' team member' + (sz !== 1 ? 's' : ''));
-        body.append('need', need);
         setFollowupStatus("Sending...");
-        fetch(LEAD_CAPTURE_URL, {
-          method: 'POST', mode: 'no-cors',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: body.toString()
-        }).then(function(){ setFollowupStatus("Got it. I will be in touch."); })
-          .catch(function(){ setFollowupStatus("Something went wrong. Email christophersanzeri@evalveconsulting.com directly."); });
+        fetch('https://evalve-dashboard.vercel.app/api/leads/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            secret: '3ad9ab21b97cae0562fb490877d814520a4d01f6e201f9edb1ab685c6a089f40',
+            source: 'Invisible Work Audit Follow-up',
+            name: followupName.trim() || orgName || 'Audit follow-up',
+            email: followupEmail.trim(),
+            organization: orgName || '',
+            message: need
+          })
+        }).then(function(res){
+          if (!res.ok) throw new Error('bad status');
+          setFollowupStatus("Got it. I will be in touch.");
+        }).catch(function(){ setFollowupStatus("Something went wrong. Email christophersanzeri@evalveconsulting.com directly."); });
       }, [followupName, followupEmail, orgName, orgType, industry, teamSize]);
 
       const buildPDF = useCallback((results) => {

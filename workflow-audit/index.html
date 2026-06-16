@@ -10,7 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@700&family=Nunito+Sans:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet" />
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Pinned to Babel 7.x: v8's react preset defaults to the automatic JSX runtime,
+       which emits `import "react/jsx-runtime"` and breaks UMD-global React (blank page). -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }

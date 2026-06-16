@@ -287,6 +287,8 @@
       const [followupName, setFollowupName] = useState("");
       const [followupEmail, setFollowupEmail] = useState("");
       const [followupStatus, setFollowupStatus] = useState("");
+      const [unlocked, setUnlocked] = useState(false);
+      const [unlockError, setUnlockError] = useState("");
       const scrollRef = useRef(null);
 
       const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxQHQ44jiLKFtysSrUllqSI6M3yOl0vjl18Es6GG0suvYprab9o7FpAxmsgX4hOPHNE/exec';
@@ -564,11 +566,8 @@
         } catch (e) { /* best-effort */ }
       }, [orgName, email, industry, orgType, teamSize, selectedAreas, buildPDF]);
 
-      useEffect(() => {
-        if (step === 'results') {
-          submitToSheet(computeResults());
-        }
-      }, [step]);
+      // Lead capture now fires on the results unlock (see handleUnlock), not on
+      // reaching the results step, so we only send a lead once we have an email.
 
       useEffect(() => { if (scrollRef.current) scrollRef.current.scrollIntoView({ behavior: "smooth", block: "start" }); }, [step, currentAreaIdx]);
 
@@ -655,7 +654,7 @@
       }
 
       if (step === "org_info") {
-        const ok = orgType && teamSize && industry && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+        const ok = orgType && teamSize && industry;
         return (
           <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY, padding: "32px 24px" }}>
             <div ref={scrollRef} />
@@ -665,7 +664,6 @@
               <p style={{ color: COLORS.slateGray, margin: "0 0 28px", lineHeight: 1.5 }}>This helps calibrate the savings estimates to your situation.</p>
               <div style={card}>
                 <div style={{ marginBottom: 20 }}><label style={lbl}>Business / Organization Name</label><input value={orgName} onChange={(e) => setOrgName(e.target.value)} placeholder="e.g. Summit Kitchen & Bath, Apex Auto" style={inp} /></div>
-                <div style={{ marginBottom: 20 }}><label style={lbl}>Email address</label><input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@yourorganization.org" type="email" autoComplete="email" style={inp} /></div>
                 <div style={{ marginBottom: 20 }}><label style={lbl}>Industry</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{INDUSTRIES.map((t) => (<button key={t} onClick={() => setIndustry(t)} style={{ padding: "8px 14px", borderRadius: 20, border: `1.5px solid ${industry === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: industry === t ? COLORS.tealLight : "transparent", color: industry === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
                 <div style={{ marginBottom: 20 }}><label style={lbl}>Organization Size</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{ORG_TYPES.map((t) => (<button key={t} onClick={() => setOrgType(t)} style={{ padding: "8px 14px", borderRadius: 20, border: `1.5px solid ${orgType === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: orgType === t ? COLORS.tealLight : "transparent", color: orgType === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
                 <div style={{ marginBottom: 24 }}><label style={lbl}>How many people on the team you're auditing?</label><p style={{ fontSize: 12, color: COLORS.slateGray, margin: "0 0 8px" }}>The specific team or department, not the whole company.</p><input value={teamSize} onChange={(e) => setTeamSize(e.target.value.replace(/\D/g, ""))} placeholder="e.g. 5" type="text" inputMode="numeric" style={{ ...inp, maxWidth: 120 }} /></div>
@@ -748,6 +746,16 @@
         const top = allTasks.slice(0, 10);
         const sz = parseInt(teamSize) || 1;
 
+        const handleUnlock = () => {
+          const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+          if (!emailOk) { setUnlockError("Please enter a valid email address."); return; }
+          setUnlockError("");
+          // Fire the existing lead pipeline (dashboard + sheet) now that we have an
+          // email. The dashboard is the single place that also subscribes them to Beehiiv.
+          submitToSheet(results);
+          setUnlocked(true);
+        };
+
         return (
           <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY }}>
             <div ref={scrollRef} />
@@ -772,7 +780,8 @@
               </div>
             </div>
 
-            <div style={{ maxWidth: 720, margin: "-24px auto 0", padding: "0 24px 48px" }}>
+            <div style={{ position: "relative", maxWidth: 720, margin: "-24px auto 0", padding: "0 24px 48px" }}>
+              <div style={unlocked ? {} : { filter: "blur(7px)", pointerEvents: "none", userSelect: "none", maxHeight: 540, overflow: "hidden" }}>
               <div style={{ ...card, marginBottom: 20 }}>
                 <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 20, margin: "0 0 4px" }}>Your Top Automation Priorities</h2>
                 <p style={{ color: COLORS.slateGray, fontSize: 13, margin: "0 0 20px" }}>Ranked by automation feasibility, time consumed, and how painful the task is for your team.</p>
@@ -859,8 +868,22 @@
 
               <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 24 }}>
                 <button onClick={() => downloadPDF(results)} style={{ ...btnP, background: COLORS.deepIndigo }}>Download Full Report</button>
-                <button onClick={() => { setStep("intro"); setTaskResponses({}); setSelectedAreas([]); setCurrentAreaIdx(0); setOrgName(""); setOrgType(""); setIndustry(""); setTeamSize(""); }} style={btnS}>Start Over</button>
+                <button onClick={() => { setStep("intro"); setTaskResponses({}); setSelectedAreas([]); setCurrentAreaIdx(0); setOrgName(""); setOrgType(""); setIndustry(""); setTeamSize(""); setEmail(""); setUnlocked(false); setUnlockError(""); }} style={btnS}>Start Over</button>
               </div>
+              </div>
+              {!unlocked && (
+                <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "32px 24px 48px", background: "linear-gradient(180deg, rgba(247,247,250,0.35) 0%, rgba(247,247,250,0.92) 32%, #F7F7FA 55%)" }}>
+                  <div style={{ ...card, maxWidth: 460, width: "100%", textAlign: "center", boxShadow: "0 24px 70px rgba(46,43,111,0.22)", border: `1px solid ${COLORS.tealBorder}` }}>
+                    <div style={{ fontSize: 34, marginBottom: 6 }}>{"🔓"}</div>
+                    <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 22, margin: "0 0 8px" }}>Your full report is ready</h2>
+                    <p style={{ color: COLORS.slateGray, fontSize: 14, lineHeight: 1.6, margin: "0 0 16px" }}>Enter your email to unlock your full prioritized list, the breakdown by area, your operations map, and a downloadable PDF for your team.</p>
+                    <input type="email" value={email} onChange={(e) => { setEmail(e.target.value); if (unlockError) setUnlockError(""); }} onKeyDown={(e) => { if (e.key === "Enter") handleUnlock(); }} placeholder="you@yourorganization.org" autoComplete="email" style={{ ...inp, textAlign: "center", marginBottom: 10 }} />
+                    {unlockError && <p style={{ color: COLORS.dangerRed, fontSize: 12, margin: "0 0 10px" }}>{unlockError}</p>}
+                    <button onClick={handleUnlock} style={{ ...btnP, width: "100%" }}>Unlock my full results</button>
+                    <p style={{ fontSize: 11, color: COLORS.slateGray, marginTop: 12, lineHeight: 1.5 }}>I'll send your report and the occasional practical note on AI in education. No spam, unsubscribe anytime.</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         );

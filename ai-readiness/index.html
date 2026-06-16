@@ -939,7 +939,15 @@
             );
         }
 
-        function Results({ answers, contact }) {
+        function Results({ answers, contact, setContact, unlocked, onUnlock }) {
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const [unlockError, setUnlockError] = useState('');
+            const canUnlock = contact.name.trim() && emailPattern.test(contact.email) && contact.org.trim();
+            function handleUnlock() {
+                if (!canUnlock) { setUnlockError('Please add your name, a valid email, and your organization.'); return; }
+                setUnlockError('');
+                onUnlock();
+            }
             const dimScores = answers.map(s => s.reduce((a, b) => a + b, 0));
             const totalScore = dimScores.reduce((a, b) => a + b, 0);
             const level = getLevel(totalScore, false);
@@ -1254,6 +1262,9 @@
                         <p className="score-desc">{level.description}</p>
                     </div>
 
+                    <div style={{ position: "relative" }}>
+                    <div style={unlocked ? {} : { filter: "blur(7px)", pointerEvents: "none", userSelect: "none", maxHeight: 360, overflow: "hidden" }}>
+
                     {DIMENSIONS.map((d, i) => {
                         const s = dimScores[i];
                         const l = getLevel(s, true);
@@ -1304,6 +1315,23 @@
                         <button className="btn-report" onClick={downloadPDF}>Download Full Report</button>
                         <a className="btn-strategy" href="https://calendar.app.google/HjzF8PMaQbrM2GGF8" target="_blank" rel="noopener noreferrer">Book a Strategy Call</a>
                     </div>
+                    </div>
+                    {!unlocked && (
+                        <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "8px 0 40px", background: "linear-gradient(180deg, rgba(245,245,248,0.4) 0%, rgba(245,245,248,0.93) 30%, #f5f5f8 52%)" }}>
+                            <div style={{ background: "#fff", borderRadius: 16, padding: "28px 26px", maxWidth: 440, width: "100%", textAlign: "center", boxShadow: "0 24px 70px rgba(46,43,111,0.22)", border: "1px solid rgba(63,167,163,0.25)" }}>
+                                <div style={{ fontSize: 34, marginBottom: 6 }}>{"🔓"}</div>
+                                <h2 style={{ fontFamily: "'Instrument Sans', sans-serif", color: "#2E2B6F", fontSize: 22, fontWeight: 700, margin: "0 0 8px" }}>Unlock your full results</h2>
+                                <p style={{ color: "#5C5F66", fontSize: 14, lineHeight: 1.6, margin: "0 0 18px" }}>See your dimension-by-dimension breakdown, your key gaps, recommended next steps, and download the full PDF report for your leadership team.</p>
+                                <div className="form-group"><input type="text" placeholder="Your name" maxLength="100" value={contact.name} onChange={e => { setContact({ ...contact, name: e.target.value }); if (unlockError) setUnlockError(''); }} /></div>
+                                <div className="form-group"><input type="email" placeholder="you@district.k12.us" maxLength="254" value={contact.email} onChange={e => { setContact({ ...contact, email: e.target.value }); if (unlockError) setUnlockError(''); }} /></div>
+                                <div className="form-group"><input type="text" placeholder="District / Organization" maxLength="150" value={contact.org} onChange={e => { setContact({ ...contact, org: e.target.value }); if (unlockError) setUnlockError(''); }} /></div>
+                                {unlockError && <p style={{ color: "#D94F4F", fontSize: 12, margin: "0 0 10px" }}>{unlockError}</p>}
+                                <button className="btn-primary" onClick={handleUnlock}>Unlock my results</button>
+                                <p style={{ fontSize: 11, color: "#5C5F66", marginTop: 12, lineHeight: 1.5 }}>I'll send your report and the occasional practical note on AI in education. No spam, unsubscribe anytime.</p>
+                            </div>
+                        </div>
+                    )}
+                    </div>
 
                     <div className="footer-attr">
                         Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.<br />
@@ -1318,6 +1346,7 @@
             const [contact, setContact] = useState({ name: '', email: '', org: '', role: '' });
             const [step, setStep] = useState(0);
             const [answers, setAnswers] = useState([[null,null,null,null],[null,null,null,null],[null,null,null,null],[null,null,null,null]]);
+            const [unlocked, setUnlocked] = useState(false);
             const topRef = useRef(null);
 
             function scrollTop() {
@@ -1483,18 +1512,15 @@
                         secret: '3ad9ab21b97cae0562fb490877d814520a4d01f6e201f9edb1ab685c6a089f40'
                     }))
                 }).catch(function(){});
-
-                setPhase('results');
             }
 
             return (
                 <div ref={topRef}>
                     <Header phase={phase} step={step} />
                     <div className="main-wrap">
-                        {phase === 'intro' && <IntroScreen onStart={() => setPhase('contact')} />}
-                        {phase === 'contact' && <ContactForm contact={contact} setContact={setContact} onBegin={() => setPhase('assessment')} />}
-                        {phase === 'assessment' && <Assessment step={step} setStep={setStep} answers={answers} setAnswers={setAnswers} onFinish={submitResults} />}
-                        {phase === 'results' && <Results answers={answers} contact={contact} />}
+                        {phase === 'intro' && <IntroScreen onStart={() => setPhase('assessment')} />}
+                        {phase === 'assessment' && <Assessment step={step} setStep={setStep} answers={answers} setAnswers={setAnswers} onFinish={() => setPhase('results')} />}
+                        {phase === 'results' && <Results answers={answers} contact={contact} setContact={setContact} unlocked={unlocked} onUnlock={() => { submitResults(); setUnlocked(true); }} />}
                     </div>
                 </div>
             );

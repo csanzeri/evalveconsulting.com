@@ -536,6 +536,10 @@
                         <input type="email" name="email" placeholder="Email" required>
                     </div>
                     <input type="text" name="organization" placeholder="Organization">
+                    <!-- Honeypot: hidden from humans, bots fill it. A non-empty value is dropped server-side (isHoneypot). -->
+                    <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">
+                        <label>Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+                    </div>
                     <textarea name="message" placeholder="Tell me a bit about what you're looking for..." required></textarea>
                     <button type="submit" class="btn btn-primary" id="contactSubmit" style="align-self:flex-start;">Send Message</button>
                     <div id="contactStatus" role="status" aria-live="polite" style="font-size:0.9rem;color:var(--soft-teal);min-height:1.2em;"></div>
@@ -587,7 +591,8 @@
                     name: (data.get('name') || '').trim(),
                     email: (data.get('email') || '').trim(),
                     organization: (data.get('organization') || '').trim(),
-                    message: (data.get('message') || '').trim()
+                    message: (data.get('message') || '').trim(),
+                    website: (data.get('website') || '').trim() // honeypot; real users leave this blank
                 };
                 if (status) status.textContent = 'Sending...';
                 if (submit) submit.disabled = true;

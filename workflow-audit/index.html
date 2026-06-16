@@ -288,6 +288,7 @@
       const [showAllAreas, setShowAllAreas] = useState(false);
       const [followupName, setFollowupName] = useState("");
       const [followupEmail, setFollowupEmail] = useState("");
+      const [followupWebsite, setFollowupWebsite] = useState(""); // honeypot
       const [followupStatus, setFollowupStatus] = useState("");
       const [unlocked, setUnlocked] = useState(false);
       const [unlockError, setUnlockError] = useState("");
@@ -315,13 +316,14 @@
             name: followupName.trim() || orgName || 'Audit follow-up',
             email: followupEmail.trim(),
             organization: orgName || '',
-            message: need
+            message: need,
+            website: followupWebsite.trim() // honeypot; real users leave this blank
           })
         }).then(function(res){
           if (!res.ok) throw new Error('bad status');
           setFollowupStatus("Got it. I will be in touch.");
         }).catch(function(){ setFollowupStatus("Something went wrong. Email christophersanzeri@evalveconsulting.com directly."); });
-      }, [followupName, followupEmail, orgName, orgType, industry, teamSize]);
+      }, [followupName, followupEmail, followupWebsite, orgName, orgType, industry, teamSize]);
 
       const buildPDF = useCallback((results) => {
         const { jsPDF } = window.jspdf;
@@ -854,6 +856,10 @@
                 <div style={{ display: "grid", gap: 10, gridTemplateColumns: "1fr 1fr" }}>
                   <input type="text" value={followupName} onChange={(e) => setFollowupName(e.target.value)} placeholder="Your name" style={inp} />
                   <input type="email" value={followupEmail} onChange={(e) => setFollowupEmail(e.target.value)} placeholder="you@yourcompany.com" style={inp} />
+                </div>
+                {/* Honeypot: hidden from humans, bots fill it; dropped server-side. */}
+                <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", width: 1, height: 1, overflow: "hidden" }}>
+                  <label>Leave this field empty<input type="text" tabIndex={-1} autoComplete="off" value={followupWebsite} onChange={(e) => setFollowupWebsite(e.target.value)} /></label>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 12, flexWrap: "wrap" }}>
                   <button onClick={() => submitFollowup(results)} disabled={!followupName.trim() || !followupEmail.trim() || followupStatus === "Sending..." || followupStatus.startsWith("Got it")} style={{ ...btnP, opacity: (!followupName.trim() || !followupEmail.trim() || followupStatus === "Sending..." || followupStatus.startsWith("Got it")) ? 0.5 : 1 }}>

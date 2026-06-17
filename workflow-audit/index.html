@@ -292,6 +292,13 @@
       const [followupStatus, setFollowupStatus] = useState("");
       const [unlocked, setUnlocked] = useState(false);
       const [unlockError, setUnlockError] = useState("");
+      const [isMobile, setIsMobile] = useState(false);
+      useEffect(() => {
+        const onResize = () => setIsMobile(window.innerWidth <= 600);
+        onResize();
+        window.addEventListener("resize", onResize);
+        return () => window.removeEventListener("resize", onResize);
+      }, []);
       const scrollRef = useRef(null);
 
       const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxQHQ44jiLKFtysSrUllqSI6M3yOl0vjl18Es6GG0suvYprab9o7FpAxmsgX4hOPHNE/exec';
@@ -597,11 +604,16 @@
 
       const currentAreas = selectedAreas.map((id) => OPERATIONAL_AREAS.find((a) => a.id === id));
       const currentArea = currentAreas[currentAreaIdx];
-      const card = { background: COLORS.cardBg, borderRadius: 12, padding: "28px 32px", border: "1px solid rgba(46,43,111,0.08)", boxShadow: "0 1px 3px rgba(46,43,111,0.04)" };
-      const btnP = { background: COLORS.softTeal, color: COLORS.white, border: "none", borderRadius: 8, padding: "14px 32px", fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY, transition: "all 0.2s" };
-      const btnS = { background: "transparent", color: COLORS.softTeal, border: `2px solid ${COLORS.softTeal}`, borderRadius: 8, padding: "12px 28px", fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY };
+      const card = { background: COLORS.cardBg, borderRadius: 12, padding: isMobile ? "20px 16px" : "28px 32px", border: "1px solid rgba(46,43,111,0.08)", boxShadow: "0 1px 3px rgba(46,43,111,0.04)" };
+      const btnP = { background: COLORS.softTeal, color: COLORS.white, border: "none", borderRadius: 8, padding: "14px 32px", minHeight: 44, fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY, transition: "all 0.2s" };
+      const btnS = { background: "transparent", color: COLORS.softTeal, border: `2px solid ${COLORS.softTeal}`, borderRadius: 8, padding: "12px 28px", minHeight: 44, fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY };
       const lbl = { display: "block", marginBottom: 6, fontSize: 13, color: COLORS.slateGray, fontWeight: 600, letterSpacing: 0.5, fontFamily: FONT_BODY };
-      const inp = { width: "100%", padding: "12px 16px", borderRadius: 8, border: "1px solid rgba(46,43,111,0.15)", fontSize: 15, fontFamily: FONT_BODY, color: COLORS.deepIndigo, outline: "none", boxSizing: "border-box" };
+      const inp = { width: "100%", padding: "12px 16px", borderRadius: 8, border: "1px solid rgba(46,43,111,0.15)", fontSize: 16, fontFamily: FONT_BODY, color: COLORS.deepIndigo, outline: "none", boxSizing: "border-box" };
+      // Shared nav row: side-by-side on desktop, stacked (primary on top) on mobile
+      const navRow = isMobile
+        ? { display: "flex", flexDirection: "column-reverse", gap: 12 }
+        : { display: "flex", gap: 12, justifyContent: "space-between" };
+      const wrapPad = isMobile ? "24px 16px" : "32px 24px";
 
       if (step === "intro") {
         return (
@@ -660,7 +672,7 @@
       if (step === "org_info") {
         const ok = orgType && teamSize && industry;
         return (
-          <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY, padding: "32px 24px" }}>
+          <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY, padding: wrapPad }}>
             <div ref={scrollRef} />
             <div style={{ maxWidth: 560, margin: "0 auto" }}>
               <div style={{ fontSize: 12, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8, fontFamily: FONT_HEADING }}>Step 1 of 4</div>
@@ -668,10 +680,10 @@
               <p style={{ color: COLORS.slateGray, margin: "0 0 28px", lineHeight: 1.5 }}>This helps calibrate the savings estimates to your situation.</p>
               <div style={card}>
                 <div style={{ marginBottom: 20 }}><label style={lbl}>Business / Organization Name</label><input value={orgName} onChange={(e) => setOrgName(e.target.value)} placeholder="e.g. Summit Kitchen & Bath, Apex Auto" style={inp} /></div>
-                <div style={{ marginBottom: 20 }}><label style={lbl}>Industry</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{INDUSTRIES.map((t) => (<button key={t} onClick={() => setIndustry(t)} style={{ padding: "8px 14px", borderRadius: 20, border: `1.5px solid ${industry === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: industry === t ? COLORS.tealLight : "transparent", color: industry === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
-                <div style={{ marginBottom: 20 }}><label style={lbl}>Organization Size</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{ORG_TYPES.map((t) => (<button key={t} onClick={() => setOrgType(t)} style={{ padding: "8px 14px", borderRadius: 20, border: `1.5px solid ${orgType === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: orgType === t ? COLORS.tealLight : "transparent", color: orgType === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
+                <div style={{ marginBottom: 20 }}><label style={lbl}>Industry</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{INDUSTRIES.map((t) => (<button key={t} onClick={() => setIndustry(t)} style={{ padding: isMobile ? "10px 16px" : "8px 14px", minHeight: isMobile ? 40 : "auto", borderRadius: 20, border: `1.5px solid ${industry === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: industry === t ? COLORS.tealLight : "transparent", color: industry === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
+                <div style={{ marginBottom: 20 }}><label style={lbl}>Organization Size</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{ORG_TYPES.map((t) => (<button key={t} onClick={() => setOrgType(t)} style={{ padding: isMobile ? "10px 16px" : "8px 14px", minHeight: isMobile ? 40 : "auto", borderRadius: 20, border: `1.5px solid ${orgType === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: orgType === t ? COLORS.tealLight : "transparent", color: orgType === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
                 <div style={{ marginBottom: 24 }}><label style={lbl}>How many people on the team you're auditing?</label><p style={{ fontSize: 12, color: COLORS.slateGray, margin: "0 0 8px" }}>The specific team or department, not the whole company.</p><input value={teamSize} onChange={(e) => setTeamSize(e.target.value.replace(/\D/g, ""))} placeholder="e.g. 5" type="text" inputMode="numeric" style={{ ...inp, maxWidth: 120 }} /></div>
-                <div style={{ display: "flex", gap: 12, justifyContent: "space-between" }}><button onClick={() => setStep("intro")} style={btnS}>Back</button><button onClick={() => { if (ok) setStep("select_areas"); }} style={{ ...btnP, opacity: ok ? 1 : 0.4 }} disabled={!ok}>Next: Select Areas</button></div>
+                <div style={navRow}><button onClick={() => setStep("intro")} style={btnS}>Back</button><button onClick={() => { if (ok) setStep("select_areas"); }} style={{ ...btnP, opacity: ok ? 1 : 0.4 }} disabled={!ok}>Next: Select Areas</button></div>
               </div>
             </div>
           </div>
@@ -680,7 +692,7 @@
 
       if (step === "select_areas") {
         return (
-          <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY, padding: "32px 24px" }}>
+          <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY, padding: wrapPad }}>
             <div ref={scrollRef} />
             <div style={{ maxWidth: 660, margin: "0 auto" }}>
               <div style={{ fontSize: 12, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8, fontFamily: FONT_HEADING }}>Step 2 of 4</div>
@@ -696,7 +708,7 @@
                   </button>
                 ); })}
               </div>
-              <div style={{ display: "flex", gap: 12, justifyContent: "space-between", marginTop: 24 }}><button onClick={() => setStep("org_info")} style={btnS}>Back</button><button onClick={() => { if (selectedAreas.length) { setCurrentAreaIdx(0); setStep("task_audit"); } }} style={{ ...btnP, opacity: selectedAreas.length ? 1 : 0.4 }} disabled={!selectedAreas.length}>Next: Audit Tasks ({selectedAreas.length} area{selectedAreas.length !== 1 ? "s" : ""})</button></div>
+              <div style={{ ...navRow, marginTop: 24 }}><button onClick={() => setStep("org_info")} style={btnS}>Back</button><button onClick={() => { if (selectedAreas.length) { setCurrentAreaIdx(0); setStep("task_audit"); } }} style={{ ...btnP, opacity: selectedAreas.length ? 1 : 0.4 }} disabled={!selectedAreas.length}>Next: Audit Tasks ({selectedAreas.length} area{selectedAreas.length !== 1 ? "s" : ""})</button></div>
             </div>
           </div>
         );
@@ -704,7 +716,7 @@
 
       if (step === "task_audit" && currentArea) {
         return (
-          <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY, padding: "32px 24px" }}>
+          <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY, padding: wrapPad }}>
             <div ref={scrollRef} />
             <div style={{ maxWidth: 660, margin: "0 auto" }}>
               <div style={{ fontSize: 12, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8, fontFamily: FONT_HEADING }}>Step 3 of 4 — Area {currentAreaIdx + 1} of {selectedAreas.length}</div>
@@ -717,13 +729,13 @@
                 {currentArea.tasks.map((task) => { const r = taskResponses[task.id] || {}; const does = r.doesThis || false; return (
                   <div key={task.id} style={{ ...card, padding: "16px 20px", opacity: does ? 1 : 0.65, transition: "opacity 0.2s" }}>
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-                      <button onClick={() => setTaskDoIt(task.id, !does)} style={{ width: 24, height: 24, borderRadius: 6, flexShrink: 0, marginTop: 2, border: `2px solid ${does ? COLORS.softTeal : "rgba(46,43,111,0.15)"}`, background: does ? COLORS.softTeal : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>{does && <span style={{ color: COLORS.white, fontSize: 14, fontWeight: 700 }}>&#10003;</span>}</button>
+                      <button onClick={() => setTaskDoIt(task.id, !does)} style={{ width: isMobile ? 28 : 24, height: isMobile ? 28 : 24, borderRadius: 6, flexShrink: 0, marginTop: 2, border: `2px solid ${does ? COLORS.softTeal : "rgba(46,43,111,0.15)"}`, background: does ? COLORS.softTeal : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>{does && <span style={{ color: COLORS.white, fontSize: 14, fontWeight: 700 }}>&#10003;</span>}</button>
                       <div style={{ flex: 1 }}>
                         <div style={{ fontWeight: 600, color: COLORS.deepIndigo, fontSize: 14, lineHeight: 1.4 }}>{task.label}</div>
                         {does && (
                           <div style={{ display: "flex", gap: 16, marginTop: 12, flexWrap: "wrap", alignItems: "flex-end" }}>
-                            <div><label style={{ ...lbl, fontSize: 11 }}>Hours / week</label><input type="number" step="0.5" min="0" value={r.hours ?? task.avgHoursWeek} onChange={(e) => setTaskTime(task.id, e.target.value)} style={{ ...inp, width: 80, padding: "8px 10px", fontSize: 14 }} /></div>
-                            <div><label style={{ ...lbl, fontSize: 11 }}>Pain level</label><div style={{ display: "flex", gap: 4 }}>{["low", "medium", "high"].map((lv) => { const active = (r.pain || "medium") === lv; const c = lv === "high" ? COLORS.dangerRed : lv === "medium" ? COLORS.warningAmber : COLORS.successGreen; return (<button key={lv} onClick={() => setTaskPain(task.id, lv)} style={{ padding: "6px 12px", borderRadius: 6, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY, border: `1.5px solid ${active ? c : "rgba(46,43,111,0.12)"}`, background: active ? `${c}12` : "transparent", color: active ? c : COLORS.slateGray }}>{lv === "low" ? "Low" : lv === "medium" ? "Med" : "High"}</button>); })}</div></div>
+                            <div><label style={{ ...lbl, fontSize: 11 }}>Hours / week</label><input type="number" step="0.5" min="0" value={r.hours ?? task.avgHoursWeek} onChange={(e) => setTaskTime(task.id, e.target.value)} style={{ ...inp, width: 80, padding: "8px 10px", fontSize: isMobile ? 16 : 14 }} /></div>
+                            <div><label style={{ ...lbl, fontSize: 11 }}>Pain level</label><div style={{ display: "flex", gap: 4 }}>{["low", "medium", "high"].map((lv) => { const active = (r.pain || "medium") === lv; const c = lv === "high" ? COLORS.dangerRed : lv === "medium" ? COLORS.warningAmber : COLORS.successGreen; return (<button key={lv} onClick={() => setTaskPain(task.id, lv)} style={{ padding: isMobile ? "10px 16px" : "6px 12px", minHeight: isMobile ? 44 : "auto", borderRadius: 6, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY, border: `1.5px solid ${active ? c : "rgba(46,43,111,0.12)"}`, background: active ? `${c}12` : "transparent", color: active ? c : COLORS.slateGray }}>{lv === "low" ? "Low" : lv === "medium" ? "Med" : "High"}</button>); })}</div></div>
                             <div style={{ fontSize: 11, color: COLORS.slateGray, alignSelf: "center" }}>{task.category === "ai" ? "\uD83E\uDD16 AI candidate" : "\u2699\uFE0F Automation candidate"}</div>
                           </div>
                         )}
@@ -732,7 +744,7 @@
                   </div>
                 ); })}
               </div>
-              <div style={{ display: "flex", gap: 12, justifyContent: "space-between", marginTop: 24 }}>
+              <div style={{ ...navRow, marginTop: 24 }}>
                 <button onClick={() => { if (currentAreaIdx > 0) setCurrentAreaIdx(currentAreaIdx - 1); else setStep("select_areas"); }} style={btnS}>Back</button>
                 <button onClick={() => { if (currentAreaIdx < selectedAreas.length - 1) setCurrentAreaIdx(currentAreaIdx + 1); else setStep("results"); }} style={btnP}>{currentAreaIdx < selectedAreas.length - 1 ? "Next Area \u2192" : "See Results"}</button>
               </div>
@@ -784,7 +796,7 @@
               </div>
             </div>
 
-            <div style={{ position: "relative", maxWidth: 720, margin: "-24px auto 0", padding: "0 24px 48px" }}>
+            <div style={{ position: "relative", maxWidth: 720, margin: "-24px auto 0", padding: isMobile ? "0 16px 40px" : "0 24px 48px" }}>
               <div style={unlocked ? {} : { filter: "blur(7px)", pointerEvents: "none", userSelect: "none", maxHeight: 540, overflow: "hidden" }}>
               <div style={{ ...card, marginBottom: 20 }}>
                 <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 20, margin: "0 0 4px" }}>Your Top Automation Priorities</h2>
@@ -880,7 +892,7 @@
               </div>
               </div>
               {!unlocked && (
-                <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "32px 24px 48px", background: "linear-gradient(180deg, rgba(247,247,250,0.35) 0%, rgba(247,247,250,0.92) 32%, #F7F7FA 55%)" }}>
+                <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", alignItems: "flex-start", justifyContent: "center", padding: isMobile ? "24px 16px 40px" : "32px 24px 48px", background: "linear-gradient(180deg, rgba(247,247,250,0.35) 0%, rgba(247,247,250,0.92) 32%, #F7F7FA 55%)" }}>
                   <div style={{ ...card, maxWidth: 460, width: "100%", textAlign: "center", boxShadow: "0 24px 70px rgba(46,43,111,0.22)", border: `1px solid ${COLORS.tealBorder}` }}>
                     <div style={{ fontSize: 34, marginBottom: 6 }}>{"🔓"}</div>
                     <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 22, margin: "0 0 8px" }}>Your full report is ready</h2>

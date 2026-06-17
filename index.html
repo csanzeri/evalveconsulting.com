@@ -52,7 +52,7 @@
         .nav-cta { background: var(--soft-teal) !important; color: var(--indigo-darker) !important; padding: 0.5rem 1.25rem !important; border-radius: 6px; font-weight: 600 !important; transition: all 0.2s !important; }
         .nav-cta:hover { background: var(--teal-glow) !important; transform: translateY(-1px); }
         .nav-cta::after { display: none !important; }
-        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; min-width: 44px; min-height: 44px; }
         .mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--off-white); margin: 5px 0; transition: all 0.3s; border-radius: 2px; }
 
         /* HERO */
@@ -104,7 +104,7 @@
         .card-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(63,167,163,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.2rem; }
         .card h3 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--white); margin-bottom: 0.75rem; font-weight: 600; }
         .card p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
-        .card-btn { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1.5rem; padding: 0.6rem 1.25rem; border-radius: 6px; background: var(--soft-teal); color: var(--indigo-darker); text-decoration: none; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
+        .card-btn { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1.5rem; padding: 0.6rem 1.25rem; min-height: 44px; border-radius: 6px; background: var(--soft-teal); color: var(--indigo-darker); text-decoration: none; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
         .card-btn:hover { background: var(--teal-glow); transform: translateY(-1px); }
 
         /* WHO THIS IS FOR */
@@ -197,7 +197,7 @@
         @media (max-width: 768px) {
             .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: rgba(17,15,48,0.98); flex-direction: column; padding: 1.5rem 2rem; gap: 1.25rem; border-bottom: 1px solid var(--border); }
             .nav-links.open { display: flex; }
-            .mobile-toggle { display: block; }
+            .mobile-toggle { display: flex; flex-direction: column; align-items: center; justify-content: center; }
             .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
             .mobile-toggle.active span:nth-child(2) { opacity: 0; }
             .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
@@ -210,6 +210,7 @@
             .hero-watermark { display: none; }
             .proof-grid { grid-template-columns: 1fr; }
             .proof-stats { grid-template-columns: repeat(2, 1fr); }
+            .contact-form input, .contact-form textarea, .signup-form input[type="email"] { min-height: 44px; font-size: 16px; }
         }
         /* PROOF */
         .proof-section { background: var(--indigo-dark); }
@@ -227,6 +228,22 @@
         .proof-stat:hover { border-color: rgba(63,167,163,0.3); transform: translateY(-3px); }
         .proof-num { display: block; font-family: var(--font-heading); font-size: clamp(1.6rem,3vw,2.2rem); font-weight: 700; color: var(--white); margin-bottom: 0.35rem; line-height: 1; }
         .proof-label { color: var(--muted); font-size: 0.82rem; line-height: 1.4; }
+
+        /* Beehiiv injects an inline width:500px; cap it so it never overflows mobile */
+        .beehiiv-embed { width: 100% !important; max-width: 500px; }
+
+        /* Authoritative responsive overrides — placed AFTER the base rules above so they
+           win the cascade (the .proof-* base rules are declared later than the main
+           @media block, which would otherwise override the mobile layout). */
+        @media (max-width: 900px) {
+            .proof-stats { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .proof-grid { grid-template-columns: 1fr; }
+            .proof-stats { grid-template-columns: repeat(2, 1fr); }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+            .footer-links { flex-wrap: wrap; gap: 0.75rem 1.25rem; }
+        }
     </style>
 </head>
 <body>

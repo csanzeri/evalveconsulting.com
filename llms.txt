@@ -1,0 +1,39 @@
+# Evalve Consulting
+
+> AI implementation for education that actually works. Evalve Consulting is an AI implementation consultancy for education organizations, founded by Dr. Chris Sanzeri. Based in the Chicago area (Elgin, Illinois), Evalve works with education organizations across Illinois and remotely nationwide.
+
+Evalve is a builder-led practice, not a slide-deck shop. Dr. Sanzeri spent years in public education leadership, most recently as a district administrator overseeing specialized student services in one of Illinois' largest school districts. He builds the tools himself: custom GPTs, local AI models, iOS apps, and workflow automations. The approach is practical and hands-on, with no vendor BS.
+
+## About
+
+- **Founder:** Dr. Christopher (Chris) Sanzeri, Ed.D. in Education Leadership. Former district administrator who oversaw operations spanning dozens of schools and 1,400+ staff, delivered 100+ professional learning sessions, and built and deployed custom AI tools used by hundreds of educators.
+- **Special education angle:** Special education is a credibility wedge, not a limiter. It is process- and documentation-heavy work, which is where Dr. Sanzeri learned what AI can genuinely take off a team's plate. The practice serves the full range of education organizations.
+- **Location:** Based in the Chicago area (Elgin / Chicagoland, Illinois). Serves Illinois and the United States nationwide, remote-friendly.
+
+## Who Evalve serves
+
+School districts, Regional Offices of Education, education cooperatives, universities and higher ed groups, edtech companies, curriculum publishers, ed-adjacent nonprofits, state education agencies, and general K-12 leadership teams working on AI adoption.
+
+## Services
+
+- **Half-Day Session:** 4 hours of strategic planning for organizations exploring AI implementation. Includes a needs assessment, an AI strategy and implementation roadmap, tool vetting, and 30-day email support.
+- **Full-Day Deep Dive:** 8 hours hands-on for organizations ready to deploy AI across classrooms and operations. Adds live staff training, custom AI tool development, workflow automation setup, and 60-day email support.
+- **Custom Engagements:** Multi-day training, advisory retainers, organization-wide rollouts, custom AI solution development, workflow automation buildouts, and ongoing implementation support.
+
+## Free resources
+
+- [AI Readiness Assessment](https://evalveconsulting.com/ai-readiness/): find out where your organization stands.
+- [Invisible Work Audit](https://evalveconsulting.com/workflow-audit/): surface the repetitive work eating your team's time.
+- [District AI Pilot Checklist](https://evalveconsulting.com/pilot-checklist/): a structured way to run your first AI pilot.
+
+## Podcast
+
+Evalve Out Loud: practical conversations about implementing AI in education. What works, what doesn't, and why. Available on Spotify and YouTube (Apple Podcasts coming soon).
+
+## Contact
+
+- **Website:** https://evalveconsulting.com
+- **Book a free 30-minute discovery call:** https://calendar.app.google/HjzF8PMaQbrM2GGF8
+- **Email:** christophersanzeri@evalveconsulting.com
+- **LinkedIn:** https://www.linkedin.com/in/christophersanzeri
+- **Instagram:** https://instagram.com/evalve_consulting

@@ -1078,174 +1078,177 @@
 
             useEffect(() => {
                 const img = new Image();
+                img.crossOrigin = 'anonymous';
                 img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = 1630;
-                    canvas.height = 420;
-                    const ctx = canvas.getContext('2d');
-                    ctx.fillStyle = '#2E2B6F';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    logoDataRef.current = canvas.toDataURL('image/png');
+                    try {
+                        const maxW = 1000; // the logo prints small; downscale to keep the emailed PDF light
+                        const scale = Math.min(1, maxW / img.naturalWidth);
+                        const w = Math.round(img.naturalWidth * scale), h = Math.round(img.naturalHeight * scale);
+                        const canvas = document.createElement('canvas');
+                        canvas.width = w; canvas.height = h;
+                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                        logoDataRef.current = { dataUrl: canvas.toDataURL('image/png'), w, h };
+                    } catch (e) { /* logo stays null; PDF falls back to a wordmark */ }
                 };
-                img.src = '../images/evalve-horizontal-white.svg';
+                img.src = '/images/trace.png';
             }, []);
 
-            function downloadPDF() {
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF('p', 'mm', 'a4');
+            // Shared branded report renderer (used by both the download and the emailed copy).
+            function renderReadinessPDF(doc, dimScores, totalScore, level, gaps, contact) {
                 const pw = doc.internal.pageSize.getWidth();
                 const ph = doc.internal.pageSize.getHeight();
-                const m = 20, cw = pw - 2 * m;
+                const m = 16, cw = pw - 2 * m;
                 let y = m;
                 const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-                function cp(n) { if (y + n > ph - m) { doc.addPage(); y = m; } }
+                const C = { indigo: [46,43,111], teal: [63,167,163], slate: [92,95,102], light: [247,247,250], border: [228,228,234], faint: [154,154,175], amber: [232,169,74], tealTint: [232,248,247] };
+                function cp(n) { if (y + n > ph - 24) { doc.addPage(); y = m; } }
+                function hexToRgb(hex) { return [parseInt(hex.slice(1,3),16), parseInt(hex.slice(3,5),16), parseInt(hex.slice(5,7),16)]; }
+                function sectionHeader(title, col) {
+                    cp(16);
+                    doc.setFillColor(...(col || C.indigo)); doc.roundedRect(m, y, cw, 9, 1.5, 1.5, 'F');
+                    doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(255, 255, 255);
+                    doc.text(title, m + 4, y + 6); y += 14;
+                }
 
-                // Logo header
-                if (logoDataRef.current) {
-                    const logoW = 100;
-                    const logoH = logoW * (420 / 1630);
-                    const logoX = (pw - logoW) / 2;
-                    doc.setFillColor(46, 43, 111);
-                    doc.roundedRect(m, y, cw, logoH + 12, 4, 4, 'F');
-                    doc.addImage(logoDataRef.current, 'PNG', logoX, y + 6, logoW, logoH);
-                    y += logoH + 20;
+                // Header band with the white logo lockup
+                const bandH = 22;
+                doc.setFillColor(...C.indigo); doc.rect(0, 0, pw, bandH, 'F');
+                doc.setFillColor(...C.teal); doc.rect(0, bandH, pw, 1.2, 'F');
+                const logo = logoDataRef.current;
+                if (logo && logo.dataUrl) {
+                    const lw = 50, lh = lw * (logo.h / logo.w);
+                    doc.addImage(logo.dataUrl, 'PNG', m, (bandH - lh) / 2, lw, lh);
                 } else {
-                    doc.setFillColor(46, 43, 111);
-                    doc.roundedRect(m, y, cw, 28, 4, 4, 'F');
-                    doc.setFont('helvetica', 'bold'); doc.setFontSize(16); doc.setTextColor(255, 255, 255);
-                    doc.text('Evalve Consulting', pw / 2, y + 18, { align: 'center' });
-                    y += 36;
+                    doc.setFont('helvetica', 'bold'); doc.setFontSize(15); doc.setTextColor(255, 255, 255);
+                    doc.text('Evalve Consulting', m, bandH / 2 + 2);
                 }
+                doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(...C.teal);
+                doc.text('AI READINESS REPORT', pw - m, bandH / 2 - 1.5, { align: 'right' });
+                doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(210, 210, 225);
+                doc.text(dateStr, pw - m, bandH / 2 + 4, { align: 'right' });
+                y = bandH + 11;
 
-                // Title
-                doc.setFont('helvetica', 'bold'); doc.setFontSize(18); doc.setTextColor(46, 43, 111);
-                doc.text('AI Readiness Assessment Report', pw / 2, y, { align: 'center' });
-                y += 12;
+                // Title + subline
+                doc.setFont('helvetica', 'bold'); doc.setFontSize(19); doc.setTextColor(...C.indigo);
+                doc.text('AI Readiness Assessment', m, y); y += 6.5;
+                doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(...C.slate);
+                const subParts = [contact.name, contact.org, contact.role].filter(Boolean);
+                doc.text(doc.splitTextToSize(subParts.join('   |   '), cw), m, y); y += 9;
 
-                // Contact info box
-                cp(40);
-                doc.setFillColor(245, 245, 248);
-                doc.roundedRect(m, y, cw, 32, 3, 3, 'F');
-                doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
-                doc.text('Name:', m + 5, y + 7); doc.text('Organization:', m + 5, y + 14); doc.text('Email:', m + 5, y + 21); doc.text('Date:', m + 5, y + 28);
-                doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
-                doc.text(contact.name, m + 30, y + 7); doc.text(contact.org, m + 38, y + 14); doc.text(contact.email, m + 24, y + 21); doc.text(dateStr, m + 22, y + 28);
-                if (contact.role) {
-                    doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
-                    doc.text('Role:', pw / 2 + 5, y + 7);
-                    doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
-                    doc.text(contact.role, pw / 2 + 22, y + 7);
-                }
-                y += 38;
-
-                // Overall score bar
-                doc.setFillColor(63, 167, 163);
-                doc.roundedRect(m, y, cw, 16, 3, 3, 'F');
-                doc.setFontSize(12); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
-                doc.text(`Overall Score: ${totalScore}/64 \u2014 ${level.name}`, pw / 2, y + 10, { align: 'center' });
-                y += 22;
+                // Headline metric cards
+                cp(30);
+                const pctTotal = Math.round((totalScore / 64) * 100);
+                const cards = [
+                    { v: totalScore + ' / 64', l: 'Overall readiness score', col: C.indigo, fs: 17 },
+                    { v: pctTotal + '%', l: 'Of maximum readiness', col: C.teal, fs: 17 },
+                    { v: level.name, l: 'Your readiness level', col: C.indigo, fs: 13 },
+                ];
+                const cgap = 5, ccw = (cw - 2 * cgap) / 3, cch = 26;
+                cards.forEach((card, i) => {
+                    const cx = m + i * (ccw + cgap);
+                    doc.setFillColor(...C.light); doc.roundedRect(cx, y, ccw, cch, 2.5, 2.5, 'F');
+                    doc.setFillColor(...card.col); doc.roundedRect(cx, y, 2, cch, 1, 1, 'F');
+                    doc.setFont('helvetica', 'bold'); doc.setFontSize(card.fs); doc.setTextColor(...card.col);
+                    doc.text(doc.splitTextToSize(String(card.v), ccw - 9), cx + 6, y + 11);
+                    doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor(...C.slate);
+                    doc.text(doc.splitTextToSize(card.l, ccw - 9), cx + 6, y + 19);
+                });
+                y += cch + 8;
 
                 // Level description
-                doc.setFontSize(10); doc.setTextColor(46, 43, 111); doc.setFont('helvetica', 'normal');
+                doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5); doc.setTextColor(...C.slate);
                 const descLines = doc.splitTextToSize(level.description, cw);
-                cp(descLines.length * 5 + 8);
-                doc.text(descLines, m, y); y += descLines.length * 5 + 8;
+                cp(descLines.length * 4.6 + 6);
+                doc.text(descLines, m, y); y += descLines.length * 4.6 + 6;
 
-                doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
-
-                // Dimension scores with progress bars
+                // Dimension scores
+                sectionHeader('Dimension Scores');
                 DIMENSIONS.forEach((dim, di) => {
-                    const ds = dimScores[di];
-                    const dl = getLevel(ds, true);
-                    const pct = Math.round((ds / 16) * 100);
-                    cp(20);
-                    doc.setFillColor(46, 43, 111);
-                    doc.roundedRect(m, y, cw, 12, 3, 3, 'F');
-                    doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
-                    doc.text(dim.title, m + 5, y + 8);
-                    doc.text(`${ds}/16 - ${dl.name}`, pw - m - 5, y + 8, { align: 'right' });
-                    y += 16;
-                    // Progress bar
-                    doc.setFillColor(238, 238, 238);
-                    doc.roundedRect(m, y, cw, 3, 1, 1, 'F');
-                    const hex = dl.color;
-                    const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
-                    doc.setFillColor(r, g, b);
-                    doc.roundedRect(m, y, cw * pct / 100, 3, 1, 1, 'F');
-                    y += 8;
-                });
-
-                doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
-
-                // Key Gaps - full question detail grouped by dimension
-                if (gaps.length > 0) {
+                    const ds = dimScores[di]; const dl = getLevel(ds, true); const pct = Math.round((ds / 16) * 100);
                     cp(16);
-                    doc.setFillColor(232, 169, 74);
-                    doc.roundedRect(m, y, cw, 12, 3, 3, 'F');
-                    doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
-                    doc.text('Key Gaps Identified', m + 5, y + 8);
-                    y += 18;
+                    doc.setFillColor(...C.light); doc.roundedRect(m, y, cw, 13, 2, 2, 'F');
+                    doc.setFont('helvetica', 'bold'); doc.setFontSize(9.5); doc.setTextColor(...C.indigo);
+                    doc.text(dim.title, m + 5, y + 5.5);
+                    doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(...C.slate);
+                    doc.text(ds + '/16   ' + dl.name, pw - m - 4, y + 5.5, { align: 'right' });
+                    const barY = y + 8.5;
+                    doc.setFillColor(...C.border); doc.roundedRect(m + 5, barY, cw - 10, 2.4, 1, 1, 'F');
+                    doc.setFillColor(...hexToRgb(dl.color)); doc.roundedRect(m + 5, barY, (cw - 10) * pct / 100, 2.4, 1, 1, 'F');
+                    y += 16;
+                });
+                y += 2;
 
+                // Key gaps
+                if (gaps.length > 0) {
+                    sectionHeader('Key Gaps Identified', C.amber);
                     DIMENSIONS.forEach((dim, di) => {
                         const dimGaps = gaps.filter(g => g.dimIndex === di);
                         if (dimGaps.length === 0) return;
                         cp(12);
-                        doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(232, 169, 74);
-                        doc.text(dim.title, m + 4, y + 4); y += 8;
-
+                        doc.setFont('helvetica', 'bold'); doc.setFontSize(9.5); doc.setTextColor(...C.amber);
+                        doc.text(dim.title, m + 1, y + 3); y += 7;
                         dimGaps.forEach(g => {
                             const ql = doc.splitTextToSize(g.question, cw - 8);
-                            const al = doc.splitTextToSize(`Response: ${g.current}`, cw - 14);
-                            const bh = ql.length * 5 + al.length * 5 + 12;
-                            cp(bh);
-
-                            doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
-                            doc.text(ql, m + 4, y + 4); y += ql.length * 5 + 3;
-
-                            doc.setFillColor(255, 249, 239);
-                            doc.roundedRect(m + 4, y - 1, cw - 8, al.length * 5 + 4, 2, 2, 'F');
-                            doc.setFillColor(232, 169, 74);
-                            doc.rect(m + 4, y - 1, 2, al.length * 5 + 4, 'F');
-
-                            doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102); doc.setFontSize(9);
-                            doc.text(al, m + 10, y + 3); y += al.length * 5 + 8;
+                            const al = doc.splitTextToSize('Response: ' + g.current, cw - 14);
+                            const boxH = al.length * 4.4 + 4;
+                            cp(ql.length * 4.4 + boxH + 7);
+                            doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(...C.indigo);
+                            doc.text(ql, m + 1, y + 3.5); y += ql.length * 4.4 + 2.5;
+                            doc.setFillColor(255, 249, 239); doc.roundedRect(m + 1, y - 1, cw - 2, boxH, 1.5, 1.5, 'F');
+                            doc.setFillColor(...C.amber); doc.rect(m + 1, y - 1, 1.6, boxH, 'F');
+                            doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(...C.slate);
+                            doc.text(al, m + 6, y + 3); y += boxH + 4;
                         });
-                        y += 4;
+                        y += 2;
                     });
                 }
 
-                // Recommended Next Steps
-                cp(20);
-                doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
-                doc.setFillColor(46, 43, 111);
-                doc.roundedRect(m, y, cw, 12, 3, 3, 'F');
-                doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
-                doc.text('Recommended Next Steps', m + 5, y + 8);
-                y += 18;
-
+                // Recommended next steps
+                sectionHeader('Recommended Next Steps');
                 level.steps.forEach((step, i) => {
-                    const sl = doc.splitTextToSize(`${i + 1}. ${step}`, cw - 12);
-                    cp(sl.length * 5 + 6);
-                    doc.setFontSize(10); doc.setFont('helvetica', 'normal'); doc.setTextColor(46, 43, 111);
-                    doc.text(sl, m + 6, y + 3); y += sl.length * 5 + 5;
+                    const sl = doc.splitTextToSize((i + 1) + '. ' + step, cw - 6);
+                    cp(sl.length * 4.6 + 4);
+                    doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5); doc.setTextColor(...C.indigo);
+                    doc.text(sl, m + 2, y + 3); y += sl.length * 4.6 + 4;
                 });
                 y += 4;
 
-                // Footer
-                cp(40);
-                doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
-                doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
-                doc.text('Ready to move from assessment to action?', pw / 2, y, { align: 'center' }); y += 6;
-                doc.setFontSize(9); doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
-                doc.text('Book a strategy call with Dr. Chris Sanzeri', pw / 2, y, { align: 'center' }); y += 5;
-                doc.setTextColor(63, 167, 163);
-                doc.text('https://calendar.app.google/HjzF8PMaQbrM2GGF8', pw / 2, y, { align: 'center' }); y += 5;
-                doc.text('christophersanzeri@evalveconsulting.com', pw / 2, y, { align: 'center' }); y += 8;
-                doc.setFontSize(8); doc.setTextColor(154, 154, 175);
-                doc.text('Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.', pw / 2, y, { align: 'center' }); y += 4;
-                doc.text(`\u00A9 ${new Date().getFullYear()} Evalve Consulting. All rights reserved.`, pw / 2, y, { align: 'center' });
+                // Call to action
+                cp(28);
+                doc.setFillColor(...C.tealTint); doc.roundedRect(m, y, cw, 26, 2.5, 2.5, 'F');
+                doc.setDrawColor(...C.teal); doc.setLineWidth(0.4); doc.roundedRect(m, y, cw, 26, 2.5, 2.5, 'S'); doc.setLineWidth(0.2);
+                doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(...C.indigo);
+                doc.text('Ready to move from assessment to action?', pw / 2, y + 8, { align: 'center' });
+                doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(...C.slate);
+                doc.text('Book a strategy call with Dr. Chris Sanzeri', pw / 2, y + 13.5, { align: 'center' });
+                doc.setFont('helvetica', 'bold'); doc.setTextColor(...C.teal);
+                doc.text('calendar.app.google/HjzF8PMaQbrM2GGF8', pw / 2, y + 18.5, { align: 'center' });
+                doc.text('christophersanzeri@evalveconsulting.com', pw / 2, y + 23, { align: 'center' });
+                y += 30;
 
+                // Source note
+                doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...C.faint);
+                doc.text('Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.', m, y);
+
+                // Branded footer + page numbers on every page
+                const pages = doc.internal.getNumberOfPages();
+                for (let p = 1; p <= pages; p++) {
+                    doc.setPage(p);
+                    const fy = ph - 10;
+                    doc.setDrawColor(...C.border); doc.setLineWidth(0.2); doc.line(m, fy - 4, pw - m, fy - 4);
+                    doc.setFont('helvetica', 'bold'); doc.setFontSize(7); doc.setTextColor(...C.indigo);
+                    doc.text('Evalve Consulting', m, fy);
+                    doc.setFont('helvetica', 'normal'); doc.setTextColor(...C.slate);
+                    doc.text('AI Implementation for Education That Actually Works', m + 30, fy);
+                    doc.text('Page ' + p + ' of ' + pages, pw - m, fy, { align: 'right' });
+                }
+                return doc;
+            }
+
+            function downloadPDF() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF('p', 'mm', 'a4');
+                renderReadinessPDF(doc, dimScores, totalScore, level, gaps, contact);
                 doc.save(`AI-Readiness-Report-${contact.org.replace(/[^a-zA-Z0-9]/g, '-')}.pdf`);
             }
 
@@ -1359,12 +1362,6 @@
             function buildReportPDF() {
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF('p', 'mm', 'a4');
-                const pw = doc.internal.pageSize.getWidth();
-                const ph = doc.internal.pageSize.getHeight();
-                const m = 20, cw = pw - 2 * m;
-                let y = m;
-                const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-                function cp(n) { if (y + n > ph - m) { doc.addPage(); y = m; } }
 
                 const dimScores = answers.map(s => s.reduce((a, b) => a + b, 0));
                 const totalScore = dimScores.reduce((a, b) => a + b, 0);
@@ -1378,91 +1375,7 @@
                     });
                 });
 
-                // Header
-                doc.setFillColor(46, 43, 111); doc.roundedRect(m, y, cw, 28, 4, 4, 'F');
-                doc.setFont('helvetica', 'bold'); doc.setFontSize(16); doc.setTextColor(255, 255, 255);
-                doc.text('Evalve Consulting', pw / 2, y + 18, { align: 'center' }); y += 36;
-                doc.setFont('helvetica', 'bold'); doc.setFontSize(18); doc.setTextColor(46, 43, 111);
-                doc.text('AI Readiness Assessment Report', pw / 2, y, { align: 'center' }); y += 12;
-
-                // Contact info
-                cp(40); doc.setFillColor(245, 245, 248); doc.roundedRect(m, y, cw, 32, 3, 3, 'F');
-                doc.setFontSize(9); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
-                doc.text('Name:', m + 5, y + 7); doc.text('Organization:', m + 5, y + 14); doc.text('Email:', m + 5, y + 21); doc.text('Date:', m + 5, y + 28);
-                doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
-                doc.text(contact.name, m + 30, y + 7); doc.text(contact.org, m + 38, y + 14); doc.text(contact.email, m + 24, y + 21); doc.text(dateStr, m + 22, y + 28);
-                if (contact.role) { doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111); doc.text('Role:', pw / 2 + 5, y + 7); doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102); doc.text(contact.role, pw / 2 + 22, y + 7); }
-                y += 38;
-
-                // Score bar
-                doc.setFillColor(63, 167, 163); doc.roundedRect(m, y, cw, 16, 3, 3, 'F');
-                doc.setFontSize(12); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
-                doc.text('Overall Score: ' + totalScore + '/64 \u2014 ' + level.name, pw / 2, y + 10, { align: 'center' }); y += 22;
-
-                const descLines = doc.splitTextToSize(level.description, cw);
-                doc.setFontSize(10); doc.setTextColor(46, 43, 111); doc.setFont('helvetica', 'normal');
-                cp(descLines.length * 5 + 8); doc.text(descLines, m, y); y += descLines.length * 5 + 8;
-                doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
-
-                // Dimension scores
-                DIMENSIONS.forEach((dim, di) => {
-                    const ds = dimScores[di]; const dl = getLevel(ds, true); const pct = Math.round((ds / 16) * 100);
-                    cp(20); doc.setFillColor(46, 43, 111); doc.roundedRect(m, y, cw, 12, 3, 3, 'F');
-                    doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
-                    doc.text(dim.title, m + 5, y + 8); doc.text(ds + '/16 - ' + dl.name, pw - m - 5, y + 8, { align: 'right' }); y += 16;
-                    doc.setFillColor(238, 238, 238); doc.roundedRect(m, y, cw, 3, 1, 1, 'F');
-                    const hex = dl.color; const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
-                    doc.setFillColor(r, g, b); doc.roundedRect(m, y, cw * pct / 100, 3, 1, 1, 'F'); y += 8;
-                });
-                doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
-
-                // Gaps
-                if (gaps.length > 0) {
-                    cp(16); doc.setFillColor(232, 169, 74); doc.roundedRect(m, y, cw, 12, 3, 3, 'F');
-                    doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
-                    doc.text('Key Gaps Identified', m + 5, y + 8); y += 18;
-                    DIMENSIONS.forEach((dim, di) => {
-                        const dimGaps = gaps.filter(g => g.dimIndex === di); if (dimGaps.length === 0) return;
-                        cp(12); doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(232, 169, 74);
-                        doc.text(dim.title, m + 4, y + 4); y += 8;
-                        dimGaps.forEach(g => {
-                            const ql = doc.splitTextToSize(g.question, cw - 8); const al = doc.splitTextToSize('Response: ' + g.current, cw - 14);
-                            const bh = ql.length * 5 + al.length * 5 + 12; cp(bh);
-                            doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
-                            doc.text(ql, m + 4, y + 4); y += ql.length * 5 + 3;
-                            doc.setFillColor(255, 249, 239); doc.roundedRect(m + 4, y - 1, cw - 8, al.length * 5 + 4, 2, 2, 'F');
-                            doc.setFillColor(232, 169, 74); doc.rect(m + 4, y - 1, 2, al.length * 5 + 4, 'F');
-                            doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102); doc.setFontSize(9);
-                            doc.text(al, m + 10, y + 3); y += al.length * 5 + 8;
-                        }); y += 4;
-                    });
-                }
-
-                // Next steps
-                cp(20); doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
-                doc.setFillColor(46, 43, 111); doc.roundedRect(m, y, cw, 12, 3, 3, 'F');
-                doc.setFontSize(11); doc.setTextColor(255, 255, 255); doc.setFont('helvetica', 'bold');
-                doc.text('Recommended Next Steps', m + 5, y + 8); y += 18;
-                level.steps.forEach((st, i) => {
-                    const sl = doc.splitTextToSize((i + 1) + '. ' + st, cw - 12); cp(sl.length * 5 + 6);
-                    doc.setFontSize(10); doc.setFont('helvetica', 'normal'); doc.setTextColor(46, 43, 111);
-                    doc.text(sl, m + 6, y + 3); y += sl.length * 5 + 5;
-                }); y += 4;
-
-                // Footer
-                cp(40); doc.setDrawColor(232, 232, 236); doc.line(m, y, pw - m, y); y += 8;
-                doc.setFontSize(10); doc.setFont('helvetica', 'bold'); doc.setTextColor(46, 43, 111);
-                doc.text('Ready to move from assessment to action?', pw / 2, y, { align: 'center' }); y += 6;
-                doc.setFontSize(9); doc.setFont('helvetica', 'normal'); doc.setTextColor(92, 95, 102);
-                doc.text('Book a strategy call with Dr. Chris Sanzeri', pw / 2, y, { align: 'center' }); y += 5;
-                doc.setTextColor(63, 167, 163);
-                doc.text('https://calendar.app.google/HjzF8PMaQbrM2GGF8', pw / 2, y, { align: 'center' }); y += 5;
-                doc.text('christophersanzeri@evalveconsulting.com', pw / 2, y, { align: 'center' }); y += 8;
-                doc.setFontSize(8); doc.setTextColor(154, 154, 175);
-                doc.text('Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.', pw / 2, y, { align: 'center' }); y += 4;
-                doc.text('\u00A9 ' + new Date().getFullYear() + ' Evalve Consulting. All rights reserved.', pw / 2, y, { align: 'center' });
-
-                return doc;
+                return renderReadinessPDF(doc, dimScores, totalScore, level, gaps, contact);
             }
 
             function submitResults() {

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to Evalve Out Loud | Evalve Consulting</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#110f30">
+    <meta name="description" content="Subscribe to Evalve Out Loud, weekly insights on AI, education, and innovation from Dr. Chris Sanzeri, delivered straight to your inbox.">
+    <link rel="canonical" href="https://evalveconsulting.com/subscribe/">
+    <meta property="og:title" content="Subscribe to Evalve Out Loud | Evalve Consulting">
+    <meta property="og:description" content="Weekly insights on AI, education, and innovation, delivered straight to your inbox.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://evalveconsulting.com/subscribe/">
+    <meta property="og:site_name" content="Evalve Consulting">
+    <meta property="og:image" content="https://evalveconsulting.com/images/trace.png">
+    <meta property="og:image:alt" content="Evalve Consulting logo">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Subscribe to Evalve Out Loud | Evalve Consulting">
+    <meta name="twitter:description" content="Weekly insights on AI, education, and innovation, delivered straight to your inbox.">
+    <meta name="twitter:image" content="https://evalveconsulting.com/images/trace.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet">
+    <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+    <style>
+        :root {
+            --deep-indigo: #2E2B6F;
+            --indigo-dark: #1a1845;
+            --indigo-darker: #110f30;
+            --soft-teal: #3FA7A3;
+            --teal-glow: #4dc9c4;
+            --slate-gray: #5C5F66;
+            --white: #FFFFFF;
+            --off-white: #e8e8ec;
+            --muted: #9a9aaf;
+            --surface: #1e1c4a;
+            --border: rgba(63, 167, 163, 0.15);
+            --font-heading: 'Instrument Sans', -apple-system, sans-serif;
+            --font-body: 'Nunito Sans', -apple-system, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background: var(--indigo-darker); color: var(--off-white); line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 clamp(1.5rem,5vw,4rem); height: 72px; display: flex; align-items: center; justify-content: space-between; background: rgba(17,15,48,0.8); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); transition: all 0.3s; }
+        .nav.scrolled { background: rgba(17,15,48,0.95); }
+        .nav-logo-wrap { display: flex; align-items: center; text-decoration: none; gap: 0.6rem; }
+        .nav-logo-mark { height: 34px; width: auto; }
+        .nav-logo-text { font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem; color: var(--white); letter-spacing: 0.02em; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-family: var(--font-heading); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: var(--white); }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--soft-teal); transition: width 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active::after { width: 100%; }
+        .nav-cta { background: var(--soft-teal) !important; color: var(--indigo-darker) !important; padding: 0.5rem 1.25rem !important; border-radius: 6px; font-weight: 600 !important; transition: all 0.2s !important; }
+        .nav-cta:hover { background: var(--teal-glow) !important; transform: translateY(-1px); }
+        .nav-cta::after { display: none !important; }
+        /* FREE RESOURCES DROPDOWN */
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-toggle { background: none; border: none; cursor: pointer; color: var(--muted); font-family: var(--font-heading); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; display: inline-flex; align-items: center; gap: 0.35rem; padding: 0; }
+        .nav-dropdown-toggle:hover, .nav-dropdown:focus-within .nav-dropdown-toggle { color: var(--white); }
+        .nav-caret { font-size: 0.65rem; transition: transform 0.2s; }
+        .nav-dropdown:hover .nav-caret, .nav-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown-menu { list-style: none; position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(8px); min-width: 240px; background: rgba(17,15,48,0.98); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.1rem; opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s; box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+        .nav-dropdown-menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+        .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .nav-dropdown-menu a { display: block; padding: 0.6rem 0.85rem; border-radius: 6px; color: var(--off-white); white-space: nowrap; }
+        .nav-dropdown-menu a::after { display: none; }
+        .nav-dropdown-menu a:hover { background: var(--surface); color: var(--white); }
+        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; min-width: 44px; min-height: 44px; }
+        .mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--off-white); margin: 5px 0; transition: all 0.3s; border-radius: 2px; }
+
+        /* SUBSCRIBE */
+        .subscribe-main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 8rem clamp(1.5rem,5vw,4rem) 4rem; text-align: center; position: relative; overflow: hidden; }
+        .subscribe-bg { position: absolute; inset: 0; background: radial-gradient(circle at 50% 0%, rgba(63,167,163,0.12) 0%, transparent 55%); pointer-events: none; }
+        .subscribe-inner { position: relative; z-index: 1; max-width: 600px; width: 100%; }
+        .section-label { font-family: var(--font-heading); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--soft-teal); font-weight: 600; margin-bottom: 0.75rem; }
+        .subscribe-inner h1 { font-family: var(--font-heading); font-size: clamp(1.9rem,4vw,2.8rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1.1rem; }
+        .subscribe-inner > p { color: var(--muted); font-size: 1.05rem; max-width: 520px; margin: 0 auto; }
+        .beehiiv-embed { width: 100% !important; max-width: 500px; }
+        .small-note { margin-top: 1rem; font-size: 0.78rem; color: var(--slate-gray); }
+        .small-note a { color: var(--soft-teal); text-decoration: none; }
+        .back-link { display: inline-block; margin-top: 2rem; color: var(--muted); font-family: var(--font-heading); font-size: 0.875rem; text-decoration: none; transition: color 0.2s; }
+        .back-link:hover { color: var(--white); }
+
+        /* FOOTER */
+        .footer { padding: 3rem clamp(1.5rem,5vw,4rem) 2rem; border-top: 1px solid var(--border); }
+        .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .footer-copy { color: var(--slate-gray); font-size: 0.8rem; }
+        .footer-links { display: flex; gap: 1.5rem; list-style: none; }
+        .footer-links a { color: var(--slate-gray); text-decoration: none; font-family: var(--font-heading); font-size: 0.8rem; font-weight: 500; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--soft-teal); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: rgba(17,15,48,0.98); flex-direction: column; padding: 1.5rem 2rem; gap: 1.25rem; border-bottom: 1px solid var(--border); }
+            .nav-links.open { display: flex; }
+            .nav-dropdown-toggle { cursor: default; color: var(--soft-teal); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.1em; }
+            .nav-dropdown:hover .nav-caret, .nav-dropdown:focus-within .nav-caret { transform: none; }
+            .nav-caret { display: none; }
+            .nav-dropdown-menu { position: static; transform: none; opacity: 1; visibility: visible; background: none; border: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 0.6rem 0 0 0.85rem; min-width: 0; gap: 0.85rem; }
+            .nav-dropdown-menu::before { display: none; }
+            .nav-dropdown-menu a { padding: 0; color: var(--muted); }
+            .nav-dropdown-menu a:hover { background: none; color: var(--white); }
+            .mobile-toggle { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+            .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+            .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+            .footer-links { flex-wrap: wrap; gap: 0.75rem 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <a href="/" class="nav-logo-wrap">
+            <svg class="nav-logo-mark" viewBox="2000 1500 8000 5000" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="ng1" x1="4611" y1="4705" x2="7265" y2="2842" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#B0B5B8"/><stop offset="0.56" stop-color="#E0E0E0"/><stop offset="1" stop-color="white"/></linearGradient>
+                    <linearGradient id="ng2" x1="4754" y1="4175" x2="7394" y2="2943" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2997A6"/><stop offset="1" stop-color="#6CB9B3"/></linearGradient>
+                    <linearGradient id="ng3" x1="6699" y1="3555" x2="7082" y2="2719" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#6EB9B5"/><stop offset="1" stop-color="#A2D3CD"/></linearGradient>
+                </defs>
+                <path fill="url(#ng1)" d="M6001.88 2026.53c528.34,-45.83 1047.54,85.34 1455.46,365.7 -336.87,-169.19 -840.85,-233.84 -1265.2,-182.08 -906.73,110.59 -1818.63,798.78 -1564.97,1685.27 -233.41,68.76 -424.86,98.39 -644.04,85.43 -3.12,-39.37 -4.83,-79.21 -4.83,-119.53 0,-975.08 881.89,-1735.74 2023.58,-1834.78zm-1194.34 2419.53c276.46,340.03 789.14,504.55 1395.04,415.61 915.15,-134.33 1630.63,-895.57 1618.85,-1617.4 -3.14,-192.37 -43.25,-378.3 -128.08,-536.49 205.53,261.84 326.75,580.89 332.11,925.87 14.76,947.49 -854.07,1817.8 -1994.94,1847.8 -986.55,25.94 -1765.23,-465.5 -1987.84,-1187.83 279.34,106.23 490.47,142.7 764.86,152.43z"/>
+                <path fill="#0D5667" d="M5351.13 5412.25c444.31,-2.93 796.15,-214.96 871.37,-553.73 -6.65,1.05 -13.27,2.18 -19.93,3.15 -605.89,88.94 -1118.57,-75.58 -1395.04,-415.61 -274.39,-9.72 -485.52,-46.2 -764.86,-152.43 168.33,546.23 654.72,960.35 1308.45,1118.62z"/>
+                <path fill="url(#ng2)" d="M6222.5 4858.52c-6.65,1.05 -13.27,2.18 -19.93,3.15 -605.89,88.94 -1118.57,-75.58 -1395.04,-415.61 -274.39,-9.72 -485.52,-46.2 -764.86,-152.43 62.98,204.37 170.5,390.24 314.64,551.15 233.76,258.16 692.57,390.21 1101.06,386.7 348.4,-2.98 660.13,-121.31 764.12,-372.97z"/>
+                <path fill="#5299B7" d="M4467.21 4413.39c-127.06,-21.89 -252.81,-56.2 -395.82,-109 49.9,140.64 114.7,265.09 194.38,373.37 8.14,-154.47 75.3,-242.59 201.44,-264.36z"/>
+                <path fill="url(#ng2)" d="M6226.89 3566.5c370.26,-229.61 500.82,-385.18 439.76,-562.89 -46.49,-135.31 -295.41,-222.75 -677.43,-151.89 -571.03,105.92 -981.15,367.01 -1218.09,665.99 229.79,-562.96 959.85,-1026.81 1660.15,-1073.04 691.39,-45.64 1030.66,225.59 1006.52,597.96 -10.82,166.77 -95.87,343.69 -248.21,507.61 -246.11,264.8 -662.82,500.89 -1188.06,643.91 -851.26,231.8 -1703.38,134.91 -2027.17,-74.38 703.2,43.1 1481.57,-134.77 2252.54,-553.28z"/>
+                <path fill="url(#ng3)" d="M6226.89 3566.5c370.26,-229.61 500.82,-385.18 439.76,-562.89 -18.22,-53.04 -67.56,-98.72 -143.79,-130.39l0.01 0 -0.33 -0.12 -4.29 -1.74c-36.51,-15.62 -39.62,-41.52 -10.41,-78.5 77.23,-97.75 160.07,-186.44 251.21,-263.32 30.1,-25.39 63.68,-34.24 105.02,-28.07 249.3,44.18 422.84,160.34 498.71,334.93 82.05,188.85 18.29,380.59 -95.67,544.07 -313.36,449.54 -1153.73,504.19 -1728.41,496.3 228.61,-82.45 458.74,-185.69 688.2,-310.26z"/>
+            </svg>
+            <span class="nav-logo-text">EVALVE</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#proof">Proof</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/#podcast">Podcast</a></li>
+            <li class="nav-dropdown">
+                <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Free Resources <span class="nav-caret" aria-hidden="true">&#9662;</span></button>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="/workflow-audit/">Invisible Work Audit</a></li>
+                    <li><a href="/ai-readiness/">AI Readiness Assessment</a></li>
+                    <li><a href="/pilot-checklist/">District AI Pilot Checklist</a></li>
+                </ul>
+            </li>
+            <li><a href="/subscribe/" class="active">Subscribe</a></li>
+            <li><a href="/#contact" class="nav-cta">Get in Touch</a></li>
+        </ul>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+
+    <main class="subscribe-main">
+        <div class="subscribe-bg"></div>
+        <div class="subscribe-inner">
+            <p class="section-label">Newsletter</p>
+            <h1>Subscribe to Evalve Out Loud</h1>
+            <p>Weekly insights on AI, education, and innovation, delivered straight to your inbox. Practical, hands-on, no vendor BS.</p>
+            <iframe title="Subscribe to the Evalve Out Loud newsletter" src="https://subscribe-forms.beehiiv.com/ee144ccc-5793-4359-9bdf-3aa50b263a88?utm_source=website&amp;utm_medium=embed&amp;utm_campaign=subscribe_page" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" style="width:100%;max-width:500px;min-height:420px;margin:1.5rem auto 0;display:block;background-color:transparent;border-radius:10px;"></iframe>
+            <p class="small-note">Newsletter not loading? <a href="https://evalveconsulting.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe on Beehiiv</a> &middot; Powered by Beehiiv &middot; Unsubscribe anytime</p>
+            <a href="/" class="back-link">&larr; Back to evalveconsulting.com</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-copy">&copy; 2026 Evalve Consulting LLC. Based in the Chicago area, working with education organizations across Illinois and nationwide.</span>
+            <ul class="footer-links">
+                <li><a href="/#hero">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/#podcast">Podcast</a></li>
+                <li><a href="/workflow-audit/">Invisible Work Audit</a></li>
+                <li><a href="/pilot-checklist/">Pilot Checklist</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        const nav=document.getElementById('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
+        const toggle=document.getElementById('mobileToggle'),links=document.getElementById('navLinks');toggle.addEventListener('click',()=>{toggle.classList.toggle('active');links.classList.toggle('open')});
+        document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click',()=>{toggle.classList.remove('active');links.classList.remove('open')})});
+    </script>
+</body>
+</html>

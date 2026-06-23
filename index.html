@@ -65,6 +65,18 @@
         .nav-cta { background: var(--soft-teal) !important; color: var(--indigo-darker) !important; padding: 0.5rem 1.25rem !important; border-radius: 6px; font-weight: 600 !important; transition: all 0.2s !important; }
         .nav-cta:hover { background: var(--teal-glow) !important; transform: translateY(-1px); }
         .nav-cta::after { display: none !important; }
+        /* FREE RESOURCES DROPDOWN */
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-toggle { background: none; border: none; cursor: pointer; color: var(--muted); font-family: var(--font-heading); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; display: inline-flex; align-items: center; gap: 0.35rem; padding: 0; }
+        .nav-dropdown-toggle:hover, .nav-dropdown:focus-within .nav-dropdown-toggle { color: var(--white); }
+        .nav-caret { font-size: 0.65rem; transition: transform 0.2s; }
+        .nav-dropdown:hover .nav-caret, .nav-dropdown:focus-within .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown-menu { list-style: none; position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(8px); min-width: 240px; background: rgba(17,15,48,0.98); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.1rem; opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s; box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+        .nav-dropdown-menu::before { content: ''; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+        .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .nav-dropdown-menu a { display: block; padding: 0.6rem 0.85rem; border-radius: 6px; color: var(--off-white); white-space: nowrap; }
+        .nav-dropdown-menu a::after { display: none; }
+        .nav-dropdown-menu a:hover { background: var(--surface); color: var(--white); }
         .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; min-width: 44px; min-height: 44px; }
         .mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--off-white); margin: 5px 0; transition: all 0.3s; border-radius: 2px; }
 
@@ -210,6 +222,13 @@
         @media (max-width: 768px) {
             .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: rgba(17,15,48,0.98); flex-direction: column; padding: 1.5rem 2rem; gap: 1.25rem; border-bottom: 1px solid var(--border); }
             .nav-links.open { display: flex; }
+            .nav-dropdown-toggle { cursor: default; color: var(--soft-teal); text-transform: uppercase; font-size: 0.72rem; letter-spacing: 0.1em; }
+            .nav-dropdown:hover .nav-caret, .nav-dropdown:focus-within .nav-caret { transform: none; }
+            .nav-caret { display: none; }
+            .nav-dropdown-menu { position: static; transform: none; opacity: 1; visibility: visible; background: none; border: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 0.6rem 0 0 0.85rem; min-width: 0; gap: 0.85rem; }
+            .nav-dropdown-menu::before { display: none; }
+            .nav-dropdown-menu a { padding: 0; color: var(--muted); }
+            .nav-dropdown-menu a:hover { background: none; color: var(--white); }
             .mobile-toggle { display: flex; flex-direction: column; align-items: center; justify-content: center; }
             .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
             .mobile-toggle.active span:nth-child(2) { opacity: 0; }
@@ -448,7 +467,15 @@
             <li><a href="#proof">Proof</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#podcast">Podcast</a></li>
-            <li><a href="/workflow-audit/">Invisible Work Audit</a></li>
+            <li class="nav-dropdown">
+                <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Free Resources <span class="nav-caret" aria-hidden="true">&#9662;</span></button>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="/workflow-audit/">Invisible Work Audit</a></li>
+                    <li><a href="/ai-readiness/">AI Readiness Assessment</a></li>
+                    <li><a href="/pilot-checklist/">District AI Pilot Checklist</a></li>
+                </ul>
+            </li>
+            <li><a href="/subscribe/">Subscribe</a></li>
             <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
         </ul>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>

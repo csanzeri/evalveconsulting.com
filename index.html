@@ -136,7 +136,8 @@
         .for-list { list-style: none; margin-top: 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
         .for-list li { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem; border-radius: 10px; border: 1px solid transparent; transition: all 0.2s; }
         .for-list li:hover { background: var(--surface); border-color: var(--border); }
-        .for-check { width: 24px; height: 24px; border-radius: 50%; background: rgba(63,167,163,0.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; color: var(--soft-teal); font-size: 0.7rem; font-weight: 700; }
+        .for-check { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; color: var(--soft-teal); }
+        .for-check svg, .check svg { display: block; }
         .for-list li span:last-child { color: var(--off-white); font-size: 0.95rem; }
 
         /* ABOUT */
@@ -161,7 +162,7 @@
         .service-card > p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.7; }
         .service-features { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 2rem; flex-grow: 1; }
         .service-features li { display: flex; align-items: center; gap: 0.6rem; color: var(--off-white); font-size: 0.9rem; }
-        .check { color: var(--soft-teal); font-size: 0.8rem; font-weight: 700; }
+        .check { color: var(--soft-teal); display: inline-flex; align-items: center; flex-shrink: 0; }
         .service-card.featured { border-color: rgba(63,167,163,0.35); background: linear-gradient(160deg, var(--surface), rgba(63,167,163,0.05)); }
         .clients-bar { margin-top: 3rem; padding: 1.75rem 2rem; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); text-align: center; }
         .clients-bar .section-label { margin-bottom: 0.4rem; }
@@ -541,10 +542,10 @@
         <div class="section-inner reveal">
             <h2 class="section-title">Evalve Consulting is for educators who are:</h2>
             <ul class="for-list">
-                <li><span class="for-check">&#10003;</span><span>Ready to move past AI hype to tools that work in a real classroom</span></li>
-                <li><span class="for-check">&#10003;</span><span>Ready to hand the repetitive work to automations and get those hours back</span></li>
-                <li><span class="for-check">&#10003;</span><span>Looking for practical, secure AI implementation that fits their organization</span></li>
-                <li><span class="for-check">&#10003;</span><span>Tired of vendors who've never set foot in a school building telling them what to buy</span></li>
+                <li><span class="for-check"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span><span>Ready to move past AI hype to tools that work in a real classroom</span></li>
+                <li><span class="for-check"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span><span>Ready to hand the repetitive work to automations and get those hours back</span></li>
+                <li><span class="for-check"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span><span>Looking for practical, secure AI implementation that fits their organization</span></li>
+                <li><span class="for-check"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span><span>Tired of vendors who've never set foot in a school building telling them what to buy</span></li>
             </ul>
         </div>
     </section>
@@ -640,10 +641,10 @@
                     <h3>Half-Day Session</h3>
                     <p>4 hours of strategic planning. Perfect for districts and schools exploring AI implementation.</p>
                     <ul class="service-features">
-                        <li><span class="check">&#10003;</span> Pre-session needs assessment</li>
-                        <li><span class="check">&#10003;</span> AI strategy and implementation roadmap</li>
-                        <li><span class="check">&#10003;</span> Tool recommendations and vetting</li>
-                        <li><span class="check">&#10003;</span> 30-day email support</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Pre-session needs assessment</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> AI strategy and implementation roadmap</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Tool recommendations and vetting</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> 30-day email support</li>
                     </ul>
                     <a href="#contact" class="btn btn-ghost btn-arrow" style="width:100%;justify-content:center;">Let's Talk</a>
                 </div>
@@ -651,11 +652,11 @@
                     <h3>Full-Day Deep Dive</h3>
                     <p>8 hours hands-on. Perfect for districts ready to deploy AI across classrooms and operations immediately.</p>
                     <ul class="service-features">
-                        <li><span class="check">&#10003;</span> Everything in half-day</li>
-                        <li><span class="check">&#10003;</span> Live staff training session</li>
-                        <li><span class="check">&#10003;</span> Custom AI tool development</li>
-                        <li><span class="check">&#10003;</span> Workflow automation setup</li>
-                        <li><span class="check">&#10003;</span> 60-day email support</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Everything in half-day</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Live staff training session</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Custom AI tool development</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Workflow automation setup</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> 60-day email support</li>
                     </ul>
                     <a href="https://calendar.app.google/HjzF8PMaQbrM2GGF8" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-arrow" style="width:100%;justify-content:center;">Book a Call</a>
                 </div>
@@ -663,11 +664,11 @@
                     <h3>Custom Engagements</h3>
                     <p>Multi-day training, advisory retainers, district-wide rollouts, and ongoing implementation support.</p>
                     <ul class="service-features">
-                        <li><span class="check">&#10003;</span> Multi-day training programs</li>
-                        <li><span class="check">&#10003;</span> Custom AI solution development</li>
-                        <li><span class="check">&#10003;</span> Workflow automation buildouts</li>
-                        <li><span class="check">&#10003;</span> Advisory retainer agreements</li>
-                        <li><span class="check">&#10003;</span> Ongoing implementation support</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Multi-day training programs</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Custom AI solution development</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Workflow automation buildouts</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Advisory retainer agreements</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Ongoing implementation support</li>
                     </ul>
                     <a href="#contact" class="btn btn-ghost btn-arrow" style="width:100%;justify-content:center;">Let's Talk</a>
                 </div>

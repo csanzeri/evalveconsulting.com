@@ -118,7 +118,8 @@
         .small-note a { color: var(--soft-teal); text-decoration: none; }
         .gate-points { list-style: none; display: inline-flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: center; margin-top: 1.5rem; }
         .gate-points li { display: flex; align-items: center; gap: 0.5rem; color: var(--muted); font-size: 0.85rem; }
-        .gate-points .gp-check { color: var(--soft-teal); font-weight: 700; }
+        .gate-points .gp-check { color: var(--soft-teal); display: inline-flex; align-items: center; }
+        .gate-points .gp-check svg { display: block; }
 
         /* FOOTER */
         .footer { padding: 3rem clamp(1.5rem,5vw,4rem) 2rem; border-top: 1px solid var(--border); }
@@ -151,7 +152,7 @@
 <body>
     <nav class="nav" id="nav">
         <a href="/" class="nav-logo-wrap">
-            <svg class="nav-logo-mark" viewBox="2000 1500 8000 5000" xmlns="http://www.w3.org/2000/svg">
+            <svg class="nav-logo-mark" viewBox="2000 1500 8000 5000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <defs>
                     <linearGradient id="ng1" x1="4611" y1="4705" x2="7265" y2="2842" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#B0B5B8"/><stop offset="0.56" stop-color="#E0E0E0"/><stop offset="1" stop-color="white"/></linearGradient>
                     <linearGradient id="ng2" x1="4754" y1="4175" x2="7394" y2="2943" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2997A6"/><stop offset="1" stop-color="#6CB9B3"/></linearGradient>
@@ -244,9 +245,9 @@
             <p class="section-subtitle">Drop your email and the checklist is yours right away. I'll also send the occasional practical note on AI in education from Evalve Out Loud. Unsubscribe anytime.</p>
             <iframe title="Get the District AI Pilot Checklist" src="https://subscribe-forms.beehiiv.com/8266c9f2-8f56-4f48-830e-19048e62a575?utm_source=website&amp;utm_medium=embed&amp;utm_campaign=pilot_checklist_gate" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no"></iframe>
             <ul class="gate-points">
-                <li><span class="gp-check">&#10003;</span> Instant download</li>
-                <li><span class="gp-check">&#10003;</span> FERPA included</li>
-                <li><span class="gp-check">&#10003;</span> Vendor-neutral</li>
+                <li><span class="gp-check"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Instant download</li>
+                <li><span class="gp-check"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> FERPA included</li>
+                <li><span class="gp-check"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Vendor-neutral</li>
             </ul>
             <p class="small-note">Form not loading? <a href="https://evalveconsulting.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe on Beehiiv</a> and reply, and I'll send it over.</p>
         </div>

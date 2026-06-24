@@ -66,7 +66,7 @@
 <body>
     <nav class="nav" id="nav">
         <a href="/" class="nav-logo-wrap">
-            <svg class="nav-logo-mark" viewBox="2000 1500 8000 5000" xmlns="http://www.w3.org/2000/svg">
+            <svg class="nav-logo-mark" viewBox="2000 1500 8000 5000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <defs>
                     <linearGradient id="ng1" x1="4611" y1="4705" x2="7265" y2="2842" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#B0B5B8"/><stop offset="0.56" stop-color="#E0E0E0"/><stop offset="1" stop-color="white"/></linearGradient>
                     <linearGradient id="ng2" x1="4754" y1="4175" x2="7394" y2="2943" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2997A6"/><stop offset="1" stop-color="#6CB9B3"/></linearGradient>
@@ -154,7 +154,7 @@
       {
         id: "customer_comms",
         name: "Customer & Client Communication",
-        icon: "\u2709\uFE0F",
+        icon: "mail",
         description: "Emails, phone follow-ups, appointment confirmations, quotes, thank-you messages",
         tasks: [
           { id: "email_responses", label: "Responding to inquiries, quote requests, or general questions", avgHoursWeek: 4, automationPotential: 0.65, category: "ai" },
@@ -168,7 +168,7 @@
       {
         id: "scheduling",
         name: "Scheduling & Calendar Management",
-        icon: "\uD83D\uDCC5",
+        icon: "calendar",
         description: "Appointments, jobs, shifts, meetings, resource booking, dispatching",
         tasks: [
           { id: "appt_booking", label: "Booking appointments, jobs, or service calls", avgHoursWeek: 3, automationPotential: 0.8, category: "automation" },
@@ -182,7 +182,7 @@
       {
         id: "data_admin",
         name: "Data Entry & Admin Work",
-        icon: "\uD83D\uDCCA",
+        icon: "database",
         description: "Entering records, updating systems, filing, transferring info between tools",
         tasks: [
           { id: "crm_updates", label: "Entering or updating customer/client records in your system", avgHoursWeek: 3, automationPotential: 0.75, category: "automation" },
@@ -196,7 +196,7 @@
       {
         id: "money",
         name: "Invoicing, Billing & Payments",
-        icon: "\uD83D\uDCB0",
+        icon: "dollar",
         description: "Invoices, estimates, payment tracking, collections, expense logging",
         tasks: [
           { id: "invoice_creation", label: "Creating and sending invoices or bills", avgHoursWeek: 2.5, automationPotential: 0.8, category: "automation" },
@@ -210,7 +210,7 @@
       {
         id: "hiring_team",
         name: "Hiring, Onboarding & Team Management",
-        icon: "\uD83D\uDC65",
+        icon: "users",
         description: "Job postings, interviews, new hire setup, training, performance, offboarding",
         tasks: [
           { id: "job_postings", label: "Writing and posting job listings", avgHoursWeek: 1, automationPotential: 0.6, category: "ai" },
@@ -224,7 +224,7 @@
       {
         id: "marketing",
         name: "Marketing & Online Presence",
-        icon: "\uD83D\uDCE3",
+        icon: "megaphone",
         description: "Social media, website, ads, email campaigns, brand content, reputation",
         tasks: [
           { id: "social_posting", label: "Creating and posting social media content", avgHoursWeek: 3, automationPotential: 0.6, category: "ai" },
@@ -238,7 +238,7 @@
       {
         id: "reporting",
         name: "Reporting & Compliance",
-        icon: "\uD83D\uDCCB",
+        icon: "clipboard",
         description: "Financial reports, regulatory filings, permits, licenses, audits, tax prep",
         tasks: [
           { id: "financial_reports", label: "Pulling together financial reports or P&L statements", avgHoursWeek: 2, automationPotential: 0.7, category: "automation" },
@@ -252,7 +252,7 @@
       {
         id: "inventory",
         name: "Inventory, Ordering & Vendors",
-        icon: "\uD83D\uDCE6",
+        icon: "package",
         description: "Stock tracking, reordering, purchase orders, vendor calls, supply chain",
         tasks: [
           { id: "stock_tracking", label: "Checking inventory levels or tracking what's on hand", avgHoursWeek: 2, automationPotential: 0.85, category: "automation" },
@@ -266,7 +266,7 @@
       {
         id: "project_ops",
         name: "Project & Job Management",
-        icon: "\uD83D\uDD27",
+        icon: "workflow",
         description: "Job tracking, project timelines, task assignments, change orders, closeout",
         tasks: [
           { id: "job_tracking", label: "Tracking job progress, milestones, or completion status", avgHoursWeek: 2.5, automationPotential: 0.7, category: "automation" },
@@ -280,7 +280,7 @@
       {
         id: "analysis",
         name: "Research & Decision Making",
-        icon: "\uD83D\uDD0D",
+        icon: "search",
         description: "Market research, competitor analysis, data analysis, forecasting, planning",
         tasks: [
           { id: "market_research", label: "Researching competitors, market trends, or pricing", avgHoursWeek: 1.5, automationPotential: 0.6, category: "ai" },
@@ -298,6 +298,14 @@
 
     const getPriorityLabel = (s) => s >= 75 ? "Quick Win" : s >= 50 ? "High Priority" : s >= 30 ? "Medium Priority" : "Low Priority";
     const getPriorityColor = (s) => s >= 75 ? COLORS.successGreen : s >= 50 ? COLORS.softTeal : s >= 30 ? COLORS.warningAmber : COLORS.slateGray;
+
+    function AreaIcon({ name, size = 24, color = COLORS.softTeal }) {
+      return (
+        <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" style={{ color: color, verticalAlign: "middle", flexShrink: 0 }}>
+          <use href={`/images/evalve-icons.svg#evalve-${name}`} />
+        </svg>
+      );
+    }
 
     function ProgressBar({ value, max, color, height = 8 }) {
       return (
@@ -344,7 +352,7 @@
                 <line x1={cX} y1={cY} x2={x} y2={y} stroke={clr} strokeWidth={1.5 + ratio * 2} strokeOpacity={0.4} strokeDasharray={ratio < 0.3 ? "4,4" : "none"} />
                 <circle cx={x} cy={y} r={nr} fill={clr} opacity={0.12} />
                 <circle cx={x} cy={y} r={nr - 4} fill={COLORS.white} stroke={clr} strokeWidth={2} />
-                <text x={x} y={y - 3} textAnchor="middle" fontSize="14">{OPERATIONAL_AREAS.find((o) => o.id === area.id)?.icon}</text>
+                <svg x={x - 8} y={y - 11} width="16" height="16" viewBox="0 0 24 24" style={{ color: clr }}><use href={`/images/evalve-icons.svg#evalve-${OPERATIONAL_AREAS.find((o) => o.id === area.id)?.icon}`} /></svg>
                 <text x={x} y={y + 11} textAnchor="middle" fill={COLORS.deepIndigo} fontSize="7" fontWeight="600" fontFamily={FONT_HEADING}>{area.name.split(" ")[0].substring(0, 8)}</text>
                 <text x={x} y={y + nr + 13} textAnchor="middle" fill={clr} fontSize="8" fontWeight="700" fontFamily={FONT_BODY}>{Math.round(ratio * 100)}% automatable</text>
               </g>
@@ -795,9 +803,9 @@
               <div style={{ display: "grid", gap: 12 }}>
                 {OPERATIONAL_AREAS.map((area) => { const sel = selectedAreas.includes(area.id); return (
                   <button key={area.id} onClick={() => toggleArea(area.id)} style={{ ...card, padding: "16px 20px", display: "flex", alignItems: "center", gap: 14, cursor: "pointer", border: `2px solid ${sel ? COLORS.softTeal : "rgba(46,43,111,0.08)"}`, background: sel ? COLORS.tealLight : COLORS.white, textAlign: "left", transition: "all 0.2s" }}>
-                    <span style={{ fontSize: 28 }}>{area.icon}</span>
+                    <AreaIcon name={area.icon} size={28} />
                     <div style={{ flex: 1 }}><div style={{ fontWeight: 700, color: COLORS.deepIndigo, fontSize: 15, fontFamily: FONT_HEADING }}>{area.name}</div><div style={{ color: COLORS.slateGray, fontSize: 13, lineHeight: 1.3, marginTop: 2 }}>{area.description}</div></div>
-                    <div style={{ width: 28, height: 28, borderRadius: 6, border: `2px solid ${sel ? COLORS.softTeal : "rgba(46,43,111,0.15)"}`, display: "flex", alignItems: "center", justifyContent: "center", background: sel ? COLORS.softTeal : "transparent", flexShrink: 0 }}>{sel && <span style={{ color: COLORS.white, fontSize: 16, fontWeight: 700 }}>&#10003;</span>}</div>
+                    <div style={{ width: 28, height: 28, borderRadius: 6, border: `2px solid ${sel ? COLORS.softTeal : "rgba(46,43,111,0.15)"}`, display: "flex", alignItems: "center", justifyContent: "center", background: sel ? COLORS.softTeal : "transparent", flexShrink: 0 }}>{sel && <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={COLORS.white} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7" /></svg>}</div>
                   </button>
                 ); })}
               </div>
@@ -813,7 +821,7 @@
             <div ref={scrollRef} />
             <div style={{ maxWidth: 660, margin: "0 auto" }}>
               <div style={{ fontSize: 12, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8, fontFamily: FONT_HEADING }}>Step 3 of 4 — Area {currentAreaIdx + 1} of {selectedAreas.length}</div>
-              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}><span style={{ fontSize: 32 }}>{currentArea.icon}</span><h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 22, margin: 0 }}>{currentArea.name}</h2></div>
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}><AreaIcon name={currentArea.icon} size={30} /><h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 22, margin: 0 }}>{currentArea.name}</h2></div>
               <p style={{ color: COLORS.slateGray, margin: "0 0 4px", lineHeight: 1.5, fontSize: 14 }}>For each task: does your team do this? If so, how many hours per week does it take across the team, and how much does it bother people?</p>
               <p style={{ color: COLORS.slateGray, margin: "0 0 20px", fontSize: 12, fontStyle: "italic" }}>"Painful" means frustrating, error-prone, or something your team dreads. Not everything that takes time is painful.</p>
               <ProgressBar value={currentAreaIdx + 1} max={selectedAreas.length} color={COLORS.softTeal} height={6} />
@@ -822,7 +830,7 @@
                 {currentArea.tasks.map((task) => { const r = taskResponses[task.id] || {}; const does = r.doesThis || false; return (
                   <div key={task.id} style={{ ...card, padding: "16px 20px", opacity: does ? 1 : 0.65, transition: "opacity 0.2s" }}>
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-                      <button onClick={() => setTaskDoIt(task.id, !does)} style={{ width: isMobile ? 28 : 24, height: isMobile ? 28 : 24, borderRadius: 6, flexShrink: 0, marginTop: 2, border: `2px solid ${does ? COLORS.softTeal : "rgba(46,43,111,0.15)"}`, background: does ? COLORS.softTeal : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>{does && <span style={{ color: COLORS.white, fontSize: 14, fontWeight: 700 }}>&#10003;</span>}</button>
+                      <button onClick={() => setTaskDoIt(task.id, !does)} style={{ width: isMobile ? 28 : 24, height: isMobile ? 28 : 24, borderRadius: 6, flexShrink: 0, marginTop: 2, border: `2px solid ${does ? COLORS.softTeal : "rgba(46,43,111,0.15)"}`, background: does ? COLORS.softTeal : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>{does && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={COLORS.white} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7" /></svg>}</button>
                       <div style={{ flex: 1 }}>
                         <div style={{ fontWeight: 600, color: COLORS.deepIndigo, fontSize: 14, lineHeight: 1.4 }}>{task.label}</div>
                         {does && (
@@ -921,7 +929,7 @@
                 <div style={{ marginTop: 20, display: "grid", gap: 10 }}>
                   {results.filter((r) => r.tasks.length > 0).sort((a, b) => b.totalAnnualSavings - a.totalAnnualSavings).map((area) => (
                     <div key={area.id} style={{ padding: "14px 16px", background: COLORS.indigoLight, borderRadius: 10 }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}><div style={{ fontWeight: 700, color: COLORS.deepIndigo, fontSize: 14, fontFamily: FONT_HEADING }}>{area.icon} {area.name}</div><div style={{ fontSize: 14, fontWeight: 700, color: COLORS.softTeal, fontFamily: FONT_HEADING }}>${Math.round(area.totalAnnualSavings).toLocaleString()}/yr</div></div>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}><div style={{ fontWeight: 700, color: COLORS.deepIndigo, fontSize: 14, fontFamily: FONT_HEADING, display: "flex", alignItems: "center", gap: 8 }}><AreaIcon name={area.icon} size={18} /> {area.name}</div><div style={{ fontSize: 14, fontWeight: 700, color: COLORS.softTeal, fontFamily: FONT_HEADING }}>${Math.round(area.totalAnnualSavings).toLocaleString()}/yr</div></div>
                       <ProgressBar value={area.totalSaveable} max={area.totalHours || 1} color={COLORS.softTeal} height={6} />
                       <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6, fontSize: 11, color: COLORS.slateGray }}><span>{area.totalHours.toFixed(1)} hrs/wk total</span><span>{area.totalSaveable.toFixed(1)} hrs/wk recoverable ({area.totalHours > 0 ? Math.round((area.totalSaveable / area.totalHours) * 100) : 0}%)</span></div>
                     </div>
@@ -987,7 +995,7 @@
               {!unlocked && (
                 <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", alignItems: "flex-start", justifyContent: "center", padding: isMobile ? "24px 16px 40px" : "32px 24px 48px", background: "linear-gradient(180deg, rgba(247,247,250,0.35) 0%, rgba(247,247,250,0.92) 32%, #F7F7FA 55%)" }}>
                   <div style={{ ...card, maxWidth: 460, width: "100%", textAlign: "center", boxShadow: "0 24px 70px rgba(46,43,111,0.22)", border: `1px solid ${COLORS.tealBorder}` }}>
-                    <div style={{ fontSize: 34, marginBottom: 6 }}>{"🔓"}</div>
+                    <div style={{ marginBottom: 6 }}><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" style={{ color: COLORS.softTeal }}><use href="/images/evalve-icons.svg#evalve-lock"></use></svg></div>
                     <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 22, margin: "0 0 8px" }}>Your full report is ready</h2>
                     <p style={{ color: COLORS.slateGray, fontSize: 14, lineHeight: 1.6, margin: "0 0 16px" }}>Enter your email to unlock your full prioritized list, the breakdown by area, your operations map, and a downloadable PDF for your team.</p>
                     <input type="email" value={email} onChange={(e) => { setEmail(e.target.value); if (unlockError) setUnlockError(""); }} onKeyDown={(e) => { if (e.key === "Enter") handleUnlock(); }} placeholder="you@yourorganization.org" autoComplete="email" style={{ ...inp, textAlign: "center", marginBottom: 10 }} />

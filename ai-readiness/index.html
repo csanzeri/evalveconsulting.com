@@ -673,7 +673,7 @@
 <body>
     <nav class="nav" id="nav">
         <a href="/" class="nav-logo-wrap">
-            <svg class="nav-logo-mark" viewBox="2000 1500 8000 5000" xmlns="http://www.w3.org/2000/svg">
+            <svg class="nav-logo-mark" viewBox="2000 1500 8000 5000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <defs>
                     <linearGradient id="ng1" x1="4611" y1="4705" x2="7265" y2="2842" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#B0B5B8"/><stop offset="0.56" stop-color="#E0E0E0"/><stop offset="1" stop-color="white"/></linearGradient>
                     <linearGradient id="ng2" x1="4754" y1="4175" x2="7394" y2="2943" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2997A6"/><stop offset="1" stop-color="#6CB9B3"/></linearGradient>
@@ -717,10 +717,10 @@
         const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzOeLDsRgCtWiYZFG1HGYxdpG2I0AFnBT4A5nYSECOdcfAzLwRb4HRBgoBtHOT0XMBc/exec";
 
         const DIMENSIONS = [
-            { title: "Leadership & Vision", icon: "\u2666", subtitle: "Strategic direction and commitment" },
-            { title: "Policy & Governance", icon: "\u25C7", subtitle: "Guardrails and accountability" },
-            { title: "Staff Capacity & Culture", icon: "\u25CB", subtitle: "People and professional growth" },
-            { title: "Infrastructure & Data Systems", icon: "\u25A1", subtitle: "Technology and data readiness" }
+            { title: "Leadership & Vision", icon: "target", subtitle: "Strategic direction and commitment" },
+            { title: "Policy & Governance", icon: "shield", subtitle: "Guardrails and accountability" },
+            { title: "Staff Capacity & Culture", icon: "users", subtitle: "People and professional growth" },
+            { title: "Infrastructure & Data Systems", icon: "database", subtitle: "Technology and data readiness" }
         ];
 
         const QUESTIONS = [
@@ -910,7 +910,7 @@
                     <div className="dim-grid">
                         {DIMENSIONS.map((d, i) => (
                             <div className={`dim-card anim-slide anim-delay-${i + 1}`} key={i}>
-                                <div className="dim-card-icon">{d.icon}</div>
+                                <div className="dim-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" style={{ color: "#3FA7A3" }}><use href={`/images/evalve-icons.svg#evalve-${d.icon}`}></use></svg></div>
                                 <h3>{d.title}</h3>
                             </div>
                         ))}
@@ -1404,7 +1404,7 @@
                     {!unlocked && (
                         <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "8px 14px 40px", background: "linear-gradient(180deg, rgba(245,245,248,0.4) 0%, rgba(245,245,248,0.93) 30%, #f5f5f8 52%)" }}>
                             <div style={{ background: "#fff", borderRadius: 16, padding: "28px clamp(16px, 4.5vw, 26px)", maxWidth: 440, width: "100%", textAlign: "center", boxShadow: "0 24px 70px rgba(46,43,111,0.22)", border: "1px solid rgba(63,167,163,0.25)" }}>
-                                <div style={{ fontSize: 34, marginBottom: 6 }}>{"🔓"}</div>
+                                <div style={{ marginBottom: 6 }}><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" style={{ color: "#3FA7A3" }}><use href="/images/evalve-icons.svg#evalve-lock"></use></svg></div>
                                 <h2 style={{ fontFamily: "'Instrument Sans', sans-serif", color: "#2E2B6F", fontSize: 22, fontWeight: 700, margin: "0 0 8px" }}>Unlock your full results</h2>
                                 <p style={{ color: "#5C5F66", fontSize: 14, lineHeight: 1.6, margin: "0 0 18px" }}>See your dimension-by-dimension breakdown, your key gaps, recommended next steps, and download the full PDF report for your leadership team.</p>
                                 <div className="form-group"><input type="text" placeholder="Your name" maxLength="100" value={contact.name} onChange={e => { setContact({ ...contact, name: e.target.value }); if (unlockError) setUnlockError(''); }} /></div>

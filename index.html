@@ -163,6 +163,13 @@
         .service-features { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 2rem; flex-grow: 1; }
         .service-features li { display: flex; align-items: center; gap: 0.6rem; color: var(--off-white); font-size: 0.9rem; }
         .check { color: var(--soft-teal); display: inline-flex; align-items: center; flex-shrink: 0; }
+        /* "Not sure where to start?" CTA */
+        .start-cta { text-align: center; margin: 2.5rem 0; padding: 2.5rem; background: linear-gradient(135deg, var(--deep-indigo), var(--indigo-dark)); border-radius: 16px; }
+        .start-cta h3 { color: var(--white); font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin: 0 0 0.75rem; }
+        .start-cta p { color: var(--off-white); font-size: 1rem; max-width: 500px; margin: 0 auto 1.5rem; line-height: 1.6; }
+        .start-cta-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .start-cta-links a { display: inline-block; padding: 1rem 2rem; background: var(--soft-teal); color: var(--indigo-darker); border-radius: 10px; font-family: var(--font-heading); font-weight: 600; text-decoration: none; font-size: 1rem; transition: background 0.2s; }
+        .start-cta-links a:hover { background: var(--teal-glow); }
         .service-card.featured { border-color: rgba(63,167,163,0.35); background: linear-gradient(160deg, var(--surface), rgba(63,167,163,0.05)); }
         .clients-bar { margin-top: 3rem; padding: 1.75rem 2rem; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); text-align: center; }
         .clients-bar .section-label { margin-bottom: 0.4rem; }
@@ -446,7 +453,7 @@
 <body>
     <nav class="nav" id="nav">
         <a href="#hero" class="nav-logo-wrap">
-            <svg class="nav-logo-mark" viewBox="2000 1500 8000 5000" xmlns="http://www.w3.org/2000/svg">
+            <svg class="nav-logo-mark" viewBox="2000 1500 8000 5000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <defs>
                     <linearGradient id="ng1" x1="4611" y1="4705" x2="7265" y2="2842" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#B0B5B8"/><stop offset="0.56" stop-color="#E0E0E0"/><stop offset="1" stop-color="white"/></linearGradient>
                     <linearGradient id="ng2" x1="4754" y1="4175" x2="7394" y2="2943" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2997A6"/><stop offset="1" stop-color="#6CB9B3"/></linearGradient>
@@ -483,10 +490,10 @@
     <section class="hero" id="hero">
         <div class="hero-bg"></div>
         <div class="hero-grid"></div>
-        <svg class="hero-watermark" viewBox="2000 1500 8000 5000" xmlns="http://www.w3.org/2000/svg"><path fill="rgba(255,255,255,0.5)" d="M6001.88 2026.53c528.34,-45.83 1047.54,85.34 1455.46,365.7 -336.87,-169.19 -840.85,-233.84 -1265.2,-182.08 -906.73,110.59 -1818.63,798.78 -1564.97,1685.27 -233.41,68.76 -424.86,98.39 -644.04,85.43 -3.12,-39.37 -4.83,-79.21 -4.83,-119.53 0,-975.08 881.89,-1735.74 2023.58,-1834.78zm-1194.34 2419.53c276.46,340.03 789.14,504.55 1395.04,415.61 915.15,-134.33 1630.63,-895.57 1618.85,-1617.4 -3.14,-192.37 -43.25,-378.3 -128.08,-536.49 205.53,261.84 326.75,580.89 332.11,925.87 14.76,947.49 -854.07,1817.8 -1994.94,1847.8 -986.55,25.94 -1765.23,-465.5 -1987.84,-1187.83 279.34,106.23 490.47,142.7 764.86,152.43z"/></svg>
+        <svg class="hero-watermark" viewBox="2000 1500 8000 5000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="rgba(255,255,255,0.5)" d="M6001.88 2026.53c528.34,-45.83 1047.54,85.34 1455.46,365.7 -336.87,-169.19 -840.85,-233.84 -1265.2,-182.08 -906.73,110.59 -1818.63,798.78 -1564.97,1685.27 -233.41,68.76 -424.86,98.39 -644.04,85.43 -3.12,-39.37 -4.83,-79.21 -4.83,-119.53 0,-975.08 881.89,-1735.74 2023.58,-1834.78zm-1194.34 2419.53c276.46,340.03 789.14,504.55 1395.04,415.61 915.15,-134.33 1630.63,-895.57 1618.85,-1617.4 -3.14,-192.37 -43.25,-378.3 -128.08,-536.49 205.53,261.84 326.75,580.89 332.11,925.87 14.76,947.49 -854.07,1817.8 -1994.94,1847.8 -986.55,25.94 -1765.23,-465.5 -1987.84,-1187.83 279.34,106.23 490.47,142.7 764.86,152.43z"/></svg>
         <div class="hero-content">
             <div class="hero-logo">
-                <svg viewBox="4500 2900 5700 1100" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="4500 2900 5700 1100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Evalve Consulting">
                     <polygon fill="white" points="4857.54,3257 4857.54,3389.65 5404,3389.65 5404,3521.67 4857.54,3521.67 4857.54,3664.59 5460.55,3664.59 5460.55,3805.67 4857.54,3805.67 4819.71,3805.67 4668.58,3805.67 4668.58,3257 4668.58,3195.73 4668.58,3116 5449.57,3116 5449.57,3257"/>
                     <polygon fill="white" points="5527.46,3116 5938.56,3805.67 6145.32,3805.67 6556.42,3116 6347.54,3116 6041.94,3643.28 5736.34,3116"/>
                     <path fill="white" d="M6394.87 3805.67l411.1 -689.67 206.76 0 411.1 689.67 -208.88 0 -76.5 -132 -458.19 0 -76.5 132 -208.89 0zm664.43 -268.56l-149.95 -258.72 -149.95 258.72 299.9 0z"/>
@@ -673,13 +680,13 @@
                     <a href="#contact" class="btn btn-ghost btn-arrow" style="width:100%;justify-content:center;">Let's Talk</a>
                 </div>
             </div>
-            <div class="reveal" style="text-align:center;margin:40px 0;padding:40px;background:linear-gradient(135deg,#2E2B6F,#3d3a7f);border-radius:16px;">
-                <h3 style="color:#fff;font-family:'Instrument Sans',sans-serif;font-size:24px;font-weight:700;margin:0 0 12px;">Not sure where to start?</h3>
-                <p style="color:rgba(255,255,255,0.85);font-size:16px;max-width:500px;margin:0 auto 24px;line-height:1.6;">Free tools and resources to find out where your organization stands, what to prioritize, and how to run your first AI pilot.</p>
-                <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-                    <a href="/ai-readiness/" style="display:inline-block;padding:16px 32px;background:#3FA7A3;color:var(--indigo-darker);border-radius:10px;font-weight:600;text-decoration:none;font-size:16px;transition:background 0.2s;">AI Readiness Assessment &rarr;</a>
-                    <a href="/workflow-audit/" style="display:inline-block;padding:16px 32px;background:#3FA7A3;color:var(--indigo-darker);border-radius:10px;font-weight:600;text-decoration:none;font-size:16px;transition:background 0.2s;">Invisible Work Audit &rarr;</a>
-                    <a href="/pilot-checklist/" style="display:inline-block;padding:16px 32px;background:#3FA7A3;color:var(--indigo-darker);border-radius:10px;font-weight:600;text-decoration:none;font-size:16px;transition:background 0.2s;">District AI Pilot Checklist &rarr;</a>
+            <div class="reveal start-cta">
+                <h3>Not sure where to start?</h3>
+                <p>Free tools and resources to find out where your organization stands, what to prioritize, and how to run your first AI pilot.</p>
+                <div class="start-cta-links">
+                    <a href="/ai-readiness/">AI Readiness Assessment &rarr;</a>
+                    <a href="/workflow-audit/">Invisible Work Audit &rarr;</a>
+                    <a href="/pilot-checklist/">District AI Pilot Checklist &rarr;</a>
                 </div>
             </div>
             <div class="clients-bar">
@@ -776,15 +783,15 @@
                         <a href="mailto:christophersanzeri@evalveconsulting.com">christophersanzeri@evalveconsulting.com</a>
                     </div>
                     <div class="contact-detail">
-                        <span class="cd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
+                        <span class="cd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
                         <a href="https://x.com/chrissanzeri" target="_blank" rel="noopener noreferrer">@chrissanzeri</a>
                     </div>
                     <div class="contact-detail">
-                        <span class="cd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></span>
+                        <span class="cd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></span>
                         <a href="https://www.instagram.com/evalve_consulting/" target="_blank" rel="noopener noreferrer">@evalve_consulting</a>
                     </div>
                     <div class="contact-detail">
-                        <span class="cd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
+                        <span class="cd-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span>
                         <a href="https://www.linkedin.com/in/christopher-sanzeri" target="_blank" rel="noopener noreferrer">Christopher Sanzeri</a>
                     </div>
                 </div>

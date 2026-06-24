@@ -46,6 +46,15 @@
             --border: rgba(63, 167, 163, 0.15);
             --font-heading: 'Instrument Sans', -apple-system, sans-serif;
             --font-body: 'Nunito Sans', -apple-system, sans-serif;
+            /* type scale (values unchanged; consolidated from scattered literals) */
+            --fs-hero: clamp(2.2rem,5vw,3.8rem);
+            --fs-h2: clamp(1.8rem,3.5vw,2.8rem);
+            --fs-h2-compact: clamp(1.6rem,3vw,2.4rem);
+            --fs-h3-xl: 1.8rem;
+            --fs-h3-lg: 1.5rem;
+            --fs-h3-md: 1.4rem;
+            --fs-h3: 1.3rem;
+            --fs-h3-sm: 1.15rem;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; scroll-padding-top: 80px; }
@@ -87,7 +96,7 @@
         .hero-content { position: relative; z-index: 2; max-width: 860px; text-align: center; }
         .hero-logo { width: clamp(280px,40vw,420px); margin: 0 auto 2.5rem; animation: fadeUp 0.8s ease forwards; opacity: 0; }
         .hero-logo svg { width: 100%; height: auto; }
-        .hero h1 { font-family: var(--font-heading); font-size: clamp(2.2rem,5vw,3.8rem); font-weight: 700; line-height: 1.15; color: var(--white); margin-bottom: 1.5rem; letter-spacing: -0.01em; animation: fadeUp 0.8s ease 0.15s forwards; opacity: 0; }
+        .hero h1 { font-family: var(--font-heading); font-size: var(--fs-hero); font-weight: 700; line-height: 1.15; color: var(--white); margin-bottom: 1.5rem; letter-spacing: -0.01em; animation: fadeUp 0.8s ease 0.15s forwards; opacity: 0; }
         .hero h1 em { font-style: normal; color: var(--soft-teal); }
         .hero-sub { font-size: clamp(1rem,1.8vw,1.15rem); color: var(--muted); max-width: 620px; margin: 0 auto 2.5rem; line-height: 1.85; animation: fadeUp 0.8s ease 0.3s forwards; opacity: 0; }
         .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.8s ease 0.45s forwards; opacity: 0; }
@@ -106,13 +115,13 @@
         section { padding: clamp(4rem,10vw,7rem) clamp(1.5rem,5vw,4rem); }
         .section-inner { max-width: 1100px; margin: 0 auto; }
         .section-label { font-family: var(--font-heading); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--soft-teal); font-weight: 600; margin-bottom: 0.75rem; }
-        .section-title { font-family: var(--font-heading); font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.01em; }
+        .section-title { font-family: var(--font-heading); font-size: var(--fs-h2); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.01em; }
         .section-subtitle { font-size: 1.05rem; color: var(--muted); max-width: 580px; line-height: 1.75; }
         .divider { max-width: 1100px; margin: 0 auto; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
 
         /* EMAIL CTA */
         .email-cta { background: var(--indigo-dark); text-align: center; padding: clamp(3rem,8vw,5rem) clamp(1.5rem,5vw,4rem); }
-        .email-cta h2 { font-family: var(--font-heading); font-size: clamp(1.6rem,3vw,2.4rem); font-weight: 700; color: var(--white); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.25; }
+        .email-cta h2 { font-family: var(--font-heading); font-size: var(--fs-h2-compact); font-weight: 700; color: var(--white); max-width: 700px; margin: 0 auto 1.5rem; line-height: 1.25; }
         .signup-form { display: flex; gap: 0; max-width: 500px; margin: 1.5rem auto 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: var(--surface); }
         .signup-form input[type="email"] { flex: 1; padding: 1rem 1.25rem; border: none; background: transparent; color: var(--white); font-size: 1rem; font-family: var(--font-body); outline: none; }
         .signup-form input[type="email"]::placeholder { color: var(--slate-gray); }
@@ -126,7 +135,7 @@
         .card:hover { border-color: rgba(63,167,163,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
         .card:hover::before { opacity: 1; }
         .card-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(63,167,163,0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; font-size: 1.2rem; }
-        .card h3 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--white); margin-bottom: 0.75rem; font-weight: 600; }
+        .card h3 { font-family: var(--font-heading); font-size: var(--fs-h3); color: var(--white); margin-bottom: 0.75rem; font-weight: 600; }
         .card p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
         .card-btn { display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 1.5rem; padding: 0.6rem 1.25rem; min-height: 44px; border-radius: 6px; background: var(--soft-teal); color: var(--indigo-darker); text-decoration: none; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
         .card-btn:hover { background: var(--teal-glow); transform: translateY(-1px); }
@@ -147,7 +156,7 @@
         .about-text p { margin-bottom: 1.25rem; color: var(--muted); font-size: 1rem; line-height: 1.85; }
         .about-text p:first-of-type { color: var(--off-white); font-size: 1.05rem; }
         .credentials { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--border); }
-        .credentials h3 { font-family: var(--font-heading); font-size: 1.15rem; color: var(--white); margin-bottom: 1rem; font-weight: 600; }
+        .credentials h3 { font-family: var(--font-heading); font-size: var(--fs-h3-sm); color: var(--white); margin-bottom: 1rem; font-weight: 600; }
         .credential-items { display: flex; flex-direction: column; gap: 0.6rem; }
         .credential-items span { display: flex; align-items: center; gap: 0.75rem; color: var(--muted); font-size: 0.9rem; }
         .cred-dot { width: 5px; height: 5px; background: var(--soft-teal); border-radius: 50%; flex-shrink: 0; }
@@ -157,7 +166,7 @@
         .service-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2.5rem 2rem; transition: all 0.3s; position: relative; display: flex; flex-direction: column; }
         .service-card:hover { border-color: rgba(63,167,163,0.3); transform: translateY(-3px); box-shadow: 0 16px 50px rgba(0,0,0,0.25); }
         .service-tag { display: inline-block; padding: 0.3rem 0.75rem; background: rgba(63,167,163,0.1); color: var(--soft-teal); border-radius: 4px; font-family: var(--font-heading); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1.25rem; align-self: flex-start; }
-        .service-card h3 { font-family: var(--font-heading); font-size: 1.4rem; color: var(--white); margin-bottom: 0.35rem; font-weight: 600; }
+        .service-card h3 { font-family: var(--font-heading); font-size: var(--fs-h3-md); color: var(--white); margin-bottom: 0.35rem; font-weight: 600; }
         .service-price { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; color: var(--soft-teal); margin-bottom: 1rem; }
         .service-card > p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.7; }
         .service-features { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 2rem; flex-grow: 1; }
@@ -165,7 +174,7 @@
         .check { color: var(--soft-teal); display: inline-flex; align-items: center; flex-shrink: 0; }
         /* "Not sure where to start?" CTA */
         .start-cta { text-align: center; margin: 2.5rem 0; padding: 2.5rem; background: linear-gradient(135deg, var(--deep-indigo), var(--indigo-dark)); border-radius: 16px; }
-        .start-cta h3 { color: var(--white); font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; margin: 0 0 0.75rem; }
+        .start-cta h3 { color: var(--white); font-family: var(--font-heading); font-size: var(--fs-h3-lg); font-weight: 700; margin: 0 0 0.75rem; }
         .start-cta p { color: var(--off-white); font-size: 1rem; max-width: 500px; margin: 0 auto 1.5rem; line-height: 1.6; }
         .start-cta-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
         .start-cta-links a { display: inline-block; padding: 1rem 2rem; background: var(--soft-teal); color: var(--indigo-darker); border-radius: 10px; font-family: var(--font-heading); font-weight: 600; text-decoration: none; font-size: 1rem; transition: background 0.2s; }
@@ -182,9 +191,9 @@
         .podcast-art::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 70%, rgba(63,167,163,0.1) 0%, transparent 60%); }
         .podcast-art > * { position: relative; z-index: 1; }
         .p-icon { width: 64px; height: 64px; border-radius: 50%; background: rgba(63,167,163,0.12); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
-        .podcast-art h3 { font-family: var(--font-heading); font-size: 1.8rem; color: var(--white); font-weight: 700; }
+        .podcast-art h3 { font-family: var(--font-heading); font-size: var(--fs-h3-xl); color: var(--white); font-weight: 700; }
         .podcast-art span { color: var(--soft-teal); font-family: var(--font-heading); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
-        .podcast-info h3 { font-family: var(--font-heading); font-size: 1.5rem; color: var(--white); margin-bottom: 1rem; font-weight: 600; }
+        .podcast-info h3 { font-family: var(--font-heading); font-size: var(--fs-h3-lg); color: var(--white); margin-bottom: 1rem; font-weight: 600; }
         .podcast-info p { color: var(--muted); line-height: 1.8; margin-bottom: 1.25rem; }
         .podcast-platforms { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.5rem; }
         .platform-badge { padding: 0.45rem 0.9rem; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--off-white); font-family: var(--font-heading); font-size: 0.78rem; font-weight: 500; transition: all 0.2s; text-decoration: none; }
@@ -200,7 +209,7 @@
 
         /* CONTACT */
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; }
-        .contact-info h3 { font-family: var(--font-heading); font-size: 1.3rem; color: var(--white); margin-bottom: 0.5rem; font-weight: 600; }
+        .contact-info h3 { font-family: var(--font-heading); font-size: var(--fs-h3); color: var(--white); margin-bottom: 0.5rem; font-weight: 600; }
         .contact-info > p { color: var(--muted); margin-bottom: 2rem; line-height: 1.75; }
         .contact-detail { display: flex; align-items: center; gap: 0.75rem; padding: 1rem 0; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
         .cd-icon { color: var(--soft-teal); width: 20px; text-align: center; }
@@ -259,7 +268,7 @@
         .proof-before { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 600; color: var(--slate-gray); text-decoration: line-through; text-decoration-color: rgba(154,154,175,0.5); }
         .proof-arrow { color: var(--soft-teal); font-size: 1.2rem; }
         .proof-after { font-family: var(--font-heading); font-size: clamp(1.8rem,3.5vw,2.4rem); font-weight: 700; color: var(--soft-teal); }
-        .proof-card h3 { font-family: var(--font-heading); font-size: 1.15rem; color: var(--white); margin-bottom: 0.5rem; font-weight: 600; }
+        .proof-card h3 { font-family: var(--font-heading); font-size: var(--fs-h3-sm); color: var(--white); margin-bottom: 0.5rem; font-weight: 600; }
         .proof-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
         .proof-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; margin-top: 1.5rem; }
         .proof-stat { padding: 1.5rem 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; text-align: center; transition: all 0.3s; }

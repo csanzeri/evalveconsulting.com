@@ -617,15 +617,15 @@
 
             <div class="proof-stats">
                 <div class="proof-stat">
-                    <span class="proof-num">56</span>
+                    <span class="proof-num" data-count="56">56</span>
                     <span class="proof-label">Schools overseen</span>
                 </div>
                 <div class="proof-stat">
-                    <span class="proof-num">1,400+</span>
+                    <span class="proof-num" data-count="1400" data-suffix="+">1,400+</span>
                     <span class="proof-label">Staff supported</span>
                 </div>
                 <div class="proof-stat">
-                    <span class="proof-num">100+</span>
+                    <span class="proof-num" data-count="100" data-suffix="+">100+</span>
                     <span class="proof-label">Training sessions delivered</span>
                 </div>
                 <div class="proof-stat">
@@ -838,6 +838,29 @@
         document.addEventListener('click',e=>{document.querySelectorAll('.nav-dropdown.open').forEach(d=>{if(!d.contains(e.target)){d.classList.remove('open');d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false')}})});
         const reveals=document.querySelectorAll('.reveal'),observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:0.08});reveals.forEach(el=>observer.observe(el));
         const sections=document.querySelectorAll('section[id]');window.addEventListener('scroll',()=>{let c='';sections.forEach(s=>{if(scrollY>=s.offsetTop-120)c=s.id});document.querySelectorAll('.nav-links a:not(.nav-cta)').forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)})});
+
+        // Proof-stat count-up: animate once when the stats scroll into view. Respects reduced-motion.
+        (function(){
+            var statsEl=document.querySelector('.proof-stats');
+            if(!statsEl||!('IntersectionObserver' in window)) return;
+            var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if(reduce) return; // leave the final values in place
+            var nums=statsEl.querySelectorAll('.proof-num[data-count]');
+            function run(){
+                nums.forEach(function(el){
+                    var target=parseInt(el.getAttribute('data-count'),10),suffix=el.getAttribute('data-suffix')||'',dur=1200,start=null;
+                    function tick(ts){
+                        if(!start)start=ts;
+                        var p=Math.min((ts-start)/dur,1),eased=1-Math.pow(1-p,3);
+                        el.textContent=Math.round(target*eased).toLocaleString()+suffix;
+                        if(p<1)requestAnimationFrame(tick);
+                    }
+                    requestAnimationFrame(tick);
+                });
+            }
+            var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){run();obs.disconnect();}})},{threshold:0.4});
+            obs.observe(statsEl);
+        })();
 
         // Contact form -> Evalve dashboard lead intake. Real CORS (no mode:"no-cors")
         // so we can read res.ok and show the right message. The dashboard validates

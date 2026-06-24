@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -625,9 +626,86 @@
             .option-card { padding: 10px 10px; gap: 10px; }
             .score-ring-wrap { max-width: 120px; }
         }
+        /* SITE HEADER (matches main page) */
+        :root { --deep-indigo:#2E2B6F; --indigo-dark:#1a1845; --indigo-darker:#110f30; --soft-teal:#3FA7A3; --teal-glow:#4dc9c4; --white:#FFFFFF; --off-white:#e8e8ec; --muted:#9a9aaf; --surface:#1e1c4a; --border:rgba(63,167,163,0.15); --font-heading:'Instrument Sans',-apple-system,sans-serif; }
+        body { padding-top: 72px; }
+        .header { display: none; }
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 clamp(1.5rem,5vw,4rem); height: 72px; display: flex; align-items: center; justify-content: space-between; background: #110f30; border-bottom: 1px solid var(--border); transition: all 0.3s; }
+        .nav.scrolled { background: #0c0a22; }
+        .nav-logo-wrap { display: flex; align-items: center; text-decoration: none; gap: 0.6rem; }
+        .nav-logo-mark { height: 34px; width: auto; }
+        .nav-logo-text { font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem; color: var(--white); letter-spacing: 0.02em; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; margin: 0; padding: 0; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-family: var(--font-heading); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: var(--white); }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--soft-teal); transition: width 0.3s; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta { background: var(--soft-teal) !important; color: var(--indigo-darker) !important; padding: 0.5rem 1.25rem !important; border-radius: 6px; font-weight: 600 !important; transition: all 0.2s !important; }
+        .nav-cta:hover { background: var(--teal-glow) !important; transform: translateY(-1px); }
+        .nav-cta::after { display: none !important; }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-toggle { background: none; border: none; cursor: pointer; color: var(--muted); font-family: var(--font-heading); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; display: inline-flex; align-items: center; gap: 0.4rem; padding: 0; }
+        .nav-dropdown-toggle:hover, .nav-dropdown.open .nav-dropdown-toggle { color: var(--white); }
+        .nav-caret { transition: transform 0.25s ease; flex-shrink: 0; }
+        .nav-dropdown.open .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown-menu { list-style: none; position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(8px); min-width: 240px; background: #16143a; border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.1rem; opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s; box-shadow: 0 12px 40px rgba(0,0,0,0.35); margin: 0; }
+        .nav-dropdown.open .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .nav-dropdown-menu a { display: block; padding: 0.6rem 0.85rem; border-radius: 6px; color: var(--off-white); white-space: nowrap; text-decoration: none; }
+        .nav-dropdown-menu a:hover { background: var(--surface); color: var(--white); }
+        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; min-width: 44px; min-height: 44px; }
+        .mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--off-white); margin: 5px 0; transition: all 0.3s; border-radius: 2px; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: #110f30; flex-direction: column; padding: 1.5rem 2rem; gap: 1.25rem; border-bottom: 1px solid var(--border); }
+            .nav-links.open { display: flex; }
+            .nav-dropdown { width: 100%; }
+            .nav-dropdown-toggle { justify-content: center; width: 100%; color: var(--muted); font-size: 0.875rem; }
+            .nav-dropdown-menu { position: static; transform: none; opacity: 1; visibility: visible; display: none; background: none; border: none; box-shadow: none; padding: 0.95rem 0 0; min-width: 0; gap: 0.95rem; align-items: center; }
+            .nav-dropdown.open .nav-dropdown-menu { display: flex; transform: none; }
+            .nav-dropdown-menu a { padding: 0; color: var(--muted); }
+            .nav-dropdown-menu a:hover { background: none; color: var(--white); }
+            .mobile-toggle { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+            .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+            .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+        }
     </style>
 </head>
 <body>
+    <nav class="nav" id="nav">
+        <a href="/" class="nav-logo-wrap">
+            <svg class="nav-logo-mark" viewBox="2000 1500 8000 5000" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="ng1" x1="4611" y1="4705" x2="7265" y2="2842" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#B0B5B8"/><stop offset="0.56" stop-color="#E0E0E0"/><stop offset="1" stop-color="white"/></linearGradient>
+                    <linearGradient id="ng2" x1="4754" y1="4175" x2="7394" y2="2943" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2997A6"/><stop offset="1" stop-color="#6CB9B3"/></linearGradient>
+                    <linearGradient id="ng3" x1="6699" y1="3555" x2="7082" y2="2719" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#6EB9B5"/><stop offset="1" stop-color="#A2D3CD"/></linearGradient>
+                </defs>
+                <path fill="url(#ng1)" d="M6001.88 2026.53c528.34,-45.83 1047.54,85.34 1455.46,365.7 -336.87,-169.19 -840.85,-233.84 -1265.2,-182.08 -906.73,110.59 -1818.63,798.78 -1564.97,1685.27 -233.41,68.76 -424.86,98.39 -644.04,85.43 -3.12,-39.37 -4.83,-79.21 -4.83,-119.53 0,-975.08 881.89,-1735.74 2023.58,-1834.78zm-1194.34 2419.53c276.46,340.03 789.14,504.55 1395.04,415.61 915.15,-134.33 1630.63,-895.57 1618.85,-1617.4 -3.14,-192.37 -43.25,-378.3 -128.08,-536.49 205.53,261.84 326.75,580.89 332.11,925.87 14.76,947.49 -854.07,1817.8 -1994.94,1847.8 -986.55,25.94 -1765.23,-465.5 -1987.84,-1187.83 279.34,106.23 490.47,142.7 764.86,152.43z"/>
+                <path fill="#0D5667" d="M5351.13 5412.25c444.31,-2.93 796.15,-214.96 871.37,-553.73 -6.65,1.05 -13.27,2.18 -19.93,3.15 -605.89,88.94 -1118.57,-75.58 -1395.04,-415.61 -274.39,-9.72 -485.52,-46.2 -764.86,-152.43 168.33,546.23 654.72,960.35 1308.45,1118.62z"/>
+                <path fill="url(#ng2)" d="M6222.5 4858.52c-6.65,1.05 -13.27,2.18 -19.93,3.15 -605.89,88.94 -1118.57,-75.58 -1395.04,-415.61 -274.39,-9.72 -485.52,-46.2 -764.86,-152.43 62.98,204.37 170.5,390.24 314.64,551.15 233.76,258.16 692.57,390.21 1101.06,386.7 348.4,-2.98 660.13,-121.31 764.12,-372.97z"/>
+                <path fill="#5299B7" d="M4467.21 4413.39c-127.06,-21.89 -252.81,-56.2 -395.82,-109 49.9,140.64 114.7,265.09 194.38,373.37 8.14,-154.47 75.3,-242.59 201.44,-264.36z"/>
+                <path fill="url(#ng2)" d="M6226.89 3566.5c370.26,-229.61 500.82,-385.18 439.76,-562.89 -46.49,-135.31 -295.41,-222.75 -677.43,-151.89 -571.03,105.92 -981.15,367.01 -1218.09,665.99 229.79,-562.96 959.85,-1026.81 1660.15,-1073.04 691.39,-45.64 1030.66,225.59 1006.52,597.96 -10.82,166.77 -95.87,343.69 -248.21,507.61 -246.11,264.8 -662.82,500.89 -1188.06,643.91 -851.26,231.8 -1703.38,134.91 -2027.17,-74.38 703.2,43.1 1481.57,-134.77 2252.54,-553.28z"/>
+                <path fill="url(#ng3)" d="M6226.89 3566.5c370.26,-229.61 500.82,-385.18 439.76,-562.89 -18.22,-53.04 -67.56,-98.72 -143.79,-130.39l0.01 0 -0.33 -0.12 -4.29 -1.74c-36.51,-15.62 -39.62,-41.52 -10.41,-78.5 77.23,-97.75 160.07,-186.44 251.21,-263.32 30.1,-25.39 63.68,-34.24 105.02,-28.07 249.3,44.18 422.84,160.34 498.71,334.93 82.05,188.85 18.29,380.59 -95.67,544.07 -313.36,449.54 -1153.73,504.19 -1728.41,496.3 228.61,-82.45 458.74,-185.69 688.2,-310.26z"/>
+            </svg>
+            <span class="nav-logo-text">EVALVE</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#proof">Proof</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/#podcast">Podcast</a></li>
+            <li class="nav-dropdown">
+                <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Free Resources<svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="/workflow-audit/">Invisible Work Audit</a></li>
+                    <li><a href="/ai-readiness/">AI Readiness Assessment</a></li>
+                    <li><a href="/pilot-checklist/">District AI Pilot Checklist</a></li>
+                </ul>
+            </li>
+            <li><a href="/subscribe/">Subscribe</a></li>
+            <li><a href="/#contact" class="nav-cta">Get in Touch</a></li>
+        </ul>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
     <div id="root"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
@@ -1445,6 +1523,15 @@
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
+    </script>
+    <script>
+        (function(){
+            var nav=document.getElementById('nav');window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>50)});
+            var toggle=document.getElementById('mobileToggle'),links=document.getElementById('navLinks');toggle.addEventListener('click',function(){toggle.classList.toggle('active');links.classList.toggle('open')});
+            document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){toggle.classList.remove('active');links.classList.remove('open')})});
+            document.querySelectorAll('.nav-dropdown-toggle').forEach(function(b){b.addEventListener('click',function(e){e.stopPropagation();var d=b.closest('.nav-dropdown');var o=d.classList.toggle('open');b.setAttribute('aria-expanded',o)})});
+            document.addEventListener('click',function(e){document.querySelectorAll('.nav-dropdown.open').forEach(function(d){if(!d.contains(e.target)){d.classList.remove('open');d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false')}})});
+        })();
     </script>
 </body>
 </html>

@@ -52,6 +52,16 @@
         .nav-cta { background: var(--soft-teal) !important; color: var(--indigo-darker) !important; padding: 0.5rem 1.25rem !important; border-radius: 6px; font-weight: 600 !important; transition: all 0.2s !important; }
         .nav-cta:hover { background: var(--teal-glow) !important; transform: translateY(-1px); }
         .nav-cta::after { display: none !important; }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-toggle { background: none; border: none; cursor: pointer; color: var(--muted); font-family: var(--font-heading); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; display: inline-flex; align-items: center; gap: 0.4rem; padding: 0; }
+        .nav-dropdown-toggle:hover, .nav-dropdown.open .nav-dropdown-toggle { color: var(--white); }
+        .nav-caret { transition: transform 0.25s ease; flex-shrink: 0; }
+        .nav-dropdown.open .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown-menu { list-style: none; position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(8px); min-width: 240px; background: rgba(17,15,48,0.98); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.1rem; opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s; box-shadow: 0 12px 40px rgba(0,0,0,0.35); margin: 0; }
+        .nav-dropdown.open .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .nav-dropdown-menu a { display: block; padding: 0.6rem 0.85rem; border-radius: 6px; color: var(--off-white); white-space: nowrap; }
+        .nav-dropdown-menu a::after { display: none; }
+        .nav-dropdown-menu a:hover { background: var(--surface); color: var(--white); }
         .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
         .mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--off-white); margin: 5px 0; transition: all 0.3s; border-radius: 2px; }
 
@@ -125,6 +135,12 @@
         @media (max-width: 768px) {
             .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: rgba(17,15,48,0.98); flex-direction: column; padding: 1.5rem 2rem; gap: 1.25rem; border-bottom: 1px solid var(--border); }
             .nav-links.open { display: flex; }
+            .nav-dropdown { width: 100%; }
+            .nav-dropdown-toggle { justify-content: center; width: 100%; color: var(--muted); font-size: 0.875rem; }
+            .nav-dropdown-menu { position: static; transform: none; opacity: 1; visibility: visible; display: none; background: none; border: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 0.95rem 0 0; min-width: 0; gap: 0.95rem; align-items: center; }
+            .nav-dropdown.open .nav-dropdown-menu { display: flex; transform: none; }
+            .nav-dropdown-menu a { padding: 0; color: var(--muted); }
+            .nav-dropdown-menu a:hover { background: none; color: var(--white); }
             .mobile-toggle { display: block; }
             .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
             .mobile-toggle.active span:nth-child(2) { opacity: 0; }
@@ -152,9 +168,18 @@
         </a>
         <ul class="nav-links" id="navLinks">
             <li><a href="/#about">About</a></li>
+            <li><a href="/#proof">Proof</a></li>
             <li><a href="/#services">Services</a></li>
-            <li><a href="/ai-readiness/">AI Readiness</a></li>
-            <li><a href="/workflow-audit/">Invisible Work Audit</a></li>
+            <li><a href="/#podcast">Podcast</a></li>
+            <li class="nav-dropdown">
+                <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Free Resources<svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="/workflow-audit/">Invisible Work Audit</a></li>
+                    <li><a href="/ai-readiness/">AI Readiness Assessment</a></li>
+                    <li><a href="/pilot-checklist/">District AI Pilot Checklist</a></li>
+                </ul>
+            </li>
+            <li><a href="/subscribe/">Subscribe</a></li>
             <li><a href="/#contact" class="nav-cta">Get in Touch</a></li>
         </ul>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -246,6 +271,8 @@
         const nav=document.getElementById('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
         const toggle=document.getElementById('mobileToggle'),links=document.getElementById('navLinks');toggle.addEventListener('click',()=>{toggle.classList.toggle('active');links.classList.toggle('open')});
         document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click',()=>{toggle.classList.remove('active');links.classList.remove('open')})});
+        document.querySelectorAll('.nav-dropdown-toggle').forEach(b=>{b.addEventListener('click',e=>{e.stopPropagation();const d=b.closest('.nav-dropdown');const o=d.classList.toggle('open');b.setAttribute('aria-expanded',o)})});
+        document.addEventListener('click',e=>{document.querySelectorAll('.nav-dropdown.open').forEach(d=>{if(!d.contains(e.target)){d.classList.remove('open');d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false')}})});
         const reveals=document.querySelectorAll('.reveal'),observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:0.08});reveals.forEach(el=>observer.observe(el));
     </script>
 </body>

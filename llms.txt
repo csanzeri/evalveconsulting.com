@@ -16,9 +16,9 @@ School districts, Regional Offices of Education, education cooperatives, univers
 
 ## Services
 
-- **Half-Day Session:** 4 hours of strategic planning for organizations exploring AI implementation. Includes a needs assessment, an AI strategy and implementation roadmap, tool vetting, and 30-day email support.
-- **Full-Day Deep Dive:** 8 hours hands-on for organizations ready to deploy AI across classrooms and operations. Adds live staff training, custom AI tool development, workflow automation setup, and 60-day email support.
-- **Custom Engagements:** Multi-day training, advisory retainers, organization-wide rollouts, custom AI solution development, workflow automation buildouts, and ongoing implementation support.
+- **Quick Win:** a short, focused engagement that solves one specific problem fast. Includes a focused needs assessment, one problem solved end to end, tool vetting, and 30-day email support.
+- **Deep Implementation:** full implementation work for teams ready to embed AI into their workflows. Adds live staff training, custom AI tool development, workflow automation setup, and 60-day email support.
+- **Ongoing Partnership:** continuous support, advisory, and build work for organizations going long on AI. Multi-day training, advisory retainers, organization-wide rollouts, and workflow automation buildouts.
 
 ## Free resources
 

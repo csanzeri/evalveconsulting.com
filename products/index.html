@@ -27,11 +27,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet"></noscript>
     <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
-    <!-- GUMROAD: when the first product goes live, uncomment this script and swap a product
-         card's placeholder button for a real Gumroad link (see the commented example in the
-         first card below). Gumroad's overlay script turns any link with class="gumroad-button"
-         into an in-page checkout. -->
-    <!-- <script src="https://gumroad.com/js/gumroad.js"></script> -->
+    <!-- BEEHIIV PRODUCTS: products are sold through Beehiiv (not Gumroad). No script needed.
+         When the first product goes live in Beehiiv (Evalve Out Loud publication), copy its
+         checkout URL and drop it into a card's CTA (see the commented example in the first
+         card below). -->
     <style>
         :root {
             --deep-indigo: #2E2B6F;
@@ -99,7 +98,7 @@
         .product-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.75rem; flex-grow: 1; }
         .product-cta { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; border-radius: 8px; font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
         .product-cta.soon { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid var(--border); cursor: default; }
-        /* When a product goes live, use this class on a real Gumroad link instead of .soon */
+        /* When a product goes live, use this class on its Beehiiv checkout link instead of .soon */
         .product-cta.live { background: var(--soft-teal); color: var(--indigo-darker); transition: all 0.25s; }
         .product-cta.live:hover { background: var(--teal-glow); transform: translateY(-2px); }
 
@@ -190,11 +189,11 @@
             <div class="products-grid">
                 <!-- DRAFT (2026-07-03): the three product names and descriptions below are
                      PLACEHOLDERS I drafted to make the stub feel real. They are not committed
-                     products. Swap them for the real Gumroad lineup before or after launch. -->
+                     products. Swap them for the real Beehiiv product lineup at launch. -->
                 <!-- PRODUCT CARD TEMPLATE. To launch a product:
-                     1. Uncomment the gumroad.js script in <head>.
-                     2. Replace the .soon span with:
-                        <a class="product-cta live gumroad-button" href="https://evalve.gumroad.com/l/YOUR-PRODUCT-SLUG">Get it on Gumroad</a>
+                     1. Create the product in Beehiiv (Evalve Out Loud publication) and set it live.
+                     2. Copy the product's checkout URL and replace the .soon span with:
+                        <a class="product-cta live" href="PASTE-BEEHIIV-CHECKOUT-URL" target="_blank" rel="noopener">Get it now</a>
                      3. Update the tag, title, and description. -->
                 <div class="product-card">
                     <span class="product-tag">Coming Soon</span>

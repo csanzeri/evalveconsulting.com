@@ -2,7 +2,7 @@
 
 > AI implementation for education that actually works. Evalve Consulting is an AI implementation consultancy for education organizations, founded by Dr. Chris Sanzeri. Based in the Chicago area (Elgin, Illinois), Evalve works with education organizations across Illinois and remotely nationwide.
 
-Evalve is a builder-led practice, not a slide-deck shop. Dr. Sanzeri spent years in public education leadership, most recently as a district administrator overseeing specialized student services in one of Illinois' largest school districts. He builds the tools himself: custom GPTs, local AI models, iOS apps, and workflow automations. The approach is practical and hands-on, with no vendor BS.
+Evalve is a builder-led practice, not a slide-deck shop. Dr. Sanzeri spent years in public education leadership, most recently as a district administrator overseeing specialized student services in one of Illinois' largest school districts. He builds the tools himself: custom GPTs, local AI models, iOS apps, and workflow automations. The approach is practical and hands-on, grounded in real district experience rather than vendor pitches.
 
 ## About
 
@@ -25,6 +25,10 @@ School districts, Regional Offices of Education, education cooperatives, univers
 - [AI Readiness Assessment](https://evalveconsulting.com/ai-readiness/): find out where your organization stands.
 - [Invisible Work Audit](https://evalveconsulting.com/workflow-audit/): surface the repetitive work eating your team's time.
 - [District AI Pilot Checklist](https://evalveconsulting.com/pilot-checklist/): a structured way to run your first AI pilot.
+
+## Products
+
+- [Digital products](https://evalveconsulting.com/products/): templates, toolkits, and other digital resources for education teams. First products launching soon; the page takes newsletter signups for launch updates.
 
 ## Podcast
 

@@ -7,15 +7,28 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="description" content="Free Invisible Work Audit for education teams. Surface the repetitive work eating your team's time and get a prioritized automation list in minutes." />
+  <link rel="canonical" href="https://evalveconsulting.com/workflow-audit/" />
+  <meta property="og:title" content="Invisible Work Audit | Evalve Consulting" />
+  <meta property="og:description" content="Surface the repetitive work eating your team's time and get a prioritized automation list in minutes. Free, from Evalve Consulting." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://evalveconsulting.com/workflow-audit/" />
+  <meta property="og:site_name" content="Evalve Consulting" />
+  <meta property="og:image" content="https://evalveconsulting.com/images/trace.png" />
+  <meta property="og:image:alt" content="Evalve Consulting logo" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Invisible Work Audit | Evalve Consulting" />
+  <meta name="twitter:description" content="Surface the repetitive work eating your team's time and get a prioritized automation list in minutes." />
+  <meta name="twitter:image" content="https://evalveconsulting.com/images/trace.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Nunito+Sans:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet" />
-  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js" integrity="sha512-8Q6Y9XnTbOE+JNvjBQwJ2H8S+UV4uA6hiRykhdtIyDYZ2TprdNmWOUaKdGzOhyr4dCyk287OejbPvwl7lrfqrQ==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js" integrity="sha512-MOCpqoRoisCTwJ8vQQiciZv0qcpROCidek3GTFS6KTk2+y7munJIlKCVkFCYY+p3ErYFXCjmFjnfTTRSC1OHWQ==" crossorigin="anonymous"></script>
   <!-- Pinned to Babel 7.x: v8's react preset defaults to the automatic JSX runtime,
        which emits `import "react/jsx-runtime"` and breaks UMD-global React (blank page). -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js" integrity="sha512-OG8Ewzlpr7HnTHwrXzN256M6xbPdDJdurFYIRh0vRHOeFsL0S9yIwHiWSA2kopUevhG/ta4qyVVc2hCRSJy2MQ==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
@@ -93,6 +106,7 @@
             <li><a href="/#about">About</a></li>
             <li><a href="/#proof">Proof</a></li>
             <li><a href="/#services">Services</a></li>
+            <li><a href="/products/">Products</a></li>
             <li><a href="/#podcast">Podcast</a></li>
             <li><a href="https://newsletter.evalveconsulting.com">Newsletter</a></li>
             <li class="nav-dropdown">
@@ -116,6 +130,7 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/#about">About</a></li>
                 <li><a href="/#services">Services</a></li>
+                <li><a href="/products/">Products</a></li>
                 <li><a href="/#podcast">Podcast</a></li>
                 <li><a href="/workflow-audit/">Invisible Work Audit</a></li>
                 <li><a href="/ai-readiness/">AI Readiness</a></li>
@@ -847,7 +862,7 @@
           <div style={{ minHeight: "100vh", background: COLORS.lightBg, fontFamily: FONT_BODY, padding: wrapPad }}>
             <div ref={scrollRef} />
             <div style={{ maxWidth: 660, margin: "0 auto" }}>
-              <div style={{ fontSize: 12, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8, fontFamily: FONT_HEADING }}>Step 3 of 4 — Area {currentAreaIdx + 1} of {selectedAreas.length}</div>
+              <div style={{ fontSize: 12, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8, fontFamily: FONT_HEADING }}>Step 3 of 4 · Area {currentAreaIdx + 1} of {selectedAreas.length}</div>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}><AreaIcon name={currentArea.icon} size={30} /><h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 22, margin: 0 }}>{currentArea.name}</h2></div>
               <p style={{ color: COLORS.slateGray, margin: "0 0 4px", lineHeight: 1.5, fontSize: 14 }}>For each task: does your team do this? If so, how many hours per week does it take across the team, and how much does it bother people?</p>
               <p style={{ color: COLORS.slateGray, margin: "0 0 20px", fontSize: 12, fontStyle: "italic" }}>"Painful" means frustrating, error-prone, or something your team dreads. Not everything that takes time is painful.</p>
@@ -907,7 +922,7 @@
               <div style={{ maxWidth: 720, margin: "0 auto" }}>
                 <div style={{ fontSize: 12, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 12, fontFamily: FONT_HEADING }}>Your Invisible Work Audit Results</div>
                 <h1 style={{ color: COLORS.white, fontSize: 28, fontWeight: 700, fontFamily: FONT_HEADING, margin: "0 0 8px" }}>{orgName || "Your Business"}'s Automation Opportunity</h1>
-                <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 14 }}>{industry} — {orgType} — {sz} team member{sz !== 1 ? "s" : ""}</p>
+                <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 14 }}>{industry} · {orgType} · {sz} team member{sz !== 1 ? "s" : ""}</p>
                 <div style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 28, flexWrap: "wrap" }}>
                   {[
                     { v: `${totH.toFixed(0)} hrs`, l: "Hours spent weekly on audited tasks", c: COLORS.white },

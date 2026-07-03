@@ -29,7 +29,8 @@
     <meta name="twitter:image:alt" content="Evalve Consulting logo">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet"></noscript>
     <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
     <style>
         :root {
@@ -205,7 +206,7 @@
         .bottom-cta .section-inner { position: relative; z-index: 1; }
         .bottom-cta .section-title { max-width: 550px; margin: 0 auto 0.5rem; }
         .bottom-cta .section-subtitle { margin: 0 auto; text-align: center; }
-        .small-note { margin-top: 0.75rem; font-size: 0.78rem; color: var(--slate-gray); }
+        .small-note { margin-top: 0.75rem; font-size: 0.78rem; color: var(--muted); }
 
         /* CONTACT */
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 3rem; }
@@ -225,9 +226,9 @@
         /* FOOTER */
         .footer { padding: 3rem clamp(1.5rem,5vw,4rem) 2rem; border-top: 1px solid var(--border); }
         .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-        .footer-copy { color: var(--slate-gray); font-size: 0.8rem; }
+        .footer-copy { color: var(--muted); font-size: 0.8rem; }
         .footer-links { display: flex; gap: 1.5rem; list-style: none; }
-        .footer-links a { color: var(--slate-gray); text-decoration: none; font-family: var(--font-heading); font-size: 0.8rem; font-weight: 500; transition: color 0.2s; }
+        .footer-links a { color: var(--muted); text-decoration: none; font-family: var(--font-heading); font-size: 0.8rem; font-weight: 500; transition: color 0.2s; }
         .footer-links a:hover { color: var(--soft-teal); }
 
         /* REVEAL */
@@ -314,7 +315,7 @@
         "url": "https://evalveconsulting.com/",
         "logo": "https://evalveconsulting.com/images/trace.png",
         "image": "https://evalveconsulting.com/images/trace.png",
-        "description": "Evalve Consulting is an AI implementation consultancy for education organizations. Based in the Chicago area, founder Dr. Chris Sanzeri helps education organizations across Illinois and nationwide implement AI that actually works, builds custom tools and workflow automations, and delivers practical strategy without vendor BS.",
+        "description": "Evalve Consulting is an AI implementation consultancy for education organizations. Based in the Chicago area, founder Dr. Chris Sanzeri helps education organizations across Illinois and nationwide implement AI that actually works, builds custom tools and workflow automations, and delivers practical strategy grounded in real district experience.",
         "slogan": "AI Implementation for Education That Actually Works",
         "email": "christophersanzeri@evalveconsulting.com",
         "founder": { "@id": "https://evalveconsulting.com/#founder" },
@@ -356,24 +357,24 @@
                     "@type": "Offer",
                     "itemOffered": {
                         "@type": "Service",
-                        "name": "Half-Day Session",
-                        "description": "4 hours of strategic planning for districts and schools exploring AI implementation. Includes a pre-session needs assessment, an AI strategy and implementation roadmap, tool recommendations and vetting, and 30-day email support."
+                        "name": "Quick Win",
+                        "description": "A short, focused engagement that solves one specific problem fast. Includes a focused needs assessment, one problem solved end to end, tool recommendations and vetting, and 30-day email support."
                     }
                 },
                 {
                     "@type": "Offer",
                     "itemOffered": {
                         "@type": "Service",
-                        "name": "Full-Day Deep Dive",
-                        "description": "8 hours hands-on for districts ready to deploy AI across classrooms and operations. Includes everything in the half-day plus live staff training, custom AI tool development, workflow automation setup, and 60-day email support."
+                        "name": "Deep Implementation",
+                        "description": "Full implementation work for teams ready to embed AI into their workflows. Includes everything in Quick Win plus live staff training, custom AI tool development, workflow automation setup, and 60-day email support."
                     }
                 },
                 {
                     "@type": "Offer",
                     "itemOffered": {
                         "@type": "Service",
-                        "name": "Custom Engagements",
-                        "description": "Multi-day training, advisory retainers, district-wide rollouts, custom AI solution development, workflow automation buildouts, and ongoing implementation support."
+                        "name": "Ongoing Partnership",
+                        "description": "Continuous support, advisory, and build work for organizations going long on AI. Multi-day training, advisory retainers, organization-wide rollouts, custom AI solution development, and workflow automation buildouts."
                     }
                 }
             ]
@@ -436,7 +437,7 @@
                 "name": "What does an engagement look like?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "It usually starts with a free discovery call so I understand what you're dealing with. From there it can be a half-day strategy session, a full-day deep dive with hands-on tool building and staff training, or a custom engagement like a multi-day rollout or an advisory retainer. I scope it to your reality, not a fixed template."
+                    "text": "It usually starts with a free discovery call so I understand what you're dealing with. From there it can be a quick win engagement that solves one specific problem fast, a deeper implementation with hands-on tool building and staff training, or an ongoing partnership with advisory and build work over time. I scope it to your reality, not a fixed template."
                 }
             },
             {
@@ -481,6 +482,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#proof">Proof</a></li>
             <li><a href="#services">Services</a></li>
+            <li><a href="/products/">Products</a></li>
             <li><a href="#podcast">Podcast</a></li>
             <li><a href="https://newsletter.evalveconsulting.com">Newsletter</a></li>
             <li class="nav-dropdown">
@@ -513,9 +515,9 @@
                 </svg>
             </div>
             <h1>AI Implementation for Education <em>That Actually Works</em></h1>
-            <p class="hero-sub">I'm Dr. Christopher Sanzeri. I've spent years in the trenches of public education leadership. Now I help education organizations figure out what's worth doing, build the tools, and automate the work that's eating your team's time.</p>
+            <p class="hero-sub">I'm Dr. Chris Sanzeri. I've spent years in the trenches of public education leadership. Now I help education organizations figure out what's worth doing, build the tools, and automate the work that's eating your team's time.</p>
             <div class="hero-buttons">
-                <a href="#podcast" class="btn btn-primary">Listen to Evalve Out Loud</a>
+                <a href="#subscribe" class="btn btn-primary">Get the Newsletter</a>
                 <a href="#services" class="btn btn-ghost">Work With Me</a>
             </div>
         </div>
@@ -523,7 +525,7 @@
 
     <section class="email-cta" id="subscribe">
         <p class="section-label">Newsletter</p>
-        <h2>Get weekly insights from Evalve Out Loud &mdash; straight to your inbox</h2>
+        <h2>Get weekly insights from Evalve Out Loud, straight to your inbox</h2>
         <iframe title="Subscribe to the Evalve Out Loud newsletter" src="https://subscribe-forms.beehiiv.com/ee144ccc-5793-4359-9bdf-3aa50b263a88?utm_source=website&amp;utm_medium=embed&amp;utm_campaign=email_cta_top" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" style="width:100%;max-width:500px;min-height:420px;margin:1.5rem auto 0;display:block;background-color:transparent;border-radius:10px;"></iframe>
         <p class="small-note">Newsletter not loading? <a href="https://evalveconsulting.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" style="color:var(--soft-teal);">Subscribe on Beehiiv</a> &middot; Unsubscribe anytime</p>
     </section>
@@ -573,12 +575,12 @@
             <h2 class="section-title">Why I Started Evalve</h2>
             <div class="about-grid">
                 <div class="about-photo">
-                    <img src="images/website_headshot.png" alt="Dr. Chris Sanzeri, founder of Evalve Consulting, based in the Chicago area" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="images/website_headshot-800.jpg" alt="Dr. Chris Sanzeri, founder of Evalve Consulting, based in the Chicago area" width="800" height="1000" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;">
                 </div>
                 <div class="about-text">
                     <p>I'm Dr. Chris Sanzeri, an Ed.D. with years in education leadership. Most recently, I served as a district administrator at Illinois' second-largest school district, where I oversaw 1,400+ staff members and led AI implementation across teams. I also build the tools myself. Custom AI solutions, workflow automations, and local AI deployments. I don't just advise. I build.</p>
                     <p>I've watched talented educators drown in manual processes while the real work waits. I've seen organizations buy into AI hype from vendors who don't understand education. And I've seen what happens when AI is implemented by someone who gets the work and can actually build the solution.</p>
-                    <p>That's why I started Evalve. I help education organizations implement AI that fits their reality and build the solutions that save their people time. No vendor BS. Just practical guidance and real technical capability from someone who's been in your seat.</p>
+                    <p>That's why I started Evalve. I help education organizations implement AI that fits their reality and build the solutions that save their people time. Practical guidance and real technical capability from someone who's been in your seat.</p>
                     <div class="credentials">
                         <h3>Experience &amp; Expertise</h3>
                         <div class="credential-items">
@@ -648,28 +650,61 @@
 
     <div class="divider"></div>
 
+    <!-- DRAFT SECTION (2026-07-03): case study snippets drafted from Chris's blog posts and
+         Active_Projects docs. Every claim below traces to a source document; anything inferred
+         is flagged inline. Review before merge. -->
+    <section id="results">
+        <div class="section-inner reveal">
+            <p class="section-label">Results</p>
+            <h2 class="section-title">Recent builds</h2>
+            <p class="section-subtitle">I build for my own work first, then bring the same approach to client engagements. Here's some of what that looks like.</p>
+            <div class="cards-grid">
+                <div class="card">
+                    <span class="service-tag">From my own stack</span>
+                    <h3>One assistant became a team of agents</h3>
+                    <p>I rebuilt my personal AI assistant into a team of specialized agents, each running on the cheapest model that can do the job. Routing the simple work to lighter models cut my token spend by an estimated 40 to 60 percent, and quick checks that took 5 to 8 seconds now come back in under 2.</p>
+                    <!-- DRAFT: numbers come from Chris's own blog (blog_multi_agent_command_center.md); the 40-60% figure is stated there as an estimate, kept as "estimated" here. -->
+                </div>
+                <div class="card">
+                    <span class="service-tag">From my own stack</span>
+                    <h3>Private AI on my own hardware</h3>
+                    <p>I run open source AI models on my own hardware, with automatic fallback to cloud models when a job needs more power. Sensitive data never leaves my network. It's the same privacy-first thinking I bring to organizations that handle student data every day.</p>
+                    <!-- DRAFT: from blog_building_local_ai_infrastructure.md. The blog describes the build in progress; "I run" as an ongoing state is inferred from the stack being live since then. -->
+                </div>
+                <div class="card">
+                    <span class="service-tag">Client engagement &middot; in progress</span>
+                    <h3>A tool for a parent's hardest moments</h3>
+                    <p>A parent of a child with a complex disability asked me to help build a tool for the moments no resource covers: what do I do right now. Before writing any code, I mapped six problem areas, ran research across roughly 60 sources, and set a measurable target for each one, the same way I write IEP goals.</p>
+                    <!-- DRAFT: anonymized on purpose. Naming consent for this family is NOT yet confirmed (kyle-rohde-project-brief.md), so no names, no diagnosis. Discovery/design phase only; no outcomes claimed. -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
     <section id="services">
         <div class="section-inner reveal">
             <p class="section-label">Services</p>
             <h2 class="section-title">AI implementation and development for education organizations</h2>
-            <p class="section-subtitle">Strategy, custom solutions, and hands-on build-out. No vendor BS.</p>
+            <p class="section-subtitle">Strategy, custom solutions, and hands-on build-out. Scoped to your reality, not a template.</p>
             <div class="services-grid">
                 <div class="service-card">
-                    <h3>Half-Day Session</h3>
-                    <p>4 hours of strategic planning. Perfect for districts and schools exploring AI implementation.</p>
+                    <h3>Quick Win</h3>
+                    <p>A short, focused engagement that solves one specific problem fast. Perfect for organizations that want a real result before a bigger commitment.</p>
                     <ul class="service-features">
-                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Pre-session needs assessment</li>
-                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> AI strategy and implementation roadmap</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Focused needs assessment</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> One problem, solved end to end</li>
                         <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Tool recommendations and vetting</li>
                         <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> 30-day email support</li>
                     </ul>
                     <a href="#contact" class="btn btn-ghost btn-arrow" style="width:100%;justify-content:center;">Let's Talk</a>
                 </div>
                 <div class="service-card featured">
-                    <h3>Full-Day Deep Dive</h3>
-                    <p>8 hours hands-on. Perfect for districts ready to deploy AI across classrooms and operations immediately.</p>
+                    <h3>Deep Implementation</h3>
+                    <p>Full implementation work for teams ready to embed AI into how they actually operate. Hands-on, from planning through working tools.</p>
                     <ul class="service-features">
-                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Everything in half-day</li>
+                        <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Everything in Quick Win</li>
                         <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Live staff training session</li>
                         <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Custom AI tool development</li>
                         <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Workflow automation setup</li>
@@ -678,8 +713,8 @@
                     <a href="https://calendar.app.google/HjzF8PMaQbrM2GGF8" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-arrow" style="width:100%;justify-content:center;">Book a Call</a>
                 </div>
                 <div class="service-card">
-                    <h3>Custom Engagements</h3>
-                    <p>Multi-day training, advisory retainers, district-wide rollouts, and ongoing implementation support.</p>
+                    <h3>Ongoing Partnership</h3>
+                    <p>Continuous support, advisory, and build work for organizations going long on AI. I stay in the work with you.</p>
                     <ul class="service-features">
                         <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Multi-day training programs</li>
                         <li><span class="check"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Custom AI solution development</li>
@@ -713,7 +748,7 @@
             <p class="section-subtitle">Practical conversations about implementing AI in education. What works, what doesn't, and why.</p>
             <div class="podcast-layout">
                 <div class="podcast-art" style="padding:0;background:none;border:none;">
-                    <img src="images/evalve-out-loud-publication-logo.png" alt="Evalve Out Loud podcast cover art, practical AI for educators" style="width:100%;height:100%;object-fit:cover;border-radius:20px;">
+                    <img src="images/evalve-out-loud-logo-640.jpg" alt="Evalve Out Loud podcast cover art, practical AI for educators" width="640" height="640" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;border-radius:20px;">
                 </div>
                 <div class="podcast-info">
                     <h3>Real talk. No hype. No sales pitch.</h3>
@@ -722,7 +757,7 @@
                     <a href="https://open.spotify.com/show/2XxiECqkClGITMcBb6XNmL" target="_blank" rel="noopener" class="btn btn-primary btn-arrow">Listen to the Podcast</a>
                     <p class="small-note" style="margin-top:0.75rem;">Listen on Spotify, Apple Podcasts, or YouTube.</p>
                     <div class="podcast-platforms">
-                        <a href="https://podcasts.apple.com/us/podcast/evalve-out-loud/id6784753821" target="_blank" rel="noopener" class="platform-badge">Apple Podcasts</a>
+<a href="https://podcasts.apple.com/us/podcast/evalve-out-loud/id6784753821" target="_blank" rel="noopener" class="platform-badge">Apple Podcasts</a>
                         <a href="https://open.spotify.com/show/2XxiECqkClGITMcBb6XNmL" target="_blank" rel="noopener" class="platform-badge">Spotify</a>
                         <a href="https://www.youtube.com/@EvalveOutLoud" target="_blank" rel="noopener" class="platform-badge">YouTube</a>
                     </div>
@@ -753,7 +788,7 @@
                 </details>
                 <details class="faq-item">
                     <summary>What does an engagement look like?</summary>
-                    <div class="faq-answer">It usually starts with a free discovery call so I understand what you're dealing with. From there it can be a half-day strategy session, a full-day deep dive with hands-on tool building and staff training, or a custom engagement like a multi-day rollout or an advisory retainer. I scope it to your reality, not a fixed template.</div>
+                    <div class="faq-answer">It usually starts with a free discovery call so I understand what you're dealing with. From there it can be a quick win engagement that solves one specific problem fast, a deeper implementation with hands-on tool building and staff training, or an ongoing partnership with advisory and build work over time. I scope it to your reality, not a fixed template.</div>
                 </details>
                 <details class="faq-item">
                     <summary>How does your special education background fit in?</summary>
@@ -771,7 +806,7 @@
         <div class="section-inner reveal">
             <p class="section-label">Stay in the Loop</p>
             <h2 class="section-title">Get the Newsletter</h2>
-            <p class="section-subtitle">Weekly insights on AI, education, and innovation from Evalve Out Loud &mdash; delivered to your inbox.</p>
+            <p class="section-subtitle">Weekly insights on AI, education, and innovation from Evalve Out Loud, delivered to your inbox.</p>
             <iframe title="Subscribe to the Evalve Out Loud newsletter" src="https://subscribe-forms.beehiiv.com/ee144ccc-5793-4359-9bdf-3aa50b263a88?utm_source=website&amp;utm_medium=embed&amp;utm_campaign=email_cta_bottom" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" style="width:100%;max-width:500px;min-height:420px;margin:1.5rem auto 0;display:block;background-color:transparent;border-radius:10px;"></iframe>
             <p class="small-note">Newsletter not loading? <a href="https://evalveconsulting.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer" style="color:var(--soft-teal);">Subscribe on Beehiiv</a> &middot; Powered by Beehiiv &middot; Unsubscribe anytime</p>
         </div>
@@ -829,7 +864,9 @@
                 <li><a href="#hero">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#proof">Proof</a></li>
+                <li><a href="#results">Results</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="/products/">Products</a></li>
                 <li><a href="#podcast">Podcast</a></li>
                 <li><a href="#faq">FAQ</a></li>
                 <li><a href="/workflow-audit/">Invisible Work Audit</a></li>

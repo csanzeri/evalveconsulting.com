@@ -101,6 +101,12 @@
         /* When a product goes live, use this class on its Beehiiv checkout link instead of .soon */
         .product-cta.live { background: var(--soft-teal); color: var(--indigo-darker); transition: all 0.25s; }
         .product-cta.live:hover { background: var(--teal-glow); transform: translateY(-2px); }
+        .product-links { list-style: none; margin: 0 0 1.75rem; padding: 0; flex-grow: 1; }
+        .product-links li { padding: 0.6rem 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: 0.92rem; }
+        .product-links li:last-child { border-bottom: none; }
+        .product-links a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+        .product-links a:hover { color: var(--soft-teal); }
+        .product-links .price { color: var(--soft-teal); font-family: var(--font-heading); font-weight: 600; white-space: nowrap; }
 
         /* NOTIFY / SUBSCRIBE */
         .notify-section { background: var(--indigo-dark); text-align: center; padding: clamp(3rem,8vw,5rem) clamp(1.5rem,5vw,4rem); }
@@ -187,31 +193,39 @@
     <section class="products-section">
         <div class="section-inner">
             <div class="products-grid">
-                <!-- DRAFT (2026-07-03): the three product names and descriptions below are
-                     PLACEHOLDERS I drafted to make the stub feel real. They are not committed
-                     products. Swap them for the real Beehiiv product lineup at launch. -->
-                <!-- PRODUCT CARD TEMPLATE. To launch a product:
-                     1. Create the product in Beehiiv (Evalve Out Loud publication) and set it live.
-                     2. Copy the product's checkout URL and replace the .soon span with:
-                        <a class="product-cta live" href="PASTE-BEEHIIV-CHECKOUT-URL" target="_blank" rel="noopener">Get it now</a>
-                     3. Update the tag, title, and description. -->
+                <!-- Live Beehiiv product lineup (launched 2026-07-06). Three families of three. -->
                 <div class="product-card">
-                    <span class="product-tag">Coming Soon</span>
-                    <h2>AI Prompt Library for Education Teams</h2>
-                    <p>Ready-to-use prompts for the work that eats your week: parent communication, meeting summaries, differentiation, and documentation. Organized by role and task.</p>
-                    <span class="product-cta soon">Coming soon</span>
+                    <span class="product-tag">Prompt Packs</span>
+                    <h2>Prompt Packs for Education Teams</h2>
+                    <p>Fill-in prompts for the writing that eats your week. Interactive tools that run in your browser, remember your details, and keep student names away from public AI.</p>
+                    <ul class="product-links">
+                        <li><a href="https://newsletter.evalveconsulting.com/products/parent-communication-prompt-pack" target="_blank" rel="noopener">Parent Communication Prompt Pack</a><span class="price">$9</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/meeting-prep-and-summary-prompts" target="_blank" rel="noopener">Meeting Prep and Summary Prompts</a><span class="price">$9</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/sped-documentation-prompt-pack" target="_blank" rel="noopener">SPED Documentation Prompt Pack</a><span class="price">$9</span></li>
+                    </ul>
+                    <a class="product-cta live" href="https://newsletter.evalveconsulting.com/products/parent-communication-prompt-pack" target="_blank" rel="noopener">Start with Parent Communication</a>
                 </div>
                 <div class="product-card">
-                    <span class="product-tag">Coming Soon</span>
-                    <h2>Workflow Automation Starter Kit</h2>
-                    <p>Step-by-step recipes for automating the repetitive work in a school office or department, using tools your district already has. No coding background required.</p>
-                    <span class="product-cta soon">Coming soon</span>
+                    <span class="product-tag">Workflow Recipes</span>
+                    <h2>Workflow Recipes</h2>
+                    <p>Step-by-step systems for the repetitive work in a school office or department. Manual version first, automation optional, and nothing sends without you.</p>
+                    <ul class="product-links">
+                        <li><a href="https://newsletter.evalveconsulting.com/products/email-triage-recipe" target="_blank" rel="noopener">The Email Triage Recipe</a><span class="price">$9</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/self-assembling-meeting-brief" target="_blank" rel="noopener">The Self-Assembling Meeting Brief</a><span class="price">$9</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/batch-communication-recipe" target="_blank" rel="noopener">The Batch Communication Recipe</a><span class="price">$9</span></li>
+                    </ul>
+                    <a class="product-cta live" href="https://newsletter.evalveconsulting.com/products/email-triage-recipe" target="_blank" rel="noopener">Start with Email Triage</a>
                 </div>
                 <div class="product-card">
-                    <span class="product-tag">Coming Soon</span>
-                    <h2>AI Implementation Templates</h2>
-                    <p>The planning documents I use in real engagements: pilot plans, staff communication templates, and evaluation checklists you can adapt to your organization.</p>
-                    <span class="product-cta soon">Coming soon</span>
+                    <span class="product-tag">Planning Tools</span>
+                    <h2>AI Implementation Planning Tools</h2>
+                    <p>The planning documents I use in real engagements, as fillable workbooks: pick the right pilot, run it on a 90-day clock, and end it with an honest decision.</p>
+                    <ul class="product-links">
+                        <li><a href="https://newsletter.evalveconsulting.com/products/30-60-90-ai-implementation-plan" target="_blank" rel="noopener">The 30/60/90 Plan: Fillable Workbook</a><span class="price">$9</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/ai-pilot-plan-builder" target="_blank" rel="noopener">The AI Pilot Plan Builder</a><span class="price">$9</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/day-90-keep-kill-scale-scorecard" target="_blank" rel="noopener">The Day-90 Keep/Kill/Scale Scorecard</a><span class="price">$9</span></li>
+                    </ul>
+                    <a class="product-cta live" href="https://newsletter.evalveconsulting.com/products/30-60-90-ai-implementation-plan" target="_blank" rel="noopener">Start with the 30/60/90 Plan</a>
                 </div>
             </div>
         </div>
@@ -219,8 +233,8 @@
 
     <section class="notify-section">
         <p class="section-label">First Access</p>
-        <h2>Want to know when these launch?</h2>
-        <p>Subscribers to Evalve Out Loud hear first, and early subscribers get launch pricing.</p>
+        <h2>New tools land here first</h2>
+        <p>Subscribers to Evalve Out Loud hear about new products first, get launch pricing, and can earn several of these free through the referral program.</p>
         <iframe title="Subscribe to the Evalve Out Loud newsletter" src="https://subscribe-forms.beehiiv.com/ee144ccc-5793-4359-9bdf-3aa50b263a88?utm_source=website&amp;utm_medium=embed&amp;utm_campaign=products_page" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" style="width:100%;max-width:500px;min-height:420px;margin:1.5rem auto 0;display:block;background-color:transparent;border-radius:10px;"></iframe>
         <p class="small-note">Newsletter not loading? <a href="https://evalveconsulting.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe on Beehiiv</a> &middot; Unsubscribe anytime</p>
     </section>

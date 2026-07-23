@@ -303,7 +303,7 @@
 
         const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
         const fmtDate = d => {
-            if (!d) return '—';
+            if (!d) return 'n/a';
             const dt = new Date(d + 'T12:00:00');
             return isNaN(dt) ? esc(d) : dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
         };
@@ -317,7 +317,7 @@
                 (job.scope_summary ? '<div class="job-summary">' + esc(job.scope_summary) + '</div>' : '') + '</td>' +
                 '<td class="job-org">' + esc(job.org) + '</td>' +
                 '<td><span class="type-badge type-' + typeKey + '">' + typeLabel + '</span></td>' +
-                '<td class="job-loc">' + esc(job.location || '—') + '</td>' +
+                '<td class="job-loc">' + esc(job.location || 'n/a') + '</td>' +
                 '<td class="job-date">' + fmtDate(job.posted_date) + '</td>' +
                 '</tr>';
         }

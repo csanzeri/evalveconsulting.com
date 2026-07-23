@@ -24,6 +24,7 @@ School districts, Regional Offices of Education, education cooperatives, univers
 
 - [AI Readiness Assessment](https://evalveconsulting.com/ai-readiness/): find out where your organization stands.
 - [Invisible Work Audit](https://evalveconsulting.com/workflow-audit/): surface the repetitive work eating your team's time.
+- [AI-in-Education Job Board](https://evalveconsulting.com/jobs/): a weekly, curated drop of open AI roles in K-12 districts, edtech, ROEs, and higher ed. Updated every Tuesday.
 - [District AI Pilot Checklist](https://evalveconsulting.com/pilot-checklist/): a structured way to run your first AI pilot.
 
 ## Products

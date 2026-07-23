@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unlocking the board… | Evalve Consulting</title>
+    <meta name="robots" content="noindex">
+    <style>
+        body { font-family: -apple-system, sans-serif; background: #110f30; color: #e8e8ec; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+    </style>
+</head>
+<body>
+    <p>Unlocking the full board&hellip; <a href="/jobs/?unlocked=1" style="color:#3FA7A3;">Continue</a></p>
+    <script>
+    // Beehiiv's success redirect can land here either inside the embed iframe or
+    // as a top-level navigation. Same-origin either way, so set the unlock flag
+    // and send the top window back to the board.
+    try { localStorage.setItem('evalve_jobs_unlocked', '1'); } catch (e) {}
+    try {
+        if (window.top !== window.self) {
+            window.top.location.href = '/jobs/?unlocked=1#board';
+        } else {
+            location.replace('/jobs/?unlocked=1#board');
+        }
+    } catch (e) {
+        location.replace('/jobs/?unlocked=1#board');
+    }
+    </script>
+</body>
+</html>

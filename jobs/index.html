@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The District AI Pilot Checklist | Evalve Consulting</title>
+    <title>The AI-in-Education Job Board | Evalve Consulting</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <meta name="theme-color" content="#110f30">
-    <meta name="description" content="A free 90-day map for running your first AI pilot, without betting the district on it. Four sections, FERPA included, vendor-neutral. From Dr. Chris Sanzeri.">
-    <link rel="canonical" href="https://evalveconsulting.com/pilot-checklist/">
-    <meta property="og:title" content="The District AI Pilot Checklist | Evalve Consulting">
-    <meta property="og:description" content="A 90-day map for running your first AI pilot, without betting the district on it. Free, vendor-neutral, and useful even if you never hire me.">
+    <meta name="description" content="A weekly, curated drop of AI roles in education: K-12 districts, edtech, regional offices of education, and higher ed. New board every Tuesday morning from Dr. Chris Sanzeri.">
+    <link rel="canonical" href="https://evalveconsulting.com/jobs/">
+    <meta property="og:title" content="The AI-in-Education Job Board | Evalve Consulting">
+    <meta property="og:description" content="New AI roles in K-12 districts, edtech, ROEs, and higher ed, curated weekly. Fresh drop every Tuesday morning.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://evalveconsulting.com/pilot-checklist/">
+    <meta property="og:url" content="https://evalveconsulting.com/jobs/">
     <meta property="og:site_name" content="Evalve Consulting">
     <meta property="og:image" content="https://evalveconsulting.com/images/trace.png">
     <meta property="og:image:alt" content="Evalve Consulting logo">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="The District AI Pilot Checklist | Evalve Consulting">
-    <meta name="twitter:description" content="A 90-day map for running your first AI pilot, without betting the district on it. Free, vendor-neutral, FERPA included.">
+    <meta name="twitter:title" content="The AI-in-Education Job Board | Evalve Consulting">
+    <meta name="twitter:description" content="New AI roles in K-12 districts, edtech, ROEs, and higher ed, curated weekly. Fresh drop every Tuesday morning.">
     <meta name="twitter:image" content="https://evalveconsulting.com/images/trace.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -74,7 +74,7 @@
         .mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--off-white); margin: 5px 0; transition: all 0.3s; border-radius: 2px; }
 
         /* HERO */
-        .hero { min-height: 80vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 8rem 2rem 4rem; }
+        .hero { min-height: 60vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 8rem 2rem 3rem; }
         .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 65% 30%, rgba(46,43,111,0.6) 0%, transparent 60%), radial-gradient(ellipse 60% 70% at 30% 80%, rgba(63,167,163,0.06) 0%, transparent 50%), var(--indigo-darker); }
         .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(63,167,163,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(63,167,163,0.025) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black, transparent); -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black, transparent); }
         .hero-content { position: relative; z-index: 2; max-width: 760px; text-align: center; }
@@ -94,29 +94,15 @@
         .btn-arrow:hover::after { transform: translateY(3px); }
 
         /* SECTIONS */
-        section { padding: clamp(3rem,8vw,6rem) clamp(1.5rem,5vw,4rem); }
-        .section-inner { max-width: 1000px; margin: 0 auto; }
+        section { padding: clamp(3rem,8vw,5rem) clamp(1.5rem,5vw,4rem); }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
         .section-label { font-family: var(--font-heading); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--soft-teal); font-weight: 600; margin-bottom: 0.75rem; }
         .section-title { font-family: var(--font-heading); font-size: clamp(1.8rem,3.5vw,2.6rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 1rem; letter-spacing: -0.01em; }
         .section-subtitle { font-size: 1.05rem; color: var(--muted); max-width: 620px; line-height: 1.75; }
         .divider { max-width: 1000px; margin: 0 auto; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
 
-        /* VALUE CARDS */
-        .value-section { background: var(--indigo-dark); }
-        .value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-        .value-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; transition: all 0.3s; position: relative; overflow: hidden; }
-        .value-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--soft-teal), transparent); opacity: 0; transition: opacity 0.3s; }
-        .value-card:hover { border-color: rgba(63,167,163,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-        .value-card:hover::before { opacity: 1; }
-        .value-num { font-family: var(--font-heading); font-size: 0.8rem; font-weight: 700; color: var(--soft-teal); letter-spacing: 0.08em; margin-bottom: 0.85rem; }
-        .value-card h3 { font-family: var(--font-heading); font-size: 1.2rem; color: var(--white); margin-bottom: 0.6rem; font-weight: 600; }
-        .value-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
-        .value-note { margin-top: 2.5rem; padding: 1.5rem 1.75rem; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); display: flex; gap: 1rem; align-items: flex-start; }
-        .value-note .nicon { color: var(--soft-teal); font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
-        .value-note p { color: var(--off-white); font-size: 0.95rem; line-height: 1.7; }
-
-        /* GATE */
-        .gate-section { text-align: center; position: relative; overflow: hidden; }
+        /* GATE / SIGNUP */
+        .gate-section { text-align: center; position: relative; overflow: hidden; padding-top: clamp(2rem,5vw,3rem); }
         .gate-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 50% 0%, rgba(63,167,163,0.07) 0%, transparent 70%); }
         .gate-inner { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
         .gate-section .section-title { margin-bottom: 0.75rem; }
@@ -124,11 +110,41 @@
         /* Beehiiv injects an inline width:500px; the !important cap keeps it from overflowing phones */
         .beehiiv-embed { width: 100% !important; max-width: 500px; min-height: 360px; margin: 2rem auto 0; display: block; background-color: transparent; border-radius: 10px; }
         .small-note { margin-top: 1rem; font-size: 0.8rem; color: var(--muted); }
-        .small-note a { color: var(--soft-teal); text-decoration: none; }
-        .gate-points { list-style: none; display: inline-flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: center; margin-top: 1.5rem; }
-        .gate-points li { display: flex; align-items: center; gap: 0.5rem; color: var(--muted); font-size: 0.85rem; }
-        .gate-points .gp-check { color: var(--soft-teal); display: inline-flex; align-items: center; }
-        .gate-points .gp-check svg { display: block; }
+        .small-note a, .small-note button { color: var(--soft-teal); text-decoration: none; background: none; border: none; font: inherit; cursor: pointer; padding: 0; }
+
+        /* BOARD */
+        .board-section { background: var(--indigo-dark); }
+        .board-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-bottom: 2rem; }
+        .board-week { font-family: var(--font-heading); font-size: 0.85rem; color: var(--muted); }
+        .board-week strong { color: var(--soft-teal); font-weight: 600; }
+        .board-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+        table.board { width: 100%; border-collapse: collapse; min-width: 720px; }
+        table.board th { font-family: var(--font-heading); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--soft-teal); font-weight: 600; text-align: left; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); white-space: nowrap; }
+        table.board td { padding: 1.1rem 1.25rem; border-bottom: 1px solid rgba(63,167,163,0.08); vertical-align: top; font-size: 0.92rem; }
+        table.board tbody tr:last-child td { border-bottom: none; }
+        table.board tbody tr { transition: background 0.2s; }
+        table.board tbody tr:hover { background: rgba(63,167,163,0.04); }
+        .job-title a { color: var(--white); font-family: var(--font-heading); font-weight: 600; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s, color 0.2s; }
+        .job-title a:hover { color: var(--teal-glow); border-bottom-color: var(--teal-glow); }
+        .job-summary { color: var(--muted); font-size: 0.85rem; margin-top: 0.35rem; line-height: 1.6; max-width: 420px; }
+        .job-org { color: var(--off-white); font-weight: 600; }
+        .job-loc, .job-date { color: var(--muted); white-space: nowrap; font-size: 0.85rem; }
+        .type-badge { display: inline-block; font-family: var(--font-heading); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; padding: 0.25rem 0.6rem; border-radius: 999px; border: 1px solid; white-space: nowrap; }
+        .type-district { color: #4dc9c4; border-color: rgba(77,201,196,0.4); background: rgba(77,201,196,0.08); }
+        .type-edtech { color: #9d9bff; border-color: rgba(157,155,255,0.4); background: rgba(157,155,255,0.08); }
+        .type-roe-esa { color: #e8b96a; border-color: rgba(232,185,106,0.4); background: rgba(232,185,106,0.08); }
+        .type-higher-ed { color: #7fc98f; border-color: rgba(127,201,143,0.4); background: rgba(127,201,143,0.08); }
+        .type-nonprofit { color: #e88aa4; border-color: rgba(232,138,164,0.4); background: rgba(232,138,164,0.08); }
+
+        /* LOCKED STATE */
+        .locked-zone { position: relative; }
+        .locked-zone .board-table-wrap { max-height: 340px; overflow: hidden; }
+        .locked-rows tr { filter: blur(5px); user-select: none; pointer-events: none; }
+        .lock-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 2.5rem; background: linear-gradient(180deg, transparent 0%, rgba(26,24,69,0.55) 35%, rgba(26,24,69,0.96) 78%); border-radius: 12px; text-align: center; z-index: 2; }
+        .lock-overlay p { color: var(--off-white); font-size: 0.95rem; max-width: 420px; margin: 0 1.5rem 1.1rem; }
+        .lock-overlay .lock-count { font-family: var(--font-heading); font-weight: 700; color: var(--white); }
+        .board-note { margin-top: 1.25rem; font-size: 0.8rem; color: var(--muted); }
+        .board-status { padding: 3rem 1.5rem; text-align: center; color: var(--muted); font-size: 0.95rem; }
 
         /* FOOTER */
         .footer { padding: 3rem clamp(1.5rem,5vw,4rem) 2rem; border-top: 1px solid var(--border); }
@@ -203,66 +219,43 @@
         <div class="hero-bg"></div>
         <div class="hero-grid"></div>
         <div class="hero-content">
-            <div class="hero-eyebrow">Free Download</div>
-            <h1>The District AI Pilot Checklist</h1>
-            <p class="hero-sub">A 90-day map for running your first AI pilot, <em>without betting the district on it.</em></p>
+            <div class="hero-eyebrow">Weekly Drop &middot; Tuesday Mornings</div>
+            <h1>The AI-in-Education <em>Job Board</em></h1>
+            <p class="hero-sub">New AI roles across K-12 districts, edtech, regional offices of education, and higher ed. Curated by hand every week, with a plain-language note on what each role actually does.</p>
             <div class="hero-buttons">
-                <a href="#get-it" class="btn btn-primary btn-arrow">Get the Checklist</a>
-                <a href="/#services" class="btn btn-ghost">See How I Work</a>
+                <a href="#board" class="btn btn-primary btn-arrow">See This Week's Roles</a>
+                <a href="#get-the-drop" class="btn btn-ghost">Get It by Email</a>
             </div>
         </div>
     </section>
 
     <div class="divider"></div>
 
-    <section class="value-section">
-        <div class="section-inner reveal">
-            <p class="section-label">What's Inside</p>
-            <h2 class="section-title">A real plan, not another think piece</h2>
-            <p class="section-subtitle">Most AI advice for schools is either hype or fear. This is the checklist I use to help teams run a pilot that's small enough to be safe and real enough to learn from. Four sections, start to finish.</p>
-            <div class="value-grid">
-                <div class="value-card">
-                    <div class="value-num">01</div>
-                    <h3>Pick the right first pilot</h3>
-                    <p>How to choose a use case that's narrow, low-risk, and genuinely useful, so a win is actually a win and a miss costs you almost nothing.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-num">02</div>
-                    <h3>Set the guardrails, including FERPA</h3>
-                    <p>The privacy, data, and student-information questions to settle before anyone touches a tool. FERPA is built into the checklist, not bolted on after.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-num">03</div>
-                    <h3>Run the 90 days</h3>
-                    <p>Who's involved, what to communicate, and the week-by-week rhythm that keeps a pilot from quietly stalling out after the kickoff meeting.</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-num">04</div>
-                    <h3>Measure and decide</h3>
-                    <p>How to tell whether it worked, what to show leadership, and how to make the keep-it, kill-it, or scale-it call with evidence instead of vibes.</p>
-                </div>
-            </div>
-            <div class="value-note">
-                <span class="nicon">&#9733;</span>
-                <p>It's vendor-neutral and free. No tool names you have to buy, no strings. It's useful even if you never hire me, and that's the point.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <section class="gate-section" id="get-it">
+    <section class="gate-section" id="get-the-drop">
         <div class="gate-inner reveal">
-            <p class="section-label">Get It Now</p>
-            <h2 class="section-title">Where should I send it?</h2>
-            <p class="section-subtitle">Drop your email and the checklist is yours right away. I'll also send the occasional practical note on AI in education from Evalve Out Loud. Unsubscribe anytime.</p>
-            <iframe title="Get the District AI Pilot Checklist" src="https://subscribe-forms.beehiiv.com/8266c9f2-8f56-4f48-830e-19048e62a575?utm_source=website&amp;utm_medium=embed&amp;utm_campaign=pilot_checklist_gate" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no"></iframe>
-            <ul class="gate-points">
-                <li><span class="gp-check"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Instant download</li>
-                <li><span class="gp-check"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> FERPA included</li>
-                <li><span class="gp-check"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><use href="/images/evalve-icons.svg#evalve-check-circle"></use></svg></span> Vendor-neutral</li>
-            </ul>
-            <p class="small-note">Form not loading? <a href="https://evalveconsulting.beehiiv.com/subscribe" target="_blank" rel="noopener noreferrer">Subscribe on Beehiiv</a> and reply, and I'll send it over.</p>
+            <p class="section-label">The Tuesday Drop</p>
+            <h2 class="section-title">Get the drop in your inbox Tuesday mornings.</h2>
+            <p class="section-subtitle">One email a week with every new AI role in education I found, before it hits the feed. Subscribing also unlocks the full board below. Unsubscribe anytime.</p>
+            <iframe title="Get the AI-in-Education Job Board drop" src="https://subscribe-forms.beehiiv.com/574a35d4-5960-49d6-91d1-2ce268203526?utm_source=website&amp;utm_medium=embed&amp;utm_campaign=job_board_gate" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no"></iframe>
+            <p class="small-note">Already subscribed? <button type="button" id="alreadySubscribed">Unlock the full board</button></p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="board-section" id="board">
+        <div class="section-inner reveal">
+            <div class="board-head">
+                <div>
+                    <p class="section-label">This Week's Board</p>
+                    <h2 class="section-title" style="margin-bottom:0.25rem;">Open AI roles in education</h2>
+                </div>
+                <p class="board-week" id="boardWeek"></p>
+            </div>
+            <div id="boardZone">
+                <div class="board-status">Loading this week's roles&hellip;</div>
+            </div>
+            <p class="board-note">Every listing links to the original employer posting. Roles are verified when the board is assembled; postings can close at any time.</p>
         </div>
     </section>
 
@@ -292,6 +285,90 @@
         document.querySelectorAll('.nav-dropdown-toggle').forEach(b=>{b.addEventListener('click',e=>{e.stopPropagation();const d=b.closest('.nav-dropdown');const o=d.classList.toggle('open');b.setAttribute('aria-expanded',o)})});
         document.addEventListener('click',e=>{document.querySelectorAll('.nav-dropdown.open').forEach(d=>{if(!d.contains(e.target)){d.classList.remove('open');d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false')}})});
         const reveals=document.querySelectorAll('.reveal'),observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:0.08});reveals.forEach(el=>observer.observe(el));
+    </script>
+    <script>
+    (function () {
+        const UNLOCK_KEY = 'evalve_jobs_unlocked';
+        const FREE_ROWS = 3;
+        const TYPE_LABELS = { 'district': 'K-12 District', 'edtech': 'Edtech', 'roe-esa': 'ROE / ESA', 'higher-ed': 'Higher Ed', 'nonprofit': 'Nonprofit' };
+
+        const params = new URLSearchParams(location.search);
+        if (params.get('unlocked') === '1') {
+            try { localStorage.setItem(UNLOCK_KEY, '1'); } catch (e) {}
+            history.replaceState(null, '', location.pathname + location.hash);
+        }
+        function isUnlocked() {
+            try { return localStorage.getItem(UNLOCK_KEY) === '1'; } catch (e) { return false; }
+        }
+
+        const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const fmtDate = d => {
+            if (!d) return '—';
+            const dt = new Date(d + 'T12:00:00');
+            return isNaN(dt) ? esc(d) : dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        };
+
+        function rowHtml(job) {
+            const typeKey = esc(job.org_type || 'edtech');
+            const typeLabel = TYPE_LABELS[job.org_type] || esc(job.org_type || '');
+            const url = /^https?:\/\//i.test(job.source_url || '') ? esc(job.source_url) : '#';
+            return '<tr>' +
+                '<td class="job-title"><a href="' + url + '" target="_blank" rel="noopener noreferrer">' + esc(job.title) + '</a>' +
+                (job.scope_summary ? '<div class="job-summary">' + esc(job.scope_summary) + '</div>' : '') + '</td>' +
+                '<td class="job-org">' + esc(job.org) + '</td>' +
+                '<td><span class="type-badge type-' + typeKey + '">' + typeLabel + '</span></td>' +
+                '<td class="job-loc">' + esc(job.location || '—') + '</td>' +
+                '<td class="job-date">' + fmtDate(job.posted_date) + '</td>' +
+                '</tr>';
+        }
+
+        function render(data) {
+            const zone = document.getElementById('boardZone');
+            const jobs = (data && Array.isArray(data.jobs)) ? data.jobs : [];
+            if (data && data.week_of) {
+                document.getElementById('boardWeek').innerHTML = 'Week of <strong>' + esc(data.week_of) + '</strong> &middot; ' + jobs.length + ' roles';
+            }
+            if (!jobs.length) {
+                zone.innerHTML = '<div class="board-status">The next drop lands Tuesday morning. Subscribe above and it will find you.</div>';
+                return;
+            }
+            const unlocked = isUnlocked();
+            const visible = unlocked ? jobs : jobs.slice(0, FREE_ROWS);
+            const hidden = unlocked ? [] : jobs.slice(FREE_ROWS);
+            let html = '<div class="' + (hidden.length ? 'locked-zone' : '') + '">' +
+                '<div class="board-table-wrap"><table class="board">' +
+                '<thead><tr><th>Role</th><th>Organization</th><th>Type</th><th>Location</th><th>Posted</th></tr></thead>' +
+                '<tbody>' + visible.map(rowHtml).join('') +
+                (hidden.length ? '<tbody class="locked-rows">' + hidden.slice(0, 4).map(rowHtml).join('') + '</tbody>' : '') +
+                '</tbody></table></div>';
+            if (hidden.length) {
+                html += '<div class="lock-overlay">' +
+                    '<p><span class="lock-count">' + hidden.length + ' more role' + (hidden.length === 1 ? '' : 's') + '</span> on this week\'s board. Drop your email to unlock the full list and get next week\'s drop first.</p>' +
+                    '<a href="#get-the-drop" class="btn btn-primary">Unlock the Full Board</a>' +
+                    '</div>';
+            }
+            html += '</div>';
+            zone.innerHTML = html;
+        }
+
+        document.getElementById('alreadySubscribed').addEventListener('click', function () {
+            try { localStorage.setItem(UNLOCK_KEY, '1'); } catch (e) {}
+            load();
+            document.getElementById('board').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        let cached = null;
+        function load() {
+            if (cached) { render(cached); return; }
+            fetch('/jobs/jobs.json', { cache: 'no-store' })
+                .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+                .then(data => { cached = data; render(data); })
+                .catch(() => {
+                    document.getElementById('boardZone').innerHTML = '<div class="board-status">Could not load the board right now. Refresh, or subscribe above to get it by email instead.</div>';
+                });
+        }
+        load();
+    })();
     </script>
 </body>
 </html>

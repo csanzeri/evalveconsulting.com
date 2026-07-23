@@ -1,0 +1,123 @@
+{
+  "week_of": "2026-07-28",
+  "updated": "2026-07-23T15:30:00.000Z",
+  "jobs": [
+    {
+      "title": "Director of Artificial Intelligence (AI) & Emerging Technologies (SY26-27)",
+      "org": "Boston Public Schools",
+      "org_type": "district",
+      "location": "Boston, MA",
+      "source_url": "https://bostonpublicschools.schoolspring.com/?jobid=5746929",
+      "posted_date": "2026-06-26",
+      "scope_summary": "Leads district-wide AI strategy, governance, pilots, vendor evaluation, and staff AI literacy training. Applications close July 31."
+    },
+    {
+      "title": "Senior Director, AI Transformation",
+      "org": "Amplify",
+      "org_type": "edtech",
+      "location": "Remote (US)",
+      "source_url": "https://amplify.wd1.myworkdayjobs.com/en-US/Amplify_Careers/job/Remote---United-States/Senior-Director--AI-Transformation_Req_12572",
+      "posted_date": null,
+      "scope_summary": "Reports to the CIO to drive enterprise AI adoption at the K-12 curriculum company: prioritization, governance, AI literacy, and ROI measurement."
+    },
+    {
+      "title": "Senior Learning Technologist and AI Analyst",
+      "org": "Union College",
+      "org_type": "higher-ed",
+      "location": "Schenectady, NY",
+      "source_url": "https://jobs.chronicle.com/job/38003343/senior-learning-technologist-and-ai-analyst/",
+      "posted_date": "2026-06-17",
+      "scope_summary": "Owns the college's AI-in-teaching portfolio: faculty development, assessment guidance, policy, and course-level AI integration."
+    },
+    {
+      "title": "Sr Instructional Designer, AI Enhanced Learning",
+      "org": "University of Houston",
+      "org_type": "higher-ed",
+      "location": "Houston, TX",
+      "source_url": "https://jobs.chronicle.com/job/38015815/sr-instructional-designer-ai-enhanced-learning-496548-/",
+      "posted_date": "2026-07-15",
+      "scope_summary": "Advanced instructional design with an emphasis on integrating AI into teaching, learning, and course development."
+    },
+    {
+      "title": "External Affairs Lead",
+      "org": "aiEDU (The AI Education Project)",
+      "org_type": "nonprofit",
+      "location": "Remote (US)",
+      "source_url": "https://job-boards.greenhouse.io/aiedu/jobs/5190740007",
+      "posted_date": "2026-07-20",
+      "scope_summary": "Leads external affairs and partnerships for aiEDU's K-12 AI literacy and AI readiness mission."
+    },
+    {
+      "title": "Chief of Staff & Director of Special Projects",
+      "org": "aiEDU (The AI Education Project)",
+      "org_type": "nonprofit",
+      "location": "Remote (US)",
+      "source_url": "https://job-boards.greenhouse.io/aiedu/jobs/5154518007",
+      "posted_date": "2026-06-08",
+      "scope_summary": "High-trust operator role driving growth and special projects at the nonprofit building AI literacy programs for K-12 schools."
+    },
+    {
+      "title": "Lead Data Scientist",
+      "org": "Brisk Teaching",
+      "org_type": "edtech",
+      "location": "San Francisco, CA (Hybrid)",
+      "source_url": "https://jobs.ashbyhq.com/brisk-teaching/f0227595-54d5-4d6f-b859-0ed395456ea2",
+      "posted_date": null,
+      "scope_summary": "Builds LLM, agent, and RAG-based AI-native workflows for Brisk's K-12 teacher AI assistant."
+    },
+    {
+      "title": "Director, Product (AI Lab)",
+      "org": "Curriculum Associates",
+      "org_type": "edtech",
+      "location": "Remote (US)",
+      "source_url": "https://www.edtech.com/jobs/director-product-ai-lab-6203",
+      "posted_date": null,
+      "scope_summary": "Leads product vision and a PM team for the AI Labs portfolio of AI-driven K-12 learning products."
+    },
+    {
+      "title": "AI Engineer (Digital Workplace)",
+      "org": "ETS (Educational Testing Service)",
+      "org_type": "nonprofit",
+      "location": "Princeton, NJ / Remote",
+      "source_url": "https://www.edtech.com/jobs/ai-engineer-6667",
+      "posted_date": "2026-06-16",
+      "scope_summary": "Builds enterprise AI copilots and intelligent agents at the assessment nonprofit, integrated with Microsoft 365 and Anthropic models."
+    },
+    {
+      "title": "Staff AI Research Engineer",
+      "org": "Duolingo",
+      "org_type": "edtech",
+      "location": "New York, NY",
+      "source_url": "https://careers.duolingo.com/jobs/8610353002?gh_jid=8610353002",
+      "posted_date": null,
+      "scope_summary": "Applied AI research engineering, building and shipping LLM-driven features for language learning."
+    },
+    {
+      "title": "Senior AI Engineering Manager",
+      "org": "Duolingo",
+      "org_type": "edtech",
+      "location": "Pittsburgh, PA",
+      "source_url": "https://careers.duolingo.com/jobs/8583866002?gh_jid=8583866002",
+      "posted_date": null,
+      "scope_summary": "Manages an AI engineering team building generative AI capabilities across Duolingo's education products."
+    },
+    {
+      "title": "Senior Data Scientist (AI Platform)",
+      "org": "Instructure (Canvas LMS)",
+      "org_type": "edtech",
+      "location": "Budapest, Hungary",
+      "source_url": "https://jobs.ashbyhq.com/instructure/ec7a7479-0a98-4e24-8d2d-ab1a213c5dc3",
+      "posted_date": "2026-06-03",
+      "scope_summary": "Data science for the AI Platform powering AI features across Canvas and the Instructure product suite."
+    },
+    {
+      "title": "Learning Designer, Technical/AI",
+      "org": "Coursera",
+      "org_type": "edtech",
+      "location": "Remote (India)",
+      "source_url": "https://job-boards.greenhouse.io/coursera/jobs/5992269004",
+      "posted_date": null,
+      "scope_summary": "Designs technical and AI-focused course content and learning experiences for Coursera's catalog."
+    }
+  ]
+}

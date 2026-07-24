@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now Running | Evalve Consulting</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <meta name="theme-color" content="#110f30">
+    <meta name="description" content="A public, plain-text list of the tools, models, and hosting I'm actually running this quarter, what I'm building, and what I've killed. Specificity is the point. From Dr. Chris Sanzeri.">
+    <link rel="canonical" href="https://evalveconsulting.com/running/">
+    <meta property="og:title" content="Now Running | Evalve Consulting">
+    <meta property="og:description" content="The real stack: what I'm running, what I'm building, and what I've killed. Updated monthly. Version numbers, hosts, and model names included.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://evalveconsulting.com/running/">
+    <meta property="og:site_name" content="Evalve Consulting">
+    <meta property="og:image" content="https://evalveconsulting.com/images/trace.png">
+    <meta property="og:image:alt" content="Evalve Consulting logo">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Now Running | Evalve Consulting">
+    <meta name="twitter:description" content="The real stack: what I'm running, what I'm building, and what I've killed. Updated monthly.">
+    <meta name="twitter:image" content="https://evalveconsulting.com/images/trace.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-indigo: #2E2B6F;
+            --indigo-dark: #1a1845;
+            --indigo-darker: #110f30;
+            --soft-teal: #3FA7A3;
+            --teal-glow: #4dc9c4;
+            --slate-gray: #5C5F66;
+            --white: #FFFFFF;
+            --off-white: #e8e8ec;
+            --muted: #9a9aaf;
+            --surface: #1e1c4a;
+            --border: rgba(63, 167, 163, 0.15);
+            --font-heading: 'Instrument Sans', -apple-system, sans-serif;
+            --font-body: 'Nunito Sans', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body { font-family: var(--font-body); background: var(--indigo-darker); color: var(--off-white); line-height: 1.7; font-size: 16px; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 clamp(1.5rem,5vw,4rem); height: 72px; display: flex; align-items: center; justify-content: space-between; background: rgba(17,15,48,0.8); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); transition: all 0.3s; }
+        .nav.scrolled { background: rgba(17,15,48,0.95); }
+        .nav-logo-wrap { display: flex; align-items: center; text-decoration: none; gap: 0.6rem; }
+        .nav-logo-mark { height: 34px; width: auto; }
+        .nav-logo-text { font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem; color: var(--white); letter-spacing: 0.02em; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+        .nav-links a { color: var(--muted); text-decoration: none; font-family: var(--font-heading); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: var(--white); }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--soft-teal); transition: width 0.3s; }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+        .nav-cta { background: var(--soft-teal) !important; color: var(--indigo-darker) !important; padding: 0.5rem 1.25rem !important; border-radius: 6px; font-weight: 600 !important; transition: all 0.2s !important; }
+        .nav-cta:hover { background: var(--teal-glow) !important; transform: translateY(-1px); }
+        .nav-cta::after { display: none !important; }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown-toggle { background: none; border: none; cursor: pointer; color: var(--muted); font-family: var(--font-heading); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; display: inline-flex; align-items: center; gap: 0.4rem; padding: 0; }
+        .nav-dropdown-toggle:hover, .nav-dropdown.open .nav-dropdown-toggle { color: var(--white); }
+        .nav-caret { transition: transform 0.25s ease; flex-shrink: 0; }
+        .nav-dropdown.open .nav-caret { transform: rotate(180deg); }
+        .nav-dropdown-menu { list-style: none; position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(8px); min-width: 240px; background: rgba(17,15,48,0.98); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid var(--border); border-radius: 10px; padding: 0.5rem; display: flex; flex-direction: column; gap: 0.1rem; opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s; box-shadow: 0 12px 40px rgba(0,0,0,0.35); margin: 0; }
+        .nav-dropdown.open .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .nav-dropdown-menu a { display: block; padding: 0.6rem 0.85rem; border-radius: 6px; color: var(--off-white); white-space: nowrap; }
+        .nav-dropdown-menu a::after { display: none; }
+        .nav-dropdown-menu a:hover { background: var(--surface); color: var(--white); }
+        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .mobile-toggle span { display: block; width: 22px; height: 2px; background: var(--off-white); margin: 5px 0; transition: all 0.3s; border-radius: 2px; }
+
+        /* HERO */
+        .hero { min-height: 62vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 9rem 2rem 4rem; }
+        .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 50% at 65% 30%, rgba(46,43,111,0.6) 0%, transparent 60%), radial-gradient(ellipse 60% 70% at 30% 80%, rgba(63,167,163,0.06) 0%, transparent 50%), var(--indigo-darker); }
+        .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(63,167,163,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(63,167,163,0.025) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black, transparent); -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black, transparent); }
+        .hero-content { position: relative; z-index: 2; max-width: 760px; text-align: center; }
+        .hero-eyebrow { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--soft-teal); font-weight: 600; margin-bottom: 1.25rem; }
+        .hero h1 { font-family: var(--font-heading); font-size: clamp(2.2rem,5vw,3.4rem); font-weight: 700; line-height: 1.15; color: var(--white); margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+        .hero h1 em { font-style: normal; color: var(--soft-teal); }
+        .hero-sub { font-size: clamp(1rem,1.8vw,1.15rem); color: var(--muted); max-width: 640px; margin: 0 auto 1.75rem; line-height: 1.8; }
+        .hero-updated { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--off-white); background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 0.4rem 1rem; }
+        .hero-updated .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--teal-glow); box-shadow: 0 0 0 0 rgba(77,201,196,0.6); animation: pulse 2.4s infinite; }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(77,201,196,0.5); } 70% { box-shadow: 0 0 0 8px rgba(77,201,196,0); } 100% { box-shadow: 0 0 0 0 rgba(77,201,196,0); } }
+
+        /* SECTIONS */
+        section { padding: clamp(3rem,7vw,5rem) clamp(1.5rem,5vw,4rem); }
+        .section-inner { max-width: 920px; margin: 0 auto; }
+        .section-label { font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--soft-teal); font-weight: 600; margin-bottom: 0.75rem; }
+        .section-title { font-family: var(--font-heading); font-size: clamp(1.7rem,3.5vw,2.4rem); font-weight: 700; color: var(--white); line-height: 1.2; margin-bottom: 0.85rem; letter-spacing: -0.01em; }
+        .section-subtitle { font-size: 1.02rem; color: var(--muted); max-width: 640px; line-height: 1.75; }
+        .divider { max-width: 920px; margin: 0 auto; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+        .running-section { background: var(--indigo-dark); }
+
+        /* STACK LIST */
+        .stack-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.85rem; }
+        .stack-item { display: grid; grid-template-columns: 210px 1fr; gap: 1.25rem; align-items: baseline; padding: 1.1rem 1.35rem; background: var(--surface); border: 1px solid var(--border); border-left: 2px solid var(--soft-teal); border-radius: 10px; transition: all 0.25s; }
+        .running-section .stack-item { background: rgba(17,15,48,0.5); }
+        .stack-item:hover { border-color: rgba(63,167,163,0.35); border-left-color: var(--teal-glow); transform: translateX(3px); }
+        .stack-name { font-family: var(--font-heading); font-weight: 600; color: var(--white); font-size: 1.02rem; }
+        .stack-name .tag { display: inline-block; margin-top: 0.4rem; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500; color: var(--soft-teal); background: rgba(63,167,163,0.1); border: 1px solid var(--border); border-radius: 5px; padding: 0.1rem 0.45rem; letter-spacing: 0.02em; }
+        .stack-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.65; }
+        .stack-desc code { font-family: var(--font-mono); font-size: 0.85em; color: var(--off-white); background: rgba(255,255,255,0.05); padding: 0.05rem 0.35rem; border-radius: 4px; }
+
+        /* BUILDING CARDS (the three headline updates) */
+        .build-grid { margin-top: 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .build-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.75rem; transition: all 0.3s; position: relative; overflow: hidden; }
+        .build-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--soft-teal), transparent); opacity: 0; transition: opacity 0.3s; }
+        .build-card:hover { border-color: rgba(63,167,163,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .build-card:hover::before { opacity: 1; }
+        .build-icon { font-size: 1.5rem; margin-bottom: 0.85rem; display: block; }
+        .build-card h3 { font-family: var(--font-heading); font-size: 1.2rem; color: var(--white); margin-bottom: 0.6rem; font-weight: 600; }
+        .build-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.65; margin-bottom: 0.9rem; }
+        .build-card .build-status { font-family: var(--font-mono); font-size: 0.72rem; color: var(--soft-teal); letter-spacing: 0.03em; text-transform: uppercase; font-weight: 600; }
+
+        /* KILLED LIST */
+        .killed-list { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
+        .killed-item { display: grid; grid-template-columns: 210px 1fr; gap: 1.25rem; align-items: baseline; padding: 1rem 1.35rem; border: 1px dashed rgba(154,154,175,0.18); border-radius: 10px; }
+        .killed-name { font-family: var(--font-heading); font-weight: 600; color: var(--muted); font-size: 1rem; }
+        .killed-name s { color: var(--slate-gray); text-decoration-thickness: 1.5px; text-decoration-color: rgba(255,120,120,0.6); }
+        .killed-name .killed-date { display: block; margin-top: 0.45rem; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500; color: var(--muted); letter-spacing: 0.02em; }
+        .killed-reason { color: var(--muted); font-size: 0.92rem; line-height: 1.6; }
+
+        /* CTA */
+        .cta-section { text-align: center; position: relative; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 50% 0%, rgba(63,167,163,0.07) 0%, transparent 70%); }
+        .cta-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+        .cta-section .section-title { margin-bottom: 0.75rem; }
+        .cta-section .section-subtitle { margin: 0 auto 2rem; text-align: center; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 1.75rem; border-radius: 8px; font-family: var(--font-heading); font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: all 0.25s; cursor: pointer; border: none; }
+        .btn-primary { background: var(--soft-teal); color: var(--indigo-darker); }
+        .btn-primary:hover { background: var(--teal-glow); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(63,167,163,0.25); }
+        .btn-ghost { background: transparent; color: var(--off-white); border: 1px solid rgba(255,255,255,0.15); }
+        .btn-ghost:hover { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.04); transform: translateY(-2px); }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        /* FOOTER */
+        .footer { padding: 3rem clamp(1.5rem,5vw,4rem) 2rem; border-top: 1px solid var(--border); }
+        .footer-inner { max-width: 920px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .footer-copy { color: var(--muted); font-size: 0.8rem; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 0.75rem 1.5rem; list-style: none; }
+        .footer-links a { color: var(--muted); text-decoration: none; font-family: var(--font-heading); font-size: 0.8rem; font-weight: 500; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--soft-teal); }
+
+        /* REVEAL */
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s, transform 0.7s; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: rgba(17,15,48,0.98); flex-direction: column; padding: 1.5rem 2rem; gap: 1.25rem; border-bottom: 1px solid var(--border); }
+            .nav-links.open { display: flex; }
+            .nav-dropdown { width: 100%; }
+            .nav-dropdown-toggle { justify-content: center; width: 100%; color: var(--muted); font-size: 0.875rem; }
+            .nav-dropdown-menu { position: static; transform: none; opacity: 1; visibility: visible; display: none; background: none; border: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 0.95rem 0 0; min-width: 0; gap: 0.95rem; align-items: center; }
+            .nav-dropdown.open .nav-dropdown-menu { display: flex; transform: none; }
+            .nav-dropdown-menu a { padding: 0; color: var(--muted); }
+            .nav-dropdown-menu a:hover { background: none; color: var(--white); }
+            .mobile-toggle { display: block; }
+            .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+            .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+            .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+            .footer-inner { flex-direction: column; align-items: flex-start; }
+            .stack-item, .killed-item { grid-template-columns: 1fr; gap: 0.45rem; }
+            .stack-name .tag, .killed-name .killed-date { margin-top: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="nav">
+        <a href="/" class="nav-logo-wrap">
+            <svg class="nav-logo-mark" viewBox="2000 1500 8000 5000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <defs>
+                    <linearGradient id="ng1" x1="4611" y1="4705" x2="7265" y2="2842" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#B0B5B8"/><stop offset="0.56" stop-color="#E0E0E0"/><stop offset="1" stop-color="white"/></linearGradient>
+                    <linearGradient id="ng2" x1="4754" y1="4175" x2="7394" y2="2943" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2997A6"/><stop offset="1" stop-color="#6CB9B3"/></linearGradient>
+                    <linearGradient id="ng3" x1="6699" y1="3555" x2="7082" y2="2719" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#6EB9B5"/><stop offset="1" stop-color="#A2D3CD"/></linearGradient>
+                </defs>
+                <path fill="url(#ng1)" d="M6001.88 2026.53c528.34,-45.83 1047.54,85.34 1455.46,365.7 -336.87,-169.19 -840.85,-233.84 -1265.2,-182.08 -906.73,110.59 -1818.63,798.78 -1564.97,1685.27 -233.41,68.76 -424.86,98.39 -644.04,85.43 -3.12,-39.37 -4.83,-79.21 -4.83,-119.53 0,-975.08 881.89,-1735.74 2023.58,-1834.78zm-1194.34 2419.53c276.46,340.03 789.14,504.55 1395.04,415.61 915.15,-134.33 1630.63,-895.57 1618.85,-1617.4 -3.14,-192.37 -43.25,-378.3 -128.08,-536.49 205.53,261.84 326.75,580.89 332.11,925.87 14.76,947.49 -854.07,1817.8 -1994.94,1847.8 -986.55,25.94 -1765.23,-465.5 -1987.84,-1187.83 279.34,106.23 490.47,142.7 764.86,152.43z"/>
+                <path fill="#0D5667" d="M5351.13 5412.25c444.31,-2.93 796.15,-214.96 871.37,-553.73 -6.65,1.05 -13.27,2.18 -19.93,3.15 -605.89,88.94 -1118.57,-75.58 -1395.04,-415.61 -274.39,-9.72 -485.52,-46.2 -764.86,-152.43 168.33,546.23 654.72,960.35 1308.45,1118.62z"/>
+                <path fill="url(#ng2)" d="M6222.5 4858.52c-6.65,1.05 -13.27,2.18 -19.93,3.15 -605.89,88.94 -1118.57,-75.58 -1395.04,-415.61 -274.39,-9.72 -485.52,-46.2 -764.86,-152.43 62.98,204.37 170.5,390.24 314.64,551.15 233.76,258.16 692.57,390.21 1101.06,386.7 348.4,-2.98 660.13,-121.31 764.12,-372.97z"/>
+                <path fill="#5299B7" d="M4467.21 4413.39c-127.06,-21.89 -252.81,-56.2 -395.82,-109 49.9,140.64 114.7,265.09 194.38,373.37 8.14,-154.47 75.3,-242.59 201.44,-264.36z"/>
+                <path fill="url(#ng2)" d="M6226.89 3566.5c370.26,-229.61 500.82,-385.18 439.76,-562.89 -46.49,-135.31 -295.41,-222.75 -677.43,-151.89 -571.03,105.92 -981.15,367.01 -1218.09,665.99 229.79,-562.96 959.85,-1026.81 1660.15,-1073.04 691.39,-45.64 1030.66,225.59 1006.52,597.96 -10.82,166.77 -95.87,343.69 -248.21,507.61 -246.11,264.8 -662.82,500.89 -1188.06,643.91 -851.26,231.8 -1703.38,134.91 -2027.17,-74.38 703.2,43.1 1481.57,-134.77 2252.54,-553.28z"/>
+                <path fill="url(#ng3)" d="M6226.89 3566.5c370.26,-229.61 500.82,-385.18 439.76,-562.89 -18.22,-53.04 -67.56,-98.72 -143.79,-130.39l0.01 0 -0.33 -0.12 -4.29 -1.74c-36.51,-15.62 -39.62,-41.52 -10.41,-78.5 77.23,-97.75 160.07,-186.44 251.21,-263.32 30.1,-25.39 63.68,-34.24 105.02,-28.07 249.3,44.18 422.84,160.34 498.71,334.93 82.05,188.85 18.29,380.59 -95.67,544.07 -313.36,449.54 -1153.73,504.19 -1728.41,496.3 228.61,-82.45 458.74,-185.69 688.2,-310.26z"/>
+            </svg>
+            <span class="nav-logo-text">EVALVE</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#proof">Proof</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/products/">Products</a></li>
+            <li><a href="/#podcast">Podcast</a></li>
+            <li><a href="/running/" class="active">Now Running</a></li>
+            <li><a href="https://newsletter.evalveconsulting.com">Newsletter</a></li>
+            <li class="nav-dropdown">
+                <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Free Resources<svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="/jobs/">AI-in-Education Job Board</a></li>
+                    <li><a href="/workflow-audit/">Invisible Work Audit</a></li>
+                    <li><a href="/ai-readiness/">AI Readiness Assessment</a></li>
+                    <li><a href="/pilot-checklist/">District AI Pilot Checklist</a></li>
+                </ul>
+            </li>
+            <li><a href="/subscribe/">Subscribe</a></li>
+            <li><a href="/#contact" class="nav-cta">Get in Touch</a></li>
+        </ul>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+            <div class="hero-eyebrow">Public changelog</div>
+            <h1>What I'm running <em>right now</em></h1>
+            <p class="hero-sub">Trust is infrastructure. So here's the actual stack: the tools, models, and hosting I'm running this quarter, what I'm building next, and what I've killed along the way. Version numbers and model names included, because specificity is the point.</p>
+            <span class="hero-updated"><span class="dot"></span> Last updated: July 2026</span>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============ WHAT I'M RUNNING ============ -->
+    <section class="running-section">
+        <div class="section-inner reveal">
+            <p class="section-label">// What I'm running</p>
+            <h2 class="section-title">The live stack</h2>
+            <p class="section-subtitle">Everything below is running in production for Evalve today, most of it self-hosted on my own hardware. If you hire me, this is the caliber of build you get, not slideware.</p>
+            <div class="stack-list">
+                <div class="stack-item">
+                    <div class="stack-name">Assistant &amp; orchestration<span class="tag">Claude Code</span></div>
+                    <div class="stack-desc">An always-on executive assistant built on <code>Claude Code</code>, routing work across Opus 4.8, Sonnet, and Haiku 4.5 so the simple jobs run on the cheapest model that can do them. Runs 24/7 on a Mac Mini M4 at home.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-name">Workflow automation<span class="tag">n8n · self-hosted</span></div>
+                    <div class="stack-desc">A self-hosted <code>n8n</code> instance (Docker, on the Mac Mini) runs the Evalve automations: discovery follow-ups, newsletter hand-off, lead-magnet tracking, welcome replies, and error alerts. No Zapier, no per-task SaaS fees.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-name">Local AI inference<span class="tag">Qwen 3 · tinygrad</span></div>
+                    <div class="stack-desc">Open-source models (<code>Qwen 3</code>) served on <code>tinygrad</code> over a Mac Studio M4 Max with an external GPU, with automatic fallback to cloud models when a job needs more power. Sensitive data never leaves the network.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-name">Assistant comms<span class="tag">Matrix / Synapse</span></div>
+                    <div class="stack-desc">A self-hosted <code>Matrix</code> homeserver (Synapse) is becoming the primary channel I talk to the assistant through, read in Element X. Migrating off Telegram, which stays as a fallback.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-name">Ops dashboard<span class="tag">Next.js · Vercel</span></div>
+                    <div class="stack-desc">The Evalve Dashboard (<code>Next.js</code> on Vercel, <code>Supabase</code> Postgres) is the CRM and command center: outreach pipeline, morning briefing, email sync, and calendar, with a test suite kept green.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-name">Newsletter, blog &amp; community<span class="tag">Beehiiv</span></div>
+                    <div class="stack-desc">Evalve Out Loud runs on <code>Beehiiv</code>: the newsletter, a gated blog, and a free community at <code>newsletter.evalveconsulting.com</code>, on a custom sending domain.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-name">This website<span class="tag">GitHub Pages</span></div>
+                    <div class="stack-desc">evalveconsulting.com is a hand-built static site on <code>GitHub Pages</code>, no CMS. Every page is version-controlled and deploys on push. (This page included.)</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-name">Social publishing<span class="tag">Buffer</span></div>
+                    <div class="stack-desc"><code>Buffer</code> schedules to LinkedIn (primary) and Instagram (secondary). The weekly AI Tip Card is rendered from a brand-locked HTML template into a 1080x1350 image.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-name">Podcast production<span class="tag">Descript</span></div>
+                    <div class="stack-desc">Evalve Out Loud is edited in <code>Descript</code> (edit-by-text), recorded on a multicam iPhone rig with a Rode wireless split and a two-track Logic capture for in-person episodes.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-name">Email &amp; calendar<span class="tag">Google · MCP</span></div>
+                    <div class="stack-desc">Gmail and Google Calendar wired into the assistant over MCP for triage and scheduling, with Fantastical as the natural-language calendar front end.</div>
+                </div>
+                <div class="stack-item">
+                    <div class="stack-name">Payments &amp; banking<span class="tag">Stripe · Mercury</span></div>
+                    <div class="stack-desc"><code>Stripe</code> handles product checkout and the working-session booking; <code>Mercury</code> is the business bank.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============ WHAT I'M BUILDING (the three headline updates) ============ -->
+    <section>
+        <div class="section-inner reveal">
+            <p class="section-label">// What I'm building</p>
+            <h2 class="section-title">In the workshop this quarter</h2>
+            <p class="section-subtitle">The active experiments. These are in motion right now, not roadmap wishes. Three fronts have my attention this quarter.</p>
+            <div class="build-grid">
+                <div class="build-card">
+                    <span class="build-icon">&#128241;</span>
+                    <h3>Apps</h3>
+                    <p>Native SwiftUI iOS apps built solo and shipped to TestFlight: <strong>The Companion</strong>, a support tool for parents of kids with complex needs, and <strong>BehaviorTracker</strong>, an IEP-ready data tool. Plus <strong>Evalve to Independence</strong>, an iPad POS-simulation app for life-skills instruction.</p>
+                    <span class="build-status">On TestFlight &middot; iterating</span>
+                </div>
+                <div class="build-card">
+                    <span class="build-icon">&#128260;</span>
+                    <h3>Social media automations</h3>
+                    <p>A repeatable content engine: the weekly AI Tip Card renders from a brand-locked template to a finished image, n8n hands each newsletter issue off to social, and a short-form clip pipeline cuts vertical video out of build sessions and the podcast.</p>
+                    <span class="build-status">Live &middot; expanding the clip engine</span>
+                </div>
+                <div class="build-card">
+                    <span class="build-icon">&#127908;</span>
+                    <h3>Podcast editing automations</h3>
+                    <p>Tightening the Evalve Out Loud pipeline: Descript edit-by-text plus transcript export, loudness-normalized clip exports, and an atomizer that turns one episode into a week of posts. The goal is record once, publish everywhere, with almost no manual editing.</p>
+                    <span class="build-status">Building the atomizer lane</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============ WHAT I KILLED ============ -->
+    <section class="running-section">
+        <div class="section-inner reveal">
+            <p class="section-label">// What I killed</p>
+            <h2 class="section-title">The graveyard</h2>
+            <p class="section-subtitle">Killed tools, left visible on purpose. A clean list hides the learning; the graveyard is where the real decisions show. Each one has a date and a one-line reason.</p>
+            <div class="killed-list">
+                <div class="killed-item">
+                    <div class="killed-name"><s>jarvis-vps + OpenClaw</s><span class="killed-date">Killed 2026-06-03</span></div>
+                    <div class="killed-reason">Retired the cloud VPS and consolidated the whole assistant stack onto hardware I own. Cheaper, more private, one less thing to babysit.</div>
+                </div>
+                <div class="killed-item">
+                    <div class="killed-name"><s>Telegram as primary comms</s><span class="killed-date">Retiring 2026-07</span></div>
+                    <div class="killed-reason">Moving assistant comms to self-hosted Matrix for ownership and control. Telegram stays as a fallback channel, not the front door.</div>
+                </div>
+                <div class="killed-item">
+                    <div class="killed-name"><s>Daily cold-outreach engine</s><span class="killed-date">Demoted 2026-07-06</span></div>
+                    <div class="killed-reason">It ran cheap but converted nothing. Districts hire on referrals, credibility, and case studies, so personal energy moved to content and warm relationships.</div>
+                </div>
+                <div class="killed-item">
+                    <div class="killed-name"><s>Gumroad for products</s><span class="killed-date">Killed 2026-07-03</span></div>
+                    <div class="killed-reason">Consolidated product sales onto Beehiiv so the store lives where the audience already is, instead of a second platform to maintain.</div>
+                </div>
+                <div class="killed-item">
+                    <div class="killed-name"><s>Five-platform social spread</s><span class="killed-date">Killed 2026-07-03</span></div>
+                    <div class="killed-reason">Trying to be everywhere diluted everything. Focused on LinkedIn for text and Instagram for video, with auto-crossposting to the rest for free.</div>
+                </div>
+                <div class="killed-item">
+                    <div class="killed-name"><s>Duplicate morning briefings</s><span class="killed-date">Killed 2026-07-08</span></div>
+                    <div class="killed-reason">Two automations were posting overlapping daily digests. Folded them into a single 6am briefing so the day starts with one message, not three.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta-section">
+        <div class="cta-inner reveal">
+            <p class="section-label">// Want the changes as they ship?</p>
+            <h2 class="section-title">I update this page monthly</h2>
+            <p class="section-subtitle">When something goes live or gets killed, it lands here first and the newsletter gets the short version. If you want to see how an education org actually adopts AI, built in public, subscribe.</p>
+            <div class="cta-buttons">
+                <a href="/subscribe/" class="btn btn-primary">Get the Newsletter</a>
+                <a href="/#services" class="btn btn-ghost">Work With Me</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <span class="footer-copy">&copy; 2026 Evalve Consulting LLC. All rights reserved.</span>
+            <ul class="footer-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/products/">Products</a></li>
+                <li><a href="/running/">Now Running</a></li>
+                <li><a href="/jobs/">AI Job Board</a></li>
+                <li><a href="https://newsletter.evalveconsulting.com">Newsletter</a></li>
+                <li><a href="/subscribe/">Subscribe</a></li>
+                <li><a href="/#contact">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        const nav=document.getElementById('nav');window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)});
+        const toggle=document.getElementById('mobileToggle'),links=document.getElementById('navLinks');toggle.addEventListener('click',()=>{toggle.classList.toggle('active');links.classList.toggle('open')});
+        document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click',()=>{toggle.classList.remove('active');links.classList.remove('open')})});
+        document.querySelectorAll('.nav-dropdown-toggle').forEach(b=>{b.addEventListener('click',e=>{e.stopPropagation();const d=b.closest('.nav-dropdown');const o=d.classList.toggle('open');b.setAttribute('aria-expanded',o)})});
+        document.addEventListener('click',e=>{document.querySelectorAll('.nav-dropdown.open').forEach(d=>{if(!d.contains(e.target)){d.classList.remove('open');d.querySelector('.nav-dropdown-toggle').setAttribute('aria-expanded','false')}})});
+        const reveals=document.querySelectorAll('.reveal'),observer=new IntersectionObserver(e=>{e.forEach(el=>{if(el.isIntersecting)el.target.classList.add('visible')})},{threshold:0.08});reveals.forEach(el=>observer.observe(el));
+    </script>
+</body>
+</html>

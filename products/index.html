@@ -99,14 +99,21 @@
         .product-cta { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.8rem 1.5rem; border-radius: 8px; font-family: var(--font-heading); font-size: 0.9rem; font-weight: 600; text-decoration: none; }
         .product-cta.soon { background: rgba(255,255,255,0.06); color: var(--muted); border: 1px solid var(--border); cursor: default; }
         /* When a product goes live, use this class on its Beehiiv checkout link instead of .soon */
-        .product-cta.live { background: var(--soft-teal); color: var(--indigo-darker); transition: all 0.25s; }
-        .product-cta.live:hover { background: var(--teal-glow); transform: translateY(-2px); }
+        .product-cta.live { background: var(--soft-teal); color: #FFFFFF; transition: all 0.25s; }
+        .product-cta.live:hover { background: #369e9a; transform: translateY(-2px); }
         .product-links { list-style: none; margin: 0 0 1.75rem; padding: 0; flex-grow: 1; }
         .product-links li { padding: 0.6rem 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; font-size: 0.92rem; }
         .product-links li:last-child { border-bottom: none; }
         .product-links a { color: var(--white); text-decoration: none; transition: color 0.2s; }
         .product-links a:hover { color: var(--soft-teal); }
         .product-links .price { color: var(--soft-teal); font-family: var(--font-heading); font-weight: 600; white-space: nowrap; }
+        .bundle-row { background: rgba(63,167,163,0.07); margin: 0.35rem -0.75rem 0; padding: 0.6rem 0.75rem !important; border-radius: 8px; border-bottom: none !important; }
+        .bundle-row a { color: var(--soft-teal); font-weight: 600; }
+        .catalog-card { margin-top: 1.5rem; background: var(--surface); border: 1px solid rgba(63,167,163,0.35); border-radius: 12px; padding: 2.25rem 2rem; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem; }
+        .catalog-card h2 { font-family: var(--font-heading); font-size: 1.35rem; color: var(--white); margin-bottom: 0.5rem; font-weight: 600; }
+        .catalog-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; margin: 0; max-width: 620px; }
+        .catalog-cta { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.6rem; border-radius: 8px; background: var(--soft-teal); color: #FFFFFF; font-family: var(--font-heading); font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: all 0.25s; white-space: nowrap; }
+        .catalog-cta:hover { background: #369e9a; transform: translateY(-2px); }
         .product-covers { display: flex; gap: 10px; margin-bottom: 1.5rem; }
         .product-covers img { width: calc((100% - 20px) / 3); border-radius: 8px; border: 1px solid var(--border); display: block; }
 
@@ -204,9 +211,10 @@
                     <h2>Prompt Packs for Education Teams</h2>
                     <p>Fill-in prompts for the writing that eats your week. Interactive tools that run in your browser, remember your details, and keep student names away from public AI.</p>
                     <ul class="product-links">
-                        <li><a href="https://newsletter.evalveconsulting.com/products/parent-communication-prompt-pack" target="_blank" rel="noopener">Parent Communication Prompt Pack</a><span class="price">$9</span></li>
-                        <li><a href="https://newsletter.evalveconsulting.com/products/meeting-prep-and-summary-prompts" target="_blank" rel="noopener">Meeting Prep and Summary Prompts</a><span class="price">$9</span></li>
-                        <li><a href="https://newsletter.evalveconsulting.com/products/sped-documentation-prompt-pack" target="_blank" rel="noopener">SPED Documentation Prompt Pack</a><span class="price">$9</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/parent-communication-prompt-pack" target="_blank" rel="noopener">Parent Communication Prompt Pack</a><span class="price">$19</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/meeting-prep-and-summary-prompts" target="_blank" rel="noopener">Meeting Prep and Summary Prompts</a><span class="price">$19</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/sped-documentation-prompt-pack" target="_blank" rel="noopener">SPED Documentation Prompt Pack</a><span class="price">$19</span></li>
+                        <li class="bundle-row"><a href="https://newsletter.evalveconsulting.com/products/prompt-library-bundle" target="_blank" rel="noopener">Bundle: The Prompt Library, all three packs</a><span class="price">$29</span></li>
                     </ul>
                     <a class="product-cta live" href="https://newsletter.evalveconsulting.com/products/parent-communication-prompt-pack" target="_blank" rel="noopener">Start with Parent Communication</a>
                 </div>
@@ -216,9 +224,10 @@
                     <h2>Workflow Recipes</h2>
                     <p>Step-by-step systems for the repetitive work in a school office or department. Manual version first, automation optional, and nothing sends without you.</p>
                     <ul class="product-links">
-                        <li><a href="https://newsletter.evalveconsulting.com/products/email-triage-recipe" target="_blank" rel="noopener">The Email Triage Recipe</a><span class="price">$9</span></li>
-                        <li><a href="https://newsletter.evalveconsulting.com/products/self-assembling-meeting-brief" target="_blank" rel="noopener">The Self-Assembling Meeting Brief</a><span class="price">$9</span></li>
-                        <li><a href="https://newsletter.evalveconsulting.com/products/batch-communication-recipe" target="_blank" rel="noopener">The Batch Communication Recipe</a><span class="price">$9</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/email-triage-recipe" target="_blank" rel="noopener">The Email Triage Recipe</a><span class="price">$19</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/self-assembling-meeting-brief" target="_blank" rel="noopener">The Self-Assembling Meeting Brief</a><span class="price">$19</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/batch-communication-recipe" target="_blank" rel="noopener">The Batch Communication Recipe</a><span class="price">$19</span></li>
+                        <li class="bundle-row"><a href="https://newsletter.evalveconsulting.com/products/automation-starter-kit" target="_blank" rel="noopener">Bundle: The Automation Starter Kit, all three recipes</a><span class="price">$29</span></li>
                     </ul>
                     <a class="product-cta live" href="https://newsletter.evalveconsulting.com/products/email-triage-recipe" target="_blank" rel="noopener">Start with Email Triage</a>
                 </div>
@@ -228,12 +237,22 @@
                     <h2>AI Implementation Planning Tools</h2>
                     <p>The planning documents I use in real engagements, as fillable workbooks: pick the right pilot, run it on a 90-day clock, and end it with an honest decision.</p>
                     <ul class="product-links">
-                        <li><a href="https://newsletter.evalveconsulting.com/products/30-60-90-ai-implementation-plan" target="_blank" rel="noopener">The 30/60/90 Plan: Fillable Workbook</a><span class="price">$9</span></li>
-                        <li><a href="https://newsletter.evalveconsulting.com/products/ai-pilot-plan-builder" target="_blank" rel="noopener">The AI Pilot Plan Builder</a><span class="price">$9</span></li>
-                        <li><a href="https://newsletter.evalveconsulting.com/products/day-90-keep-kill-scale-scorecard" target="_blank" rel="noopener">The Day-90 Keep/Kill/Scale Scorecard</a><span class="price">$9</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/30-60-90-ai-implementation-plan" target="_blank" rel="noopener">The 30/60/90 Plan: Fillable Workbook</a><span class="price">$19</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/ai-pilot-plan-builder" target="_blank" rel="noopener">The AI Pilot Plan Builder</a><span class="price">$19</span></li>
+                        <li><a href="https://newsletter.evalveconsulting.com/products/day-90-keep-kill-scale-scorecard" target="_blank" rel="noopener">The Day-90 Keep/Kill/Scale Scorecard</a><span class="price">$19</span></li>
+                        <li class="bundle-row"><a href="https://newsletter.evalveconsulting.com/products/ai-pilot-toolkit" target="_blank" rel="noopener">Bundle: The AI Pilot Toolkit, all three tools</a><span class="price">$29</span></li>
                     </ul>
                     <a class="product-cta live" href="https://newsletter.evalveconsulting.com/products/30-60-90-ai-implementation-plan" target="_blank" rel="noopener">Start with the 30/60/90 Plan</a>
                 </div>
+            </div>
+
+            <div class="catalog-card">
+                <div>
+                    <p class="section-label" style="margin-bottom:0.5rem;">Best Value</p>
+                    <h2>The Complete Catalog</h2>
+                    <p>Every tool on this page in one download: all three prompt packs, all three workflow recipes, and all three planning tools. Nine interactive tools for less than the price of three.</p>
+                </div>
+                <a class="catalog-cta" href="https://newsletter.evalveconsulting.com/products/complete-catalog" target="_blank" rel="noopener">Get everything for $49</a>
             </div>
         </div>
     </section>

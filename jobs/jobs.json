@@ -1,6 +1,6 @@
 {
   "week_of": "2026-07-28",
-  "updated": "2026-07-23T15:12:29.049Z",
+  "updated": "2026-07-28T14:40:07.621Z",
   "jobs": [
     {
       "title": "Director of Artificial Intelligence (AI) & Emerging Technologies (SY26-27)",
@@ -10,15 +10,6 @@
       "source_url": "https://bostonpublicschools.schoolspring.com/?jobid=5746929",
       "posted_date": "2026-06-26",
       "scope_summary": "Leads district-wide AI strategy, governance, pilots, vendor evaluation, and staff AI literacy training. Applications close July 31."
-    },
-    {
-      "title": "Senior Director, AI Transformation",
-      "org": "Amplify",
-      "org_type": "edtech",
-      "location": "Remote (US)",
-      "source_url": "https://amplify.wd1.myworkdayjobs.com/en-US/Amplify_Careers/job/Remote---United-States/Senior-Director--AI-Transformation_Req_12572",
-      "posted_date": null,
-      "scope_summary": "Reports to the CIO to drive enterprise AI adoption at the K-12 curriculum company: prioritization, governance, AI literacy, and ROI measurement."
     },
     {
       "title": "Senior Learning Technologist and AI Analyst",
@@ -84,24 +75,6 @@
       "scope_summary": "Builds enterprise AI copilots and intelligent agents at the assessment nonprofit, integrated with Microsoft 365 and Anthropic models."
     },
     {
-      "title": "Staff AI Research Engineer",
-      "org": "Duolingo",
-      "org_type": "edtech",
-      "location": "New York, NY",
-      "source_url": "https://careers.duolingo.com/jobs/8610353002?gh_jid=8610353002",
-      "posted_date": null,
-      "scope_summary": "Applied AI research engineering, building and shipping LLM-driven features for language learning."
-    },
-    {
-      "title": "Senior AI Engineering Manager",
-      "org": "Duolingo",
-      "org_type": "edtech",
-      "location": "Pittsburgh, PA",
-      "source_url": "https://careers.duolingo.com/jobs/8583866002?gh_jid=8583866002",
-      "posted_date": null,
-      "scope_summary": "Manages an AI engineering team building generative AI capabilities across Duolingo's education products."
-    },
-    {
       "title": "Senior Data Scientist (AI Platform)",
       "org": "Instructure (Canvas LMS)",
       "org_type": "edtech",
@@ -118,6 +91,141 @@
       "source_url": "https://job-boards.greenhouse.io/coursera/jobs/5992269004",
       "posted_date": null,
       "scope_summary": "Designs technical and AI-focused course content and learning experiences for Coursera's catalog."
+    },
+    {
+      "title": "Teacher - Cybersecurity/Artificial Intelligence",
+      "org": "New London Public Schools",
+      "org_type": "district",
+      "location": "New London, CT",
+      "source_url": "https://www.topschooljobs.org/job/2468092/teacher-cybersecurity-artifical-intelligence/",
+      "posted_date": "2026-07-25",
+      "scope_summary": "Teaches high school cybersecurity and artificial intelligence courses that prepare students for industry certifications and careers in emerging technology."
+    },
+    {
+      "title": "Coordinator of Instructional Technology",
+      "org": "Kankakee School District 111",
+      "org_type": "district",
+      "location": "Kankakee, IL",
+      "source_url": "https://www.topschooljobs.org/job/2467251/coordinator-of-instructional-technology/",
+      "posted_date": "2026-07-23",
+      "scope_summary": "Leads district technology integration and coaching, including writing the district's AI administrative procedures and AI literacy framework in line with ISBE guidance."
+    },
+    {
+      "title": "Education Associate, Digital Learning with Artificial Intelligence Focus",
+      "org": "Delaware Department of Education",
+      "org_type": "roe-esa",
+      "location": "Dover, DE",
+      "source_url": "https://www.k12jobspot.com/Job/5626786",
+      "posted_date": "2026-07-14",
+      "scope_summary": "Provides statewide leadership, policy guidance, and professional learning for districts and charter schools on safe, responsible, and ethical AI use across PK-12."
+    },
+    {
+      "title": "Director, AI Center of Excellence",
+      "org": "Instructure",
+      "org_type": "edtech",
+      "location": "Remote, US",
+      "source_url": "https://jobs.ashbyhq.com/instructure/4001e25a-4523-4d4c-9c53-11597d03cfd5",
+      "posted_date": "2026-06-30",
+      "scope_summary": "Stands up and runs the company's internal AI center of excellence, setting standards and driving AI adoption across product and business teams."
+    },
+    {
+      "title": "Senior AI Engineer (Evaluations - Canvas Agent)",
+      "org": "Instructure",
+      "org_type": "edtech",
+      "location": "Budapest, Hungary",
+      "source_url": "https://jobs.ashbyhq.com/instructure/22f68cff-1a65-4c41-a336-0cf203b0cac5",
+      "posted_date": "2026-07-09",
+      "scope_summary": "Builds the evaluation systems that measure and improve the quality of the Canvas AI agent used by instructors and students."
+    },
+    {
+      "title": "Senior Director, AI Transformation",
+      "org": "Amplify",
+      "org_type": "edtech",
+      "location": "Remote, US",
+      "source_url": "https://jobs.ashbyhq.com/amplify/d67deacd-784c-481f-b301-670d2dd7a226",
+      "posted_date": "2026-07-06",
+      "scope_summary": "Leads company-wide AI transformation strategy, identifying where AI changes how curriculum products are built and delivered."
+    },
+    {
+      "title": "Software Engineer (AI Native)",
+      "org": "Lightspeed Systems",
+      "org_type": "edtech",
+      "location": "Austin, TX",
+      "source_url": "https://job-boards.greenhouse.io/lightspeedsystems/jobs/7664453003",
+      "posted_date": "2026-07-24",
+      "scope_summary": "Builds AI-first features into the K-12 student safety and device management platform used by school districts."
+    },
+    {
+      "title": "Staff AI Research Engineer",
+      "org": "Duolingo",
+      "org_type": "edtech",
+      "location": "New York, NY",
+      "source_url": "https://careers.duolingo.com/jobs/8610353002",
+      "posted_date": "2026-07-23",
+      "scope_summary": "Runs applied AI research that shapes how the learning product generates content, assesses learners, and personalizes instruction."
+    },
+    {
+      "title": "Senior AI Engineering Manager",
+      "org": "Duolingo",
+      "org_type": "edtech",
+      "location": "Pittsburgh, PA",
+      "source_url": "https://careers.duolingo.com/jobs/8583866002",
+      "posted_date": "2026-07-23",
+      "scope_summary": "Manages an engineering team shipping the AI systems behind the company's language learning and assessment features."
+    },
+    {
+      "title": "Claude AI Engineer Technical Mentor (Independent Contractor)",
+      "org": "Udacity",
+      "org_type": "edtech",
+      "location": "Remote",
+      "source_url": "https://job-boards.greenhouse.io/udacity/jobs/8623954002",
+      "posted_date": "2026-07-21",
+      "scope_summary": "Mentors and reviews learner projects in the Claude AI engineering program, giving technical feedback on agent and LLM application work."
+    },
+    {
+      "title": "Principal AI Engineer",
+      "org": "DataCamp",
+      "org_type": "edtech",
+      "location": "Remote, United Kingdom",
+      "source_url": "https://job-boards.greenhouse.io/datacamp/jobs/8074115",
+      "posted_date": "2026-07-20",
+      "scope_summary": "Leads engineering on the AI systems powering the platform's adaptive data science and AI learning products."
+    },
+    {
+      "title": "Senior Software Developer 2, Artificial Intelligence",
+      "org": "D2L",
+      "org_type": "edtech",
+      "location": "Kitchener, ON",
+      "source_url": "https://www.d2l.com/careers/jobs/?job_id=6911941",
+      "posted_date": "2026-06-19",
+      "scope_summary": "Develops the AI features inside the Brightspace learning management system used by K-12 and higher ed institutions."
+    },
+    {
+      "title": "AI & Digital Innovation Lead",
+      "org": "University of Nebraska at Kearney",
+      "org_type": "higher-ed",
+      "location": "Kearney, NE",
+      "source_url": "https://jobs.nebraska.edu/job/AI-&-Digital-Innovation-Lead/2374-en_US/",
+      "posted_date": "2026-07-06",
+      "scope_summary": "Leads campus AI literacy and responsible AI adoption efforts and serves as the institution's resource on emerging instructional technologies."
+    },
+    {
+      "title": "Director for Artificial Intelligence",
+      "org": "University of Minnesota",
+      "org_type": "higher-ed",
+      "location": "Minneapolis, MN",
+      "source_url": "https://jobs.chronicle.com/job/38004059/director-for-artificial-intelligence/",
+      "posted_date": "2026-06-18",
+      "scope_summary": "Builds and scales enterprise AI services, platforms, and governance for colleges and administrative units across the university system."
+    },
+    {
+      "title": "Director of AI-Enabled Instruction, ELA",
+      "org": "Leading Educators",
+      "org_type": "nonprofit",
+      "location": "Remote, US",
+      "source_url": "https://job-boards.greenhouse.io/leadingeducators/jobs/5169421008",
+      "posted_date": "2026-07-13",
+      "scope_summary": "Designs and implements AI-integrated literacy instruction with partner school systems and shapes the organization's broader ELA strategy."
     }
   ]
 }

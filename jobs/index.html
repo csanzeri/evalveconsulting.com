@@ -158,12 +158,17 @@
         table.board th[aria-sort="descending"]::after { content: '\2193'; opacity: 1; }
         .board-empty { padding: 2.5rem 1.5rem; text-align: center; color: var(--muted); font-size: 0.9rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
 
-        /* LOCKED STATE */
+        /* LOCKED STATE
+           --clear-h and --zone-h are measured after render (see sizeLockedZone)
+           so the free rows are never covered. Row heights vary with summary
+           length, viewport width, and webfont load, so any fixed pixel height
+           here would clip the third free row at some widths. The fallbacks only
+           apply if that measurement never runs. */
         .locked-zone { position: relative; }
-        .locked-zone .board-table-wrap { max-height: 340px; overflow: hidden; }
+        .locked-zone .board-table-wrap { max-height: var(--zone-h, 620px); overflow: hidden; }
         .locked-rows tr { filter: blur(5px); user-select: none; pointer-events: none; }
-        .lock-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 2.5rem; background: linear-gradient(180deg, transparent 0%, rgba(26,24,69,0.55) 35%, rgba(26,24,69,0.96) 78%); border-radius: 12px; text-align: center; z-index: 2; }
-        .lock-overlay p { color: var(--off-white); font-size: 0.95rem; max-width: 420px; margin: 0 1.5rem 1.1rem; }
+        .lock-overlay { position: absolute; top: var(--clear-h, 0px); left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 1.5rem; background: linear-gradient(180deg, transparent 0%, rgba(26,24,69,0.62) 32%, rgba(26,24,69,0.97) 72%); border-radius: 0 0 12px 12px; text-align: center; z-index: 2; }
+        .lock-overlay p { color: var(--off-white); font-size: 0.95rem; max-width: 420px; margin: 0 0 1.1rem; }
         .lock-overlay .lock-count { font-family: var(--font-heading); font-weight: 700; color: var(--white); }
         .board-note { margin-top: 1.25rem; font-size: 0.8rem; color: var(--muted); }
         .board-status { padding: 3rem 1.5rem; text-align: center; color: var(--muted); font-size: 0.95rem; }
@@ -485,7 +490,60 @@
             }
             html += '</div>';
             zone.innerHTML = html;
+            // Size immediately so the overlay never flashes over the free rows,
+            // again next frame once layout settles, and then let the observer
+            // keep it honest through font loads and reflows.
+            sizeLockedZone();
+            queueSize();
+            observeLockedZone();
         }
+
+        // The gate promises three free roles, so all three have to be readable.
+        // Measure the header plus the free rows and hand that boundary to the CSS
+        // as --clear-h; the overlay starts there and the blurred teaser gets a
+        // fixed slice below it.
+        const TEASER_MIN = 200, TEASER_MAX = 280;
+        function sizeLockedZone() {
+            const zone = document.querySelector('.locked-zone');
+            if (!zone) return;
+            const head = zone.querySelector('thead');
+            const free = zone.querySelector('tbody:not(.locked-rows)');
+            const locked = zone.querySelector('tbody.locked-rows');
+            if (!head || !free) return;
+            // Fractional heights, rounded up plus a pixel of slack: offsetHeight
+            // is integer-truncated and lands the boundary a pixel or two inside
+            // the last free row.
+            const h = el => el.getBoundingClientRect().height;
+            const clear = Math.ceil(h(head) + h(free)) + 2;
+            const teaser = locked
+                ? Math.max(TEASER_MIN, Math.min(Math.ceil(h(locked)), TEASER_MAX))
+                : 0;
+            zone.style.setProperty('--clear-h', clear + 'px');
+            zone.style.setProperty('--zone-h', (clear + teaser) + 'px');
+        }
+
+        let sizeQueued = false;
+        function queueSize() {
+            if (sizeQueued) return;
+            sizeQueued = true;
+            requestAnimationFrame(() => { sizeQueued = false; sizeLockedZone(); });
+        }
+
+        // Watch the table itself rather than listening for `resize`. A resize
+        // handler can run before the new layout has settled and leave a stale
+        // boundary; ResizeObserver only fires once the box actually changed. It
+        // also fires on observe(), which covers the first render.
+        let lockObserver = null;
+        function observeLockedZone() {
+            if (lockObserver) { lockObserver.disconnect(); lockObserver = null; }
+            const table = document.querySelector('.locked-zone table.board');
+            if (!table || typeof ResizeObserver === 'undefined') return;
+            lockObserver = new ResizeObserver(() => sizeLockedZone());
+            lockObserver.observe(table);
+        }
+        // Fallbacks for browsers without ResizeObserver.
+        window.addEventListener('resize', queueSize);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(queueSize);
 
         function setSort(key) {
             if (state.sort.key === key) {

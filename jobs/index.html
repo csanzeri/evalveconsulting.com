@@ -353,20 +353,68 @@
         let allJobs = [];
         let newestWeek = null;
 
-        function matchesSearch(job, q) {
-            if (!q) return true;
-            const hay = [job.title, job.org, job.location, job.scope_summary, typeLabelOf(job)].join(' ').toLowerCase();
-            // Every whitespace-separated term must appear, so "director illinois" narrows.
-            return q.split(/\s+/).filter(Boolean).every(term => hay.includes(term));
+        // Postings write locations as "Kankakee, IL", but people search "Illinois".
+        // Expanding the abbreviation into the haystack covers both, and only the
+        // one direction is needed: searching "IL" already matches "Illinois" as a
+        // substring, so there is no reverse mapping and no extra false positives.
+        const REGIONS = {
+            al: 'alabama', ak: 'alaska', az: 'arizona', ar: 'arkansas', ca: 'california',
+            co: 'colorado', ct: 'connecticut', de: 'delaware', fl: 'florida', ga: 'georgia',
+            hi: 'hawaii', id: 'idaho', il: 'illinois', in: 'indiana', ia: 'iowa',
+            ks: 'kansas', ky: 'kentucky', la: 'louisiana', me: 'maine', md: 'maryland',
+            ma: 'massachusetts', mi: 'michigan', mn: 'minnesota', ms: 'mississippi',
+            mo: 'missouri', mt: 'montana', ne: 'nebraska', nv: 'nevada', nh: 'new hampshire',
+            nj: 'new jersey', nm: 'new mexico', ny: 'new york', nc: 'north carolina',
+            nd: 'north dakota', oh: 'ohio', ok: 'oklahoma', or: 'oregon', pa: 'pennsylvania',
+            ri: 'rhode island', sc: 'south carolina', sd: 'south dakota', tn: 'tennessee',
+            tx: 'texas', ut: 'utah', vt: 'vermont', va: 'virginia', wa: 'washington',
+            wv: 'west virginia', wi: 'wisconsin', wy: 'wyoming', dc: 'district of columbia',
+            pr: 'puerto rico',
+            // Canadian provinces show up too (D2L is in Kitchener, ON).
+            ab: 'alberta', bc: 'british columbia', mb: 'manitoba', nb: 'new brunswick',
+            ns: 'nova scotia', on: 'ontario', qc: 'quebec', sk: 'saskatchewan'
+        };
+
+        // Built once per load rather than per keystroke.
+        function buildHaystack(job) {
+            const parts = [job.title, job.org, job.location, job.scope_summary, typeLabelOf(job)];
+            const loc = String(job.location || '').toLowerCase();
+            // Only two-letter tokens from the LOCATION are expanded, so an "or" or
+            // "in" sitting in a job title can't drag in Oregon or Indiana.
+            loc.split(/[^a-z]+/).forEach(tok => {
+                if (tok.length === 2 && REGIONS[tok]) parts.push(REGIONS[tok]);
+            });
+            return parts.join(' ').toLowerCase();
+        }
+
+        // Compiled once per query rather than per job per keystroke.
+        //
+        // Short terms match at a word boundary, long terms match anywhere. Plain
+        // substring makes two-letter searches useless ("IL" hits Guild, build,
+        // skills), but word-boundary-only would break the way people actually
+        // search longer words, where "tech" should still find "Edtech".
+        const SHORT_TERM = 3;
+        function compileQuery(q) {
+            return q.split(/\s+/).filter(Boolean).map(term => {
+                if (term.length > SHORT_TERM) return hay => hay.includes(term);
+                const re = new RegExp('\\b' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+                return hay => re.test(hay);
+            });
+        }
+
+        function matchesSearch(job, terms) {
+            const hay = job._hay || buildHaystack(job);
+            // Every term must match, so "director illinois" narrows.
+            return terms.every(test => test(hay));
         }
 
         function applyFilters(jobs, opts) {
             const skip = opts || {};
-            const q = state.q.trim().toLowerCase();
+            const terms = skip.q ? [] : compileQuery(state.q.trim().toLowerCase());
             return jobs.filter(job =>
                 (skip.type || state.type === 'all' || job.org_type === state.type) &&
                 (skip.remote || state.remote === 'all' || (state.remote === 'remote') === isRemote(job)) &&
-                (skip.q || matchesSearch(job, q))
+                (!terms.length || matchesSearch(job, terms))
             );
         }
 
@@ -481,7 +529,9 @@
                 (hidden.length ? '<tbody class="locked-rows">' + hidden.slice(0, 4).map(rowHtml).join('') + '</tbody>' : '') +
                 '</table></div>';
             if (hidden.length) {
-                const scope = filtersOn ? 'match your filters' : 'on the board';
+                const scope = filtersOn
+                    ? (hidden.length === 1 ? 'matches your filters' : 'match your filters')
+                    : 'on the board';
                 html += '<div class="lock-overlay">' +
                     '<p><span class="lock-count">' + hidden.length + ' more role' + (hidden.length === 1 ? '' : 's') + '</span> ' + scope +
                     '. Drop your email to unlock the full list and get next week\'s drop first.</p>' +
@@ -604,6 +654,7 @@
         function render(data) {
             const zone = document.getElementById('boardZone');
             allJobs = (data && Array.isArray(data.jobs)) ? data.jobs : [];
+            allJobs.forEach(j => { j._hay = buildHaystack(j); });
             newestWeek = (data && data.weeks && data.weeks[0]) || (data && data.week_of) || null;
             const freshCount = allJobs.filter(j => j.week_of === newestWeek).length;
 

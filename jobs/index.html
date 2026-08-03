@@ -135,6 +135,28 @@
         .type-roe-esa { color: #e8b96a; border-color: rgba(232,185,106,0.4); background: rgba(232,185,106,0.08); }
         .type-higher-ed { color: #7fc98f; border-color: rgba(127,201,143,0.4); background: rgba(127,201,143,0.08); }
         .type-nonprofit { color: #e88aa4; border-color: rgba(232,138,164,0.4); background: rgba(232,138,164,0.08); }
+        .new-badge { display: inline-block; margin-left: 0.5rem; font-family: var(--font-heading); font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.15rem 0.4rem; border-radius: 4px; color: var(--indigo-darker); background: var(--soft-teal); vertical-align: middle; }
+
+        /* CONTROLS */
+        .board-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1rem; margin-bottom: 1.25rem; }
+        .board-search { flex: 1 1 240px; min-width: 0; padding: 0.7rem 0.95rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--off-white); font-family: var(--font-body); font-size: 0.9rem; transition: border-color 0.2s; }
+        .board-search::placeholder { color: var(--muted); }
+        .board-search:focus { outline: none; border-color: var(--soft-teal); }
+        .chip-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .chip { font-family: var(--font-heading); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; padding: 0.42rem 0.75rem; border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+        .chip:hover:not(:disabled) { color: var(--off-white); border-color: rgba(63,167,163,0.45); }
+        .chip[aria-pressed="true"] { background: rgba(63,167,163,0.14); border-color: var(--soft-teal); color: var(--teal-glow); }
+        .chip:disabled { opacity: 0.32; cursor: default; }
+        .chip .chip-count { opacity: 0.6; margin-left: 0.3rem; font-weight: 500; }
+        .board-meta { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 1rem; margin-bottom: 0.85rem; font-size: 0.82rem; color: var(--muted); }
+        .board-reset { background: none; border: none; padding: 0; font: inherit; color: var(--soft-teal); cursor: pointer; }
+        .board-reset:hover { color: var(--teal-glow); text-decoration: underline; }
+        table.board th.sortable { cursor: pointer; user-select: none; }
+        table.board th.sortable:hover { color: var(--teal-glow); }
+        table.board th.sortable::after { content: '\2195'; margin-left: 0.4rem; opacity: 0.35; font-size: 0.85em; }
+        table.board th[aria-sort="ascending"]::after { content: '\2191'; opacity: 1; }
+        table.board th[aria-sort="descending"]::after { content: '\2193'; opacity: 1; }
+        .board-empty { padding: 2.5rem 1.5rem; text-align: center; color: var(--muted); font-size: 0.9rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
 
         /* LOCKED STATE */
         .locked-zone { position: relative; }
@@ -172,6 +194,13 @@
             .mobile-toggle.active span:nth-child(2) { opacity: 0; }
             .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
             .footer-inner { flex-direction: column; align-items: flex-start; }
+            .board-controls { flex-direction: column; align-items: stretch; gap: 0.7rem; }
+            .board-search { flex: none; width: 100%; }
+            /* Chips scroll sideways instead of stacking into a tall wall on a phone.
+               min-width:0 is load-bearing: without it the row keeps its content
+               width as its flex minimum and overflows the page instead of scrolling. */
+            .chip-row { flex-wrap: nowrap; overflow-x: auto; min-width: 0; max-width: 100%; padding-bottom: 0.3rem; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+            .chip-row::-webkit-scrollbar { display: none; }
         }
     </style>
 </head>
@@ -222,9 +251,9 @@
         <div class="hero-content">
             <div class="hero-eyebrow">Weekly Drop &middot; Tuesday Mornings</div>
             <h1>The AI-in-Education <em>Job Board</em></h1>
-            <p class="hero-sub">New AI roles across K-12 districts, edtech, regional offices of education, and higher ed. Curated by hand every week, with a plain-language note on what each role actually does.</p>
+            <p class="hero-sub">New AI roles across K-12 districts, edtech, regional offices of education, and higher ed. Curated by hand every week, with a plain-language note on what each role actually does. Filter and sort the last month of openings in one place.</p>
             <div class="hero-buttons">
-                <a href="#board" class="btn btn-primary btn-arrow">See This Week's Roles</a>
+                <a href="#board" class="btn btn-primary btn-arrow">Browse Open Roles</a>
                 <a href="#get-the-drop" class="btn btn-ghost">Get It by Email</a>
             </div>
         </div>
@@ -248,7 +277,7 @@
         <div class="section-inner reveal">
             <div class="board-head">
                 <div>
-                    <p class="section-label">This Week's Board</p>
+                    <p class="section-label">The Board</p>
                     <h2 class="section-title" style="margin-bottom:0.25rem;">Open AI roles in education</h2>
                 </div>
                 <p class="board-week" id="boardWeek"></p>
@@ -256,7 +285,7 @@
             <div id="boardZone">
                 <div class="board-status">Loading this week's roles&hellip;</div>
             </div>
-            <p class="board-note">Every listing links to the original employer posting. Roles are verified when the board is assembled; postings can close at any time.</p>
+            <p class="board-note">The board holds the last four weeks of roles, newest first. Every listing links to the original employer posting. Roles are verified when the board is assembled; postings can close at any time.</p>
         </div>
     </section>
 
@@ -293,6 +322,7 @@
         const UNLOCK_KEY = 'evalve_jobs_unlocked';
         const FREE_ROWS = 3;
         const TYPE_LABELS = { 'district': 'K-12 District', 'edtech': 'Edtech', 'roe-esa': 'ROE / ESA', 'higher-ed': 'Higher Ed', 'nonprofit': 'Nonprofit' };
+        const TYPE_ORDER = ['district', 'edtech', 'roe-esa', 'higher-ed', 'nonprofit'];
 
         const params = new URLSearchParams(location.search);
         if (params.get('unlocked') === '1') {
@@ -309,43 +339,147 @@
             const dt = new Date(d + 'T12:00:00');
             return isNaN(dt) ? esc(d) : dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
         };
+        const isRemote = job => /\bremote\b/i.test(job.location || '');
+        const typeLabelOf = job => TYPE_LABELS[job.org_type] || String(job.org_type || '');
+
+        // Filter and sort state. sort.key === 'default' means the curated order
+        // the file already ships in: newest week first, then newest posting.
+        const state = { q: '', type: 'all', remote: 'all', sort: { key: 'default', dir: 'desc' } };
+        let allJobs = [];
+        let newestWeek = null;
+
+        function matchesSearch(job, q) {
+            if (!q) return true;
+            const hay = [job.title, job.org, job.location, job.scope_summary, typeLabelOf(job)].join(' ').toLowerCase();
+            // Every whitespace-separated term must appear, so "director illinois" narrows.
+            return q.split(/\s+/).filter(Boolean).every(term => hay.includes(term));
+        }
+
+        function applyFilters(jobs, opts) {
+            const skip = opts || {};
+            const q = state.q.trim().toLowerCase();
+            return jobs.filter(job =>
+                (skip.type || state.type === 'all' || job.org_type === state.type) &&
+                (skip.remote || state.remote === 'all' || (state.remote === 'remote') === isRemote(job)) &&
+                (skip.q || matchesSearch(job, q))
+            );
+        }
+
+        const SORTERS = {
+            title: (a, b) => String(a.title).localeCompare(String(b.title)),
+            org: (a, b) => String(a.org).localeCompare(String(b.org)),
+            type: (a, b) => typeLabelOf(a).localeCompare(typeLabelOf(b)),
+            location: (a, b) => String(a.location || '').localeCompare(String(b.location || '')),
+        };
+
+        function sortJobs(jobs) {
+            const { key, dir } = state.sort;
+            if (key === 'default') return jobs;
+            const out = jobs.slice();
+            if (key === 'posted') {
+                // Undated postings sink to the bottom in both directions rather
+                // than pretending to be the oldest.
+                out.sort((a, b) => {
+                    const ad = a.posted_date || '', bd = b.posted_date || '';
+                    if (!ad && !bd) return 0;
+                    if (!ad) return 1;
+                    if (!bd) return -1;
+                    return dir === 'asc' ? ad.localeCompare(bd) : bd.localeCompare(ad);
+                });
+                return out;
+            }
+            out.sort(SORTERS[key]);
+            return dir === 'asc' ? out : out.reverse();
+        }
 
         function rowHtml(job) {
             const typeKey = esc(job.org_type || 'edtech');
-            const typeLabel = TYPE_LABELS[job.org_type] || esc(job.org_type || '');
             const url = /^https?:\/\//i.test(job.source_url || '') ? esc(job.source_url) : '#';
+            const isNew = newestWeek && job.week_of === newestWeek;
             return '<tr>' +
                 '<td class="job-title"><a href="' + url + '" target="_blank" rel="noopener noreferrer">' + esc(job.title) + '</a>' +
+                (isNew ? '<span class="new-badge">New</span>' : '') +
                 (job.scope_summary ? '<div class="job-summary">' + esc(job.scope_summary) + '</div>' : '') + '</td>' +
                 '<td class="job-org">' + esc(job.org) + '</td>' +
-                '<td><span class="type-badge type-' + typeKey + '">' + typeLabel + '</span></td>' +
+                '<td><span class="type-badge type-' + typeKey + '">' + esc(typeLabelOf(job)) + '</span></td>' +
                 '<td class="job-loc">' + esc(job.location || 'n/a') + '</td>' +
                 '<td class="job-date">' + fmtDate(job.posted_date) + '</td>' +
                 '</tr>';
         }
 
-        function render(data) {
-            const zone = document.getElementById('boardZone');
-            const jobs = (data && Array.isArray(data.jobs)) ? data.jobs : [];
-            if (data && data.week_of) {
-                document.getElementById('boardWeek').innerHTML = 'Week of <strong>' + esc(data.week_of) + '</strong> &middot; ' + jobs.length + ' roles';
-            }
-            if (!jobs.length) {
-                zone.innerHTML = '<div class="board-status">The next drop lands Tuesday morning. Subscribe above and it will find you.</div>';
+        const COLUMNS = [
+            { key: 'title', label: 'Role' },
+            { key: 'org', label: 'Organization' },
+            { key: 'type', label: 'Type' },
+            { key: 'location', label: 'Location' },
+            { key: 'posted', label: 'Posted' },
+        ];
+
+        function controlsHtml() {
+            const chips = ['<button type="button" class="chip" data-type="all" aria-pressed="true">All</button>']
+                .concat(TYPE_ORDER.map(t =>
+                    '<button type="button" class="chip" data-type="' + t + '" aria-pressed="false">' + esc(TYPE_LABELS[t]) +
+                    '<span class="chip-count" data-count="' + t + '"></span></button>'));
+            const toggles = [['all', 'Anywhere'], ['remote', 'Remote'], ['onsite', 'On-site']].map(([v, label]) =>
+                '<button type="button" class="chip" data-remote="' + v + '" aria-pressed="' + (v === 'all') + '">' + label + '</button>');
+            return '<div class="board-controls">' +
+                '<input type="search" class="board-search" id="boardSearch" placeholder="Search role, org, or location" aria-label="Search roles">' +
+                '<div class="chip-row" id="typeChips">' + chips.join('') + '</div>' +
+                '<div class="chip-row" id="remoteChips">' + toggles.join('') + '</div>' +
+                '</div>' +
+                '<div class="board-meta"><span id="boardCount" aria-live="polite"></span><span id="boardResetWrap"></span></div>' +
+                '<div id="boardResults"></div>';
+        }
+
+        function renderResults() {
+            // Guard the case where someone hits "already subscribed" before the
+            // fetch lands and the controls exist.
+            if (!allJobs.length || !document.getElementById('boardResults')) return;
+            const filtered = sortJobs(applyFilters(allJobs));
+            const unlocked = isUnlocked();
+            const visible = unlocked ? filtered : filtered.slice(0, FREE_ROWS);
+            const hidden = unlocked ? [] : filtered.slice(FREE_ROWS);
+
+            // Chip counts reflect the other active filters, so they never promise
+            // rows that the current search would exclude.
+            const forCounts = applyFilters(allJobs, { type: true });
+            TYPE_ORDER.forEach(t => {
+                const el = document.querySelector('[data-count="' + t + '"]');
+                if (!el) return;
+                const n = forCounts.filter(j => j.org_type === t).length;
+                el.textContent = n ? ' ' + n : '';
+                const chip = el.closest('.chip');
+                chip.disabled = n === 0 && state.type !== t;
+            });
+
+            const filtersOn = state.q.trim() || state.type !== 'all' || state.remote !== 'all';
+            document.getElementById('boardCount').textContent = filtersOn
+                ? 'Showing ' + filtered.length + ' of ' + allJobs.length + ' roles'
+                : allJobs.length + ' open roles';
+            document.getElementById('boardResetWrap').innerHTML = filtersOn
+                ? '<button type="button" class="board-reset" id="boardReset">Reset filters</button>' : '';
+
+            const zone = document.getElementById('boardResults');
+            if (!filtered.length) {
+                zone.innerHTML = '<div class="board-empty">No roles match that. Try a broader search or reset the filters.</div>';
                 return;
             }
-            const unlocked = isUnlocked();
-            const visible = unlocked ? jobs : jobs.slice(0, FREE_ROWS);
-            const hidden = unlocked ? [] : jobs.slice(FREE_ROWS);
+            const head = '<thead><tr>' + COLUMNS.map(c => {
+                const active = state.sort.key === c.key;
+                const aria = active ? (state.sort.dir === 'asc' ? 'ascending' : 'descending') : 'none';
+                return '<th class="sortable" data-sort="' + c.key + '" aria-sort="' + aria + '" role="columnheader" tabindex="0">' + c.label + '</th>';
+            }).join('') + '</tr></thead>';
+
             let html = '<div class="' + (hidden.length ? 'locked-zone' : '') + '">' +
-                '<div class="board-table-wrap"><table class="board">' +
-                '<thead><tr><th>Role</th><th>Organization</th><th>Type</th><th>Location</th><th>Posted</th></tr></thead>' +
-                '<tbody>' + visible.map(rowHtml).join('') +
+                '<div class="board-table-wrap"><table class="board">' + head +
+                '<tbody>' + visible.map(rowHtml).join('') + '</tbody>' +
                 (hidden.length ? '<tbody class="locked-rows">' + hidden.slice(0, 4).map(rowHtml).join('') + '</tbody>' : '') +
-                '</tbody></table></div>';
+                '</table></div>';
             if (hidden.length) {
+                const scope = filtersOn ? 'match your filters' : 'on the board';
                 html += '<div class="lock-overlay">' +
-                    '<p><span class="lock-count">' + hidden.length + ' more role' + (hidden.length === 1 ? '' : 's') + '</span> on this week\'s board. Drop your email to unlock the full list and get next week\'s drop first.</p>' +
+                    '<p><span class="lock-count">' + hidden.length + ' more role' + (hidden.length === 1 ? '' : 's') + '</span> ' + scope +
+                    '. Drop your email to unlock the full list and get next week\'s drop first.</p>' +
                     '<a href="#get-the-drop" class="btn btn-primary">Unlock the Full Board</a>' +
                     '</div>';
             }
@@ -353,18 +487,91 @@
             zone.innerHTML = html;
         }
 
+        function setSort(key) {
+            if (state.sort.key === key) {
+                state.sort.dir = state.sort.dir === 'asc' ? 'desc' : 'asc';
+            } else {
+                // Dates read best newest-first; text reads best A-Z.
+                state.sort = { key: key, dir: key === 'posted' ? 'desc' : 'asc' };
+            }
+            renderResults();
+        }
+
+        function pressChip(row, attr, value) {
+            row.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', String(c.dataset[attr] === value)));
+        }
+
+        function wireControls() {
+            const search = document.getElementById('boardSearch');
+            search.addEventListener('input', () => { state.q = search.value; renderResults(); });
+
+            const typeChips = document.getElementById('typeChips');
+            typeChips.addEventListener('click', e => {
+                const chip = e.target.closest('.chip');
+                if (!chip || chip.disabled) return;
+                state.type = chip.dataset.type;
+                pressChip(typeChips, 'type', state.type);
+                renderResults();
+            });
+
+            const remoteChips = document.getElementById('remoteChips');
+            remoteChips.addEventListener('click', e => {
+                const chip = e.target.closest('.chip');
+                if (!chip) return;
+                state.remote = chip.dataset.remote;
+                pressChip(remoteChips, 'remote', state.remote);
+                renderResults();
+            });
+
+            // Results are re-rendered constantly, so sort and reset are delegated
+            // off the stable container rather than bound to throwaway nodes.
+            const zone = document.getElementById('boardZone');
+            zone.addEventListener('click', e => {
+                const th = e.target.closest('th.sortable');
+                if (th) return setSort(th.dataset.sort);
+                if (e.target.id === 'boardReset') {
+                    state.q = ''; state.type = 'all'; state.remote = 'all';
+                    search.value = '';
+                    pressChip(typeChips, 'type', 'all');
+                    pressChip(remoteChips, 'remote', 'all');
+                    renderResults();
+                }
+            });
+            zone.addEventListener('keydown', e => {
+                const th = e.target.closest('th.sortable');
+                if (th && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); setSort(th.dataset.sort); }
+            });
+        }
+
+        function render(data) {
+            const zone = document.getElementById('boardZone');
+            allJobs = (data && Array.isArray(data.jobs)) ? data.jobs : [];
+            newestWeek = (data && data.weeks && data.weeks[0]) || (data && data.week_of) || null;
+            const freshCount = allJobs.filter(j => j.week_of === newestWeek).length;
+
+            if (data && data.week_of) {
+                document.getElementById('boardWeek').innerHTML = 'Week of <strong>' + esc(data.week_of) + '</strong> &middot; ' +
+                    freshCount + ' new &middot; ' + allJobs.length + ' open roles';
+            }
+            if (!allJobs.length) {
+                zone.innerHTML = '<div class="board-status">The next drop lands Tuesday morning. Subscribe above and it will find you.</div>';
+                return;
+            }
+            zone.innerHTML = controlsHtml();
+            wireControls();
+            renderResults();
+        }
+
         document.getElementById('alreadySubscribed').addEventListener('click', function () {
             try { localStorage.setItem(UNLOCK_KEY, '1'); } catch (e) {}
-            load();
+            renderResults();
             document.getElementById('board').scrollIntoView({ behavior: 'smooth' });
         });
 
-        let cached = null;
         function load() {
-            if (cached) { render(cached); return; }
             fetch('/jobs/jobs.json', { cache: 'no-store' })
                 .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
-                .then(data => { cached = data; render(data); })
+                .then(render)
                 .catch(() => {
                     document.getElementById('boardZone').innerHTML = '<div class="board-status">Could not load the board right now. Refresh, or subscribe above to get it by email instead.</div>';
                 });

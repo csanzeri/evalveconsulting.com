@@ -1,11 +1,82 @@
 {
-  "week_of": "2026-08-04",
+  "week_of": "2026-08-11",
   "weeks": [
+    "2026-08-11",
     "2026-08-04",
     "2026-07-28"
   ],
-  "updated": "2026-08-04T11:30:27.169Z",
+  "updated": "2026-08-11T11:30:41.170Z",
   "jobs": [
+    {
+      "title": "Future of Education Strategist - AI Innovator",
+      "org": "Western Governors University",
+      "org_type": "higher-ed",
+      "location": "Salt Lake City, UT",
+      "source_url": "https://wgu.wd5.myworkdayjobs.com/en-US/External/job/Salt-Lake-City-UT/Future-of-Education-Strategist---AI-Innovator_JR-025142",
+      "posted_date": "2026-08-07",
+      "scope_summary": "Finds where AI can improve WGU's online programs, runs the pilots that test it, trains faculty and staff on what works, and sets the ethics and measurement standards for the work. Applications close August 28.",
+      "week_of": "2026-08-11"
+    },
+    {
+      "title": "Instructional Technology Coordinator",
+      "org": "Northshore School District 417",
+      "org_type": "district",
+      "location": "Bothell, WA",
+      "source_url": "https://northshore.schoolspring.com/?jobid=5867557",
+      "posted_date": "2026-08-03",
+      "scope_summary": "Coaches teachers across the district on classroom AI use and AI literacy, and evaluates which AI and digital tools the district should standardize on. First review of applications is August 17.",
+      "week_of": "2026-08-11"
+    },
+    {
+      "title": "Manager, CS & AI Curriculum",
+      "org": "Code.org",
+      "org_type": "nonprofit",
+      "location": "Remote or Seattle, WA",
+      "source_url": "https://job-boards.greenhouse.io/codeorg/jobs/4706793005",
+      "posted_date": "2026-07-30",
+      "scope_summary": "Manages development of computer science and AI curriculum used in K-12 classrooms nationally.",
+      "week_of": "2026-08-11"
+    },
+    {
+      "title": "Forward Deployed Engineer - AI/ML Data Science",
+      "org": "Cengage Group",
+      "org_type": "edtech",
+      "location": "Remote (US)",
+      "source_url": "https://cengage.wd5.myworkdayjobs.com/en-US/cengagenorthamericacareers/job/United-States/Forward-Deployed-Engineer---AI-ML-Data-Science_R2026-951",
+      "posted_date": "2026-07-23",
+      "scope_summary": "Embeds with partner colleges to build their AI course assistants, wiring them into Canvas or Blackboard and grounding them in each college's own course content, plus the evaluations that check whether answers are accurate and safe.",
+      "week_of": "2026-08-11"
+    },
+    {
+      "title": "Director, AI Strategy & Technology Partnerships",
+      "org": "College of DuPage",
+      "org_type": "higher-ed",
+      "location": "Glen Ellyn, IL",
+      "source_url": "https://cod.csod.com/ux/ats/careersite/4/home/requisition/3123",
+      "posted_date": "2026-07-14",
+      "scope_summary": "Sets and executes the college's AI strategy, embedding AI and immersive technologies into instructional design and operations while establishing responsible-use practices.",
+      "week_of": "2026-08-11"
+    },
+    {
+      "title": "Director of Technology and Innovation",
+      "org": "North Shore School District 112",
+      "org_type": "district",
+      "location": "Highwood, IL",
+      "source_url": "https://www.illinoiseducationjobbank.org/Job-Posting/254811/Director-of-Technology-and-Innovation/job-details",
+      "posted_date": "2026-04-10",
+      "scope_summary": "Leads district technology strategy and owns the district's AI policy work, from writing responsible-use guidelines to vetting AI tools against data privacy and vendor agreement standards before adoption.",
+      "week_of": "2026-08-11"
+    },
+    {
+      "title": "Director, Chief AI Officer",
+      "org": "College of Charleston",
+      "org_type": "higher-ed",
+      "location": "Charleston, SC",
+      "source_url": "https://jobs.cofc.edu/postings/18236",
+      "posted_date": null,
+      "scope_summary": "Coordinates AI adoption across academic, administrative, and research areas, supporting the university's AI-focused Quality Enhancement Plan and leading AI literacy and governance work.",
+      "week_of": "2026-08-11"
+    },
     {
       "title": "AI Makerspace Operations & Community Manager",
       "org": "Northeastern University",

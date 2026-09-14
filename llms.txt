@@ -31,6 +31,10 @@ School districts, Regional Offices of Education, education cooperatives, univers
 
 - [Digital products](https://evalveconsulting.com/products/): templates, toolkits, and other digital resources for education teams. First products launching soon; the page takes newsletter signups for launch updates.
 
+## Apps
+
+- [Apps](https://evalveconsulting.com/apps/): native iPhone and iPad apps built by Evalve. Behavior and Goal Tracker (behavior and IEP goal data collection for educators, on-device only), Star Register (kids' pretend-store math practice, iPad), Evalve to Independence (POS simulation for transition programs, iPad), and The Board (family chore board). Each app has its own privacy policy and support page, for example https://evalveconsulting.com/behavior-tracker/privacy and https://evalveconsulting.com/behavior-tracker/support.
+
 ## Podcast
 
 Evalve Out Loud: practical conversations about implementing AI in education. What works, what doesn't, and why. Available on Spotify, Apple Podcasts, and YouTube.

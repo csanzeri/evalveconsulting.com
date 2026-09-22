@@ -1,13 +1,83 @@
 {
-  "week_of": "2026-09-08",
+  "week_of": "2026-09-22",
   "weeks": [
+    "2026-09-22",
     "2026-09-08",
     "2026-09-01",
-    "2026-08-11",
-    "2026-08-04"
+    "2026-08-11"
   ],
-  "updated": "2026-09-08T11:30:54.957Z",
+  "updated": "2026-09-22T11:30:40.789Z",
   "jobs": [
+    {
+      "title": "Director of Artificial Intelligence and Computer Science - College and Career Development",
+      "org": "Gwinnett County Public Schools",
+      "org_type": "district",
+      "location": "Suwanee, GA",
+      "source_url": "https://www.topschooljobs.org/job/2483826/director-of-artificial-intelligence-and-computer-science-college-and-career-development/",
+      "posted_date": "2026-09-17",
+      "scope_summary": "Leads and supervises the district's K-12 artificial intelligence and computer science programs, including curriculum development, teacher professional development, and budget, with a November 2, 2026 start.",
+      "week_of": "2026-09-22"
+    },
+    {
+      "title": "Facilitator, Programs (part-time)",
+      "org": "aiEDU (The AI Education Project)",
+      "org_type": "nonprofit",
+      "location": "Remote",
+      "source_url": "https://job-boards.greenhouse.io/aiedu/jobs/5236991007",
+      "posted_date": "2026-09-15",
+      "scope_summary": "Part-time liaison to partner school districts and education agencies in the Midwest and West Coast, supporting delivery of aiEDU's AI literacy programs and services.",
+      "week_of": "2026-09-22"
+    },
+    {
+      "title": "Adjunct Instructor (Generative AI)",
+      "org": "Calbright College",
+      "org_type": "higher-ed",
+      "location": "Oakland, CA",
+      "source_url": "https://www.edjoin.org/Home/JobPosting/2274879",
+      "posted_date": "2026-09-11",
+      "scope_summary": "Teaches generative AI concepts and skills in a competency-based online community college program, giving students individualized feedback and mentoring; two openings, open until filled.",
+      "week_of": "2026-09-22"
+    },
+    {
+      "title": "Senior Learning Designer, Artificial Intelligence and Emerging Learning Technologies",
+      "org": "Quinnipiac University",
+      "org_type": "higher-ed",
+      "location": "Hamden, CT",
+      "source_url": "https://jobs.chronicle.com/job/38038948/senior-learning-designer-artificial-intelligence-and-emerging-learning-technologies/",
+      "posted_date": "2026-09-11",
+      "scope_summary": "Designs courses with faculty and serves as the university's learning design specialist for AI, consulting on responsible AI use in teaching and leading faculty development on emerging technologies.",
+      "week_of": "2026-09-22"
+    },
+    {
+      "title": "Director of Applied AI for Academic Initiatives",
+      "org": "College of the Holy Cross",
+      "org_type": "higher-ed",
+      "location": "Worcester, MA",
+      "source_url": "https://jobs.chronicle.com/job/38036569/director-of-applied-ai-for-academic-initiatives/",
+      "posted_date": "2026-09-10",
+      "scope_summary": "Launches and directs a new AI Exploration Lab for student research, partners with faculty to evaluate AI across disciplines, and advises college governance on AI policy, procurement, and ethics.",
+      "week_of": "2026-09-22"
+    },
+    {
+      "title": "Learning Partner - New York City",
+      "org": "Playlab",
+      "org_type": "nonprofit",
+      "location": "New York, NY",
+      "source_url": "https://jobs.ashbyhq.com/playlab/b70e2fd3-0727-4f3d-96f0-0e430af8d4e9",
+      "posted_date": "2026-09-09",
+      "scope_summary": "Works directly with New York City schools and educators through workshops, design studios, and strategy sessions to help them build and responsibly use their own AI tools on Playlab's nonprofit platform.",
+      "week_of": "2026-09-22"
+    },
+    {
+      "title": "Machine Learning Engineer / AI Systems Engineer",
+      "org": "Amira Learning",
+      "org_type": "edtech",
+      "location": "Texas",
+      "source_url": "https://job-boards.greenhouse.io/amiralearning/jobs/4333066009",
+      "posted_date": "2026-07-27",
+      "scope_summary": "Builds and maintains the machine learning and AI systems behind Amira's AI reading tutor and assessment platform used by school districts.",
+      "week_of": "2026-09-22"
+    },
     {
       "title": "AI Literacy Fellow",
       "org": "Marist University",
@@ -187,116 +257,6 @@
       "posted_date": null,
       "scope_summary": "Coordinates AI adoption across academic, administrative, and research areas, supporting the university's AI-focused Quality Enhancement Plan and leading AI literacy and governance work.",
       "week_of": "2026-08-11"
-    },
-    {
-      "title": "AI Makerspace Operations & Community Manager",
-      "org": "Northeastern University",
-      "org_type": "higher-ed",
-      "location": "Boston, MA",
-      "source_url": "https://northeastern.wd1.myworkdayjobs.com/en-US/careers/job/Boston-MA-Main-Campus/AI-Makerspace-Operations---Community-Manager_R141026",
-      "posted_date": "2026-07-29",
-      "scope_summary": "Runs day-to-day operations, programming, workshops, and community engagement for Northeastern's AI Makerspace, serving students, faculty, and external partners.",
-      "week_of": "2026-08-04"
-    },
-    {
-      "title": "Senior AI Research Engineer",
-      "org": "Duolingo",
-      "org_type": "edtech",
-      "location": "New York, NY",
-      "source_url": "https://careers.duolingo.com/jobs/8656959002?gh_jid=8656959002",
-      "posted_date": "2026-07-29",
-      "scope_summary": "Researches and ships applied AI and LLM systems that drive Duolingo's language learning and assessment products.",
-      "week_of": "2026-08-04"
-    },
-    {
-      "title": "Senior Applied Data Scientist (Learner Modeling)",
-      "org": "Instructure",
-      "org_type": "edtech",
-      "location": "Budapest, Hungary",
-      "source_url": "https://jobs.ashbyhq.com/instructure/60cfbe62-6f05-41d4-8b09-297f96b9e0cf",
-      "posted_date": "2026-07-29",
-      "scope_summary": "Develops and validates knowledge tracing and longitudinal learner models that feed Instructure's AI-native platform capabilities.",
-      "week_of": "2026-08-04"
-    },
-    {
-      "title": "Founder, Instructure Foundry",
-      "org": "Instructure",
-      "org_type": "edtech",
-      "location": "Remote, US",
-      "source_url": "https://jobs.ashbyhq.com/instructure/0305750b-c53b-4829-b14d-d7b98ab1aacd",
-      "posted_date": "2026-07-28",
-      "scope_summary": "Runs a two-person pod inside Instructure's New Markets division to find an education problem worth a business and build and sell an AI-built product around it.",
-      "week_of": "2026-08-04"
-    },
-    {
-      "title": "Natural Language Measurement Specialist",
-      "org": "College Board",
-      "org_type": "nonprofit",
-      "location": "Remote, US",
-      "source_url": "https://collegeboard.wd1.myworkdayjobs.com/en-US/Careers/job/Remote---USA/Natural-Language-Measurement-Specialist_REQ002809",
-      "posted_date": "2026-07-28",
-      "scope_summary": "Works on the Automated Scoring team using LLMs and NLP to measure language-based performance and generate feedback in high-stakes assessments, while ensuring validity and fairness.",
-      "week_of": "2026-08-04"
-    },
-    {
-      "title": "Senior Product Operations Manager, AI & Systems",
-      "org": "Guild",
-      "org_type": "edtech",
-      "location": "Remote, US",
-      "source_url": "https://www.guild.com/open-positions-at-guild?gh_jid=8074485",
-      "posted_date": "2026-07-20",
-      "scope_summary": "Runs product operations for Guild's AI and systems work, connecting AI tooling to the workflows behind its employer-sponsored education platform.",
-      "week_of": "2026-08-04"
-    },
-    {
-      "title": "Machine Learning Researcher",
-      "org": "Kiddom",
-      "org_type": "edtech",
-      "location": "San Francisco, CA",
-      "source_url": "https://jobs.ashbyhq.com/kiddom/aa6d8d9b-c500-48d1-baa9-440b196eab1b",
-      "posted_date": "2026-06-11",
-      "scope_summary": "Conducts machine learning research underpinning Kiddom's AI-driven instruction and personalization features.",
-      "week_of": "2026-08-04"
-    },
-    {
-      "title": "Senior Full Stack Engineer, AI Experience",
-      "org": "Kiddom",
-      "org_type": "edtech",
-      "location": "San Francisco, CA or New York, NY",
-      "source_url": "https://jobs.ashbyhq.com/kiddom/1ee4c4ab-e501-4822-926b-99d5ef4c0ad1",
-      "posted_date": "2026-06-11",
-      "scope_summary": "Builds the end-user AI experiences teachers interact with in Kiddom's curriculum platform.",
-      "week_of": "2026-08-04"
-    },
-    {
-      "title": "Sr. Product Manager, AI",
-      "org": "Kiddom",
-      "org_type": "edtech",
-      "location": "San Francisco, CA",
-      "source_url": "https://jobs.ashbyhq.com/kiddom/392776f7-2328-45b1-8c05-f43cb6ac757b",
-      "posted_date": "2026-06-11",
-      "scope_summary": "Owns the product roadmap for AI features inside Kiddom's K-12 curriculum and classroom platform.",
-      "week_of": "2026-08-04"
-    },
-    {
-      "title": "AI Literacy Course Developer (Contract)",
-      "org": "AI for Education",
-      "org_type": "nonprofit",
-      "location": "Remote, US",
-      "source_url": "https://jobs.gusto.com/postings/ai-for-education-ai-literacy-course-developer-contract-a90ce985-f2de-4ae2-b6e3-167aefe9721c",
-      "posted_date": null,
-      "scope_summary": "Builds AI literacy courses for educators on contract, translating AI concepts and responsible-use practices into teachable modules.",
-      "week_of": "2026-08-04"
-    },
-    {
-      "title": "Director of Curriculum and Content",
-      "org": "AI for Education",
-      "org_type": "nonprofit",
-      "location": "Remote, US",
-      "source_url": "https://jobs.gusto.com/postings/ai-for-education-director-of-curriculum-and-content-60d993f9-b661-406e-98b3-1f4c2ccbf063",
-      "posted_date": null,
-      "scope_summary": "Owns the AI literacy curriculum and professional learning content that AI for Education delivers to K-12 and higher ed educators.",
-      "week_of": "2026-08-04"
     }
   ]
 }

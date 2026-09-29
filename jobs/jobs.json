@@ -1,13 +1,113 @@
 {
-  "week_of": "2026-09-22",
+  "week_of": "2026-09-29",
   "weeks": [
+    "2026-09-29",
     "2026-09-22",
     "2026-09-08",
-    "2026-09-01",
-    "2026-08-11"
+    "2026-09-01"
   ],
-  "updated": "2026-09-22T11:30:40.789Z",
+  "updated": "2026-09-29T11:30:41.046Z",
   "jobs": [
+    {
+      "title": "Director of Artificial Intelligence (AI) for Academic Success",
+      "org": "University of Southern Mississippi",
+      "org_type": "higher-ed",
+      "location": "Hattiesburg, MS",
+      "source_url": "https://usm.csod.com/ux/ats/careersite/1/home/requisition/5579?c=usm",
+      "posted_date": "2026-09-24",
+      "scope_summary": "Reports to the Provost and leads the university's academic AI strategy across teaching, curriculum, faculty development, academic integrity, and student success.",
+      "week_of": "2026-09-29"
+    },
+    {
+      "title": "Growth Marketing Manager, Foundry",
+      "org": "Instructure",
+      "org_type": "edtech",
+      "location": "Remote",
+      "source_url": "https://jobs.ashbyhq.com/instructure/b1a6ac86-c886-4ea2-8839-c5285f1415d4",
+      "posted_date": "2026-09-24",
+      "scope_summary": "Owns positioning, launches, and demand generation for Foundry, Instructure's new AI products division, across K-12 and higher ed.",
+      "week_of": "2026-09-29"
+    },
+    {
+      "title": "Senior Regional Director, Sales",
+      "org": "Edia",
+      "org_type": "edtech",
+      "location": "Remote",
+      "source_url": "https://jobs.ashbyhq.com/edia/3e2d7f11-d318-4c39-814b-a44e0640113f",
+      "posted_date": "2026-09-22",
+      "scope_summary": "Leads a team of account executives selling Edia's AI platform for math, attendance, and SEL to K-12 school districts.",
+      "week_of": "2026-09-29"
+    },
+    {
+      "title": "Leader, AI Product Manager",
+      "org": "Success Academy Charter Schools",
+      "org_type": "district",
+      "location": "New York, NY",
+      "source_url": "https://job-boards.greenhouse.io/successacademycharterschool/jobs/5426118008",
+      "posted_date": "2026-09-16",
+      "scope_summary": "Drives the rollout of AI tools across the charter network's academic, operational, and administrative teams and champions AI literacy as the network works to become an AI-native K-12 organization.",
+      "week_of": "2026-09-29"
+    },
+    {
+      "title": "[Contract] Product Marketing Manager, Competitive Intelligence & AI Beta Program",
+      "org": "Clever",
+      "org_type": "edtech",
+      "location": "Remote",
+      "source_url": "https://www.clever.com/about/careers?gh_jid=8186111",
+      "posted_date": "2026-09-15",
+      "scope_summary": "Runs the external beta for Clever's new AI product, recruiting K-12 design partners and collecting their feedback, and builds the company's competitive intelligence program.",
+      "week_of": "2026-09-29"
+    },
+    {
+      "title": "Executive Director, Krantz Institute for Artificial Intelligence, Ethics, and Humanity",
+      "org": "Boston College",
+      "org_type": "higher-ed",
+      "location": "Chestnut Hill, MA",
+      "source_url": "https://bc.csod.com/ux/ats/careersite/2/home/requisition/11230?c=bc",
+      "posted_date": "2026-09-09",
+      "scope_summary": "Launches and leads a new university institute on AI ethics, running campus-wide AI programs, student fellowships, faculty support, and partnerships.",
+      "week_of": "2026-09-29"
+    },
+    {
+      "title": "AI Literacy Specialist",
+      "org": "Marist University",
+      "org_type": "higher-ed",
+      "location": "Poughkeepsie, NY",
+      "source_url": "https://jobs.chronicle.com/job/38033611/ai-literacy-specialist/",
+      "posted_date": "2026-09-03",
+      "scope_summary": "Builds a campus-wide AI literacy program, designing and delivering AI training for faculty, staff, and students and supporting AI credentials and badges.",
+      "week_of": "2026-09-29"
+    },
+    {
+      "title": "Director, Youth Voice & Engagement (Youth AI Safety Institute)",
+      "org": "Common Sense Media",
+      "org_type": "nonprofit",
+      "location": "San Francisco, CA",
+      "source_url": "https://www.paycomonline.net/v4/ats/web.php/portal/4AA7E7402507528EEEA6308617BB1F08/jobs/167972",
+      "posted_date": "2026-08-27",
+      "scope_summary": "Builds ways for young people to shape AI safety evaluations and standards, including youth advisory boards, participatory design workshops, and youth personas used in AI model testing.",
+      "week_of": "2026-09-29"
+    },
+    {
+      "title": "Head, AI Engineering",
+      "org": "Success Academy Charter Schools",
+      "org_type": "district",
+      "location": "New York, NY",
+      "source_url": "https://job-boards.greenhouse.io/successacademycharterschool/jobs/5396024008",
+      "posted_date": "2026-08-19",
+      "scope_summary": "Sets the network's AI roadmap and leads a team of engineers building generative AI tools that change how teachers teach, schools operate, and students learn.",
+      "week_of": "2026-09-29"
+    },
+    {
+      "title": "Senior Product Manager (AI-powered learning experiences)",
+      "org": "Imagine Learning",
+      "org_type": "edtech",
+      "location": "Remote",
+      "source_url": "https://jobs.jobvite.com/imagine-learning/job/ouQyAfwc",
+      "posted_date": null,
+      "scope_summary": "Builds and scales AI-powered K-12 learning experiences grounded in Imagine Learning's curriculum.",
+      "week_of": "2026-09-29"
+    },
     {
       "title": "Director of Artificial Intelligence and Computer Science - College and Career Development",
       "org": "Gwinnett County Public Schools",
@@ -187,76 +287,6 @@
       "posted_date": "2026-07-16",
       "scope_summary": "Builds predictive data science models for schools and central departments using AI platforms and machine learning methods including neural networks, classification, clustering, and decision trees.",
       "week_of": "2026-09-01"
-    },
-    {
-      "title": "Future of Education Strategist - AI Innovator",
-      "org": "Western Governors University",
-      "org_type": "higher-ed",
-      "location": "Salt Lake City, UT",
-      "source_url": "https://wgu.wd5.myworkdayjobs.com/en-US/External/job/Salt-Lake-City-UT/Future-of-Education-Strategist---AI-Innovator_JR-025142",
-      "posted_date": "2026-08-07",
-      "scope_summary": "Finds where AI can improve WGU's online programs, runs the pilots that test it, trains faculty and staff on what works, and sets the ethics and measurement standards for the work. Applications close August 28.",
-      "week_of": "2026-08-11"
-    },
-    {
-      "title": "Instructional Technology Coordinator",
-      "org": "Northshore School District 417",
-      "org_type": "district",
-      "location": "Bothell, WA",
-      "source_url": "https://northshore.schoolspring.com/?jobid=5867557",
-      "posted_date": "2026-08-03",
-      "scope_summary": "Coaches teachers across the district on classroom AI use and AI literacy, and evaluates which AI and digital tools the district should standardize on. First review of applications is August 17.",
-      "week_of": "2026-08-11"
-    },
-    {
-      "title": "Manager, CS & AI Curriculum",
-      "org": "Code.org",
-      "org_type": "nonprofit",
-      "location": "Remote or Seattle, WA",
-      "source_url": "https://job-boards.greenhouse.io/codeorg/jobs/4706793005",
-      "posted_date": "2026-07-30",
-      "scope_summary": "Manages development of computer science and AI curriculum used in K-12 classrooms nationally.",
-      "week_of": "2026-08-11"
-    },
-    {
-      "title": "Forward Deployed Engineer - AI/ML Data Science",
-      "org": "Cengage Group",
-      "org_type": "edtech",
-      "location": "Remote (US)",
-      "source_url": "https://cengage.wd5.myworkdayjobs.com/en-US/cengagenorthamericacareers/job/United-States/Forward-Deployed-Engineer---AI-ML-Data-Science_R2026-951",
-      "posted_date": "2026-07-23",
-      "scope_summary": "Embeds with partner colleges to build their AI course assistants, wiring them into Canvas or Blackboard and grounding them in each college's own course content, plus the evaluations that check whether answers are accurate and safe.",
-      "week_of": "2026-08-11"
-    },
-    {
-      "title": "Director, AI Strategy & Technology Partnerships",
-      "org": "College of DuPage",
-      "org_type": "higher-ed",
-      "location": "Glen Ellyn, IL",
-      "source_url": "https://cod.csod.com/ux/ats/careersite/4/home/requisition/3123",
-      "posted_date": "2026-07-14",
-      "scope_summary": "Sets and executes the college's AI strategy, embedding AI and immersive technologies into instructional design and operations while establishing responsible-use practices.",
-      "week_of": "2026-08-11"
-    },
-    {
-      "title": "Director of Technology and Innovation",
-      "org": "North Shore School District 112",
-      "org_type": "district",
-      "location": "Highwood, IL",
-      "source_url": "https://www.illinoiseducationjobbank.org/Job-Posting/254811/Director-of-Technology-and-Innovation/job-details",
-      "posted_date": "2026-04-10",
-      "scope_summary": "Leads district technology strategy and owns the district's AI policy work, from writing responsible-use guidelines to vetting AI tools against data privacy and vendor agreement standards before adoption.",
-      "week_of": "2026-08-11"
-    },
-    {
-      "title": "Director, Chief AI Officer",
-      "org": "College of Charleston",
-      "org_type": "higher-ed",
-      "location": "Charleston, SC",
-      "source_url": "https://jobs.cofc.edu/postings/18236",
-      "posted_date": null,
-      "scope_summary": "Coordinates AI adoption across academic, administrative, and research areas, supporting the university's AI-focused Quality Enhancement Plan and leading AI literacy and governance work.",
-      "week_of": "2026-08-11"
     }
   ]
 }

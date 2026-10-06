@@ -1061,6 +1061,178 @@
             );
         }
 
+        // PDF logo, loaded once at module scope so the Results download and the
+        // emailed copy built in App() both reach it (it used to live inside Results).
+        const logoDataRef = { current: null };
+        (function loadPdfLogo() {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = () => {
+                try {
+                    const maxW = 1000; // the logo prints small; downscale to keep the emailed PDF light
+                    const scale = Math.min(1, maxW / img.naturalWidth);
+                    const w = Math.round(img.naturalWidth * scale), h = Math.round(img.naturalHeight * scale);
+                    const canvas = document.createElement('canvas');
+                    canvas.width = w; canvas.height = h;
+                    canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                    logoDataRef.current = { dataUrl: canvas.toDataURL('image/png'), w, h };
+                } catch (e) { /* logo stays null; PDF falls back to a wordmark */ }
+            };
+            img.src = '/images/trace.png';
+        })();
+
+        // Shared branded report renderer (used by both the download and the emailed copy).
+        function renderReadinessPDF(doc, dimScores, totalScore, level, gaps, contact) {
+            const pw = doc.internal.pageSize.getWidth();
+            const ph = doc.internal.pageSize.getHeight();
+            const m = 16, cw = pw - 2 * m;
+            let y = m;
+            const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            const C = { indigo: [46,43,111], teal: [63,167,163], slate: [92,95,102], light: [247,247,250], border: [228,228,234], faint: [154,154,175], amber: [232,169,74], tealTint: [232,248,247] };
+            function cp(n) { if (y + n > ph - 24) { doc.addPage(); y = m; } }
+            function hexToRgb(hex) { return [parseInt(hex.slice(1,3),16), parseInt(hex.slice(3,5),16), parseInt(hex.slice(5,7),16)]; }
+            function sectionHeader(title, col) {
+                cp(16);
+                doc.setFillColor(...(col || C.indigo)); doc.roundedRect(m, y, cw, 9, 1.5, 1.5, 'F');
+                doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(255, 255, 255);
+                doc.text(title, m + 4, y + 6); y += 14;
+            }
+
+            // Header band with the white logo lockup
+            const bandH = 22;
+            doc.setFillColor(...C.indigo); doc.rect(0, 0, pw, bandH, 'F');
+            doc.setFillColor(...C.teal); doc.rect(0, bandH, pw, 1.2, 'F');
+            const logo = logoDataRef.current;
+            if (logo && logo.dataUrl) {
+                const lw = 50, lh = lw * (logo.h / logo.w);
+                doc.addImage(logo.dataUrl, 'PNG', m, (bandH - lh) / 2, lw, lh);
+            } else {
+                doc.setFont('helvetica', 'bold'); doc.setFontSize(15); doc.setTextColor(255, 255, 255);
+                doc.text('Evalve Consulting', m, bandH / 2 + 2);
+            }
+            doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(...C.teal);
+            doc.text('AI READINESS REPORT', pw - m, bandH / 2 - 1.5, { align: 'right' });
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(210, 210, 225);
+            doc.text(dateStr, pw - m, bandH / 2 + 4, { align: 'right' });
+            y = bandH + 11;
+
+            // Title + subline
+            doc.setFont('helvetica', 'bold'); doc.setFontSize(19); doc.setTextColor(...C.indigo);
+            doc.text('AI Readiness Assessment', m, y); y += 6.5;
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(...C.slate);
+            const subParts = [contact.name, contact.org, contact.role].filter(Boolean);
+            doc.text(doc.splitTextToSize(subParts.join('   |   '), cw), m, y); y += 9;
+
+            // Headline metric cards
+            cp(30);
+            const pctTotal = Math.round((totalScore / 64) * 100);
+            const cards = [
+                { v: totalScore + ' / 64', l: 'Overall readiness score', col: C.indigo, fs: 17 },
+                { v: pctTotal + '%', l: 'Of maximum readiness', col: C.teal, fs: 17 },
+                { v: level.name, l: 'Your readiness level', col: C.indigo, fs: 13 },
+            ];
+            const cgap = 5, ccw = (cw - 2 * cgap) / 3, cch = 26;
+            cards.forEach((card, i) => {
+                const cx = m + i * (ccw + cgap);
+                doc.setFillColor(...C.light); doc.roundedRect(cx, y, ccw, cch, 2.5, 2.5, 'F');
+                doc.setFillColor(...card.col); doc.roundedRect(cx, y, 2, cch, 1, 1, 'F');
+                doc.setFont('helvetica', 'bold'); doc.setFontSize(card.fs); doc.setTextColor(...card.col);
+                doc.text(doc.splitTextToSize(String(card.v), ccw - 9), cx + 6, y + 11);
+                doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor(...C.slate);
+                doc.text(doc.splitTextToSize(card.l, ccw - 9), cx + 6, y + 19);
+            });
+            y += cch + 8;
+
+            // Level description
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5); doc.setTextColor(...C.slate);
+            const descLines = doc.splitTextToSize(level.description, cw);
+            cp(descLines.length * 4.6 + 6);
+            doc.text(descLines, m, y); y += descLines.length * 4.6 + 6;
+
+            // Dimension scores
+            sectionHeader('Dimension Scores');
+            DIMENSIONS.forEach((dim, di) => {
+                const ds = dimScores[di]; const dl = getLevel(ds, true); const pct = Math.round((ds / 16) * 100);
+                cp(16);
+                doc.setFillColor(...C.light); doc.roundedRect(m, y, cw, 13, 2, 2, 'F');
+                doc.setFont('helvetica', 'bold'); doc.setFontSize(9.5); doc.setTextColor(...C.indigo);
+                doc.text(dim.title, m + 5, y + 5.5);
+                doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(...C.slate);
+                doc.text(ds + '/16   ' + dl.name, pw - m - 4, y + 5.5, { align: 'right' });
+                const barY = y + 8.5;
+                doc.setFillColor(...C.border); doc.roundedRect(m + 5, barY, cw - 10, 2.4, 1, 1, 'F');
+                doc.setFillColor(...hexToRgb(dl.color)); doc.roundedRect(m + 5, barY, (cw - 10) * pct / 100, 2.4, 1, 1, 'F');
+                y += 16;
+            });
+            y += 2;
+
+            // Key gaps
+            if (gaps.length > 0) {
+                sectionHeader('Key Gaps Identified', C.amber);
+                DIMENSIONS.forEach((dim, di) => {
+                    const dimGaps = gaps.filter(g => g.dimIndex === di);
+                    if (dimGaps.length === 0) return;
+                    cp(12);
+                    doc.setFont('helvetica', 'bold'); doc.setFontSize(9.5); doc.setTextColor(...C.amber);
+                    doc.text(dim.title, m + 1, y + 3); y += 7;
+                    dimGaps.forEach(g => {
+                        const ql = doc.splitTextToSize(g.question, cw - 8);
+                        const al = doc.splitTextToSize('Response: ' + g.current, cw - 14);
+                        const boxH = al.length * 4.4 + 4;
+                        cp(ql.length * 4.4 + boxH + 7);
+                        doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(...C.indigo);
+                        doc.text(ql, m + 1, y + 3.5); y += ql.length * 4.4 + 2.5;
+                        doc.setFillColor(255, 249, 239); doc.roundedRect(m + 1, y - 1, cw - 2, boxH, 1.5, 1.5, 'F');
+                        doc.setFillColor(...C.amber); doc.rect(m + 1, y - 1, 1.6, boxH, 'F');
+                        doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(...C.slate);
+                        doc.text(al, m + 6, y + 3); y += boxH + 4;
+                    });
+                    y += 2;
+                });
+            }
+
+            // Recommended next steps
+            sectionHeader('Recommended Next Steps');
+            level.steps.forEach((step, i) => {
+                const sl = doc.splitTextToSize((i + 1) + '. ' + step, cw - 6);
+                cp(sl.length * 4.6 + 4);
+                doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5); doc.setTextColor(...C.indigo);
+                doc.text(sl, m + 2, y + 3); y += sl.length * 4.6 + 4;
+            });
+            y += 4;
+
+            // Call to action
+            cp(28);
+            doc.setFillColor(...C.tealTint); doc.roundedRect(m, y, cw, 26, 2.5, 2.5, 'F');
+            doc.setDrawColor(...C.teal); doc.setLineWidth(0.4); doc.roundedRect(m, y, cw, 26, 2.5, 2.5, 'S'); doc.setLineWidth(0.2);
+            doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(...C.indigo);
+            doc.text('Ready to move from assessment to action?', pw / 2, y + 8, { align: 'center' });
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(...C.slate);
+            doc.text('Book a strategy call with Dr. Chris Sanzeri', pw / 2, y + 13.5, { align: 'center' });
+            doc.setFont('helvetica', 'bold'); doc.setTextColor(...C.teal);
+            doc.text('cal.com/evalve-consulting/discovery-call', pw / 2, y + 18.5, { align: 'center' });
+            doc.text('christophersanzeri@evalveconsulting.com', pw / 2, y + 23, { align: 'center' });
+            y += 30;
+
+            // Source note
+            doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...C.faint);
+            doc.text('Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.', m, y);
+
+            // Branded footer + page numbers on every page
+            const pages = doc.internal.getNumberOfPages();
+            for (let p = 1; p <= pages; p++) {
+                doc.setPage(p);
+                const fy = ph - 10;
+                doc.setDrawColor(...C.border); doc.setLineWidth(0.2); doc.line(m, fy - 4, pw - m, fy - 4);
+                doc.setFont('helvetica', 'bold'); doc.setFontSize(7); doc.setTextColor(...C.indigo);
+                doc.text('Evalve Consulting', m, fy);
+                doc.setFont('helvetica', 'normal'); doc.setTextColor(...C.slate);
+                doc.text('AI Implementation for Education That Actually Works', m + 30, fy);
+                doc.text('Page ' + p + ' of ' + pages, pw - m, fy, { align: 'right' });
+            }
+            return doc;
+        }
+
         function Results({ answers, contact, setContact, unlocked, onUnlock }) {
             const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             const [unlockError, setUnlockError] = useState('');
@@ -1193,177 +1365,6 @@
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
-            }
-
-            const logoDataRef = useRef(null);
-
-            useEffect(() => {
-                const img = new Image();
-                img.crossOrigin = 'anonymous';
-                img.onload = () => {
-                    try {
-                        const maxW = 1000; // the logo prints small; downscale to keep the emailed PDF light
-                        const scale = Math.min(1, maxW / img.naturalWidth);
-                        const w = Math.round(img.naturalWidth * scale), h = Math.round(img.naturalHeight * scale);
-                        const canvas = document.createElement('canvas');
-                        canvas.width = w; canvas.height = h;
-                        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-                        logoDataRef.current = { dataUrl: canvas.toDataURL('image/png'), w, h };
-                    } catch (e) { /* logo stays null; PDF falls back to a wordmark */ }
-                };
-                img.src = '/images/trace.png';
-            }, []);
-
-            // Shared branded report renderer (used by both the download and the emailed copy).
-            function renderReadinessPDF(doc, dimScores, totalScore, level, gaps, contact) {
-                const pw = doc.internal.pageSize.getWidth();
-                const ph = doc.internal.pageSize.getHeight();
-                const m = 16, cw = pw - 2 * m;
-                let y = m;
-                const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-                const C = { indigo: [46,43,111], teal: [63,167,163], slate: [92,95,102], light: [247,247,250], border: [228,228,234], faint: [154,154,175], amber: [232,169,74], tealTint: [232,248,247] };
-                function cp(n) { if (y + n > ph - 24) { doc.addPage(); y = m; } }
-                function hexToRgb(hex) { return [parseInt(hex.slice(1,3),16), parseInt(hex.slice(3,5),16), parseInt(hex.slice(5,7),16)]; }
-                function sectionHeader(title, col) {
-                    cp(16);
-                    doc.setFillColor(...(col || C.indigo)); doc.roundedRect(m, y, cw, 9, 1.5, 1.5, 'F');
-                    doc.setFont('helvetica', 'bold'); doc.setFontSize(10); doc.setTextColor(255, 255, 255);
-                    doc.text(title, m + 4, y + 6); y += 14;
-                }
-
-                // Header band with the white logo lockup
-                const bandH = 22;
-                doc.setFillColor(...C.indigo); doc.rect(0, 0, pw, bandH, 'F');
-                doc.setFillColor(...C.teal); doc.rect(0, bandH, pw, 1.2, 'F');
-                const logo = logoDataRef.current;
-                if (logo && logo.dataUrl) {
-                    const lw = 50, lh = lw * (logo.h / logo.w);
-                    doc.addImage(logo.dataUrl, 'PNG', m, (bandH - lh) / 2, lw, lh);
-                } else {
-                    doc.setFont('helvetica', 'bold'); doc.setFontSize(15); doc.setTextColor(255, 255, 255);
-                    doc.text('Evalve Consulting', m, bandH / 2 + 2);
-                }
-                doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(...C.teal);
-                doc.text('AI READINESS REPORT', pw - m, bandH / 2 - 1.5, { align: 'right' });
-                doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(210, 210, 225);
-                doc.text(dateStr, pw - m, bandH / 2 + 4, { align: 'right' });
-                y = bandH + 11;
-
-                // Title + subline
-                doc.setFont('helvetica', 'bold'); doc.setFontSize(19); doc.setTextColor(...C.indigo);
-                doc.text('AI Readiness Assessment', m, y); y += 6.5;
-                doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(...C.slate);
-                const subParts = [contact.name, contact.org, contact.role].filter(Boolean);
-                doc.text(doc.splitTextToSize(subParts.join('   |   '), cw), m, y); y += 9;
-
-                // Headline metric cards
-                cp(30);
-                const pctTotal = Math.round((totalScore / 64) * 100);
-                const cards = [
-                    { v: totalScore + ' / 64', l: 'Overall readiness score', col: C.indigo, fs: 17 },
-                    { v: pctTotal + '%', l: 'Of maximum readiness', col: C.teal, fs: 17 },
-                    { v: level.name, l: 'Your readiness level', col: C.indigo, fs: 13 },
-                ];
-                const cgap = 5, ccw = (cw - 2 * cgap) / 3, cch = 26;
-                cards.forEach((card, i) => {
-                    const cx = m + i * (ccw + cgap);
-                    doc.setFillColor(...C.light); doc.roundedRect(cx, y, ccw, cch, 2.5, 2.5, 'F');
-                    doc.setFillColor(...card.col); doc.roundedRect(cx, y, 2, cch, 1, 1, 'F');
-                    doc.setFont('helvetica', 'bold'); doc.setFontSize(card.fs); doc.setTextColor(...card.col);
-                    doc.text(doc.splitTextToSize(String(card.v), ccw - 9), cx + 6, y + 11);
-                    doc.setFont('helvetica', 'normal'); doc.setFontSize(7.5); doc.setTextColor(...C.slate);
-                    doc.text(doc.splitTextToSize(card.l, ccw - 9), cx + 6, y + 19);
-                });
-                y += cch + 8;
-
-                // Level description
-                doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5); doc.setTextColor(...C.slate);
-                const descLines = doc.splitTextToSize(level.description, cw);
-                cp(descLines.length * 4.6 + 6);
-                doc.text(descLines, m, y); y += descLines.length * 4.6 + 6;
-
-                // Dimension scores
-                sectionHeader('Dimension Scores');
-                DIMENSIONS.forEach((dim, di) => {
-                    const ds = dimScores[di]; const dl = getLevel(ds, true); const pct = Math.round((ds / 16) * 100);
-                    cp(16);
-                    doc.setFillColor(...C.light); doc.roundedRect(m, y, cw, 13, 2, 2, 'F');
-                    doc.setFont('helvetica', 'bold'); doc.setFontSize(9.5); doc.setTextColor(...C.indigo);
-                    doc.text(dim.title, m + 5, y + 5.5);
-                    doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(...C.slate);
-                    doc.text(ds + '/16   ' + dl.name, pw - m - 4, y + 5.5, { align: 'right' });
-                    const barY = y + 8.5;
-                    doc.setFillColor(...C.border); doc.roundedRect(m + 5, barY, cw - 10, 2.4, 1, 1, 'F');
-                    doc.setFillColor(...hexToRgb(dl.color)); doc.roundedRect(m + 5, barY, (cw - 10) * pct / 100, 2.4, 1, 1, 'F');
-                    y += 16;
-                });
-                y += 2;
-
-                // Key gaps
-                if (gaps.length > 0) {
-                    sectionHeader('Key Gaps Identified', C.amber);
-                    DIMENSIONS.forEach((dim, di) => {
-                        const dimGaps = gaps.filter(g => g.dimIndex === di);
-                        if (dimGaps.length === 0) return;
-                        cp(12);
-                        doc.setFont('helvetica', 'bold'); doc.setFontSize(9.5); doc.setTextColor(...C.amber);
-                        doc.text(dim.title, m + 1, y + 3); y += 7;
-                        dimGaps.forEach(g => {
-                            const ql = doc.splitTextToSize(g.question, cw - 8);
-                            const al = doc.splitTextToSize('Response: ' + g.current, cw - 14);
-                            const boxH = al.length * 4.4 + 4;
-                            cp(ql.length * 4.4 + boxH + 7);
-                            doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(...C.indigo);
-                            doc.text(ql, m + 1, y + 3.5); y += ql.length * 4.4 + 2.5;
-                            doc.setFillColor(255, 249, 239); doc.roundedRect(m + 1, y - 1, cw - 2, boxH, 1.5, 1.5, 'F');
-                            doc.setFillColor(...C.amber); doc.rect(m + 1, y - 1, 1.6, boxH, 'F');
-                            doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(...C.slate);
-                            doc.text(al, m + 6, y + 3); y += boxH + 4;
-                        });
-                        y += 2;
-                    });
-                }
-
-                // Recommended next steps
-                sectionHeader('Recommended Next Steps');
-                level.steps.forEach((step, i) => {
-                    const sl = doc.splitTextToSize((i + 1) + '. ' + step, cw - 6);
-                    cp(sl.length * 4.6 + 4);
-                    doc.setFont('helvetica', 'normal'); doc.setFontSize(9.5); doc.setTextColor(...C.indigo);
-                    doc.text(sl, m + 2, y + 3); y += sl.length * 4.6 + 4;
-                });
-                y += 4;
-
-                // Call to action
-                cp(28);
-                doc.setFillColor(...C.tealTint); doc.roundedRect(m, y, cw, 26, 2.5, 2.5, 'F');
-                doc.setDrawColor(...C.teal); doc.setLineWidth(0.4); doc.roundedRect(m, y, cw, 26, 2.5, 2.5, 'S'); doc.setLineWidth(0.2);
-                doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(...C.indigo);
-                doc.text('Ready to move from assessment to action?', pw / 2, y + 8, { align: 'center' });
-                doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(...C.slate);
-                doc.text('Book a strategy call with Dr. Chris Sanzeri', pw / 2, y + 13.5, { align: 'center' });
-                doc.setFont('helvetica', 'bold'); doc.setTextColor(...C.teal);
-                doc.text('cal.com/evalve-consulting/discovery-call', pw / 2, y + 18.5, { align: 'center' });
-                doc.text('christophersanzeri@evalveconsulting.com', pw / 2, y + 23, { align: 'center' });
-                y += 30;
-
-                // Source note
-                doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...C.faint);
-                doc.text('Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.', m, y);
-
-                // Branded footer + page numbers on every page
-                const pages = doc.internal.getNumberOfPages();
-                for (let p = 1; p <= pages; p++) {
-                    doc.setPage(p);
-                    const fy = ph - 10;
-                    doc.setDrawColor(...C.border); doc.setLineWidth(0.2); doc.line(m, fy - 4, pw - m, fy - 4);
-                    doc.setFont('helvetica', 'bold'); doc.setFontSize(7); doc.setTextColor(...C.indigo);
-                    doc.text('Evalve Consulting', m, fy);
-                    doc.setFont('helvetica', 'normal'); doc.setTextColor(...C.slate);
-                    doc.text('AI Implementation for Education That Actually Works', m + 30, fy);
-                    doc.text('Page ' + p + ' of ' + pages, pw - m, fy, { align: 'right' });
-                }
-                return doc;
             }
 
             function downloadPDF() {

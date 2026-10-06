@@ -1,13 +1,53 @@
 {
-  "week_of": "2026-09-29",
+  "week_of": "2026-10-06",
   "weeks": [
+    "2026-10-06",
     "2026-09-29",
     "2026-09-22",
-    "2026-09-08",
-    "2026-09-01"
+    "2026-09-08"
   ],
-  "updated": "2026-09-29T11:30:41.046Z",
+  "updated": "2026-10-06T11:30:52.094Z",
   "jobs": [
+    {
+      "title": "Manager, Master Data Management & Data/AI",
+      "org": "Chicago Public Schools",
+      "org_type": "district",
+      "location": "Chicago, IL",
+      "source_url": "https://www.topschooljobs.org/job/2488210/manager-master-data-management/",
+      "posted_date": "2026-10-02",
+      "scope_summary": "Builds the district's master data and AI/ML strategy, leading a team that develops and deploys analytics and machine learning models to improve educational outcomes.",
+      "week_of": "2026-10-06"
+    },
+    {
+      "title": "Manager, Applied AI Research",
+      "org": "Edmentum",
+      "org_type": "edtech",
+      "location": "Remote",
+      "source_url": "https://job-boards.greenhouse.io/edmentum/jobs/6206900004",
+      "posted_date": "2026-09-30",
+      "scope_summary": "Leads a research team that tests whether the company's AI features for K-12 students are reliable, valid, and fair, and uses the findings to shape product and policy decisions.",
+      "week_of": "2026-10-06"
+    },
+    {
+      "title": "Research Scientist, Applied AI Research",
+      "org": "Edmentum",
+      "org_type": "edtech",
+      "location": "Remote",
+      "source_url": "https://job-boards.greenhouse.io/edmentum/jobs/6211309004",
+      "posted_date": "2026-09-30",
+      "scope_summary": "Designs and runs applied AI and psychometric studies on the reliability, validity, and fairness of AI features in Edmentum's learning products.",
+      "week_of": "2026-10-06"
+    },
+    {
+      "title": "Director, AI Strategy & Digital Success",
+      "org": "PowerSchool",
+      "org_type": "edtech",
+      "location": "Plano, TX",
+      "source_url": "https://www.powerschool.com/company/careers/job-internal/?referencenumber=2026-52670&location=",
+      "posted_date": null,
+      "scope_summary": "Builds AI-driven customer success programs for a K-12 software company, including automated onboarding playbooks, a generative AI content engine, and AI models that predict which customers may leave.",
+      "week_of": "2026-10-06"
+    },
     {
       "title": "Director of Artificial Intelligence (AI) for Academic Success",
       "org": "University of Southern Mississippi",
@@ -207,86 +247,6 @@
       "posted_date": "2025-12-15",
       "scope_summary": "Leads a university-wide strategy to graduate every student AI-proficient, coordinating AI curriculum across colleges and building reskilling certificates with regional employers.",
       "week_of": "2026-09-08"
-    },
-    {
-      "title": "Program Director, AI for Education",
-      "org": "Team4Tech",
-      "org_type": "nonprofit",
-      "location": "Remote",
-      "source_url": "https://team4tech.breezy.hr/p/c490b97762a0-program-director-ai-for-education",
-      "posted_date": "2026-08-25",
-      "scope_summary": "Scopes and manages AI-in-education technology projects and leads NGO training cohorts, shaping how AI gets applied in education programs serving under-resourced communities.",
-      "week_of": "2026-09-01"
-    },
-    {
-      "title": "Program Specialist, AI & Emerging Technologies",
-      "org": "University of Utah",
-      "org_type": "higher-ed",
-      "location": "Utah",
-      "source_url": "https://jobs.chronicle.com/job/38029863/program-specialist-ai/",
-      "posted_date": "2026-08-24",
-      "scope_summary": "Designs and teaches applied AI learning programs for adult learners, campus partners, and Utah organizations, translating fast-moving AI tools into practical continuing education offerings.",
-      "week_of": "2026-09-01"
-    },
-    {
-      "title": "Builder, Instructure Foundry",
-      "org": "Instructure",
-      "org_type": "edtech",
-      "location": "Remote, US",
-      "source_url": "https://jobs.ashbyhq.com/instructure/610803aa-4723-431e-9124-2c4aa340ca62",
-      "posted_date": "2026-08-11",
-      "scope_summary": "The engineer half of a two-person pod building AI-generated products inside Instructure. You direct and verify far more code than you write, and you own whether what ships holds up in production.",
-      "week_of": "2026-09-01"
-    },
-    {
-      "title": "Artificial Intelligence and Data Science for Public Policy",
-      "org": "Columbia University School of International and Public Affairs",
-      "org_type": "higher-ed",
-      "location": "New York, NY",
-      "source_url": "https://jobs.chronicle.com/job/38023438/artificial-intelligence-and-data-science-for-public-policy-/",
-      "posted_date": "2026-08-06",
-      "scope_summary": "Tenure-track faculty position for a scholar working on AI and machine learning methods applied to public policy, covering AI regulation and the social consequences of algorithmic decision-making.",
-      "week_of": "2026-09-01"
-    },
-    {
-      "title": "Open Rank Tenure Track - Artificial Intelligence (AI)",
-      "org": "The Ohio State University",
-      "org_type": "higher-ed",
-      "location": "Columbus, OH",
-      "source_url": "https://jobs.chronicle.com/job/38023231/open-rank-tenure-track-artificial-intelligence-ai-/",
-      "posted_date": "2026-08-04",
-      "scope_summary": "Tenure-track faculty role in Fisher College's Accounting and Management Information Systems department teaching and researching artificial intelligence.",
-      "week_of": "2026-09-01"
-    },
-    {
-      "title": "Senior Customer Success Manager - Mid-Market, TX",
-      "org": "MagicSchool",
-      "org_type": "edtech",
-      "location": "Remote, Texas",
-      "source_url": "https://jobs.ashbyhq.com/magicschool/bc648bd4-e55d-40ff-931e-c169b8d04e98",
-      "posted_date": "2026-08-03",
-      "scope_summary": "Owns 50 to 75 Texas district relationships for the AI teaching platform, coaching administrators and teachers through adoption and running the renewals.",
-      "week_of": "2026-09-01"
-    },
-    {
-      "title": "Executive Director of Strategic Innovation and Digital Transformation",
-      "org": "Allentown School District",
-      "org_type": "district",
-      "location": "Allentown, PA",
-      "source_url": "https://www.topschooljobs.org/job/2466127/executive-director-of-strategic-innovation-and-digital-transformation/",
-      "posted_date": "2026-07-21",
-      "scope_summary": "Sets districtwide strategy that folds artificial intelligence and adaptive learning systems into academic priorities, writes the standards for ethical AI use, and runs districtwide training on AI applications in instruction.",
-      "week_of": "2026-09-01"
-    },
-    {
-      "title": "Coordinator, Data Science and Analytics",
-      "org": "Prince William County Public Schools",
-      "org_type": "district",
-      "location": "Manassas, VA",
-      "source_url": "https://www.topschooljobs.org/job/2464843/coordinator-data-science-and-analytics-250-day/",
-      "posted_date": "2026-07-16",
-      "scope_summary": "Builds predictive data science models for schools and central departments using AI platforms and machine learning methods including neural networks, classification, clustering, and decision trees.",
-      "week_of": "2026-09-01"
     }
   ]
 }

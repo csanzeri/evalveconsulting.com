@@ -757,83 +757,83 @@
         const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzOeLDsRgCtWiYZFG1HGYxdpG2I0AFnBT4A5nYSECOdcfAzLwRb4HRBgoBtHOT0XMBc/exec";
 
         const DIMENSIONS = [
-            { title: "Leadership & Vision", icon: "target", subtitle: "Strategic direction and commitment" },
-            { title: "Policy & Governance", icon: "shield", subtitle: "Guardrails and accountability" },
-            { title: "Staff Capacity & Culture", icon: "users", subtitle: "People and professional growth" },
-            { title: "Infrastructure & Data Systems", icon: "database", subtitle: "Technology and data readiness" }
+            { title: "Leadership & Vision", icon: "target", subtitle: "Pick the best fit for each question." },
+            { title: "Policy & Governance", icon: "shield", subtitle: "Pick the best fit for each question." },
+            { title: "Staff Capacity & Culture", icon: "users", subtitle: "Pick the best fit for each question." },
+            { title: "Infrastructure & Data Systems", icon: "database", subtitle: "Pick the best fit for each question." }
         ];
 
         const QUESTIONS = [
             [
                 {
-                    text: "Does your organization have a clearly articulated vision for how AI supports your educational mission?",
-                    options: ["No vision exists", "Informal discussions have occurred", "A draft vision is in progress", "A formal vision is documented and communicated", "Unsure / Do not know"]
+                    text: "Do you have a clear vision for how AI supports your mission?",
+                    options: ["None", "Informal discussions only", "A draft is in progress", "Documented and shared", "Not sure"]
                 },
                 {
-                    text: "Is there a designated leader or cross-functional team responsible for AI strategy?",
-                    options: ["No one is assigned", "One person is informally exploring AI", "A small team is formed but not formalized", "A cross-functional AI leadership team with clear roles exists", "Unsure / Do not know"]
+                    text: "Who leads AI strategy?",
+                    options: ["No one", "One person, informally", "A small, informal team", "A cross-functional team with clear roles", "Not sure"]
                 },
                 {
-                    text: "How engaged is your board and senior leadership in understanding AI\u2019s role in education?",
-                    options: ["Not engaged at all", "Aware AI exists but not actively learning", "Received one or more briefings on AI", "Actively participating in AI strategy and policy decisions", "Unsure / Do not know"]
+                    text: "How engaged are your board and senior leaders on AI?",
+                    options: ["Not engaged", "Aware, but not learning", "Had at least one AI briefing", "Active in AI strategy and policy", "Not sure"]
                 },
                 {
-                    text: "Does your organization have metrics or goals to evaluate the impact of AI initiatives?",
-                    options: ["No metrics exist", "We plan to develop metrics eventually", "Some informal tracking is happening", "Formal KPIs are defined and regularly reviewed", "Unsure / Do not know"]
+                    text: "Do you have goals or metrics for AI impact?",
+                    options: ["None", "Planned for later", "Some informal tracking", "Formal KPIs, reviewed regularly", "Not sure"]
                 }
             ],
             [
                 {
-                    text: "Does your organization have a formal Acceptable/Responsible Use Policy that addresses AI tools?",
-                    options: ["No AI-specific policy exists", "General tech policy exists but does not address AI", "AI has been added to existing policies informally", "A comprehensive AI use policy is published and enforced", "Unsure / Do not know"]
+                    text: "Do you have a responsible use policy that covers AI?",
+                    options: ["No AI policy", "Tech policy that skips AI", "AI added informally to existing policy", "Full AI policy, published and enforced", "Not sure"]
                 },
                 {
-                    text: "How does your organization address data privacy and FERPA compliance when evaluating AI tools?",
-                    options: ["No formal process for vetting AI tools", "We rely on vendor assurances without independent review", "A basic vetting process exists for some tools", "A formal procurement and privacy review process covers all AI tools", "Unsure / Do not know"]
+                    text: "How do you vet AI tools for privacy and FERPA?",
+                    options: ["No formal process", "We take the vendor's word for it", "Basic vetting for some tools", "Formal privacy review for every AI tool", "Not sure"]
                 },
                 {
-                    text: "Does your organization have guidelines addressing AI-generated content, attribution, and academic integrity?",
-                    options: ["No guidelines exist", "Teachers handle this individually", "Some building-level guidelines exist", "District-wide guidelines are documented and communicated to all stakeholders", "Unsure / Do not know"]
+                    text: "Do you have guidelines for AI-generated work, attribution, and academic integrity?",
+                    options: ["None", "Each teacher decides", "Some building-level guidelines", "District-wide, documented, and shared with everyone", "Not sure"]
                 },
                 {
-                    text: "Has your organization addressed equity and bias considerations in AI tool selection and use?",
-                    options: ["Not considered", "Awareness exists but no formal process", "Equity is part of informal evaluation discussions", "Formal equity criteria are built into AI procurement and evaluation", "Unsure / Do not know"]
+                    text: "Do you address equity and bias when choosing and using AI tools?",
+                    options: ["Not considered", "Aware, but no formal process", "Discussed informally during evaluation", "Formal equity criteria in procurement and evaluation", "Not sure"]
                 }
             ],
             [
                 {
-                    text: "What level of AI-related professional development has your organization provided to educators?",
-                    options: ["None", "A single awareness session or optional webinar", "Multiple sessions offered but not required", "Ongoing, role-specific AI PD is embedded in the organizational plan", "Unsure / Do not know"]
+                    text: "How much AI professional development have educators had?",
+                    options: ["None", "One session or optional webinar", "Several optional sessions", "Ongoing, role-specific PD built into the plan", "Not sure"]
                 },
                 {
-                    text: "How would you describe the general attitude of your staff toward AI adoption?",
-                    options: ["Mostly resistant or fearful", "Cautiously skeptical", "Curious but unsure how to start", "Actively experimenting and eager to learn more", "Unsure / Do not know"]
+                    text: "How does your staff feel about AI?",
+                    options: ["Mostly resistant or fearful", "Cautiously skeptical", "Curious, unsure how to start", "Experimenting and eager to learn", "Not sure"]
                 },
                 {
-                    text: "Do educators have access to approved AI tools and resources for instructional use?",
-                    options: ["No approved AI tools are available", "Teachers are using personal accounts on their own", "A few approved tools exist but access is inconsistent", "A vetted set of AI tools is available with training and support", "Unsure / Do not know"]
+                    text: "Do educators have approved AI tools for instruction?",
+                    options: ["No approved tools", "Teachers use personal accounts", "A few approved tools, uneven access", "Vetted tools with training and support", "Not sure"]
                 },
                 {
-                    text: "Are there peer networks, coaches, or communities of practice for AI integration in your organization?",
-                    options: ["None", "Informal conversations happen occasionally", "A pilot group or early adopters share informally", "Formal communities of practice with dedicated coaching support exist", "Unsure / Do not know"]
+                    text: "Do staff have AI coaches, peer networks, or communities of practice?",
+                    options: ["None", "Occasional informal conversations", "A pilot group or early adopters share informally", "Formal communities of practice with coaching", "Not sure"]
                 }
             ],
             [
                 {
-                    text: "Does your organization have the technical infrastructure (devices, bandwidth, SSO) to support AI tool deployment?",
-                    options: ["Significant gaps in devices and/or connectivity", "Basic infrastructure exists but not optimized for AI", "Infrastructure supports some AI tools with minor limitations", "Robust infrastructure with SSO, adequate bandwidth, and sufficient devices", "Unsure / Do not know"]
+                    text: "Can your devices, bandwidth, and SSO support AI tools?",
+                    options: ["Big gaps in devices or connectivity", "Basic, not set up for AI", "Supports some AI tools, minor limits", "Strong: SSO, enough bandwidth and devices", "Not sure"]
                 },
                 {
-                    text: "Does your organization have a cybersecurity framework that includes AI-specific considerations?",
-                    options: ["No cybersecurity framework exists", "General cybersecurity exists but does not address AI", "AI considerations are being added to existing frameworks", "Cybersecurity framework explicitly addresses AI tools, data flows, and risks", "Unsure / Do not know"]
+                    text: "Do you have a cybersecurity framework that covers AI?",
+                    options: ["No framework", "General framework that skips AI", "Adding AI to it now", "Covers AI tools, data flows, and risks", "Not sure"]
                 },
                 {
-                    text: "How would you describe your organization\u2019s data governance and data quality practices?",
-                    options: ["No formal data governance", "Basic policies exist but are inconsistently followed", "Data governance is in place with assigned stewards", "Comprehensive data governance with classification, quality audits, and clear ownership", "Unsure / Do not know"]
+                    text: "How strong are your data governance and data quality?",
+                    options: ["No formal governance", "Basic policies, followed unevenly", "In place, with assigned data stewards", "Full governance: classification, quality audits, clear ownership", "Not sure"]
                 },
                 {
-                    text: "Does your organization track and monitor which AI tools are being used across the organization?",
-                    options: ["No tracking or visibility", "We know some tools are used but have no formal tracking", "A partial inventory exists", "A comprehensive AI tool inventory is maintained and regularly updated", "Unsure / Do not know"]
+                    text: "Do you track which AI tools are in use?",
+                    options: ["No tracking", "We know some, no formal tracking", "Partial inventory", "Full inventory, updated regularly", "Not sure"]
                 }
             ]
         ];
@@ -844,12 +844,12 @@
                 color: "#E8634A",
                 range: [0, 24],
                 dimRange: [0, 6],
-                description: "Your organization is in the early stages of understanding AI\u2019s potential. This is a common starting point, and it means there is significant opportunity to build a strong foundation from the ground up.",
+                description: "You\u2019re early in understanding AI\u2019s potential. That\u2019s a common starting point, and a chance to build a strong foundation.",
                 steps: [
-                    "Convene a small AI exploration committee with representatives from leadership, instruction, and IT.",
-                    "Schedule an AI awareness session for your board and senior leadership team.",
-                    "Conduct an inventory of any AI tools already being used informally across the organization.",
-                    "Review your existing acceptable use and data privacy policies for AI-related gaps."
+                    "Form a small AI committee with leadership, instruction, and IT.",
+                    "Schedule an AI briefing for your board and senior leaders.",
+                    "List the AI tools staff already use informally.",
+                    "Check your acceptable use and privacy policies for AI gaps."
                 ]
             },
             developing: {
@@ -857,12 +857,12 @@
                 color: "#E8A94A",
                 range: [25, 40],
                 dimRange: [7, 10],
-                description: "Your organization has started the journey but lacks the formal structures needed to scale. Key gaps in policy, training, or infrastructure are likely limiting progress.",
+                description: "You\u2019ve started, but you lack the formal structures to scale. Gaps in policy, training, or infrastructure are likely slowing you down.",
                 steps: [
-                    "Draft a formal AI vision statement aligned to your strategic plan and educational mission.",
-                    "Develop an AI-specific acceptable use policy with input from legal, instructional, and technical stakeholders.",
-                    "Launch a structured professional development series that goes beyond awareness to hands-on integration.",
-                    "Establish a formal AI tool vetting and procurement process that includes privacy and equity criteria."
+                    "Draft an AI vision tied to your strategic plan and mission.",
+                    "Write an AI use policy with legal, instructional, and tech input.",
+                    "Launch hands-on AI PD that goes past awareness.",
+                    "Set up formal AI vetting and procurement with privacy and equity criteria."
                 ]
             },
             implementing: {
@@ -870,12 +870,12 @@
                 color: "#3FA7A3",
                 range: [41, 52],
                 dimRange: [11, 13],
-                description: "Your organization has solid foundations and is actively putting AI strategies into practice. Focus now on deepening integration, building consistency, and measuring impact.",
+                description: "You have solid foundations and are putting AI into practice. Next: deepen integration, build consistency, and measure impact.",
                 steps: [
-                    "Define and begin tracking KPIs for AI initiative effectiveness and student impact.",
-                    "Create formal communities of practice with dedicated coaching support for educators.",
-                    "Expand your cybersecurity framework to explicitly address AI-specific data flows and risks.",
-                    "Develop a comprehensive AI tool inventory with regular review cycles."
+                    "Define and track KPIs for AI effectiveness and student impact.",
+                    "Build formal communities of practice with coaching for educators.",
+                    "Add AI data flows and risks to your cybersecurity framework.",
+                    "Keep a full AI tool inventory and review it regularly."
                 ]
             },
             leading: {
@@ -883,12 +883,12 @@
                 color: "#2E2B6F",
                 range: [53, 64],
                 dimRange: [14, 16],
-                description: "Your organization is among the most advanced in AI readiness. You have strong leadership, comprehensive policies, a skilled workforce, and robust infrastructure. Now focus on continuous improvement and sharing your learnings.",
+                description: "You\u2019re among the most AI-ready organizations, with strong leadership, policy, staff skills, and infrastructure. Next: keep improving and share what you\u2019ve learned.",
                 steps: [
-                    "Publish and share your AI framework as a model for peer organizations and networks.",
-                    "Implement advanced analytics to measure AI\u2019s direct impact on student outcomes and equity.",
-                    "Establish partnerships with research institutions to stay at the frontier of AI in education.",
-                    "Create a mentorship program to help neighboring districts accelerate their AI readiness."
+                    "Publish your AI framework as a model for peers.",
+                    "Use analytics to measure AI\u2019s impact on student outcomes and equity.",
+                    "Partner with research institutions to stay current on AI in education.",
+                    "Mentor neighboring districts on AI readiness."
                 ]
             }
         };
@@ -944,8 +944,8 @@
                     <div className="badge">Free Assessment</div>
                     <h1 className="intro-title">Is Your Organization Ready for AI?</h1>
                     <p className="intro-sub">
-                        A research-based assessment grounded in frameworks from CoSN, ISTE, and UNESCO.
-                        Four dimensions. Sixteen questions. Five minutes.
+                        16 questions in 4 areas. About 5 minutes.
+                        Based on CoSN, ISTE, and UNESCO frameworks.
                     </p>
                     <div className="dim-grid">
                         {DIMENSIONS.map((d, i) => (
@@ -956,11 +956,10 @@
                         ))}
                     </div>
                     <div className="info-box anim-slide anim-delay-5">
-                        <div className="info-box-title">What you will get</div>
-                        <p>An instant readiness score, a personalized gap analysis, recommended next steps, and a downloadable report for your leadership team.</p>
+                        <div className="info-box-title">You'll get</div>
+                        <p>A readiness score, your key gaps, next steps, and a PDF report for your leadership team.</p>
                     </div>
-                    <button className="btn-primary anim-slide anim-delay-6" onClick={onStart}>Start Your Assessment</button>
-                    <p className="small-text">Takes about 5 minutes. Your information stays private.</p>
+                    <button className="btn-primary anim-slide anim-delay-6" onClick={onStart}>Start Assessment</button>
                 </div>
             );
         }
@@ -1054,7 +1053,7 @@
                         <button className="btn-back" onClick={() => step > 0 ? setStep(step - 1) : null}
                             style={{ visibility: step === 0 ? 'hidden' : 'visible' }}>Back</button>
                         <button className="btn-next" disabled={!allAnswered} onClick={handleNext}>
-                            {step < 3 ? 'Next Step' : 'See My Results'}
+                            {step < 3 ? 'Next' : 'See Results'}
                         </button>
                     </div>
                 </div>
@@ -1150,7 +1149,7 @@
             doc.text(descLines, m, y); y += descLines.length * 4.6 + 6;
 
             // Dimension scores
-            sectionHeader('Dimension Scores');
+            sectionHeader('Scores by Area');
             DIMENSIONS.forEach((dim, di) => {
                 const ds = dimScores[di]; const dl = getLevel(ds, true); const pct = Math.round((ds / 16) * 100);
                 cp(16);
@@ -1168,7 +1167,7 @@
 
             // Key gaps
             if (gaps.length > 0) {
-                sectionHeader('Key Gaps Identified', C.amber);
+                sectionHeader('Key Gaps', C.amber);
                 DIMENSIONS.forEach((dim, di) => {
                     const dimGaps = gaps.filter(g => g.dimIndex === di);
                     if (dimGaps.length === 0) return;
@@ -1192,7 +1191,7 @@
             }
 
             // Recommended next steps
-            sectionHeader('Recommended Next Steps');
+            sectionHeader('Next Steps');
             level.steps.forEach((step, i) => {
                 const sl = doc.splitTextToSize((i + 1) + '. ' + step, cw - 6);
                 cp(sl.length * 4.6 + 4);
@@ -1206,9 +1205,9 @@
             doc.setFillColor(...C.tealTint); doc.roundedRect(m, y, cw, 26, 2.5, 2.5, 'F');
             doc.setDrawColor(...C.teal); doc.setLineWidth(0.4); doc.roundedRect(m, y, cw, 26, 2.5, 2.5, 'S'); doc.setLineWidth(0.2);
             doc.setFont('helvetica', 'bold'); doc.setFontSize(11); doc.setTextColor(...C.indigo);
-            doc.text('Ready to move from assessment to action?', pw / 2, y + 8, { align: 'center' });
+            doc.text('Ready to act on your results?', pw / 2, y + 8, { align: 'center' });
             doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(...C.slate);
-            doc.text('Book a strategy call with Dr. Chris Sanzeri', pw / 2, y + 13.5, { align: 'center' });
+            doc.text('Book a free discovery call with Dr. Chris Sanzeri', pw / 2, y + 13.5, { align: 'center' });
             doc.setFont('helvetica', 'bold'); doc.setTextColor(...C.teal);
             doc.text('cal.com/evalve-consulting/discovery-call', pw / 2, y + 18.5, { align: 'center' });
             doc.text('christophersanzeri@evalveconsulting.com', pw / 2, y + 23, { align: 'center' });
@@ -1216,7 +1215,7 @@
 
             // Source note
             doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...C.faint);
-            doc.text('Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.', m, y);
+            doc.text('Based on CoSN, ISTE, and UNESCO frameworks.', m, y);
 
             // Branded footer + page numbers on every page
             const pages = doc.internal.getNumberOfPages();
@@ -1238,7 +1237,7 @@
             const [unlockError, setUnlockError] = useState('');
             const canUnlock = contact.name.trim() && emailPattern.test(contact.email) && contact.org.trim();
             function handleUnlock() {
-                if (!canUnlock) { setUnlockError('Please add your name, a valid email, and your organization.'); return; }
+                if (!canUnlock) { setUnlockError('Add your name, a valid email, and your organization.'); return; }
                 setUnlockError('');
                 onUnlock();
             }
@@ -1254,7 +1253,7 @@
                             dim: DIMENSIONS[si].title,
                             dimIndex: si,
                             question: QUESTIONS[si][qi].text,
-                            current: val === 0 ? "Unsure / Do not know" : QUESTIONS[si][qi].options[val - 1]
+                            current: val === 0 ? "Not sure" : QUESTIONS[si][qi].options[val - 1]
                         });
                     }
                 });
@@ -1389,7 +1388,7 @@
                     </div>
 
                     <div style={{ position: "relative" }}>
-                    <div style={unlocked ? {} : { filter: "blur(7px)", pointerEvents: "none", userSelect: "none", maxHeight: 360, overflow: "hidden" }}>
+                    <div style={unlocked ? {} : { filter: "blur(7px)", pointerEvents: "none", userSelect: "none", maxHeight: 600, overflow: "hidden" }}>
 
                     {DIMENSIONS.map((d, i) => {
                         const s = dimScores[i];
@@ -1411,14 +1410,14 @@
 
                     {dimGapSummary.length > 0 && (
                         <div className="gaps-section">
-                            <h3 className="gaps-title">Key Gaps Identified</h3>
-                            <p style={{ color: '#5C5F66', fontSize: '14px', marginBottom: '16px' }}>{gaps.length} area{gaps.length !== 1 ? 's' : ''} across {dimGapSummary.length} dimension{dimGapSummary.length !== 1 ? 's' : ''} need attention.</p>
+                            <h3 className="gaps-title">Key Gaps</h3>
+                            <p style={{ color: '#5C5F66', fontSize: '14px', marginBottom: '16px' }}>{gaps.length} question{gaps.length !== 1 ? 's' : ''} flagged across {dimGapSummary.length} area{dimGapSummary.length !== 1 ? 's' : ''}.</p>
                             {dimGapSummary.map((d, i) => (
                                 <div className={`gap-item anim-slide anim-delay-${Math.min(i + 1, 6)}`} key={i}>
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                         <div>
                                             <div className="gap-dim">{d.title}</div>
-                                            <div className="gap-current">{d.count} of 4 areas need attention</div>
+                                            <div className="gap-current">{d.count} of 4 questions flagged</div>
                                         </div>
                                         <span className="level-pill" style={{ background: d.level.color, color: '#fff' }}>{d.level.name}</span>
                                     </div>
@@ -1428,7 +1427,7 @@
                     )}
 
                     <div className="next-steps">
-                        <h3 className="next-steps-title">Recommended Next Steps</h3>
+                        <h3 className="next-steps-title">Next Steps</h3>
                         {level.steps.map((s, i) => (
                             <div className={`step-item anim-slide anim-delay-${i + 1}`} key={i}>
                                 <div className="step-num">{i + 1}</div>
@@ -1438,8 +1437,8 @@
                     </div>
 
                     <div className="results-btn-row">
-                        <button className="btn-report" onClick={downloadPDF}>Download Full Report</button>
-                        <a className="btn-strategy" href="https://cal.com/evalve-consulting/discovery-call" target="_blank" rel="noopener noreferrer">Book a Strategy Call</a>
+                        <button className="btn-report" onClick={downloadPDF}>Download Report</button>
+                        <a className="btn-strategy" href="https://cal.com/evalve-consulting/discovery-call" target="_blank" rel="noopener noreferrer">Book a Call</a>
                     </div>
                     </div>
                     {!unlocked && (
@@ -1447,20 +1446,20 @@
                             <div style={{ background: "#fff", borderRadius: 16, padding: "28px clamp(16px, 4.5vw, 26px)", maxWidth: 440, width: "100%", textAlign: "center", boxShadow: "0 24px 70px rgba(46,43,111,0.22)", border: "1px solid rgba(63,167,163,0.25)" }}>
                                 <div style={{ marginBottom: 6 }}><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" style={{ color: "#3FA7A3" }}><use href="/images/evalve-icons.svg#evalve-lock"></use></svg></div>
                                 <h2 style={{ fontFamily: "'Instrument Sans', sans-serif", color: "#2E2B6F", fontSize: 22, fontWeight: 700, margin: "0 0 8px" }}>Unlock your full results</h2>
-                                <p style={{ color: "#5C5F66", fontSize: 14, lineHeight: 1.6, margin: "0 0 18px" }}>See your dimension-by-dimension breakdown, your key gaps, recommended next steps, and download the full PDF report for your leadership team.</p>
+                                <p style={{ color: "#5C5F66", fontSize: 14, lineHeight: 1.6, margin: "0 0 18px" }}>Get your scores by area, key gaps, next steps, and the PDF report.</p>
                                 <div className="form-group"><input type="text" placeholder="Your name" maxLength="100" value={contact.name} onChange={e => { setContact({ ...contact, name: e.target.value }); if (unlockError) setUnlockError(''); }} /></div>
                                 <div className="form-group"><input type="email" placeholder="you@district.k12.us" maxLength="254" value={contact.email} onChange={e => { setContact({ ...contact, email: e.target.value }); if (unlockError) setUnlockError(''); }} /></div>
                                 <div className="form-group"><input type="text" placeholder="District / Organization" maxLength="150" value={contact.org} onChange={e => { setContact({ ...contact, org: e.target.value }); if (unlockError) setUnlockError(''); }} /></div>
                                 {unlockError && <p style={{ color: "#D94F4F", fontSize: 12, margin: "0 0 10px" }}>{unlockError}</p>}
-                                <button className="btn-primary" onClick={handleUnlock}>Unlock my results</button>
-                                <p style={{ fontSize: 11, color: "#5C5F66", marginTop: 12, lineHeight: 1.5 }}>I'll send your report and the occasional practical note on AI in education. No spam, unsubscribe anytime.</p>
+                                <button className="btn-primary" onClick={handleUnlock}>Unlock Results</button>
+                                <p style={{ fontSize: 11, color: "#5C5F66", marginTop: 12, lineHeight: 1.5 }}>I'll send your report and occasional practical notes on AI in education. Unsubscribe anytime.</p>
                             </div>
                         </div>
                     )}
                     </div>
 
                     <div className="footer-attr">
-                        Assessment grounded in frameworks from CoSN, ISTE, and UNESCO.<br />
+                        Based on CoSN, ISTE, and UNESCO frameworks.<br />
                         &copy; {new Date().getFullYear()} Evalve Consulting. All rights reserved.
                     </div>
                 </div>
@@ -1492,7 +1491,7 @@
                 answers.forEach((stepAnswers, si) => {
                     stepAnswers.forEach((val, qi) => {
                         if (val <= 2) {
-                            gaps.push({ dim: DIMENSIONS[si].title, dimIndex: si, question: QUESTIONS[si][qi].text, current: val === 0 ? "Unsure / Do not know" : QUESTIONS[si][qi].options[val - 1] });
+                            gaps.push({ dim: DIMENSIONS[si].title, dimIndex: si, question: QUESTIONS[si][qi].text, current: val === 0 ? "Not sure" : QUESTIONS[si][qi].options[val - 1] });
                         }
                     });
                 });

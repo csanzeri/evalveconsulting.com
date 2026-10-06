@@ -652,7 +652,7 @@
           doc.setFont('helvetica', 'bold'); doc.setFontSize(7); doc.setTextColor(...C.indigo);
           doc.text('Evalve Consulting', m, fy);
           doc.setFont('helvetica', 'normal'); doc.setTextColor(...C.slate);
-          doc.text('AI Implementation for Education That Actually Works', m + 30, fy);
+          doc.text('Most needs. Fewest minutes. Start there.', m + 30, fy);
           doc.text('Page ' + p + ' of ' + pages, pw - m, fy, { align: 'right' });
         }
 
@@ -1042,7 +1042,7 @@
                     <p style={{ color: COLORS.slateGray, fontSize: 14, lineHeight: 1.6, margin: "0 0 16px" }}>Enter your email to see your full priority list, area breakdown, operations map, and PDF report.</p>
                     <input type="email" value={email} onChange={(e) => { setEmail(e.target.value); if (unlockError) setUnlockError(""); }} onKeyDown={(e) => { if (e.key === "Enter") handleUnlock(); }} placeholder="you@yourorganization.org" autoComplete="email" style={{ ...inp, textAlign: "center", marginBottom: 10 }} />
                     {unlockError && <p style={{ color: COLORS.dangerRed, fontSize: 12, margin: "0 0 10px" }}>{unlockError}</p>}
-                    <button onClick={handleUnlock} style={{ ...btnP, width: "100%" }}>Unlock Results</button>
+                    <button onClick={handleUnlock} style={{ ...btnP, width: "100%" }}>See My Results</button>
                     <p style={{ fontSize: 11, color: COLORS.slateGray, marginTop: 12, lineHeight: 1.5 }}>I'll send your report and occasional practical notes on AI in education. Unsubscribe anytime.</p>
                   </div>
                 </div>

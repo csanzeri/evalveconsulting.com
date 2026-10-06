@@ -1226,7 +1226,7 @@
                 doc.setFont('helvetica', 'bold'); doc.setFontSize(7); doc.setTextColor(...C.indigo);
                 doc.text('Evalve Consulting', m, fy);
                 doc.setFont('helvetica', 'normal'); doc.setTextColor(...C.slate);
-                doc.text('AI Implementation for Education That Actually Works', m + 30, fy);
+                doc.text('Most needs. Fewest minutes. Start there.', m + 30, fy);
                 doc.text('Page ' + p + ' of ' + pages, pw - m, fy, { align: 'right' });
             }
             return doc;
@@ -1445,13 +1445,13 @@
                         <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "8px 14px 40px", background: "linear-gradient(180deg, rgba(245,245,248,0.4) 0%, rgba(245,245,248,0.93) 30%, #f5f5f8 52%)" }}>
                             <div style={{ background: "#fff", borderRadius: 16, padding: "28px clamp(16px, 4.5vw, 26px)", maxWidth: 440, width: "100%", textAlign: "center", boxShadow: "0 24px 70px rgba(46,43,111,0.22)", border: "1px solid rgba(63,167,163,0.25)" }}>
                                 <div style={{ marginBottom: 6 }}><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" style={{ color: "#3FA7A3" }}><use href="/images/evalve-icons.svg#evalve-lock"></use></svg></div>
-                                <h2 style={{ fontFamily: "'Instrument Sans', sans-serif", color: "#2E2B6F", fontSize: 22, fontWeight: 700, margin: "0 0 8px" }}>Unlock your full results</h2>
+                                <h2 style={{ fontFamily: "'Instrument Sans', sans-serif", color: "#2E2B6F", fontSize: 22, fontWeight: 700, margin: "0 0 8px" }}>See your full results</h2>
                                 <p style={{ color: "#5C5F66", fontSize: 14, lineHeight: 1.6, margin: "0 0 18px" }}>Get your scores by area, key gaps, next steps, and the PDF report.</p>
                                 <div className="form-group"><input type="text" placeholder="Your name" maxLength="100" value={contact.name} onChange={e => { setContact({ ...contact, name: e.target.value }); if (unlockError) setUnlockError(''); }} /></div>
                                 <div className="form-group"><input type="email" placeholder="you@district.k12.us" maxLength="254" value={contact.email} onChange={e => { setContact({ ...contact, email: e.target.value }); if (unlockError) setUnlockError(''); }} /></div>
                                 <div className="form-group"><input type="text" placeholder="District / Organization" maxLength="150" value={contact.org} onChange={e => { setContact({ ...contact, org: e.target.value }); if (unlockError) setUnlockError(''); }} /></div>
                                 {unlockError && <p style={{ color: "#D94F4F", fontSize: 12, margin: "0 0 10px" }}>{unlockError}</p>}
-                                <button className="btn-primary" onClick={handleUnlock}>Unlock Results</button>
+                                <button className="btn-primary" onClick={handleUnlock}>See My Results</button>
                                 <p style={{ fontSize: 11, color: "#5C5F66", marginTop: 12, lineHeight: 1.5 }}>I'll send your report and occasional practical notes on AI in education. Unsubscribe anytime.</p>
                             </div>
                         </div>

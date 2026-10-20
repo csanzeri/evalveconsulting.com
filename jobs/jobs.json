@@ -1,13 +1,103 @@
 {
-  "week_of": "2026-10-13",
+  "week_of": "2026-10-20",
   "weeks": [
+    "2026-10-20",
     "2026-10-13",
     "2026-10-06",
-    "2026-09-29",
-    "2026-09-22"
+    "2026-09-29"
   ],
-  "updated": "2026-10-13T11:30:57.295Z",
+  "updated": "2026-10-20T11:30:59.083Z",
   "jobs": [
+    {
+      "title": "Senior Programs Lead, South",
+      "org": "The AI Education Project (aiEDU)",
+      "org_type": "nonprofit",
+      "location": "Remote",
+      "source_url": "https://job-boards.greenhouse.io/aiedu/jobs/5267985007",
+      "posted_date": "2026-10-16",
+      "scope_summary": "Builds and supports partnerships with school districts and education agencies across Southern states, especially Texas and Florida, to bring AI literacy programs to students.",
+      "week_of": "2026-10-20"
+    },
+    {
+      "title": "AI Fluency and Computing Librarian",
+      "org": "George Mason University",
+      "org_type": "higher-ed",
+      "location": "Fairfax, VA",
+      "source_url": "https://jobs.chronicle.com/job/38052756/ai-fluency-and-computing-librarian/",
+      "posted_date": "2026-10-15",
+      "scope_summary": "Prepares the university libraries to support Mason's growing AI and computing programs through instruction, research consultations, collections and outreach to engineering and science faculty and students.",
+      "week_of": "2026-10-20"
+    },
+    {
+      "title": "Head of Trust & Safety",
+      "org": "MagicSchool",
+      "org_type": "edtech",
+      "location": "Remote",
+      "source_url": "https://jobs.ashbyhq.com/magicschool/7de3aa10-2c02-4ed4-9d5b-a2928f94f543",
+      "posted_date": "2026-10-15",
+      "scope_summary": "Owns the safety of the platform's AI output for teachers and students, covering guardrails, evaluations, red-teaming and incident response, plus safety documentation and RFP responses for districts.",
+      "week_of": "2026-10-20"
+    },
+    {
+      "title": "Applied STEM & AI Specialist in Residence",
+      "org": "Thomas College",
+      "org_type": "higher-ed",
+      "location": "Waterville, ME",
+      "source_url": "https://jobs.chronicle.com/job/38051353/applied-stem-and-ai-specialist-in-residence/",
+      "posted_date": "2026-10-14",
+      "scope_summary": "Leads AI integration across the college through faculty training, responsible-use practices and a faculty community of practice, and helps launch a new applied STEM program, in a two-year grant-funded role.",
+      "week_of": "2026-10-20"
+    },
+    {
+      "title": "Senior Product Manager",
+      "org": "Playlab",
+      "org_type": "nonprofit",
+      "location": "Remote",
+      "source_url": "https://jobs.ashbyhq.com/playlab/f8b16f4b-408e-4a9f-9a33-93fe05cf644e",
+      "posted_date": "2026-10-13",
+      "scope_summary": "Shapes the product for a nonprofit, open-source platform where educators and students build their own AI apps, adding new capabilities such as components and agents.",
+      "week_of": "2026-10-20"
+    },
+    {
+      "title": "Digital Learning & Technology Specialist (PK-12)",
+      "org": "Dedham Public Schools",
+      "org_type": "district",
+      "location": "Dedham, MA",
+      "source_url": "https://www.schoolspring.com/jobdetail?jobId=5954291",
+      "posted_date": "2026-10-08",
+      "scope_summary": "Coaches PK-12 teachers on AI literacy and digital tools, runs staff training on generative AI for lesson design and prompting, and helps write the district's guidelines on academic integrity and AI data privacy.",
+      "week_of": "2026-10-20"
+    },
+    {
+      "title": "Director of Curriculum Design & AI Integration",
+      "org": "Indiana Tech",
+      "org_type": "higher-ed",
+      "location": "Fort Wayne, IN",
+      "source_url": "https://jobs.chronicle.com/job/38047358/director-of-curriculum-design-and-ai-integration/",
+      "posted_date": "2026-10-06",
+      "scope_summary": "Reports to the AI Institute and sets university-wide curriculum design standards, including AI literacy competencies and AI integration guidelines, while helping faculty turn their course ideas into AI-enabled courses.",
+      "week_of": "2026-10-20"
+    },
+    {
+      "title": "Instructional Technology Specialist",
+      "org": "Greater Lawrence Technical School",
+      "org_type": "district",
+      "location": "Andover, MA",
+      "source_url": "https://www.schoolspring.com/jobdetail?jobId=5950244",
+      "posted_date": "2026-10-05",
+      "scope_summary": "Trains staff to use generative AI responsibly in teaching, including evaluating AI output and protecting student data, and builds AI literacy and academic integrity practices for students across the school.",
+      "week_of": "2026-10-20"
+    },
+    {
+      "title": "Professional Learning Facilitator (Contract)",
+      "org": "MagicSchool",
+      "org_type": "edtech",
+      "location": "Remote (North Carolina or South Carolina)",
+      "source_url": "https://jobs.ashbyhq.com/magicschool/67979004-b048-4985-86ce-7b616e13b193",
+      "posted_date": "2026-10-05",
+      "scope_summary": "Runs live virtual and in-person professional learning that helps schools and districts bring AI tools into instruction, as a flexible contract role for experienced educators.",
+      "week_of": "2026-10-20"
+    },
     {
       "title": "Learning Solution Architect - AI/Software Engineering",
       "org": "DataCamp",
@@ -247,76 +337,6 @@
       "posted_date": null,
       "scope_summary": "Builds and scales AI-powered K-12 learning experiences grounded in Imagine Learning's curriculum.",
       "week_of": "2026-09-29"
-    },
-    {
-      "title": "Director of Artificial Intelligence and Computer Science - College and Career Development",
-      "org": "Gwinnett County Public Schools",
-      "org_type": "district",
-      "location": "Suwanee, GA",
-      "source_url": "https://www.topschooljobs.org/job/2483826/director-of-artificial-intelligence-and-computer-science-college-and-career-development/",
-      "posted_date": "2026-09-17",
-      "scope_summary": "Leads and supervises the district's K-12 artificial intelligence and computer science programs, including curriculum development, teacher professional development, and budget, with a November 2, 2026 start.",
-      "week_of": "2026-09-22"
-    },
-    {
-      "title": "Facilitator, Programs (part-time)",
-      "org": "aiEDU (The AI Education Project)",
-      "org_type": "nonprofit",
-      "location": "Remote",
-      "source_url": "https://job-boards.greenhouse.io/aiedu/jobs/5236991007",
-      "posted_date": "2026-09-15",
-      "scope_summary": "Part-time liaison to partner school districts and education agencies in the Midwest and West Coast, supporting delivery of aiEDU's AI literacy programs and services.",
-      "week_of": "2026-09-22"
-    },
-    {
-      "title": "Adjunct Instructor (Generative AI)",
-      "org": "Calbright College",
-      "org_type": "higher-ed",
-      "location": "Oakland, CA",
-      "source_url": "https://www.edjoin.org/Home/JobPosting/2274879",
-      "posted_date": "2026-09-11",
-      "scope_summary": "Teaches generative AI concepts and skills in a competency-based online community college program, giving students individualized feedback and mentoring; two openings, open until filled.",
-      "week_of": "2026-09-22"
-    },
-    {
-      "title": "Senior Learning Designer, Artificial Intelligence and Emerging Learning Technologies",
-      "org": "Quinnipiac University",
-      "org_type": "higher-ed",
-      "location": "Hamden, CT",
-      "source_url": "https://jobs.chronicle.com/job/38038948/senior-learning-designer-artificial-intelligence-and-emerging-learning-technologies/",
-      "posted_date": "2026-09-11",
-      "scope_summary": "Designs courses with faculty and serves as the university's learning design specialist for AI, consulting on responsible AI use in teaching and leading faculty development on emerging technologies.",
-      "week_of": "2026-09-22"
-    },
-    {
-      "title": "Director of Applied AI for Academic Initiatives",
-      "org": "College of the Holy Cross",
-      "org_type": "higher-ed",
-      "location": "Worcester, MA",
-      "source_url": "https://jobs.chronicle.com/job/38036569/director-of-applied-ai-for-academic-initiatives/",
-      "posted_date": "2026-09-10",
-      "scope_summary": "Launches and directs a new AI Exploration Lab for student research, partners with faculty to evaluate AI across disciplines, and advises college governance on AI policy, procurement, and ethics.",
-      "week_of": "2026-09-22"
-    },
-    {
-      "title": "Learning Partner - New York City",
-      "org": "Playlab",
-      "org_type": "nonprofit",
-      "location": "New York, NY",
-      "source_url": "https://jobs.ashbyhq.com/playlab/b70e2fd3-0727-4f3d-96f0-0e430af8d4e9",
-      "posted_date": "2026-09-09",
-      "scope_summary": "Works directly with New York City schools and educators through workshops, design studios, and strategy sessions to help them build and responsibly use their own AI tools on Playlab's nonprofit platform.",
-      "week_of": "2026-09-22"
-    },
-    {
-      "title": "Machine Learning Engineer / AI Systems Engineer",
-      "org": "Amira Learning",
-      "org_type": "edtech",
-      "location": "Texas",
-      "source_url": "https://job-boards.greenhouse.io/amiralearning/jobs/4333066009",
-      "posted_date": "2026-07-27",
-      "scope_summary": "Builds and maintains the machine learning and AI systems behind Amira's AI reading tutor and assessment platform used by school districts.",
-      "week_of": "2026-09-22"
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "name": "Evalve Consulting",
   "short_name": "Evalve",
-  "description": "AI Implementation for Education That Actually Works",
+  "description": "Most needs. Fewest minutes. Start there.",
   "icons": [
     { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
     { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" },

@@ -1,6 +1,6 @@
 # Evalve Consulting Website
 
-**evalveconsulting.com** — AI Implementation for Education That Actually Works
+**evalveconsulting.com.** Most needs. Fewest minutes. Start there.
 
 ## About
 

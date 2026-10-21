@@ -7,10 +7,10 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <meta name="description" content="Free Invisible Work Audit for education teams. Surface the repetitive work eating your team's time and get a prioritized automation list in minutes." />
+  <meta name="description" content="Free Invisible Work Audit for schools. List the tasks that eat your week and get a short list of the ones a tool could take off your plate first." />
   <link rel="canonical" href="https://evalveconsulting.com/workflow-audit/" />
   <meta property="og:title" content="Invisible Work Audit | Evalve Consulting" />
-  <meta property="og:description" content="Surface the repetitive work eating your team's time and get a prioritized automation list in minutes. Free, from Evalve Consulting." />
+  <meta property="og:description" content="List the tasks that eat your week and get a short list of the ones a tool could take off your plate first. Free, from Evalve Consulting." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://evalveconsulting.com/workflow-audit/" />
   <meta property="og:site_name" content="Evalve Consulting" />
@@ -18,7 +18,7 @@
   <meta property="og:image:alt" content="Evalve Consulting logo" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Invisible Work Audit | Evalve Consulting" />
-  <meta name="twitter:description" content="Surface the repetitive work eating your team's time and get a prioritized automation list in minutes." />
+  <meta name="twitter:description" content="List the tasks that eat your week and get a short list of the ones a tool could take off your plate first." />
   <meta name="twitter:image" content="https://evalveconsulting.com/images/trace.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -168,172 +168,167 @@
     const FONT_BODY = "'Nunito Sans', 'Segoe UI', Arial, sans-serif";
 
     const ORG_TYPES = [
-      "Solo / Freelancer",
-      "Small Business (1-10)",
-      "Growing Business (11-50)",
-      "Mid-Size Company (51-200)",
-      "Large Organization (200+)",
-      "Nonprofit",
-      "Education",
-      "Government / Public Sector",
+      "Just me (one teacher or specialist)",
+      "A small team (2-10)",
+      "A school building (11-50)",
+      "A department or several schools (51-200)",
+      "A district (200+)",
+      "A regional office or cooperative",
+      "A college or university office",
     ];
 
     const INDUSTRIES = [
-      "Construction / Trades",
-      "Automotive / Repair",
-      "Healthcare / Wellness",
-      "Education (K-12 / Higher Ed)",
-      "Professional Services",
-      "Retail / E-Commerce",
-      "Real Estate / Property",
-      "Manufacturing",
-      "Food / Hospitality",
-      "Technology / Software",
-      "Legal / Accounting",
-      "Nonprofit / Social Services",
-      "Marketing / Creative",
+      "Elementary classroom",
+      "Middle school",
+      "High school",
+      "Special education",
+      "School office (attendance, front office, counseling)",
+      "District office",
+      "Regional Office of Education or cooperative",
+      "College or university",
+      "Nonprofit serving schools",
       "Other",
     ];
 
     const OPERATIONAL_AREAS = [
       {
         id: "customer_comms",
-        name: "Customer & Client Communication",
+        name: "Family and Staff Communication",
         icon: "mail",
-        description: "Emails, follow-ups, confirmations, quotes",
+        description: "Parent emails, newsletters, reminders, conference follow-ups",
         tasks: [
-          { id: "email_responses", label: "Answering inquiries and quote requests", avgHoursWeek: 4, automationPotential: 0.65, category: "ai" },
-          { id: "appt_confirmations", label: "Sending confirmations, reminders, and follow-ups", avgHoursWeek: 2.5, automationPotential: 0.9, category: "automation" },
-          { id: "quote_followup", label: "Following up on quotes and proposals", avgHoursWeek: 2, automationPotential: 0.7, category: "automation" },
-          { id: "review_requests", label: "Asking for reviews, feedback, or referrals", avgHoursWeek: 1, automationPotential: 0.85, category: "automation" },
-          { id: "complaint_handling", label: "Handling complaints and service issues", avgHoursWeek: 1.5, automationPotential: 0.3, category: "ai" },
-          { id: "newsletter_updates", label: "Sending newsletters and updates", avgHoursWeek: 1.5, automationPotential: 0.7, category: "ai" },
+          { id: "email_responses", label: "Answering parent emails", avgHoursWeek: 4, automationPotential: 0.65, category: "ai" },
+          { id: "appt_confirmations", label: "Sending conference reminders and follow-ups", avgHoursWeek: 2.5, automationPotential: 0.9, category: "automation" },
+          { id: "quote_followup", label: "Following up on permission slips that are still out", avgHoursWeek: 2, automationPotential: 0.7, category: "automation" },
+          { id: "review_requests", label: "Asking families for feedback after a conference or event", avgHoursWeek: 1, automationPotential: 0.85, category: "automation" },
+          { id: "complaint_handling", label: "Handling parent concerns", avgHoursWeek: 1.5, automationPotential: 0.3, category: "ai" },
+          { id: "newsletter_updates", label: "Writing the family newsletter and school updates", avgHoursWeek: 1.5, automationPotential: 0.7, category: "ai" },
         ],
       },
       {
         id: "scheduling",
-        name: "Scheduling & Calendar Management",
+        name: "Meetings, Coverage, and the Calendar",
         icon: "calendar",
-        description: "Appointments, shifts, meetings, bookings, dispatch",
+        description: "Parent meetings, IEP meeting scheduling, sub coverage, field trip forms",
         tasks: [
-          { id: "appt_booking", label: "Booking appointments and service calls", avgHoursWeek: 3, automationPotential: 0.8, category: "automation" },
-          { id: "shift_scheduling", label: "Building staff schedules and shift coverage", avgHoursWeek: 2.5, automationPotential: 0.65, category: "ai" },
-          { id: "calendar_coordination", label: "Coordinating team calendars", avgHoursWeek: 1.5, automationPotential: 0.8, category: "automation" },
+          { id: "appt_booking", label: "Scheduling parent meetings and IEP meetings", avgHoursWeek: 3, automationPotential: 0.8, category: "automation" },
+          { id: "shift_scheduling", label: "Lining up sub coverage and duty schedules", avgHoursWeek: 2.5, automationPotential: 0.65, category: "ai" },
+          { id: "calendar_coordination", label: "Coordinating team and building calendars", avgHoursWeek: 1.5, automationPotential: 0.8, category: "automation" },
           { id: "reschedule_manage", label: "Handling cancellations, reschedules, and no-shows", avgHoursWeek: 1.5, automationPotential: 0.75, category: "automation" },
-          { id: "dispatch_routing", label: "Dispatching crews, techs, or drivers", avgHoursWeek: 2, automationPotential: 0.6, category: "ai" },
-          { id: "meeting_reminders", label: "Sending meeting, deadline, and renewal reminders", avgHoursWeek: 1, automationPotential: 0.9, category: "automation" },
+          { id: "dispatch_routing", label: "Routing sub plans and who covers which class", avgHoursWeek: 2, automationPotential: 0.6, category: "ai" },
+          { id: "meeting_reminders", label: "Sending meeting, deadline, and due-date reminders", avgHoursWeek: 1, automationPotential: 0.9, category: "automation" },
         ],
       },
       {
         id: "data_admin",
-        name: "Data Entry & Admin Work",
+        name: "Student Records and Office Paperwork",
         icon: "database",
-        description: "Records, filing, moving data between tools",
+        description: "Attendance, report cards, IEPs, moving data between systems",
         tasks: [
-          { id: "crm_updates", label: "Updating client records", avgHoursWeek: 3, automationPotential: 0.75, category: "automation" },
-          { id: "transfer_systems", label: "Copying data between systems that don't connect", avgHoursWeek: 2.5, automationPotential: 0.9, category: "automation" },
-          { id: "filing_organizing", label: "Filing and finding documents", avgHoursWeek: 2, automationPotential: 0.6, category: "automation" },
-          { id: "timesheet_entry", label: "Logging timesheets and hours", avgHoursWeek: 2, automationPotential: 0.8, category: "automation" },
-          { id: "form_processing", label: "Processing forms, applications, and registrations", avgHoursWeek: 2, automationPotential: 0.75, category: "automation" },
-          { id: "status_updates", label: "Updating status boards and trackers by hand", avgHoursWeek: 1.5, automationPotential: 0.85, category: "automation" },
+          { id: "crm_updates", label: "Updating student and family records", avgHoursWeek: 3, automationPotential: 0.75, category: "automation" },
+          { id: "transfer_systems", label: "Copying attendance, grades, or behavior data between systems that do not connect", avgHoursWeek: 2.5, automationPotential: 0.9, category: "automation" },
+          { id: "filing_organizing", label: "Filing and finding IEPs, report cards, and other documents", avgHoursWeek: 2, automationPotential: 0.6, category: "automation" },
+          { id: "timesheet_entry", label: "Logging staff hours and timesheets", avgHoursWeek: 2, automationPotential: 0.8, category: "automation" },
+          { id: "form_processing", label: "Processing registration packets, field trip forms, and other paperwork", avgHoursWeek: 2, automationPotential: 0.75, category: "automation" },
+          { id: "status_updates", label: "Updating trackers and spreadsheets by hand", avgHoursWeek: 1.5, automationPotential: 0.85, category: "automation" },
         ],
       },
       {
         id: "money",
-        name: "Invoicing, Billing & Payments",
+        name: "School Fees and Purchasing",
         icon: "dollar",
-        description: "Invoices, estimates, payments, collections, expenses",
+        description: "Fee notices, field-trip costs, activity accounts, receipts",
         tasks: [
-          { id: "invoice_creation", label: "Creating and sending invoices", avgHoursWeek: 2.5, automationPotential: 0.8, category: "automation" },
-          { id: "estimate_creation", label: "Building priced quotes and proposals", avgHoursWeek: 3, automationPotential: 0.55, category: "ai" },
-          { id: "payment_tracking", label: "Tracking who has paid", avgHoursWeek: 1.5, automationPotential: 0.85, category: "automation" },
-          { id: "payment_reminders", label: "Chasing overdue payments", avgHoursWeek: 1.5, automationPotential: 0.9, category: "automation" },
-          { id: "expense_logging", label: "Logging receipts and expenses", avgHoursWeek: 1.5, automationPotential: 0.75, category: "automation" },
-          { id: "reconciliation", label: "Reconciling accounts and statements", avgHoursWeek: 1.5, automationPotential: 0.7, category: "automation" },
+          { id: "invoice_creation", label: "Creating and sending fee notices", avgHoursWeek: 2.5, automationPotential: 0.8, category: "automation" },
+          { id: "estimate_creation", label: "Building field-trip and event cost estimates", avgHoursWeek: 3, automationPotential: 0.55, category: "ai" },
+          { id: "payment_tracking", label: "Tracking who has paid school fees", avgHoursWeek: 1.5, automationPotential: 0.85, category: "automation" },
+          { id: "payment_reminders", label: "Sending reminders for unpaid fees", avgHoursWeek: 1.5, automationPotential: 0.9, category: "automation" },
+          { id: "expense_logging", label: "Logging receipts and classroom expenses", avgHoursWeek: 1.5, automationPotential: 0.75, category: "automation" },
+          { id: "reconciliation", label: "Reconciling activity accounts and statements", avgHoursWeek: 1.5, automationPotential: 0.7, category: "automation" },
         ],
       },
       {
         id: "hiring_team",
-        name: "Hiring, Onboarding & Team Management",
+        name: "Hiring, Onboarding, and Staff",
         icon: "users",
-        description: "Hiring, onboarding, training, performance, offboarding",
+        description: "Job postings, new-teacher setup, training records, staff updates",
         tasks: [
           { id: "job_postings", label: "Writing and posting job listings", avgHoursWeek: 1, automationPotential: 0.6, category: "ai" },
-          { id: "resume_screening", label: "Screening resumes or applications", avgHoursWeek: 1.5, automationPotential: 0.65, category: "ai" },
-          { id: "onboarding_setup", label: "Setting up new hires", avgHoursWeek: 2, automationPotential: 0.8, category: "automation" },
-          { id: "training_coordination", label: "Tracking training and certifications", avgHoursWeek: 1.5, automationPotential: 0.75, category: "automation" },
-          { id: "pto_payroll", label: "Managing PTO and payroll prep", avgHoursWeek: 2, automationPotential: 0.8, category: "automation" },
-          { id: "internal_comms", label: "Sending internal announcements", avgHoursWeek: 1, automationPotential: 0.6, category: "ai" },
+          { id: "resume_screening", label: "Screening applications", avgHoursWeek: 1.5, automationPotential: 0.65, category: "ai" },
+          { id: "onboarding_setup", label: "Setting up a new teacher or staff member", avgHoursWeek: 2, automationPotential: 0.8, category: "automation" },
+          { id: "training_coordination", label: "Tracking professional development and certifications", avgHoursWeek: 1.5, automationPotential: 0.75, category: "automation" },
+          { id: "pto_payroll", label: "Managing leave requests and payroll prep", avgHoursWeek: 2, automationPotential: 0.8, category: "automation" },
+          { id: "internal_comms", label: "Sending staff announcements", avgHoursWeek: 1, automationPotential: 0.6, category: "ai" },
         ],
       },
       {
         id: "marketing",
-        name: "Marketing & Online Presence",
+        name: "Family Outreach and the School Website",
         icon: "megaphone",
-        description: "Social media, website, ads, email, reviews",
+        description: "Family newsletter, website, social posts, flyers, morning announcements",
         tasks: [
-          { id: "social_posting", label: "Posting social media content", avgHoursWeek: 3, automationPotential: 0.6, category: "ai" },
-          { id: "website_updates", label: "Updating the website", avgHoursWeek: 1.5, automationPotential: 0.55, category: "ai" },
-          { id: "email_campaigns", label: "Writing email campaigns", avgHoursWeek: 2, automationPotential: 0.65, category: "ai" },
-          { id: "review_monitoring", label: "Responding to online reviews", avgHoursWeek: 1, automationPotential: 0.6, category: "ai" },
-          { id: "content_creation", label: "Making graphics, videos, and flyers", avgHoursWeek: 2.5, automationPotential: 0.45, category: "ai" },
-          { id: "ad_management", label: "Managing paid ads", avgHoursWeek: 1.5, automationPotential: 0.5, category: "ai" },
+          { id: "social_posting", label: "Posting to the school social accounts", avgHoursWeek: 3, automationPotential: 0.6, category: "ai" },
+          { id: "website_updates", label: "Updating the school website", avgHoursWeek: 1.5, automationPotential: 0.55, category: "ai" },
+          { id: "email_campaigns", label: "Writing the weekly family email", avgHoursWeek: 2, automationPotential: 0.65, category: "ai" },
+          { id: "review_monitoring", label: "Responding to family messages on social media", avgHoursWeek: 1, automationPotential: 0.6, category: "ai" },
+          { id: "content_creation", label: "Making flyers, slides, and announcement graphics", avgHoursWeek: 2.5, automationPotential: 0.45, category: "ai" },
+          { id: "ad_management", label: "Promoting a school event", avgHoursWeek: 1.5, automationPotential: 0.5, category: "ai" },
         ],
       },
       {
         id: "reporting",
-        name: "Reporting & Compliance",
+        name: "Reports, Compliance, and Data Meetings",
         icon: "clipboard",
-        description: "Financial reports, filings, licenses, audits, taxes",
+        description: "Report cards, state reports, audits, grants, data meetings",
         tasks: [
-          { id: "financial_reports", label: "Building financial reports", avgHoursWeek: 2, automationPotential: 0.7, category: "automation" },
-          { id: "regulatory_filings", label: "Preparing tax and compliance filings", avgHoursWeek: 1.5, automationPotential: 0.55, category: "automation" },
-          { id: "license_tracking", label: "Tracking permits, licenses, and renewals", avgHoursWeek: 1, automationPotential: 0.8, category: "automation" },
-          { id: "kpi_dashboards", label: "Updating dashboards and KPIs by hand", avgHoursWeek: 2, automationPotential: 0.85, category: "automation" },
-          { id: "audit_prep", label: "Gathering documents for audits and inspections", avgHoursWeek: 1.5, automationPotential: 0.65, category: "automation" },
+          { id: "financial_reports", label: "Building budget and program reports", avgHoursWeek: 2, automationPotential: 0.7, category: "automation" },
+          { id: "regulatory_filings", label: "Preparing state and compliance reports", avgHoursWeek: 1.5, automationPotential: 0.55, category: "automation" },
+          { id: "license_tracking", label: "Tracking certifications, licenses, and renewals", avgHoursWeek: 1, automationPotential: 0.8, category: "automation" },
+          { id: "kpi_dashboards", label: "Updating data-meeting dashboards by hand", avgHoursWeek: 2, automationPotential: 0.85, category: "automation" },
+          { id: "audit_prep", label: "Gathering documents for audits and monitoring visits", avgHoursWeek: 1.5, automationPotential: 0.65, category: "automation" },
           { id: "grant_reporting", label: "Tracking grant spending and reporting", avgHoursWeek: 1.5, automationPotential: 0.5, category: "ai" },
         ],
       },
       {
         id: "inventory",
-        name: "Inventory, Ordering & Vendors",
+        name: "Supplies, Ordering, and Vendors",
         icon: "package",
-        description: "Stock, reordering, purchase orders, vendors",
+        description: "Classroom supplies, purchase orders, vendors",
         tasks: [
-          { id: "stock_tracking", label: "Checking inventory levels", avgHoursWeek: 2, automationPotential: 0.85, category: "automation" },
+          { id: "stock_tracking", label: "Checking classroom and office supply levels", avgHoursWeek: 2, automationPotential: 0.85, category: "automation" },
           { id: "reordering", label: "Reordering supplies", avgHoursWeek: 1.5, automationPotential: 0.8, category: "automation" },
           { id: "vendor_comms", label: "Contacting vendors about orders and issues", avgHoursWeek: 2, automationPotential: 0.35, category: "ai" },
           { id: "po_processing", label: "Routing purchase orders for approval", avgHoursWeek: 1.5, automationPotential: 0.8, category: "automation" },
-          { id: "receiving_logging", label: "Logging received shipments", avgHoursWeek: 1.5, automationPotential: 0.6, category: "automation" },
-          { id: "price_comparison", label: "Comparing vendor prices", avgHoursWeek: 1, automationPotential: 0.55, category: "ai" },
+          { id: "receiving_logging", label: "Logging deliveries", avgHoursWeek: 1.5, automationPotential: 0.6, category: "automation" },
+          { id: "price_comparison", label: "Comparing what vendors charge for the same supplies", avgHoursWeek: 1, automationPotential: 0.55, category: "ai" },
         ],
       },
       {
         id: "project_ops",
-        name: "Project & Job Management",
+        name: "Classroom Work and Year-End Closeout",
         icon: "workflow",
-        description: "Job tracking, timelines, assignments, change orders, closeout",
+        description: "Grading, progress monitoring, permission slips, end-of-year closeout",
         tasks: [
-          { id: "job_tracking", label: "Tracking job progress and milestones", avgHoursWeek: 2.5, automationPotential: 0.7, category: "automation" },
-          { id: "task_assignment", label: "Assigning tasks to the team", avgHoursWeek: 1.5, automationPotential: 0.6, category: "automation" },
-          { id: "change_orders", label: "Processing change orders and scope changes", avgHoursWeek: 1.5, automationPotential: 0.5, category: "ai" },
-          { id: "job_costing", label: "Calculating job costs and margins", avgHoursWeek: 2, automationPotential: 0.65, category: "automation" },
-          { id: "closeout_docs", label: "Completing closeout paperwork", avgHoursWeek: 1.5, automationPotential: 0.6, category: "ai" },
-          { id: "photo_documentation", label: "Filing job site photos and documents", avgHoursWeek: 1.5, automationPotential: 0.55, category: "automation" },
+          { id: "job_tracking", label: "Tracking grading, progress monitoring, and deadlines", avgHoursWeek: 2.5, automationPotential: 0.7, category: "automation" },
+          { id: "task_assignment", label: "Assigning tasks across a team or department", avgHoursWeek: 1.5, automationPotential: 0.6, category: "automation" },
+          { id: "change_orders", label: "Updating IEP amendments and last-minute schedule changes", avgHoursWeek: 1.5, automationPotential: 0.5, category: "ai" },
+          { id: "job_costing", label: "Pulling numbers for a program or grant budget", avgHoursWeek: 2, automationPotential: 0.65, category: "automation" },
+          { id: "closeout_docs", label: "Completing end-of-year closeout and report cards", avgHoursWeek: 1.5, automationPotential: 0.6, category: "ai" },
+          { id: "photo_documentation", label: "Filing classroom photos, work samples, and lesson documents", avgHoursWeek: 1.5, automationPotential: 0.55, category: "automation" },
         ],
       },
       {
         id: "analysis",
-        name: "Research & Decision Making",
+        name: "Looking at Data and Planning",
         icon: "search",
-        description: "Research, data analysis, forecasting, planning",
+        description: "Data meetings, lesson planning, family feedback, policy",
         tasks: [
-          { id: "market_research", label: "Researching competitors and pricing", avgHoursWeek: 1.5, automationPotential: 0.6, category: "ai" },
-          { id: "data_analysis", label: "Analyzing sales and customer trends", avgHoursWeek: 2, automationPotential: 0.6, category: "ai" },
-          { id: "survey_feedback", label: "Analyzing customer or staff feedback", avgHoursWeek: 1, automationPotential: 0.7, category: "ai" },
-          { id: "forecasting", label: "Forecasting demand and revenue", avgHoursWeek: 1.5, automationPotential: 0.55, category: "ai" },
-          { id: "policy_research", label: "Researching regulations and policies", avgHoursWeek: 1.5, automationPotential: 0.6, category: "ai" },
-          { id: "report_writing", label: "Writing summaries and briefs", avgHoursWeek: 2, automationPotential: 0.55, category: "ai" },
+          { id: "market_research", label: "Looking at what other schools are trying", avgHoursWeek: 1.5, automationPotential: 0.6, category: "ai" },
+          { id: "data_analysis", label: "Preparing attendance, behavior, and grade numbers for a data meeting", avgHoursWeek: 2, automationPotential: 0.6, category: "ai" },
+          { id: "survey_feedback", label: "Reading family or staff survey responses", avgHoursWeek: 1, automationPotential: 0.7, category: "ai" },
+          { id: "forecasting", label: "Projecting enrollment and staffing needs", avgHoursWeek: 1.5, automationPotential: 0.55, category: "ai" },
+          { id: "policy_research", label: "Researching policy and student-privacy rules", avgHoursWeek: 1.5, automationPotential: 0.6, category: "ai" },
+          { id: "report_writing", label: "Writing summaries, meeting notes, and lesson-plan drafts", avgHoursWeek: 2, automationPotential: 0.55, category: "ai" },
         ],
       },
     ];
@@ -399,7 +394,7 @@
                 <circle cx={x} cy={y} r={nr - 4} fill={COLORS.white} stroke={clr} strokeWidth={2} />
                 <svg x={x - 8} y={y - 11} width="16" height="16" viewBox="0 0 24 24" style={{ color: clr }}><use href={`/images/evalve-icons.svg#evalve-${OPERATIONAL_AREAS.find((o) => o.id === area.id)?.icon}`} /></svg>
                 <text x={x} y={y + 11} textAnchor="middle" fill={COLORS.deepIndigo} fontSize="7" fontWeight="600" fontFamily={FONT_HEADING}>{area.name.split(" ")[0].substring(0, 8)}</text>
-                <text x={x} y={y + nr + 13} textAnchor="middle" fill={clr} fontSize="8" fontWeight="700" fontFamily={FONT_BODY}>{Math.round(ratio * 100)}% automatable</text>
+                <text x={x} y={y + nr + 13} textAnchor="middle" fill={clr} fontSize="8" fontWeight="700" fontFamily={FONT_BODY}>{Math.round(ratio * 100)}% a tool could take</text>
               </g>
             );
           })}
@@ -462,7 +457,7 @@
         const sz = parseInt(teamSize) || 1;
         const need = 'Completed Invisible Work Audit. Org: ' + (orgName || 'Not provided') +
           ' (' + (industry || '?') + ', ' + (orgType || '?') + ', ' + sz + ' team member' + (sz !== 1 ? 's' : '') + '). ' +
-          totH.toFixed(0) + ' hrs/wk audited, ' + totS.toFixed(0) + ' hrs/wk recoverable (~$' + Math.round(totA).toLocaleString() + '/yr).';
+          totH.toFixed(0) + ' hrs/wk audited, ' + totS.toFixed(0) + ' hrs/wk recoverable (' + Math.round(totS * WEEKS_PER_YEAR).toLocaleString() + ' hrs in a school year).';
         setFollowupStatus("Sending...");
         fetch('https://evalve-dashboard.vercel.app/api/leads/contact', {
           method: 'POST',
@@ -522,7 +517,7 @@
           doc.text('Evalve Consulting', m, bandH / 2 + 2);
         }
         doc.setFont('helvetica', 'bold'); doc.setFontSize(7.5); doc.setTextColor(...C.teal);
-        doc.text('AUTOMATION OPPORTUNITY REPORT', pw - m, bandH / 2 - 1.5, { align: 'right' });
+        doc.text('WHERE THE HOURS GO', pw - m, bandH / 2 - 1.5, { align: 'right' });
         doc.setFont('helvetica', 'normal'); doc.setFontSize(8.5); doc.setTextColor(210, 210, 225);
         doc.text(dateStr, pw - m, bandH / 2 + 4, { align: 'right' });
         y = bandH + 11;
@@ -532,7 +527,7 @@
         doc.text('Invisible Work Audit', m, y);
         y += 6.5;
         doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(...C.slate);
-        const subParts = [orgName || 'Your Organization', industry, orgType, sz + ' team member' + (sz !== 1 ? 's' : '')].filter(Boolean);
+        const subParts = [orgName || 'Your school', industry, orgType, sz + ' team member' + (sz !== 1 ? 's' : '')].filter(Boolean);
         doc.text(doc.splitTextToSize(subParts.join('   |   '), cw), m, y);
         y += 9;
 
@@ -541,7 +536,7 @@
         const cards = [
           { v: totH.toFixed(0), u: 'hrs / week', l: 'On the tasks you audited', col: C.indigo },
           { v: totS.toFixed(0), u: 'hrs / week', l: 'Recoverable with AI and automation', col: C.teal },
-          { v: '$' + Math.round(totA).toLocaleString(), u: 'per year', l: 'Estimated value of recovered time', col: C.indigo },
+          { v: Math.round(totS * WEEKS_PER_YEAR).toLocaleString(), u: 'hrs / year', l: 'Hours you could get back in a school year', col: C.indigo },
         ];
         const cgap = 5, ccw = (cw - 2 * cgap) / 3, cch = 28;
         cards.forEach((card, i) => {
@@ -594,7 +589,7 @@
             doc.setFont('helvetica', 'bold'); doc.setFontSize(9.5); doc.setTextColor(...C.indigo);
             doc.text(area.name, m + 10, y + 7);
             doc.setTextColor(...C.teal);
-            doc.text('$' + Math.round(area.totalAnnualSavings).toLocaleString() + '/yr', pw - m - 4, y + 7, { align: 'right' });
+            doc.text(Math.round(area.totalSaveable * WEEKS_PER_YEAR).toLocaleString() + ' hrs/yr', pw - m - 4, y + 7, { align: 'right' });
             const barY = y + 10;
             doc.setFillColor(...C.border); doc.roundedRect(m + 10, barY, cw - 20, 2.6, 1, 1, 'F');
             const pct = area.totalHours > 0 ? area.totalSaveable / area.totalHours : 0;
@@ -616,12 +611,12 @@
         doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(...C.indigo);
         doc.text('Automation Candidates', m + 9, y + 7);
         doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...C.slate);
-        doc.text(doc.splitTextToSize('Rule-based, repetitive tasks: reminders, data transfers, invoices, status updates.', halfW - 12), m + 5, y + 12);
+        doc.text(doc.splitTextToSize('Same steps every time: reminders, copying data between systems, permission slips, trackers.', halfW - 12), m + 5, y + 12);
         doc.setFillColor(...C.indigo); doc.circle(m + cw / 2 + 7, y + 6, 1.6, 'F');
         doc.setFont('helvetica', 'bold'); doc.setFontSize(9); doc.setTextColor(...C.indigo);
         doc.text('AI Candidates', m + cw / 2 + 11, y + 7);
         doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...C.slate);
-        doc.text(doc.splitTextToSize('Tasks that need judgment, language, or pattern recognition: drafting emails, analyzing data, summarizing feedback.', halfW - 12), m + cw / 2 + 7, y + 12);
+        doc.text(doc.splitTextToSize('A first draft: parent emails, data-meeting notes, progress notes. You decide what goes out.', halfW - 12), m + cw / 2 + 7, y + 12);
         y += 28;
 
         // Call to action
@@ -639,7 +634,7 @@
 
         // Methodology note
         doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...C.faint);
-        const methLines = doc.splitTextToSize('Automation potential calibrated using McKinsey Global Institute task-level analysis. Time savings use $' + HOURLY_RATE + '/hr loaded cost x ' + WEEKS_PER_YEAR + ' working weeks. Priority scoring blends technical feasibility, time consumed, and pain level. Estimates are directional, not exact financial projections.', cw);
+        const methLines = doc.splitTextToSize('Each task starts with a guess for how much of it a tool could take, based on how repetitive it is. Your hours and pain level change the order. School-year hours use ' + WEEKS_PER_YEAR + ' weeks. These estimates help you pick what to try first. They are not a budget.', cw);
         cp(methLines.length * 3.4 + 6);
         doc.text(methLines, m, y);
 
@@ -770,14 +765,14 @@
                 <div style={{ fontSize: 13, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 16, fontFamily: FONT_HEADING }}>Evalve Consulting</div>
                 <h1 style={{ color: COLORS.white, fontSize: 32, fontWeight: 700, fontFamily: FONT_HEADING, margin: "0 0 16px", lineHeight: 1.2 }}>The Invisible Work Audit</h1>
                 <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 17, lineHeight: 1.6, margin: "0 0 12px", maxWidth: 540, marginLeft: "auto", marginRight: "auto" }}>
-                  Your team loses hours every week to tasks that just feel like "the job." Find them, and see what AI or automation could take off your plate.
+                  List the tasks that eat your week, like grading, parent emails, IEP paperwork, and sub plans, and get a short list of the ones a tool could take off your plate first.
                 </p>
-                <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 14, margin: "0 0 28px" }}>Works for any industry and team size.</p>
+                <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 14, margin: "0 0 28px" }}>For teachers, school offices, and district teams.</p>
                 <div style={{ display: "flex", gap: 20, justifyContent: "center", flexWrap: "wrap" }}>
                   {[
                     { num: "57%", label: "of work hours are technically automatable today", src: "McKinsey, 2025" },
                     { num: "6+ hrs", label: "a week workers estimate automation could save", src: "Smartsheet Research" },
-                    { num: "$46K", label: "average annual savings from workflow automation", src: "Formstack, 2023" },
+                    { num: "1 hr to 10 min", label: "what my own daily email block became after I built a tool for it", src: "Dr. Chris Sanzeri" },
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "18px 22px", maxWidth: 185, flex: "1 1 155px", border: "1px solid rgba(255,255,255,0.06)" }}>
                       <div style={{ fontSize: 28, fontWeight: 700, color: COLORS.softTeal, fontFamily: FONT_HEADING }}>{s.num}</div>
@@ -792,10 +787,10 @@
               <div style={{ ...card, padding: "32px" }}>
                 <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 20, margin: "0 0 20px" }}>How It Works</h2>
                 {[
-                  { n: "1", t: "Describe your organization", d: "Industry and team size." },
-                  { n: "2", t: "Pick areas to audit", d: "Where does your team's time go?" },
-                  { n: "3", t: "Rate each task", d: "Check what your team does, the hours, and the pain level." },
-                  { n: "4", t: "Get your results", d: "Ranked automation wins, estimated savings, and a visual map." },
+                  { n: "1", t: "Describe your school", d: "Where you work, and how big the team is." },
+                  { n: "2", t: "Pick areas to audit", d: "Where does the week go: grading, meetings, parent email, paperwork?" },
+                  { n: "3", t: "Rate each task", d: "Check what your team does, the hours, and how painful it is." },
+                  { n: "4", t: "Get your results", d: "A short list of the tasks a tool could take off your plate first." },
                 ].map((item, i) => (
                   <div key={i} style={{ display: "flex", gap: 16, marginBottom: i < 3 ? 16 : 0, alignItems: "flex-start" }}>
                     <div style={{ width: 32, height: 32, borderRadius: "50%", background: COLORS.tealLight, display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700, color: COLORS.softTeal, fontSize: 14, flexShrink: 0, fontFamily: FONT_HEADING }}>{item.n}</div>
@@ -820,12 +815,12 @@
             <div ref={scrollRef} />
             <div style={{ maxWidth: 560, margin: "0 auto" }}>
               <div style={{ fontSize: 12, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8, fontFamily: FONT_HEADING }}>Step 1 of 4</div>
-              <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 24, margin: "0 0 8px" }}>About Your Organization</h2>
-              <p style={{ color: COLORS.slateGray, margin: "0 0 28px", lineHeight: 1.5 }}>This sizes your savings estimate.</p>
+              <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 24, margin: "0 0 8px" }}>About Your School</h2>
+              <p style={{ color: COLORS.slateGray, margin: "0 0 28px", lineHeight: 1.5 }}>This sizes the estimate of hours you could get back.</p>
               <div style={card}>
-                <div style={{ marginBottom: 20 }}><label style={lbl}>Organization Name</label><input value={orgName} onChange={(e) => setOrgName(e.target.value)} placeholder="e.g. Springfield School District" style={inp} /></div>
-                <div style={{ marginBottom: 20 }}><label style={lbl}>Industry</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{INDUSTRIES.map((t) => (<button key={t} onClick={() => setIndustry(t)} style={{ padding: isMobile ? "10px 16px" : "8px 14px", minHeight: isMobile ? 40 : "auto", borderRadius: 20, border: `1.5px solid ${industry === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: industry === t ? COLORS.tealLight : "transparent", color: industry === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
-                <div style={{ marginBottom: 20 }}><label style={lbl}>Organization Size</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{ORG_TYPES.map((t) => (<button key={t} onClick={() => setOrgType(t)} style={{ padding: isMobile ? "10px 16px" : "8px 14px", minHeight: isMobile ? 40 : "auto", borderRadius: 20, border: `1.5px solid ${orgType === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: orgType === t ? COLORS.tealLight : "transparent", color: orgType === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
+                <div style={{ marginBottom: 20 }}><label style={lbl}>School or Office Name</label><input value={orgName} onChange={(e) => setOrgName(e.target.value)} placeholder="e.g. Lincoln Elementary" style={inp} /></div>
+                <div style={{ marginBottom: 20 }}><label style={lbl}>Where you work</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{INDUSTRIES.map((t) => (<button key={t} onClick={() => setIndustry(t)} style={{ padding: isMobile ? "10px 16px" : "8px 14px", minHeight: isMobile ? 40 : "auto", borderRadius: 20, border: `1.5px solid ${industry === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: industry === t ? COLORS.tealLight : "transparent", color: industry === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
+                <div style={{ marginBottom: 20 }}><label style={lbl}>Team you are auditing</label><div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{ORG_TYPES.map((t) => (<button key={t} onClick={() => setOrgType(t)} style={{ padding: isMobile ? "10px 16px" : "8px 14px", minHeight: isMobile ? 40 : "auto", borderRadius: 20, border: `1.5px solid ${orgType === t ? COLORS.softTeal : "rgba(46,43,111,0.12)"}`, background: orgType === t ? COLORS.tealLight : "transparent", color: orgType === t ? COLORS.softTeal : COLORS.slateGray, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY }}>{t}</button>))}</div></div>
                 <div style={{ marginBottom: 24 }}><label style={lbl}>Team Size</label><p style={{ fontSize: 12, color: COLORS.slateGray, margin: "0 0 8px" }}>Count only the team or department you're auditing.</p><input value={teamSize} onChange={(e) => setTeamSize(e.target.value.replace(/\D/g, ""))} placeholder="e.g. 5" type="text" inputMode="numeric" style={{ ...inp, maxWidth: 120 }} /></div>
                 <div style={navRow}><button onClick={() => setStep("intro")} style={btnS}>Back</button><button onClick={() => { if (ok) setStep("select_areas"); }} style={{ ...btnP, opacity: ok ? 1 : 0.4 }} disabled={!ok}>Next</button></div>
               </div>
@@ -880,7 +875,7 @@
                           <div style={{ display: "flex", gap: 16, marginTop: 12, flexWrap: "wrap", alignItems: "flex-end" }}>
                             <div><label style={{ ...lbl, fontSize: 11 }}>Hours / week</label><input type="number" step="0.5" min="0" value={r.hours ?? task.avgHoursWeek} onChange={(e) => setTaskTime(task.id, e.target.value)} style={{ ...inp, width: 80, padding: "8px 10px", fontSize: isMobile ? 16 : 14 }} /></div>
                             <div><label style={{ ...lbl, fontSize: 11 }}>Pain level</label><div style={{ display: "flex", gap: 4 }}>{["low", "medium", "high"].map((lv) => { const active = (r.pain || "medium") === lv; const c = lv === "high" ? COLORS.dangerRed : lv === "medium" ? COLORS.warningAmber : COLORS.successGreen; return (<button key={lv} onClick={() => setTaskPain(task.id, lv)} style={{ padding: isMobile ? "10px 16px" : "6px 12px", minHeight: isMobile ? 44 : "auto", borderRadius: 6, fontSize: 12, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY, border: `1.5px solid ${active ? c : "rgba(46,43,111,0.12)"}`, background: active ? `${c}12` : "transparent", color: active ? c : COLORS.slateGray }}>{lv === "low" ? "Low" : lv === "medium" ? "Med" : "High"}</button>); })}</div></div>
-                            <div style={{ fontSize: 11, color: COLORS.slateGray, alignSelf: "center" }}>{task.category === "ai" ? "\uD83E\uDD16 AI candidate" : "\u2699\uFE0F Automation candidate"}</div>
+                            <div style={{ fontSize: 11, color: COLORS.slateGray, alignSelf: "center" }}>{task.category === "ai" ? "\uD83E\uDD16 AI can draft this" : "\u2699\uFE0F A routine can do this"}</div>
                           </div>
                         )}
                       </div>
@@ -922,13 +917,13 @@
             <div style={{ background: `linear-gradient(145deg, ${COLORS.deepIndigo} 0%, ${COLORS.indigoDark} 100%)`, padding: "40px 24px 48px", textAlign: "center" }}>
               <div style={{ maxWidth: 720, margin: "0 auto" }}>
                 <div style={{ fontSize: 12, color: COLORS.softTeal, fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", marginBottom: 12, fontFamily: FONT_HEADING }}>Your Audit Results</div>
-                <h1 style={{ color: COLORS.white, fontSize: 28, fontWeight: 700, fontFamily: FONT_HEADING, margin: "0 0 8px" }}>{orgName || "Your Organization"}'s Automation Opportunity</h1>
+                <h1 style={{ color: COLORS.white, fontSize: 28, fontWeight: 700, fontFamily: FONT_HEADING, margin: "0 0 8px" }}>Where {orgName || "your team"} can get hours back</h1>
                 <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 14 }}>{industry} · {orgType} · {sz} team member{sz !== 1 ? "s" : ""}</p>
                 <div style={{ display: "flex", gap: 16, justifyContent: "center", marginTop: 28, flexWrap: "wrap" }}>
                   {[
                     { v: `${totH.toFixed(0)} hrs`, l: "Weekly hours on audited tasks", c: COLORS.white },
                     { v: `${totS.toFixed(0)} hrs`, l: "Weekly hours recoverable", c: COLORS.softTeal },
-                    { v: `$${Math.round(totA).toLocaleString()}`, l: "Annual value of recovered time", c: "#7DDFCF" },
+                    { v: `${Math.round(totS * WEEKS_PER_YEAR).toLocaleString()} hrs`, l: "Hours you could get back in a school year", c: "#7DDFCF" },
                   ].map((s, i) => (
                     <div key={i} style={{ background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "20px 24px", flex: "1 1 180px", maxWidth: 220, border: "1px solid rgba(255,255,255,0.06)" }}>
                       <div style={{ fontSize: 30, fontWeight: 700, color: s.c, fontFamily: FONT_HEADING }}>{s.v}</div>
@@ -936,7 +931,7 @@
                     </div>
                   ))}
                 </div>
-                <p style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginTop: 16 }}>Based on ${HOURLY_RATE}/hr loaded cost &times; {WEEKS_PER_YEAR} working weeks &times; {sz} team member{sz !== 1 ? "s" : ""}. Sources: McKinsey Global Institute, Smartsheet, Formstack.</p>
+                <p style={{ fontSize: 11, color: "rgba(255,255,255,0.3)", marginTop: 16 }}>Hours use the time you entered, across {WEEKS_PER_YEAR} school weeks, for {sz} team member{sz !== 1 ? "s" : ""}. A directional estimate for what to try first, not a budget.</p>
               </div>
             </div>
 
@@ -971,7 +966,7 @@
                 <div style={{ marginTop: 20, display: "grid", gap: 10 }}>
                   {results.filter((r) => r.tasks.length > 0).sort((a, b) => b.totalAnnualSavings - a.totalAnnualSavings).map((area) => (
                     <div key={area.id} style={{ padding: "14px 16px", background: COLORS.indigoLight, borderRadius: 10 }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}><div style={{ fontWeight: 700, color: COLORS.deepIndigo, fontSize: 14, fontFamily: FONT_HEADING, display: "flex", alignItems: "center", gap: 8 }}><AreaIcon name={area.icon} size={18} /> {area.name}</div><div style={{ fontSize: 14, fontWeight: 700, color: COLORS.softTeal, fontFamily: FONT_HEADING }}>${Math.round(area.totalAnnualSavings).toLocaleString()}/yr</div></div>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}><div style={{ fontWeight: 700, color: COLORS.deepIndigo, fontSize: 14, fontFamily: FONT_HEADING, display: "flex", alignItems: "center", gap: 8 }}><AreaIcon name={area.icon} size={18} /> {area.name}</div><div style={{ fontSize: 14, fontWeight: 700, color: COLORS.softTeal, fontFamily: FONT_HEADING }}>{Math.round(area.totalSaveable * WEEKS_PER_YEAR).toLocaleString()} hrs/yr</div></div>
                       <ProgressBar value={area.totalSaveable} max={area.totalHours || 1} color={COLORS.softTeal} height={6} />
                       <div style={{ display: "flex", justifyContent: "space-between", marginTop: 6, fontSize: 11, color: COLORS.slateGray }}><span>{area.totalHours.toFixed(1)} hrs/wk total</span><span>{area.totalSaveable.toFixed(1)} hrs/wk recoverable ({area.totalHours > 0 ? Math.round((area.totalSaveable / area.totalHours) * 100) : 0}%)</span></div>
                     </div>
@@ -980,24 +975,24 @@
               </div>
 
               <div style={{ ...card, marginBottom: 20 }}>
-                <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 20, margin: "0 0 4px" }}>Operations Map</h2>
-                <p style={{ color: COLORS.slateGray, fontSize: 13, margin: "0 0 16px" }}>Solid lines: high automation potential. Dashed: needs more human judgment.</p>
+                <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 20, margin: "0 0 4px" }}>Where the hours go</h2>
+                <p style={{ color: COLORS.slateGray, fontSize: 13, margin: "0 0 16px" }}>Solid lines: a tool could take a lot of this. Dashed: a person still needs to make the call.</p>
                 <div style={{ display: "flex", justifyContent: "center" }}><SystemMap results={results} /></div>
                 <div style={{ display: "flex", justifyContent: "center", gap: 20, marginTop: 12, flexWrap: "wrap" }}>
-                  {[{ color: COLORS.successGreen, label: "60%+ automatable" }, { color: COLORS.warningAmber, label: "30-60% automatable" }, { color: COLORS.slateGray, label: "Under 30%" }].map((l) => (
+                  {[{ color: COLORS.successGreen, label: "60%+ a tool could take" }, { color: COLORS.warningAmber, label: "30-60% a tool could take" }, { color: COLORS.slateGray, label: "Under 30%" }].map((l) => (
                     <div key={l.label} style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11, color: COLORS.slateGray }}><div style={{ width: 10, height: 10, borderRadius: "50%", background: l.color }} />{l.label}</div>
                   ))}
                 </div>
               </div>
 
               <div style={{ ...card, marginBottom: 20, display: "flex", gap: 20, flexWrap: "wrap" }}>
-                <div style={{ flex: "1 1 240px" }}><h3 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 16, margin: "0 0 8px" }}>{"\u2699\uFE0F"} Automation Candidates</h3><p style={{ color: COLORS.slateGray, fontSize: 13, lineHeight: 1.5, margin: 0 }}>Rule-based, repetitive tasks: "if this, then that." Reminders, data transfers, invoices, status updates. Workflow tools handle these today.</p></div>
-                <div style={{ flex: "1 1 240px" }}><h3 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 16, margin: "0 0 8px" }}>{"\uD83E\uDD16"} AI Candidates</h3><p style={{ color: COLORS.slateGray, fontSize: 13, lineHeight: 1.5, margin: 0 }}>Tasks that need judgment, language, or pattern recognition: drafting emails, analyzing data, summarizing feedback. AI drafts; your team makes the call.</p></div>
+                <div style={{ flex: "1 1 240px" }}><h3 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 16, margin: "0 0 8px" }}>{"\u2699\uFE0F"} A routine can do these</h3><p style={{ color: COLORS.slateGray, fontSize: 13, lineHeight: 1.5, margin: 0 }}>The same steps every time: attendance reminders, copying grades into another sheet, permission-slip tracking. I can set the routine once so it runs on its own. You still check it.</p></div>
+                <div style={{ flex: "1 1 240px" }}><h3 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 16, margin: "0 0 8px" }}>{"\uD83E\uDD16"} AI can draft these</h3><p style={{ color: COLORS.slateGray, fontSize: 13, lineHeight: 1.5, margin: 0 }}>Tasks that need language: a first draft of a parent email, notes from a data meeting, a start on IEP progress notes. AI drafts. You decide what goes out. No student names in the tool.</p></div>
               </div>
 
               <div style={{ ...card, background: COLORS.deepIndigo, border: "none", textAlign: "center", padding: "36px 32px" }}>
-                <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.white, fontSize: 22, margin: "0 0 12px" }}>Ready to Act on These Results?</h2>
-                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 15, lineHeight: 1.6, margin: "0 0 24px" }}>I turn audits like this into working tools that save your team hours every week. Not slide decks.</p>
+                <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.white, fontSize: 22, margin: "0 0 12px" }}>Want help with the first one?</h2>
+                <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 15, lineHeight: 1.6, margin: "0 0 24px" }}>I build a small tool for one job on this list and show your staff how to use it. You get a working tool, not a slide deck.</p>
                 <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
                   <a href="https://cal.com/evalve-consulting/discovery-call" target="_blank" rel="noopener noreferrer" style={{ ...btnP, textDecoration: "none", display: "inline-block" }}>Book a Call</a>
                   <a href="https://evalveconsulting.com/ai-readiness/" target="_blank" rel="noopener noreferrer" style={{ ...btnS, textDecoration: "none", display: "inline-block", color: "rgba(255,255,255,0.7)", borderColor: "rgba(255,255,255,0.25)" }}>Assess AI Readiness</a>
@@ -1026,7 +1021,7 @@
 
               <details style={{ marginTop: 24, padding: "16px 20px", background: COLORS.tealLight, borderRadius: 10, border: `1px solid ${COLORS.tealBorder}` }}>
                 <summary style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 14, fontWeight: 700, cursor: "pointer" }}>How the estimates work</summary>
-                <p style={{ color: COLORS.slateGray, fontSize: 12, lineHeight: 1.6, margin: "8px 0 0" }}>Automation potential is calibrated to McKinsey Global Institute's task-level analysis of 2,000+ work activities across 800+ occupations. Time savings assume a conservative ${HOURLY_RATE}/hr loaded cost. Priority blends feasibility, time, and pain level. These are directional estimates for prioritizing, not financial projections; actual savings depend on your systems, processes, and implementation.</p>
+                <p style={{ color: COLORS.slateGray, fontSize: 12, lineHeight: 1.6, margin: "8px 0 0" }}>Each task has a starting guess for how much of it a tool could take, based on how repetitive it is. Your hours and pain level change the order. These estimates help you pick what to try first. What you get back depends on your systems and how your team uses the tool.</p>
               </details>
 
               <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 24 }}>

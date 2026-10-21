@@ -1,43 +1,47 @@
 # Evalve Consulting
 
-> AI implementation for education that actually works. Evalve Consulting is an AI implementation consultancy for education organizations, founded by Dr. Chris Sanzeri. Based in the Chicago area (Wheaton, Illinois), Evalve works with education organizations across Illinois and remotely nationwide.
+> Most needs. Fewest minutes. Start there. I help teachers and school leaders use AI to get time back, starting with the classrooms that need the most and have the least time. I'm Dr. Chris Sanzeri, founder of Evalve Consulting. Based in the Chicago area (Wheaton, Illinois), I work with schools across Illinois and remotely nationwide.
 
-Evalve is a builder-led practice, not a slide-deck shop. Dr. Sanzeri spent years in public education leadership, most recently as a district administrator overseeing specialized student services in one of Illinois' largest school districts. He builds the tools himself: custom GPTs, local AI models, iOS apps, and workflow automations. The approach is practical and hands-on, grounded in real district experience rather than vendor pitches.
+I don't hand you a slide deck. I build the tool with you and show your staff how to use it. I spent nine years as an administrator in a large Illinois school district, supporting more than 1,400 staff and helping teams start using AI safely. Today I teach special education, so I try every tool with students before I recommend it. Some of my tools run on my own computer, so private information never goes to an outside company.
 
 ## About
 
-- **Founder:** Dr. Christopher (Chris) Sanzeri, Ed.D. in Education Leadership. Former district administrator who oversaw operations spanning dozens of schools and 1,400+ staff, delivered 100+ professional learning sessions, and built and deployed custom AI tools used by hundreds of educators.
-- **Special education angle:** Special education is a credibility wedge, not a limiter. It is process- and documentation-heavy work, which is where Dr. Sanzeri learned what AI can genuinely take off a team's plate. The practice serves the full range of education organizations.
-- **Location:** Based in the Chicago area (Wheaton / Chicagoland, Illinois). Serves Illinois and the United States nationwide, remote-friendly.
+- **Founder:** Dr. Christopher (Chris) Sanzeri, Ed.D. in Education Leadership. I spent nine years as an administrator in a large Illinois school district, supporting more than 1,400 staff. I have delivered 100+ professional learning sessions and built tools used by hundreds of educators.
+- **Special education:** My background is K-12 leadership and special education. Special education taught me to handle the most paperwork-heavy, privacy-sensitive work in a school, and I bring that same care to every department.
+- **Location:** Based in the Chicago area (Wheaton / Chicagoland, Illinois). I serve Illinois and the United States nationwide, and most of the work can happen over video.
 
-## Who Evalve serves
+## Who I serve
 
-School districts, Regional Offices of Education, education cooperatives, universities and higher ed groups, edtech companies, curriculum publishers, ed-adjacent nonprofits, state education agencies, and general K-12 leadership teams working on AI adoption.
+School districts, Regional Offices of Education, education cooperatives, universities and higher ed groups, edtech companies, curriculum publishers, nonprofits that serve schools, state education agencies, and K-12 leadership teams who want to start using AI safely.
 
 ## Services
 
-- **Quick Win:** a short, focused engagement that solves one specific problem fast. Includes a focused needs assessment, one problem solved end to end, tool vetting, and 30-day email support.
-- **Deep Implementation:** full implementation work for teams ready to embed AI into their workflows. Adds live staff training, custom AI tool development, workflow automation setup, and 60-day email support.
-- **Ongoing Partnership:** continuous support, advisory, and build work for organizations going long on AI. Multi-day training, advisory retainers, organization-wide rollouts, and workflow automation buildouts.
+- **Quick Win:** a short try for one problem from your week, like parent emails or sub plans. It starts with a free 30-minute call. Includes a focused look at the need, one problem solved end to end, a check that a tool is safe for students, and 30-day email support.
+- **Deep Implementation:** for teams ready to make AI part of a normal week. I train your staff, build the tools with you, and stay with you while you use them. A grade-level team gets a shared set of lesson-planning helpers and a monthly check-in to fix what isn't working.
+- **Ongoing Partnership:** for a school or district that wants that help through the year. Training, the tools we build together, and a check-in when something stops working.
 
 ## Free resources
 
-- [AI Readiness Assessment](https://evalveconsulting.com/ai-readiness/): find out where your organization stands.
-- [Invisible Work Audit](https://evalveconsulting.com/workflow-audit/): surface the repetitive work eating your team's time.
-- [AI-in-Education Job Board](https://evalveconsulting.com/jobs/): a weekly, curated drop of open AI roles in K-12 districts, edtech, ROEs, and higher ed. Updated every Tuesday.
-- [District AI Pilot Checklist](https://evalveconsulting.com/pilot-checklist/): a structured way to run your first AI pilot.
+- [AI Readiness Assessment](https://evalveconsulting.com/ai-readiness/): a short look at where your school is starting from.
+- [Invisible Work Audit](https://evalveconsulting.com/workflow-audit/): list the tasks that eat your week and get a short list of the ones a tool could take off your plate first.
+- [AI-in-Education Job Board](https://evalveconsulting.com/jobs/): a weekly, curated drop of open AI roles in K-12 districts, edtech, Regional Offices of Education, and higher ed. Updated every Tuesday.
+- [District AI Pilot Checklist](https://evalveconsulting.com/pilot-checklist/): a 90-day map for a small try-out with a few teachers before everyone uses a tool.
 
 ## Products
 
-- [Digital products](https://evalveconsulting.com/products/): templates, toolkits, and other digital resources for education teams. First products launching soon; the page takes newsletter signups for launch updates.
+- [Digital products](https://evalveconsulting.com/products/): ready-to-use AI instructions, workflow recipes, and planning workbooks for education teams.
 
 ## Apps
 
-- [Apps](https://evalveconsulting.com/apps/): native iPhone and iPad apps built by Evalve. Behavior and Goal Tracker (behavior and IEP goal data collection for educators, on-device only), Star Register (kids' pretend-store math practice, iPad), Evalve to Independence (POS simulation for transition programs, iPad), and The Board (family chore board). Each app has its own privacy policy and support page, for example https://evalveconsulting.com/behavior-tracker/privacy and https://evalveconsulting.com/behavior-tracker/support.
+- [Apps](https://evalveconsulting.com/apps/): iPhone and iPad apps I built. Behavior and Goal Tracker (behavior and IEP goal data collection for educators, on-device only), Star Register (kids' pretend-store math practice, iPad), Evalve to Independence (a practice register for transition programs, iPad), and The Board (family chore board). Each app has its own privacy policy and support page, for example https://evalveconsulting.com/behavior-tracker/privacy and https://evalveconsulting.com/behavior-tracker/support.
+
+## Newsletter
+
+Evalve Out Louder: Practical AI for busy teachers and school leaders. Every Friday: one idea, one school example, and one thing to try. Subscribe at https://evalveconsulting.com/subscribe/
 
 ## Podcast
 
-Evalve Out Loud: practical conversations about implementing AI in education. What works, what doesn't, and why. Available on Spotify, Apple Podcasts, and YouTube.
+Evalve Out Loud: Practical conversations about AI in schools. What's working, what isn't, and one thing to try. Available on Spotify, Apple Podcasts, and YouTube.
 
 ## Contact
 

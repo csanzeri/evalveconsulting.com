@@ -185,6 +185,21 @@
         .clients-bar .section-label { margin-bottom: 0.4rem; }
         .clients-bar p:last-child { color: var(--muted); font-size: 0.95rem; }
 
+        /* SPED AI GUARDRAILS — light panel, dark text, no decorative art */
+        .guardrails-offer { background: #f7f6f3; color: #110f30; }
+        .guardrails-offer .section-label { color: #0f5c58; }
+        .guardrails-offer .section-title { color: #110f30; max-width: 16em; }
+        .guardrails-copy { max-width: 42rem; margin-top: 1.75rem; }
+        .guardrails-copy p { color: #1a1845; font-size: 1.05rem; line-height: 1.85; margin-bottom: 1.15rem; }
+        .guardrails-copy p:last-child { margin-bottom: 0; }
+        .guardrails-actions { margin-top: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 0.85rem; }
+        .guardrails-call { color: #1a1845; font-size: 1.05rem; line-height: 1.5; }
+        .guardrails-questions { color: #3f4248; font-size: 0.95rem; line-height: 1.6; }
+        .guardrails-call a, .guardrails-questions a { color: #110f30; font-weight: 600; text-decoration: underline; text-decoration-color: #3FA7A3; text-underline-offset: 3px; }
+        .guardrails-call a { display: inline-block; padding: 0.35rem 0; }
+        .guardrails-call a:hover, .guardrails-questions a:hover { color: #0f5c58; }
+        .guardrails-offer a:focus-visible { outline: 2px solid #110f30; outline-offset: 3px; border-radius: 2px; }
+
         /* PODCAST */
         .podcast-section { background: var(--indigo-dark); }
         .podcast-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
@@ -353,6 +368,16 @@
             "@type": "OfferCatalog",
             "name": "Help for teachers and school leaders",
             "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "url": "https://evalveconsulting.com/#sped-ai-guardrails",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "SPED AI Guardrails Review",
+                        "alternateName": "District AI Governance Review",
+                        "description": "Before a teacher opens an AI tool with a student who has an IEP or a 504 plan, your district needs clear rules: what is a yes, what is a no, and what needs a check first. You also need a read on which tools are safe for student records, and a plan staff can follow on Monday morning. I run a 7-week virtual review. It ends with a score of where your own staff say you stand today, plus a plan with names and dates. Superintendents and boards usually call this a District AI Governance Review (with a special populations lens). Special education leaders usually call it a SPED AI Guardrails Review. Same review. Same outcome: your people know what is off limits, what needs a human check, and what is fine to try. I spent nine years as an administrator in a large Illinois school district, supporting more than 1,400 staff, and I teach special education now. This review is built for the classrooms with the most paperwork and the least spare time, not a generic AI slide deck."
+                    }
+                },
                 {
                     "@type": "Offer",
                     "itemOffered": {
@@ -602,6 +627,24 @@
                     <p>Practical conversations about AI in schools. What's working, what isn't, and one thing to try.</p>
                     <a href="#podcast" class="card-btn">Listen Now</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="guardrails-offer" id="sped-ai-guardrails" aria-labelledby="guardrails-heading">
+        <div class="section-inner reveal">
+            <p class="section-label">SPED AI Guardrails Review</p>
+            <h2 class="section-title" id="guardrails-heading">AI guardrails for special education and every student who needs them</h2>
+            <div class="guardrails-copy">
+                <p>Before a teacher opens an AI tool with a student who has an IEP or a 504 plan, your district needs clear rules: what is a yes, what is a no, and what needs a check first. You also need a read on which tools are safe for student records, and a plan staff can follow on Monday morning.</p>
+                <p>I run a 7-week virtual review. It ends with a score of where your own staff say you stand today, plus a plan with names and dates.</p>
+                <p>Superintendents and boards usually call this a District AI Governance Review (with a special populations lens). Special education leaders usually call it a SPED AI Guardrails Review. Same review. Same outcome: your people know what is off limits, what needs a human check, and what is fine to try.</p>
+                <p>I spent nine years as an administrator in a large Illinois school district, supporting more than 1,400 staff, and I teach special education now. This review is built for the classrooms with the most paperwork and the least spare time, not a generic AI slide deck.</p>
+            </div>
+            <div class="guardrails-actions">
+                <a href="https://cal.com/evalve-consulting/discovery-call" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-arrow">Book a 30-minute discovery call</a>
+                <p class="guardrails-call">Or call <a href="tel:+13315511797">331-551-1797</a></p>
+                <p class="guardrails-questions">Questions? Dr. Chris Sanzeri · <a href="mailto:christophersanzeri@evalveconsulting.com">christophersanzeri@evalveconsulting.com</a></p>
             </div>
         </div>
     </section>
@@ -874,6 +917,7 @@
                 <li><a href="#proof">Proof</a></li>
                 <li><a href="#results">Results</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#sped-ai-guardrails">SPED AI Guardrails</a></li>
                 <li><a href="/products/">Products</a></li>
                 <li><a href="/running/">Now Running</a></li>
                 <li><a href="#podcast">Podcast</a></li>

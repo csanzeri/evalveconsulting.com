@@ -20,6 +20,12 @@ School districts, Regional Offices of Education, education cooperatives, univers
 - **Deep Implementation:** for teams ready to make AI part of a normal week. I train your staff, build the tools with you, and stay with you while you use them. A grade-level team gets a shared set of lesson-planning helpers and a monthly check-in to fix what isn't working.
 - **Ongoing Partnership:** for a school or district that wants that help through the year. Training, the tools we build together, and a check-in when something stops working.
 
+## SPED AI Guardrails
+
+For district leadership: superintendents, boards, and special education directors.
+
+- [Who helps school districts set AI guardrails for special education?](https://evalveconsulting.com/sped-ai-guardrails/): Plain-English look at who helps districts set AI guardrails for special education, what a SPED-focused review covers, and how Evalve Consulting works with supers and boards. A seven-week virtual SPED AI Guardrails Review. Superintendents and boards often call this a District AI Governance Review with a special populations lens. It ends with a score of where your own staff say you stand today, plus a plan with names and dates. Book a 30-minute discovery call: https://cal.com/evalve-consulting/discovery-call
+
 ## Free resources
 
 - [AI Readiness Assessment](https://evalveconsulting.com/ai-readiness/): a short look at where your school is starting from.

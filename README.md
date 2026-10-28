@@ -23,6 +23,10 @@ This is the official website for Evalve Consulting LLC, founded by Dr. Christoph
 - **Primary font (headings):** Instrument Sans
 - **Body font:** Nunito Sans
 
+## Site conventions
+
+No dollar prices on marketing pages. Show prices only on purchase and checkout flows (Stripe checkout, the App Store, and Beehiiv product pages).
+
 ## Editing with Claude Code
 
 You can update this site using Claude Code from your terminal. Examples:

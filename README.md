@@ -25,7 +25,7 @@ This is the official website for Evalve Consulting LLC, founded by Dr. Christoph
 
 ## Site conventions
 
-No dollar prices on marketing pages. Show prices only on purchase and checkout flows (Stripe checkout, the App Store, and Beehiiv product pages).
+No consulting engagement dollar prices on marketing pages. Digital product prices are shown on /products/, with checkout on Beehiiv, Stripe, or the App Store.
 
 ## Editing with Claude Code
 

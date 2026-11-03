@@ -1,13 +1,93 @@
 {
-  "week_of": "2026-10-27",
+  "week_of": "2026-11-03",
   "weeks": [
+    "2026-11-03",
     "2026-10-27",
     "2026-10-20",
-    "2026-10-13",
-    "2026-10-06"
+    "2026-10-13"
   ],
-  "updated": "2026-10-27T11:30:29.537Z",
+  "updated": "2026-11-03T12:30:29.118Z",
   "jobs": [
+    {
+      "title": "Senior Director, AI Strategy and Innovation",
+      "org": "KIPP Foundation (posted via KIPP NYC Public Schools)",
+      "org_type": "nonprofit",
+      "location": "New York, NY",
+      "source_url": "https://www.topschooljobs.org/job/2494755/senior-director-ai-strategy-and-innovation/",
+      "posted_date": "2026-10-29",
+      "scope_summary": "Sets KIPP's multi-year AI strategy across its network, leads the AI pilot group and how pilots are measured, and makes the final recommendation on AI vendors and uses.",
+      "week_of": "2026-11-03"
+    },
+    {
+      "title": "Senior Search & AI Discoverability Engineer (12-month contract)",
+      "org": "Khan Academy",
+      "org_type": "nonprofit",
+      "location": "Remote",
+      "source_url": "https://job-boards.greenhouse.io/khanacademy/jobs/8332311",
+      "posted_date": "2026-10-28",
+      "scope_summary": "Contract engineering role on making Khan Academy's learning content easier to find through search and AI tools.",
+      "week_of": "2026-11-03"
+    },
+    {
+      "title": "AI Literacy Specialist",
+      "org": "Marist University",
+      "org_type": "higher-ed",
+      "location": "Poughkeepsie, NY",
+      "source_url": "https://jobs.chronicle.com/job/38056133/ai-literacy-specialist/",
+      "posted_date": "2026-10-26",
+      "scope_summary": "Builds a campuswide AI learning program, with training, use-case consulting and resources tailored separately for faculty, staff and students.",
+      "week_of": "2026-11-03"
+    },
+    {
+      "title": "Chief Technology Officer",
+      "org": "Abraham Joshua Heschel School",
+      "org_type": "district",
+      "location": "New York, NY",
+      "source_url": "https://www.topschooljobs.org/job/2494978/chief-technology-officer/",
+      "posted_date": "2026-10-26",
+      "scope_summary": "First CTO at a nursery through grade 12 independent school, building a schoolwide technology strategy that pulls together AI work, cybersecurity, data and educational technology.",
+      "week_of": "2026-11-03"
+    },
+    {
+      "title": "AI Engineer, Marketing",
+      "org": "Instructure",
+      "org_type": "edtech",
+      "location": "Remote",
+      "source_url": "https://jobs.ashbyhq.com/instructure/09dbdc35-5e01-4131-b95f-1d8298f0e8e9",
+      "posted_date": "2026-10-22",
+      "scope_summary": "Builds AI tools and automations for the marketing team at the company behind the Canvas learning platform.",
+      "week_of": "2026-11-03"
+    },
+    {
+      "title": "Career Technical Education (CTE) Teacher: Artificial Intelligence (A.I.) Instructor",
+      "org": "California Advancing Pathways for Students",
+      "org_type": "district",
+      "location": "Bellflower, CA",
+      "source_url": "https://www.edjoin.org/Home/JobPosting/2288355",
+      "posted_date": "2026-10-22",
+      "scope_summary": "Part-time evening role teaching a two-course high school AI pathway, from machine learning and prompt engineering to ethics, ending in student AI for Good capstone projects.",
+      "week_of": "2026-11-03"
+    },
+    {
+      "title": "Summer 2027: AI Scientist Intern",
+      "org": "Amplify",
+      "org_type": "edtech",
+      "location": "Remote",
+      "source_url": "https://jobs.ashbyhq.com/amplify/bb45b7f6-dd7e-40e5-84e6-52e21650a7b8",
+      "posted_date": "2026-10-19",
+      "scope_summary": "Summer 2027 remote internship as an AI scientist at a K-12 curriculum and assessment company.",
+      "week_of": "2026-11-03"
+    },
+    {
+      "title": "Emerging Technology Specialist",
+      "org": "Educational Service Center of Central Ohio",
+      "org_type": "roe-esa",
+      "location": "Columbus, OH",
+      "source_url": "http://www.applitrack.com/duesc/OnlineApp/JobPostings/view.asp?AppliTrackJobId=24302",
+      "posted_date": "2026-10-12",
+      "scope_summary": "Helps member districts build AI readiness plans, governance and responsible-use guidelines, evaluate AI tools, and run AI literacy professional learning.",
+      "week_of": "2026-11-03"
+    },
     {
       "title": "Technology Coordinator",
       "org": "Komarek SD #94",
@@ -277,46 +357,6 @@
       "posted_date": "2026-09-22",
       "scope_summary": "Keeps Cornell's university-wide AI initiative running, handling schedules, budgets, and the paperwork behind internal funding competitions, research programs, and events. Applications close October 17.",
       "week_of": "2026-10-13"
-    },
-    {
-      "title": "Manager, Master Data Management & Data/AI",
-      "org": "Chicago Public Schools",
-      "org_type": "district",
-      "location": "Chicago, IL",
-      "source_url": "https://www.topschooljobs.org/job/2488210/manager-master-data-management/",
-      "posted_date": "2026-10-02",
-      "scope_summary": "Builds the district's master data and AI/ML strategy, leading a team that develops and deploys analytics and machine learning models to improve educational outcomes.",
-      "week_of": "2026-10-06"
-    },
-    {
-      "title": "Manager, Applied AI Research",
-      "org": "Edmentum",
-      "org_type": "edtech",
-      "location": "Remote",
-      "source_url": "https://job-boards.greenhouse.io/edmentum/jobs/6206900004",
-      "posted_date": "2026-09-30",
-      "scope_summary": "Leads a research team that tests whether the company's AI features for K-12 students are reliable, valid, and fair, and uses the findings to shape product and policy decisions.",
-      "week_of": "2026-10-06"
-    },
-    {
-      "title": "Research Scientist, Applied AI Research",
-      "org": "Edmentum",
-      "org_type": "edtech",
-      "location": "Remote",
-      "source_url": "https://job-boards.greenhouse.io/edmentum/jobs/6211309004",
-      "posted_date": "2026-09-30",
-      "scope_summary": "Designs and runs applied AI and psychometric studies on the reliability, validity, and fairness of AI features in Edmentum's learning products.",
-      "week_of": "2026-10-06"
-    },
-    {
-      "title": "Director, AI Strategy & Digital Success",
-      "org": "PowerSchool",
-      "org_type": "edtech",
-      "location": "Plano, TX",
-      "source_url": "https://www.powerschool.com/company/careers/job-internal/?referencenumber=2026-52670&location=",
-      "posted_date": null,
-      "scope_summary": "Builds AI-driven customer success programs for a K-12 software company, including automated onboarding playbooks, a generative AI content engine, and AI models that predict which customers may leave.",
-      "week_of": "2026-10-06"
     }
   ]
 }

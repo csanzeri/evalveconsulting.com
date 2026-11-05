@@ -46,7 +46,7 @@
     .nav-links a:hover, .nav-links a.active { color: var(--white); }
     .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--soft-teal); transition: width 0.3s; }
     .nav-links a:hover::after { width: 100%; }
-    .nav-cta { background: var(--soft-teal) !important; color: #FFFFFF !important; padding: 0.5rem 1.25rem !important; border-radius: 6px; font-weight: 600 !important; transition: all 0.2s !important; }
+    .nav-cta { background: var(--soft-teal) !important; color: #110F30 !important; padding: 0.5rem 1.25rem !important; border-radius: 6px; font-weight: 600 !important; transition: all 0.2s !important; }
     .nav-cta:hover { background: #369e9a !important; transform: translateY(-1px); }
     .nav-cta::after { display: none !important; }
     .nav-dropdown { position: relative; }
@@ -103,24 +103,11 @@
             <span class="nav-logo-text">EVALVE</span>
         </a>
         <ul class="nav-links" id="navLinks">
+            <li><a href="/#sped-ai-guardrails">Work with me</a></li>
+            <li><a href="/#proof">Builds</a></li>
             <li><a href="/#about">About</a></li>
-            <li><a href="/#proof">Proof</a></li>
-            <li><a href="/#services">Services</a></li>
-            <li><a href="/products/">Products</a></li>
-            <li><a href="/#podcast">Podcast</a></li>
-            <li><a href="/running/">Now Running</a></li>
-            <li><a href="/jobs/">AI Job Board</a></li>
-            <li><a href="https://newsletter.evalveconsulting.com">Newsletter</a></li>
-            <li class="nav-dropdown">
-                <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">Free Resources<svg class="nav-caret" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
-                <ul class="nav-dropdown-menu">
-                    <li><a href="/workflow-audit/">Invisible Work Audit</a></li>
-                    <li><a href="/ai-readiness/">AI Readiness Assessment</a></li>
-                    <li><a href="/pilot-checklist/">District AI Pilot Checklist</a></li>
-                </ul>
-            </li>
-            <li><a href="/subscribe/">Subscribe</a></li>
-            <li><a href="/#contact" class="nav-cta">Get in Touch</a></li>
+            <li><a href="/#subscribe">Newsletter</a></li>
+            <li><a href="https://cal.com/evalve-consulting/discovery-call" class="nav-cta" target="_blank" rel="noopener noreferrer">Book a call</a></li>
         </ul>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
@@ -746,7 +733,7 @@
       const currentAreas = selectedAreas.map((id) => OPERATIONAL_AREAS.find((a) => a.id === id));
       const currentArea = currentAreas[currentAreaIdx];
       const card = { background: COLORS.cardBg, borderRadius: 12, padding: isMobile ? "20px 16px" : "28px 32px", border: "1px solid rgba(46,43,111,0.08)", boxShadow: "0 1px 3px rgba(46,43,111,0.04)" };
-      const btnP = { background: COLORS.softTeal, color: COLORS.white, border: "none", borderRadius: 8, padding: "14px 32px", minHeight: 44, fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY, transition: "all 0.2s" };
+      const btnP = { background: COLORS.softTeal, color: "#110F30", border: "none", borderRadius: 8, padding: "14px 32px", minHeight: 44, fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY, transition: "all 0.2s" };
       const btnS = { background: "transparent", color: COLORS.softTeal, border: `2px solid ${COLORS.softTeal}`, borderRadius: 8, padding: "12px 28px", minHeight: 44, fontSize: 15, fontWeight: 600, cursor: "pointer", fontFamily: FONT_BODY };
       const lbl = { display: "block", marginBottom: 6, fontSize: 13, color: COLORS.slateGray, fontWeight: 600, letterSpacing: 0.5, fontFamily: FONT_BODY };
       const inp = { width: "100%", padding: "12px 16px", borderRadius: 8, border: "1px solid rgba(46,43,111,0.15)", fontSize: 16, fontFamily: FONT_BODY, color: COLORS.deepIndigo, outline: "none", boxSizing: "border-box" };
@@ -770,14 +757,12 @@
                 <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 14, margin: "0 0 28px" }}>For teachers, school offices, and district teams.</p>
                 <div style={{ display: "flex", gap: 20, justifyContent: "center", flexWrap: "wrap" }}>
                   {[
-                    { num: "57%", label: "of work hours are technically automatable today", src: "McKinsey, 2025" },
-                    { num: "6+ hrs", label: "a week workers estimate automation could save", src: "Smartsheet Research" },
-                    { num: "1 hr to 10 min", label: "what my own daily email block became after I built a tool for it", src: "Dr. Chris Sanzeri" },
+                    { num: "1 hr to 10 min", label: "what my own daily email block became after I built a tool for it", src: "Measured on my own inbox" },
                   ].map((s, i) => (
-                    <div key={i} style={{ background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "18px 22px", maxWidth: 185, flex: "1 1 155px", border: "1px solid rgba(255,255,255,0.06)" }}>
+                    <div key={i} style={{ background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "18px 22px", maxWidth: 300, flex: "1 1 220px", border: "1px solid rgba(255,255,255,0.06)" }}>
                       <div style={{ fontSize: 28, fontWeight: 700, color: COLORS.softTeal, fontFamily: FONT_HEADING }}>{s.num}</div>
                       <div style={{ fontSize: 12, color: "rgba(255,255,255,0.6)", lineHeight: 1.4, marginTop: 4 }}>{s.label}</div>
-                      <div style={{ fontSize: 10, color: "rgba(255,255,255,0.3)", marginTop: 6, fontStyle: "italic" }}>{s.src}</div>
+                      <div style={{ fontSize: 12, color: "rgba(255,255,255,0.65)", marginTop: 6, fontStyle: "italic" }}>{s.src}</div>
                     </div>
                   ))}
                 </div>
@@ -843,7 +828,7 @@
                   <button key={area.id} onClick={() => toggleArea(area.id)} style={{ ...card, padding: "16px 20px", display: "flex", alignItems: "center", gap: 14, cursor: "pointer", border: `2px solid ${sel ? COLORS.softTeal : "rgba(46,43,111,0.08)"}`, background: sel ? COLORS.tealLight : COLORS.white, textAlign: "left", transition: "all 0.2s" }}>
                     <AreaIcon name={area.icon} size={28} />
                     <div style={{ flex: 1 }}><div style={{ fontWeight: 700, color: COLORS.deepIndigo, fontSize: 15, fontFamily: FONT_HEADING }}>{area.name}</div><div style={{ color: COLORS.slateGray, fontSize: 13, lineHeight: 1.3, marginTop: 2 }}>{area.description}</div></div>
-                    <div style={{ width: 28, height: 28, borderRadius: 6, border: `2px solid ${sel ? COLORS.softTeal : "rgba(46,43,111,0.15)"}`, display: "flex", alignItems: "center", justifyContent: "center", background: sel ? COLORS.softTeal : "transparent", flexShrink: 0 }}>{sel && <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={COLORS.white} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7" /></svg>}</div>
+                    <div style={{ width: 28, height: 28, borderRadius: 6, border: `2px solid ${sel ? COLORS.softTeal : "rgba(46,43,111,0.15)"}`, display: "flex", alignItems: "center", justifyContent: "center", background: sel ? COLORS.softTeal : "transparent", flexShrink: 0 }}>{sel && <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#110F30" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7" /></svg>}</div>
                   </button>
                 ); })}
               </div>
@@ -868,7 +853,7 @@
                 {currentArea.tasks.map((task) => { const r = taskResponses[task.id] || {}; const does = r.doesThis || false; return (
                   <div key={task.id} style={{ ...card, padding: "16px 20px", opacity: does ? 1 : 0.65, transition: "opacity 0.2s" }}>
                     <div style={{ display: "flex", alignItems: "flex-start", gap: 12 }}>
-                      <button onClick={() => setTaskDoIt(task.id, !does)} style={{ width: isMobile ? 28 : 24, height: isMobile ? 28 : 24, borderRadius: 6, flexShrink: 0, marginTop: 2, border: `2px solid ${does ? COLORS.softTeal : "rgba(46,43,111,0.15)"}`, background: does ? COLORS.softTeal : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>{does && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={COLORS.white} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7" /></svg>}</button>
+                      <button onClick={() => setTaskDoIt(task.id, !does)} style={{ width: isMobile ? 28 : 24, height: isMobile ? 28 : 24, borderRadius: 6, flexShrink: 0, marginTop: 2, border: `2px solid ${does ? COLORS.softTeal : "rgba(46,43,111,0.15)"}`, background: does ? COLORS.softTeal : "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>{does && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#110F30" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 7" /></svg>}</button>
                       <div style={{ flex: 1 }}>
                         <div style={{ fontWeight: 600, color: COLORS.deepIndigo, fontSize: 14, lineHeight: 1.4 }}>{task.label}</div>
                         {does && (
@@ -994,7 +979,7 @@
                 <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.white, fontSize: 22, margin: "0 0 12px" }}>Want help with the first one?</h2>
                 <p style={{ color: "rgba(255,255,255,0.7)", fontSize: 15, lineHeight: 1.6, margin: "0 0 24px" }}>I build a small tool for one job on this list and show your staff how to use it. You get a working tool, not a slide deck.</p>
                 <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-                  <a href="https://cal.com/evalve-consulting/discovery-call" target="_blank" rel="noopener noreferrer" style={{ ...btnP, textDecoration: "none", display: "inline-block" }}>Book a Call</a>
+                  <a href="https://cal.com/evalve-consulting/discovery-call" target="_blank" rel="noopener noreferrer" style={{ ...btnP, textDecoration: "none", display: "inline-block" }}>Book a call</a>
                   <a href="https://evalveconsulting.com/ai-readiness/" target="_blank" rel="noopener noreferrer" style={{ ...btnS, textDecoration: "none", display: "inline-block", color: "rgba(255,255,255,0.7)", borderColor: "rgba(255,255,255,0.25)" }}>Assess AI Readiness</a>
                 </div>
                 <p style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginTop: 16 }}>Dr. Chris Sanzeri, Evalve Consulting<br />christophersanzeri@evalveconsulting.com</p>

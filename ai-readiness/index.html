@@ -24,7 +24,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -685,7 +684,6 @@
         .footer-links a { color: var(--slate-gray, #5C5F66); text-decoration: none; font-family: var(--font-heading, 'Instrument Sans', sans-serif); font-size: 0.8rem; font-weight: 500; transition: color 0.2s; }
         .footer-links a:hover { color: var(--soft-teal, #3FA7A3); }
         @media (max-width: 640px) { .footer-inner { flex-direction: column; align-items: center; } .footer-links { gap: 0.75rem 1.25rem; } }
-        .beehiiv-embed { width: 100% !important; max-width: 460px; min-height: 320px; border: 0; border-radius: 10px; background: transparent; display: block; margin: 0 auto; }
     </style>
 </head>
 <body>
@@ -1442,16 +1440,9 @@
                         <button className="btn-report" onClick={downloadPDF}>Download Report</button>
                         <a className="btn-strategy" href="https://cal.com/evalve-consulting/discovery-call" target="_blank" rel="noopener noreferrer">Book a Call</a>
                     </div>
-                    {unlocked && (
-                        <div style={{ marginTop: 28, textAlign: "center" }}>
-                            <h3 style={{ fontFamily: "'Instrument Sans', sans-serif", color: "#2E2B6F", fontSize: 18, margin: "0 0 6px" }}>Get Evalve Out Louder</h3>
-                            <p style={{ color: "#5C5F66", fontSize: 14, lineHeight: 1.5, margin: "0 auto 8px", maxWidth: 460 }}>One practical note on Fridays. Your results email is separate. Unsubscribe anytime.</p>
-                            <iframe title="Subscribe to Evalve Out Louder" src="https://subscribe-forms.beehiiv.com/ee144ccc-5793-4359-9bdf-3aa50b263a88?utm_source=website&utm_medium=embed&utm_campaign=ai_readiness_unlock" className="beehiiv-embed" data-test-id="beehiiv-embed" frameBorder="0" scrolling="no" />
-                        </div>
-                    )}
                     </div>
                     {!unlocked && (
-                        <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", gap: 16, overflowY: "auto", padding: "8px 14px 40px", background: "linear-gradient(180deg, rgba(245,245,248,0.4) 0%, rgba(245,245,248,0.93) 30%, #f5f5f8 52%)" }}>
+                        <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "8px 14px 40px", background: "linear-gradient(180deg, rgba(245,245,248,0.4) 0%, rgba(245,245,248,0.93) 30%, #f5f5f8 52%)" }}>
                             <div style={{ background: "#fff", borderRadius: 16, padding: "28px clamp(16px, 4.5vw, 26px)", maxWidth: 440, width: "100%", textAlign: "center", boxShadow: "0 24px 70px rgba(46,43,111,0.22)", border: "1px solid rgba(63,167,163,0.25)" }}>
                                 <div style={{ marginBottom: 6 }}><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" style={{ color: "#3FA7A3" }}><use href="/images/evalve-icons.svg#evalve-lock"></use></svg></div>
                                 <h2 style={{ fontFamily: "'Instrument Sans', sans-serif", color: "#2E2B6F", fontSize: 22, fontWeight: 700, margin: "0 0 8px" }}>See your full results</h2>
@@ -1461,12 +1452,7 @@
                                 <div className="form-group"><input type="text" placeholder="District / Organization" maxLength="150" value={contact.org} onChange={e => { setContact({ ...contact, org: e.target.value }); if (unlockError) setUnlockError(''); }} /></div>
                                 {unlockError && <p style={{ color: "#D94F4F", fontSize: 12, margin: "0 0 10px" }}>{unlockError}</p>}
                                 <button className="btn-primary" onClick={handleUnlock}>See My Results</button>
-                                <p style={{ fontSize: 11, color: "#5C5F66", marginTop: 12, lineHeight: 1.5 }}>This email is for your report. The Friday notes are the form below. Unsubscribe anytime.</p>
-                            </div>
-                            <div style={{ background: "#fff", borderRadius: 16, padding: "22px 18px 8px", maxWidth: 440, width: "100%", textAlign: "center", border: "1px solid rgba(63,167,163,0.25)" }}>
-                                <h3 style={{ fontFamily: "'Instrument Sans', sans-serif", color: "#2E2B6F", fontSize: 16, margin: "0 0 6px" }}>Get Evalve Out Louder</h3>
-                                <p style={{ color: "#5C5F66", fontSize: 13, lineHeight: 1.5, margin: "0 0 8px" }}>One practical note on Fridays. Your results email is separate.</p>
-                                <iframe title="Subscribe to Evalve Out Louder" src="https://subscribe-forms.beehiiv.com/ee144ccc-5793-4359-9bdf-3aa50b263a88?utm_source=website&utm_medium=embed&utm_campaign=ai_readiness_unlock" className="beehiiv-embed" data-test-id="beehiiv-embed" frameBorder="0" scrolling="no" />
+                                <p style={{ fontSize: 11, color: "#5C5F66", marginTop: 12, lineHeight: 1.5 }}>I'll send your report and occasional practical notes on AI in education. Unsubscribe anytime.</p>
                             </div>
                         </div>
                     )}

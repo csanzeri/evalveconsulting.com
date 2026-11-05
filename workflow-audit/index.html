@@ -23,6 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Nunito+Sans:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet" />
+  <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js" integrity="sha512-8Q6Y9XnTbOE+JNvjBQwJ2H8S+UV4uA6hiRykhdtIyDYZ2TprdNmWOUaKdGzOhyr4dCyk287OejbPvwl7lrfqrQ==" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js" integrity="sha512-MOCpqoRoisCTwJ8vQQiciZv0qcpROCidek3GTFS6KTk2+y7munJIlKCVkFCYY+p3ErYFXCjmFjnfTTRSC1OHWQ==" crossorigin="anonymous"></script>
   <!-- Pinned to Babel 7.x: v8's react preset defaults to the automatic JSX runtime,
@@ -82,6 +83,7 @@
         .footer-links a { color: var(--slate-gray, #5C5F66); text-decoration: none; font-family: var(--font-heading, 'Instrument Sans', sans-serif); font-size: 0.8rem; font-weight: 500; transition: color 0.2s; }
         .footer-links a:hover { color: var(--soft-teal, #3FA7A3); }
         @media (max-width: 640px) { .footer-inner { flex-direction: column; align-items: flex-start; } .footer-links { gap: 0.75rem 1.25rem; } }
+        .beehiiv-embed { width: 100% !important; max-width: 460px; min-height: 320px; border: 0; border-radius: 10px; background: transparent; display: block; margin: 0 auto; }
     </style>
 </head>
 <body>
@@ -906,7 +908,9 @@
           if (!emailOk) { setUnlockError("Enter a valid email address."); return; }
           setUnlockError("");
           // Fire the existing lead pipeline (dashboard + sheet) now that we have an
-          // email. The dashboard is the single place that also subscribes them to Beehiiv.
+          // email. This page does not send that address to Beehiiv. The newsletter
+          // embed is the subscribe path. Whether the dashboard also subscribes them
+          // is outside this repo and is called out for ship.
           submitToSheet(results);
           setUnlocked(true);
         };
@@ -1028,9 +1032,16 @@
                 <button onClick={() => downloadPDF(results)} style={{ ...btnP, background: COLORS.deepIndigo }}>Download Report</button>
                 <button onClick={() => { setStep("intro"); setTaskResponses({}); setSelectedAreas([]); setCurrentAreaIdx(0); setOrgName(""); setOrgType(""); setIndustry(""); setTeamSize(""); setEmail(""); setUnlocked(false); setUnlockError(""); }} style={btnS}>Start Over</button>
               </div>
+              {unlocked && (
+                <div style={{ marginTop: 28, textAlign: "center" }}>
+                  <h3 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 18, margin: "0 0 6px" }}>Get Evalve Out Louder</h3>
+                  <p style={{ color: COLORS.slateGray, fontSize: 14, lineHeight: 1.5, margin: "0 auto 8px", maxWidth: 460 }}>One practical note on Fridays. Your report email is separate. Unsubscribe anytime.</p>
+                  <iframe title="Subscribe to Evalve Out Louder" src="https://subscribe-forms.beehiiv.com/ee144ccc-5793-4359-9bdf-3aa50b263a88?utm_source=website&utm_medium=embed&utm_campaign=workflow_audit_unlock" className="beehiiv-embed" data-test-id="beehiiv-embed" frameBorder="0" scrolling="no" />
+                </div>
+              )}
               </div>
               {!unlocked && (
-                <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", alignItems: "flex-start", justifyContent: "center", padding: isMobile ? "24px 16px 40px" : "32px 24px 48px", background: "linear-gradient(180deg, rgba(247,247,250,0.35) 0%, rgba(247,247,250,0.92) 32%, #F7F7FA 55%)" }}>
+                <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", gap: 16, overflowY: "auto", padding: isMobile ? "24px 16px 40px" : "32px 24px 48px", background: "linear-gradient(180deg, rgba(247,247,250,0.35) 0%, rgba(247,247,250,0.92) 32%, #F7F7FA 55%)" }}>
                   <div style={{ ...card, maxWidth: 460, width: "100%", textAlign: "center", boxShadow: "0 24px 70px rgba(46,43,111,0.22)", border: `1px solid ${COLORS.tealBorder}` }}>
                     <div style={{ marginBottom: 6 }}><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" style={{ color: COLORS.softTeal }}><use href="/images/evalve-icons.svg#evalve-lock"></use></svg></div>
                     <h2 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 22, margin: "0 0 8px" }}>Your full report is ready</h2>
@@ -1038,7 +1049,12 @@
                     <input type="email" value={email} onChange={(e) => { setEmail(e.target.value); if (unlockError) setUnlockError(""); }} onKeyDown={(e) => { if (e.key === "Enter") handleUnlock(); }} placeholder="you@yourorganization.org" autoComplete="email" style={{ ...inp, textAlign: "center", marginBottom: 10 }} />
                     {unlockError && <p style={{ color: COLORS.dangerRed, fontSize: 12, margin: "0 0 10px" }}>{unlockError}</p>}
                     <button onClick={handleUnlock} style={{ ...btnP, width: "100%" }}>See My Results</button>
-                    <p style={{ fontSize: 11, color: COLORS.slateGray, marginTop: 12, lineHeight: 1.5 }}>I'll send your report and occasional practical notes on AI in education. Unsubscribe anytime.</p>
+                    <p style={{ fontSize: 11, color: COLORS.slateGray, marginTop: 12, lineHeight: 1.5 }}>This email is for your report. The Friday notes are the form below. Unsubscribe anytime.</p>
+                  </div>
+                  <div style={{ ...card, maxWidth: 460, width: "100%", textAlign: "center", border: `1px solid ${COLORS.tealBorder}` }}>
+                    <h3 style={{ fontFamily: FONT_HEADING, color: COLORS.deepIndigo, fontSize: 16, margin: "0 0 6px" }}>Get Evalve Out Louder</h3>
+                    <p style={{ color: COLORS.slateGray, fontSize: 13, lineHeight: 1.5, margin: "0 0 8px" }}>One practical note on Fridays. Your report email is separate.</p>
+                    <iframe title="Subscribe to Evalve Out Louder" src="https://subscribe-forms.beehiiv.com/ee144ccc-5793-4359-9bdf-3aa50b263a88?utm_source=website&utm_medium=embed&utm_campaign=workflow_audit_unlock" className="beehiiv-embed" data-test-id="beehiiv-embed" frameBorder="0" scrolling="no" />
                   </div>
                 </div>
               )}

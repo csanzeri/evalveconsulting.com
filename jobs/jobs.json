@@ -1,13 +1,123 @@
 {
-  "week_of": "2026-11-03",
+  "week_of": "2026-11-10",
   "weeks": [
+    "2026-11-10",
     "2026-11-03",
     "2026-10-27",
-    "2026-10-20",
-    "2026-10-13"
+    "2026-10-20"
   ],
-  "updated": "2026-11-03T12:30:29.118Z",
+  "updated": "2026-11-10T12:30:25.492Z",
   "jobs": [
+    {
+      "title": "AI Initiatives Librarian",
+      "org": "University of Miami",
+      "org_type": "higher-ed",
+      "location": "Coral Gables, FL",
+      "source_url": "https://careers.miami.edu/us/en/job/R100102903/AI-Initiatives-Libraria-Librarian-Asst-Professor-Librarian-Assoc-Professor",
+      "posted_date": "2026-11-06",
+      "scope_summary": "Sets the libraries' AI roadmap, runs AI literacy programming for students, faculty and staff, and evaluates new AI tools with an eye on ethics, privacy and accessibility.",
+      "week_of": "2026-11-10"
+    },
+    {
+      "title": "Staff AI Research Engineer",
+      "org": "Duolingo",
+      "org_type": "edtech",
+      "location": "New York, NY or Pittsburgh, PA",
+      "source_url": "https://careers.duolingo.com/jobs/8932683002?gh_jid=8932683002",
+      "posted_date": "2026-11-05",
+      "scope_summary": "A senior research engineer on the Speech team, training the models that understand how non-native speakers talk, for features like Video Call.",
+      "week_of": "2026-11-10"
+    },
+    {
+      "title": "Associate Director, Data Analytics & AI-IT Administration",
+      "org": "The College of New Jersey",
+      "org_type": "higher-ed",
+      "location": "Ewing, NJ",
+      "source_url": "https://jobs.chronicle.com/job/38060375/associate-director-data-analytics-and-ai-it-administration/",
+      "posted_date": "2026-11-03",
+      "scope_summary": "Builds and pilots AI-enabled analytics and supports the college's AI governance work, including vendor AI risk reviews, an approved AI tool catalog, and FERPA guardrails.",
+      "week_of": "2026-11-10"
+    },
+    {
+      "title": "Program Manager, Data Science Core & GenAI Studio",
+      "org": "College Board",
+      "org_type": "nonprofit",
+      "location": "Remote",
+      "source_url": "https://collegeboard.wd1.myworkdayjobs.com/en-US/Careers/job/Remote---USA/Program-Manager--Data-Science-Core---GenAI-Studio_REQ002989",
+      "posted_date": "2026-11-01",
+      "scope_summary": "Keeps College Board's data science and generative AI projects on track, managing roadmaps, priorities and risks across both teams.",
+      "week_of": "2026-11-10"
+    },
+    {
+      "title": "Senior AI Solutions Engineer",
+      "org": "Miami University",
+      "org_type": "higher-ed",
+      "location": "Oxford, OH",
+      "source_url": "https://miamioh.wd5.myworkdayjobs.com/en-US/miamioh-staff/job/Oxford-Campus/Senior-AI-Solutions-Engineer_JR105009",
+      "posted_date": "2026-10-20",
+      "scope_summary": "Runs the university's shared AI services and helps academic and administrative units take AI ideas from pilot to something that lasts.",
+      "week_of": "2026-11-10"
+    },
+    {
+      "title": "Director, Carey AI Services (Carey Business School)",
+      "org": "Johns Hopkins University",
+      "org_type": "higher-ed",
+      "location": "Baltimore, MD",
+      "source_url": "https://hiring.jhu.edu/careers/job/1133916373793?hl=en_US&domain=jhu.edu",
+      "posted_date": "2026-10-16",
+      "scope_summary": "Leads the Carey Business School's new AI function, turning leadership priorities into a set of pilots and production tools, and hires a small team to deliver them.",
+      "week_of": "2026-11-10"
+    },
+    {
+      "title": "Carey AI Business Process Analyst (Carey Business School)",
+      "org": "Johns Hopkins University",
+      "org_type": "higher-ed",
+      "location": "Baltimore, MD",
+      "source_url": "https://hiring.jhu.edu/careers/job/1133916332536?hl=en_US&domain=jhu.edu",
+      "posted_date": "2026-10-14",
+      "scope_summary": "Works with Carey departments like admissions and career services, maps how the work gets done, finds where AI or better process helps, and stays through the pilot and into adoption.",
+      "week_of": "2026-11-10"
+    },
+    {
+      "title": "Senior Product Manager, AI Initiatives",
+      "org": "Imagine Learning",
+      "org_type": "edtech",
+      "location": "Remote",
+      "source_url": "https://www.edtech.com/jobs/senior-product-manager-ai-initiatives-72042",
+      "posted_date": "2026-10-14",
+      "scope_summary": "Leads development of AI and machine learning products for Imagine Learning's K-12 curriculum.",
+      "week_of": "2026-11-10"
+    },
+    {
+      "title": "Executive Director, AI Institute",
+      "org": "Indiana Tech",
+      "org_type": "higher-ed",
+      "location": "Fort Wayne, IN",
+      "source_url": "https://www.paycomonline.net/v4/ats/web.php/portal/9B7DD7DDF4B46DE388E0D590C86BBE1D/jobs/282551",
+      "posted_date": "2026-10-06",
+      "scope_summary": "Builds and runs the university's AI Institute, moving faculty, staff and students from AI awareness to hands-on curriculum redesign.",
+      "week_of": "2026-11-10"
+    },
+    {
+      "title": "AI Product Manager",
+      "org": "Success Academy Charter Schools",
+      "org_type": "district",
+      "location": "New York, NY",
+      "source_url": "https://job-boards.greenhouse.io/successacademycharterschool/jobs/5433505008",
+      "posted_date": "2026-10-05",
+      "scope_summary": "Owns the generative AI tools Success Academy builds for its network of 57+ charter schools, from deciding what to build through shipping it and measuring whether it works.",
+      "week_of": "2026-11-10"
+    },
+    {
+      "title": "Assistant Director of AI and Innovation",
+      "org": "Texas ESC Region 16",
+      "org_type": "roe-esa",
+      "location": "Amarillo, TX",
+      "source_url": "https://www.wearedevelopers.com/en/jobs/ext/6379056/assistant-director-of-ai-and-innovation",
+      "posted_date": null,
+      "scope_summary": "Helps lead the service center's AI program, running its online AI training platforms and professional learning modules, managing AI grant budgets, and advising superintendents and school boards on AI adoption.",
+      "week_of": "2026-11-10"
+    },
     {
       "title": "Senior Director, AI Strategy and Innovation",
       "org": "KIPP Foundation (posted via KIPP NYC Public Schools)",
@@ -257,106 +367,6 @@
       "posted_date": "2026-10-05",
       "scope_summary": "Runs live virtual and in-person professional learning that helps schools and districts bring AI tools into instruction, as a flexible contract role for experienced educators.",
       "week_of": "2026-10-20"
-    },
-    {
-      "title": "Learning Solution Architect - AI/Software Engineering",
-      "org": "DataCamp",
-      "org_type": "edtech",
-      "location": "United States",
-      "source_url": "https://job-boards.greenhouse.io/datacamp/jobs/8261099",
-      "posted_date": "2026-10-07",
-      "scope_summary": "Runs live training sessions, online and onsite, teaching staff at client companies how to build with AI and machine learning. Also writes the custom courses, projects, and assessments each client needs.",
-      "week_of": "2026-10-13"
-    },
-    {
-      "title": "Applied AI Systems Tenure-line Faculty",
-      "org": "Penn State",
-      "org_type": "higher-ed",
-      "location": "University Park, PA",
-      "source_url": "https://psu.wd1.myworkdayjobs.com/PSU_Academic/job/Penn-State-University-Park/Applied-AI-Systems-Tenure-line-Faculty_REQ_0000083026-1",
-      "posted_date": "2026-10-05",
-      "scope_summary": "Teaches AI courses in the Department of Human-Centered Computing and Social Informatics and runs an applied AI research program. This is a multi-hire search with appointments starting August 2027.",
-      "week_of": "2026-10-13"
-    },
-    {
-      "title": "Lead Product Designer, AI Builder (all genders)",
-      "org": "Babbel",
-      "org_type": "edtech",
-      "location": "Berlin, Germany",
-      "source_url": "https://jobs.ashbyhq.com/babbel/dd99c522-b820-4bca-a779-648138bba47d",
-      "posted_date": "2026-10-02",
-      "scope_summary": "Leads design on Babbel's AI-first learning product, running discovery and making the main design calls. Builds working prototypes to test how learners talk to the AI and read its feedback.",
-      "week_of": "2026-10-13"
-    },
-    {
-      "title": "Postdoctoral Scholar, Artificial Intelligence and Sustainability Education",
-      "org": "The Ohio State University",
-      "org_type": "higher-ed",
-      "location": "Columbus, OH",
-      "source_url": "https://osu.wd1.myworkdayjobs.com/OSUCareers/job/Columbus-Campus/Postdoctoral-Scholar--Artificial-Intelligence-and-Sustainability-Education_R160094-1",
-      "posted_date": "2026-10-02",
-      "scope_summary": "Reviews the research on AI and sustainability, then turns it into teaching modules and classroom materials for undergraduate and graduate courses. Works with faculty to get those materials into real courses on a one year appointment.",
-      "week_of": "2026-10-13"
-    },
-    {
-      "title": "Senior Principal Engineer - AI Content Systems (all genders)",
-      "org": "Babbel",
-      "org_type": "edtech",
-      "location": "Berlin, Germany",
-      "source_url": "https://jobs.ashbyhq.com/babbel/91779c86-7101-4dae-a22b-70ed7970c47a",
-      "posted_date": "2026-10-02",
-      "scope_summary": "Sets the technical direction for the AI systems that produce Babbel's language lessons, and stays hands on with architecture and prototypes. Works across teams to agree shared standards and keep the systems reliable.",
-      "week_of": "2026-10-13"
-    },
-    {
-      "title": "Product Manager - AI Content Generation",
-      "org": "Speak",
-      "org_type": "edtech",
-      "location": "San Francisco, CA",
-      "source_url": "https://jobs.ashbyhq.com/speak/88b810f3-aa10-4e9e-9dbc-163f2ad40f20",
-      "posted_date": "2026-10-01",
-      "scope_summary": "Owns the system that generates and picks lesson content for Speak's AI language tutor, including what a learner practices next. Builds the review and quality checks that keep AI-written lessons good enough to ship.",
-      "week_of": "2026-10-13"
-    },
-    {
-      "title": "Senior Engineering Manager (GenAI & Agentic Platforms)",
-      "org": "Preply",
-      "org_type": "edtech",
-      "location": "Barcelona, Spain",
-      "source_url": "https://jobs.ashbyhq.com/preply/ff54daff-108a-424c-8c67-8335873d4652",
-      "posted_date": "2026-09-28",
-      "scope_summary": "Leads two engineering teams, about 8 to 12 people, who build the shared AI tools every other Preply team uses. That covers model access, evaluation, monitoring, and the guardrails around agents.",
-      "week_of": "2026-10-13"
-    },
-    {
-      "title": "Senior Machine Learning Platform/Ops Engineer",
-      "org": "Preply",
-      "org_type": "edtech",
-      "location": "Barcelona, Spain",
-      "source_url": "https://jobs.ashbyhq.com/preply/6381f5bc-fc56-4015-855a-6be495310105",
-      "posted_date": "2026-09-23",
-      "scope_summary": "Gets machine learning models into production and keeps them running, from training pipelines through deployment and monitoring. Works between the machine learning, data, and infrastructure teams so model work is repeatable.",
-      "week_of": "2026-10-13"
-    },
-    {
-      "title": "Senior Software Engineer, Applied AI",
-      "org": "Teachstone",
-      "org_type": "edtech",
-      "location": "Remote (US)",
-      "source_url": "https://teachstone.com/careers/?gh_jid=5247092007",
-      "posted_date": "2026-09-23",
-      "scope_summary": "Builds the AI features inside Teachstone's classroom observation tools and takes them from prototype to production. Also sets the evaluation and safety practices other engineers follow when they add AI to the product.",
-      "week_of": "2026-10-13"
-    },
-    {
-      "title": "Program Manager for Cornell AI Initiatives",
-      "org": "Cornell University",
-      "org_type": "higher-ed",
-      "location": "Ithaca, NY",
-      "source_url": "https://cornell.wd1.myworkdayjobs.com/CornellCareerPage/job/Ithaca-Main-Campus/Program-Manager-for-Cornell-AI-Initiatives_WDR-00061446-1",
-      "posted_date": "2026-09-22",
-      "scope_summary": "Keeps Cornell's university-wide AI initiative running, handling schedules, budgets, and the paperwork behind internal funding competitions, research programs, and events. Applications close October 17.",
-      "week_of": "2026-10-13"
     }
   ]
 }

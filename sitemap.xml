@@ -7,7 +7,13 @@
     </url>
     <url>
         <loc>https://evalveconsulting.com/sped-ai-guardrails/</loc>
-        <lastmod>2026-11-14</lastmod>
+        <lastmod>2026-11-16</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://evalveconsulting.com/sped-ai-readiness-review/</loc>
+        <lastmod>2026-11-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>

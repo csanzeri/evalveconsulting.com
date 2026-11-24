@@ -1,13 +1,103 @@
 {
-  "week_of": "2026-11-17",
+  "week_of": "2026-11-24",
   "weeks": [
+    "2026-11-24",
     "2026-11-17",
     "2026-11-10",
-    "2026-11-03",
-    "2026-10-27"
+    "2026-11-03"
   ],
-  "updated": "2026-11-17T12:30:17.135Z",
+  "updated": "2026-11-24T12:31:01.530Z",
   "jobs": [
+    {
+      "title": "AI-Focused Instructional Designers (2 positions)",
+      "org": "Purdue University Fort Wayne, Center for the Enhancement of Learning and Teaching",
+      "org_type": "higher-ed",
+      "location": "Fort Wayne, IN",
+      "source_url": "https://jobs.chronicle.com/job/38068801/ai-focused-instructional-designers/",
+      "posted_date": "2026-11-19",
+      "scope_summary": "Two grant-funded designers who run AI-focused faculty learning communities, co-build student AI literacy programming, and review research on AI in higher education for the campus AI initiative.",
+      "week_of": "2026-11-24"
+    },
+    {
+      "title": "Director, AI, Data & Systems (Academics & Teachers)",
+      "org": "Aspire Public Schools",
+      "org_type": "district",
+      "location": "Oakland, CA",
+      "source_url": "https://jobs.jobvite.com/aspirepublicschools/job/oOC7AfwR",
+      "posted_date": "2026-11-19",
+      "scope_summary": "Leads a three-person team that uses AI and better data systems to give teachers, coaches and curriculum leaders their time back, across tools like iReady, mClass and CAASPP.",
+      "week_of": "2026-11-24"
+    },
+    {
+      "title": "Senior Director, AI, Data & Systems Enablement",
+      "org": "Aspire Public Schools",
+      "org_type": "district",
+      "location": "Oakland, CA",
+      "source_url": "https://jobs.jobvite.com/aspirepublicschools/job/oMC7AfwP",
+      "posted_date": "2026-11-19",
+      "scope_summary": "Sets the shared standards, AI policy and training for Aspire NorCal's new AI, Data & Systems team, which serves 22 schools and about 10,000 students.",
+      "week_of": "2026-11-24"
+    },
+    {
+      "title": "Project Director, Title III - AI (Superintelligence) Learning & Innovation Hub",
+      "org": "Middlesex Community College",
+      "org_type": "higher-ed",
+      "location": "Bedford, MA",
+      "source_url": "https://middlesex.interviewexchange.com/jobofferdetails.jsp?JOBID=206880",
+      "posted_date": "2026-11-18",
+      "scope_summary": "Runs a five-year, $3 million federal grant to build AI literacy into college programs and roll out AI tutoring and advising that help students finish.",
+      "week_of": "2026-11-24"
+    },
+    {
+      "title": "Software Engineer, Teacher Experience",
+      "org": "CodeAI (formerly Code.org)",
+      "org_type": "nonprofit",
+      "location": "Remote or Seattle, WA",
+      "source_url": "https://job-boards.greenhouse.io/codeorg/jobs/4753719005",
+      "posted_date": "2026-11-18",
+      "scope_summary": "Builds the tools teachers use every day to teach computer science and AI with CodeAI's K-12 curriculum.",
+      "week_of": "2026-11-24"
+    },
+    {
+      "title": "Coordinator, AI Leaders of Tomorrow",
+      "org": "University of Notre Dame",
+      "org_type": "higher-ed",
+      "location": "Notre Dame, IN",
+      "source_url": "https://jobs.smartrecruiters.com/UniversityOfNotreDame/3743990016700007-coordinator-ai-leaders-of-tomorrow",
+      "posted_date": "2026-11-09",
+      "scope_summary": "Runs the day-to-day operations of a program that pairs student fellows with regional companies on applied AI projects.",
+      "week_of": "2026-11-24"
+    },
+    {
+      "title": "AI Research Intern (PhD)",
+      "org": "Duolingo",
+      "org_type": "edtech",
+      "location": "New York, NY; Pittsburgh, PA",
+      "source_url": "https://careers.duolingo.com/jobs/8928712002?gh_jid=8928712002",
+      "posted_date": "2026-11-06",
+      "scope_summary": "A PhD intern who prototypes and tests AI models on Duolingo's learner data to build new product features.",
+      "week_of": "2026-11-24"
+    },
+    {
+      "title": "Postdoctoral Associate for AI Education in the Disciplines",
+      "org": "Cornell University",
+      "org_type": "higher-ed",
+      "location": "Ithaca, NY",
+      "source_url": "https://apps.hr.cornell.edu/recruiting/facultyview.cfm?posting_id=_JOB_POSTING-3-112238",
+      "posted_date": "2026-11-04",
+      "scope_summary": "One of 6 to 10 postdocs who work with faculty teams to redesign courses for AI and study what it does to student learning.",
+      "week_of": "2026-11-24"
+    },
+    {
+      "title": "Director for the center of Rural AI Integration",
+      "org": "Snow College",
+      "org_type": "higher-ed",
+      "location": "Ephraim, UT",
+      "source_url": "https://www.schooljobs.com/careers/snowcollege/jobs/5538663/director-for-the-center-of-rural-ai-integration",
+      "posted_date": "2026-11-03",
+      "scope_summary": "Leads a new five-year center that grows AI literacy across the college and takes AI training out to rural schools, employers and communities.",
+      "week_of": "2026-11-24"
+    },
     {
       "title": "Lead AI Developer",
       "org": "George Mason University",
@@ -297,86 +387,6 @@
       "posted_date": "2026-10-12",
       "scope_summary": "Helps member districts build AI readiness plans, governance and responsible-use guidelines, evaluate AI tools, and run AI literacy professional learning.",
       "week_of": "2026-11-03"
-    },
-    {
-      "title": "Technology Coordinator",
-      "org": "Komarek SD #94",
-      "org_type": "district",
-      "location": "North Riverside, IL",
-      "source_url": "https://www.illinoiseducationjobbank.org/Job-Posting/267852/Technology-Coordinator/job-details",
-      "posted_date": "2026-10-25",
-      "scope_summary": "Runs the district's instructional technology, with an AI and innovation remit to support safe staff and student use of AI tools and to evaluate new classroom technology.",
-      "week_of": "2026-10-27"
-    },
-    {
-      "title": "AI Solutions Specialist",
-      "org": "Tarleton State University",
-      "org_type": "higher-ed",
-      "location": "Stephenville, TX",
-      "source_url": "https://jobs.chronicle.com/job/38055440/ai-solutions-specialist/",
-      "posted_date": "2026-10-22",
-      "scope_summary": "Staff role in the university's new Department of AI and Educational Technology, supporting AI solutions for teaching, research and campus operations.",
-      "week_of": "2026-10-27"
-    },
-    {
-      "title": "Instructional Designer and AI Learning Specialist",
-      "org": "Thomas Edison State University",
-      "org_type": "higher-ed",
-      "location": "Trenton, NJ",
-      "source_url": "https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=089b582f-0a35-44db-98f2-170a98083ab9&ccId=19000101_000001&lang=en_US&jobId=583035",
-      "posted_date": "2026-10-22",
-      "scope_summary": "Builds and revises online courses in Canvas, and leads how AI gets used in course design. Writes the prompts, templates and AI-supported workflows the design team runs on, and keeps the work inside the university's AI and academic integrity policies.",
-      "week_of": "2026-10-27"
-    },
-    {
-      "title": "Learning Technologist and AI Coordinator",
-      "org": "Thomas Edison State University",
-      "org_type": "higher-ed",
-      "location": "Trenton, NJ",
-      "source_url": "https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid=089b582f-0a35-44db-98f2-170a98083ab9&ccId=19000101_000001&lang=en_US&jobId=583034",
-      "posted_date": "2026-10-22",
-      "scope_summary": "Runs Canvas and instructional technology support, and coordinates how generative AI is used across course design and delivery. The job is to make the AI work practical and keep it ethical, secure and academically honest.",
-      "week_of": "2026-10-27"
-    },
-    {
-      "title": "Postdoctoral Research Associate: STEM Education and AI Literacy",
-      "org": "University of Georgia",
-      "org_type": "higher-ed",
-      "location": "Athens, GA",
-      "source_url": "https://careers.insidehighered.com/job/3564939/postdoctoral-research-associate-stem-education-and-ai-literacy/",
-      "posted_date": "2026-10-19",
-      "scope_summary": "Research role in UGA's AI in STEM Education center, studying how AI literacy is taught in STEM classrooms.",
-      "week_of": "2026-10-27"
-    },
-    {
-      "title": "Technology Integration Specialist (Tech Services)",
-      "org": "Alexandria City Public Schools",
-      "org_type": "district",
-      "location": "Alexandria, VA",
-      "source_url": "https://acps.tedk12.com/hire/ViewJob.aspx?JobID=4244",
-      "posted_date": "2026-10-14",
-      "scope_summary": "Designs and leads teacher training on using technology and AI tools in instruction, then coaches staff on responsible AI use and data privacy through co-teaching and modeled lessons.",
-      "week_of": "2026-10-27"
-    },
-    {
-      "title": "NASA-STEM Grant Program Coordinator, Curriculum and Instruction",
-      "org": "Alief Independent School District",
-      "org_type": "district",
-      "location": "Houston, TX",
-      "source_url": "https://aisd.tedk12.com/hire/ViewJob.aspx?JobID=8729",
-      "posted_date": "2026-10-13",
-      "scope_summary": "Runs a one-year STEM and AI Literacy grant across several campuses, managing the budget, resources and rollout so the grant's AI literacy goals are met.",
-      "week_of": "2026-10-27"
-    },
-    {
-      "title": "Senior Product Manager, Applied AI",
-      "org": "Coursera",
-      "org_type": "edtech",
-      "location": "Canada",
-      "source_url": "https://job-boards.greenhouse.io/coursera/jobs/6211986004",
-      "posted_date": "2026-09-30",
-      "scope_summary": "Defines and ships applied AI features for learners and enterprise customers on the combined Coursera and Udemy learning platform.",
-      "week_of": "2026-10-27"
     }
   ]
 }
